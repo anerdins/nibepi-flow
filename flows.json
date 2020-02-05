@@ -10416,21 +10416,23 @@
         "x": 132,
         "y": 1022,
         "wires": [
-            []
+            [
+                "6dee8bba.615d04"
+            ]
         ]
     },
     {
         "id": "6dee8bba.615d04",
         "type": "exec",
         "z": "b7f67da0.fbf1",
-        "command": "cd /tmp && wget https://raw.githubusercontent.com/bebben88/NibePi/master/update/nibepi.sh && bash nibepi.sh",
+        "command": "cd /tmp && bash <(curl -sL https://raw.githubusercontent.com/anerdins/nibepi-flow/master/update/update.sh)",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 681,
+        "x": 643,
         "y": 1022,
         "wires": [
             [
@@ -10513,8 +10515,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 1081,
-        "y": 1071,
+        "x": 1074,
+        "y": 1078,
         "wires": [
             [
                 "6042fbae.0ea8b4"
@@ -10529,7 +10531,7 @@
         "func": "if(msg.payload.code===0) {\n    msg.payload = \"Uppdatering lyckades, startar om...\"\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1268,
+        "x": 1261,
         "y": 994,
         "wires": [
             [
