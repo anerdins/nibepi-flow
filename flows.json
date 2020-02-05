@@ -8182,7 +8182,8 @@
         "y": 833,
         "wires": [
             [
-                "4c38519b.aeeab"
+                "4c38519b.aeeab",
+                "d267ee3c.9e4e9"
             ]
         ]
     },
@@ -8191,10 +8192,10 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "func": "node.send({timestamp:msg.payload,topic:\"Utomhustemperatur\",payload:msg.outside});\nnode.send({timestamp:msg.payload,topic:\"Kurvjustering\",payload:msg.curveadjust});\nif(msg.inside>-3277) {\n    node.send({timestamp:msg.payload,topic:\"Inomhustemperatur\",payload:msg.inside});\n}\nnode.send({timestamp:msg.payload,topic:\"Börvärde S1\",payload:msg.setpoint_s1});\nnode.send({timestamp:msg.payload,topic:\"Framledning S1\",payload:msg.supply_s1});\n",
+        "func": "node.send({timestamp:msg.payload,topic:\"Utomhustemperatur\",payload:msg.outside});\nnode.send({timestamp:msg.payload,topic:\"Kurvjustering\",payload:msg.curveadjust});\nif(msg.inside>-3276) {\n    node.send({timestamp:msg.payload,topic:\"Inomhustemperatur\",payload:msg.inside});\n}\nnode.send({timestamp:msg.payload,topic:\"Börvärde S1\",payload:msg.setpoint_s1});\nnode.send({timestamp:msg.payload,topic:\"Framledning S1\",payload:msg.supply_s1});\nnode.send({timestamp:msg.payload,topic:\"Börvärde S2\",payload:msg.setpoint_s2});\nnode.send({timestamp:msg.payload,topic:\"Framledning S2\",payload:msg.supply_s2});\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 1051,
+        "x": 1037,
         "y": 833,
         "wires": [
             [
@@ -9085,11 +9086,11 @@
         "id": "236045ec.27f9ca",
         "type": "function",
         "z": "b7f67da0.fbf1",
-        "name": "Inomhusreglering",
+        "name": "Inställningar",
         "func": "var timeSaved = context.get('time')||(Date.now()-1000);\nvar time = Date.now();\nif(msg.name==\"Inställningar\") {\n    if(time>timeSaved) {\n        context.set('time',(time+30000));\n        return msg;\n    }\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 454,
+        "x": 434,
         "y": 546,
         "wires": [
             [
@@ -10348,8 +10349,8 @@
         "z": "b7f67da0.fbf1",
         "server": "844659a2.8d8508",
         "name": "heatcurve_s2",
-        "x": 976,
-        "y": 644,
+        "x": 997,
+        "y": 637,
         "wires": [
             []
         ]
@@ -10412,12 +10413,10 @@
         "payload": "true",
         "payloadType": "bool",
         "topic": "Uppdatering",
-        "x": 139,
-        "y": 917,
+        "x": 132,
+        "y": 1022,
         "wires": [
-            [
-                "6dee8bba.615d04"
-            ]
+            []
         ]
     },
     {
@@ -10431,8 +10430,8 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 660,
-        "y": 924,
+        "x": 681,
+        "y": 1022,
         "wires": [
             [
                 "b0027373.12417"
@@ -10495,8 +10494,8 @@
         "cancel": "",
         "topic": "",
         "name": "",
-        "x": 930,
-        "y": 1057,
+        "x": 1287,
+        "y": 1064,
         "wires": []
     },
     {
@@ -10514,8 +10513,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 731,
-        "y": 1057,
+        "x": 1081,
+        "y": 1071,
         "wires": [
             [
                 "6042fbae.0ea8b4"
@@ -10530,8 +10529,8 @@
         "func": "if(msg.payload.code===0) {\n    msg.payload = \"Uppdatering lyckades, startar om...\"\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 995,
-        "y": 1008,
+        "x": 1268,
+        "y": 994,
         "wires": [
             [
                 "6042fbae.0ea8b4"
@@ -11703,7 +11702,7 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "func": "var sensors = msg.payload.home.inside_sensors;\nvar output = [];\nif(sensors.length!==0) {\n    for (const arr of sensors) {\n        output.push({[arr.name]:arr})\n    }\n}\nif(output!==undefined) {\n    node.send({options:output});\n}",
+        "func": "var sensors = msg.payload.home.inside_sensors||[];\nvar output = [];\nif(sensors.length!==0) {\n    for (const arr of sensors) {\n        output.push({[arr.name]:arr})\n    }\n}\nif(output!==undefined) {\n    node.send({options:output});\n}",
         "outputs": 1,
         "noerr": 0,
         "x": 854,
@@ -11824,7 +11823,7 @@
         "type": "function",
         "z": "df0dd648.98daa8",
         "name": "",
-        "func": "var sensors = msg.payload.home.inside_sensors;\nvar output = [\"Ingen\"];\nfor (const arr of sensors) {\n    output.push(arr.name)\n}\nif(output!==undefined && output!==[]) {\n    node.send({options:output});\n    node.send({payload:msg.payload.weather.sensor_s1})\n}\n",
+        "func": "var sensors = msg.payload.home.inside_sensors||[];\nvar output = [\"Ingen\"];\nfor (const arr of sensors) {\n    output.push(arr.name)\n}\nif(output!==undefined && output!==[]) {\n    node.send({options:output});\n    node.send({payload:msg.payload.weather.sensor_s1})\n}\n",
         "outputs": 1,
         "noerr": 0,
         "x": 406,
@@ -11938,11 +11937,11 @@
         "type": "function",
         "z": "358baec9.c8b902",
         "name": "",
-        "func": "var sensors = msg.payload.home.inside_sensors;\nvar output = [\"Ingen\"];\nfor (const arr of sensors) {\n    output.push(arr.name)\n}\nif(output!==undefined && output!==[]) {\n    node.send({options:output});\n    if(msg.payload.indoor!==undefined) {\n        node.send({payload:msg.payload.indoor.sensor_s1})\n    }\n    \n}\n",
+        "func": "var sensors = msg.payload.home.inside_sensors||[];\nvar output = [\"Ingen\"];\nfor (const arr of sensors) {\n    output.push(arr.name)\n}\nif(output!==undefined && output!==[]) {\n    node.send({options:output});\n    if(msg.payload.indoor!==undefined) {\n        node.send({payload:msg.payload.indoor.sensor_s1})\n    }\n    \n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 414,
-        "y": 434,
+        "x": 421,
+        "y": 427,
         "wires": [
             [
                 "f421e95f.a41718"
@@ -12918,7 +12917,8 @@
         "y": 847,
         "wires": [
             [
-                "1e4f140c.04c97c"
+                "1e4f140c.04c97c",
+                "419d4955.0dded8"
             ]
         ]
     },
@@ -14647,7 +14647,7 @@
         "type": "function",
         "z": "358baec9.c8b902",
         "name": "",
-        "func": "var sensors = msg.payload.home.inside_sensors;\nvar output = [\"Ingen\"];\nfor (const arr of sensors) {\n    output.push(arr.name)\n}\nif(output!==undefined && output!==[]) {\n    node.send({options:output});\n    if(msg.payload.indoor!==undefined) {\n        node.send({payload:msg.payload.indoor.sensor_s2})\n    }\n    \n}\n",
+        "func": "var sensors = msg.payload.home.inside_sensors||[];\nvar output = [\"Ingen\"];\nfor (const arr of sensors) {\n    output.push(arr.name)\n}\nif(output!==undefined && output!==[]) {\n    node.send({options:output});\n    if(msg.payload.indoor!==undefined) {\n        node.send({payload:msg.payload.indoor.sensor_s2})\n    }\n    \n}\n",
         "outputs": 1,
         "noerr": 0,
         "x": 442,
@@ -16893,7 +16893,7 @@
         "label": "",
         "format": "Nibe {{msg.payload}}",
         "layout": "row-left",
-        "x": 1205,
+        "x": 1226,
         "y": 714,
         "wires": []
     },
@@ -17013,6 +17013,206 @@
         "wires": [
             [
                 "1b0cc4df.6a668b"
+            ]
+        ]
+    },
+    {
+        "id": "77e503d5.77b63c",
+        "type": "function",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "func": "var sensors = msg.payload.home.inside_sensors||[];\nvar output = [\"Ingen\"];\nfor (const arr of sensors) {\n    output.push(arr.name)\n}\nif(output!==undefined && output!==[]) {\n    node.send({options:output});\n    if(msg.payload.price!==undefined) {\n        node.send({payload:msg.payload.price.sensor_s1})\n    }\n    \n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 428,
+        "y": 420,
+        "wires": [
+            [
+                "5b35fb44.679dc4"
+            ]
+        ]
+    },
+    {
+        "id": "9c5f816f.d0c84",
+        "type": "nibe-input",
+        "z": "960078e.e3e6d88",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 134,
+        "y": 420,
+        "wires": [
+            [
+                "77e503d5.77b63c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "419d4955.0dded8",
+        "type": "nibe-request",
+        "z": "960078e.e3e6d88",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 134,
+        "y": 378,
+        "wires": [
+            [],
+            [
+                "77e503d5.77b63c"
+            ]
+        ]
+    },
+    {
+        "id": "5b35fb44.679dc4",
+        "type": "ui_dropdown",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "label": "Välj Inomhusgivare",
+        "tooltip": "",
+        "place": "Välj",
+        "group": "b561c5cd.249a58",
+        "order": 8,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "price/sensor",
+        "x": 601,
+        "y": 420,
+        "wires": [
+            [
+                "8dd4be0a.86e46"
+            ]
+        ]
+    },
+    {
+        "id": "551009f1.15c058",
+        "type": "ui_slider",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "label": "Differens",
+        "tooltip": "Lägsta temperatur differens jämfört mot Inomhusbörvärdet.",
+        "group": "b561c5cd.249a58",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "price/temp_low",
+        "min": "-3",
+        "max": "0",
+        "step": "0.1",
+        "x": 1033,
+        "y": 315,
+        "wires": [
+            [
+                "8dd4be0a.86e46"
+            ]
+        ]
+    },
+    {
+        "id": "84e8bdd0.e775f",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "temp_low_s1",
+                "type": "str"
+            }
+        ],
+        "x": 853,
+        "y": 315,
+        "wires": [
+            [
+                "551009f1.15c058"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "69d448f5.49a7d8",
+        "type": "nibe-request",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "setpoint_s2",
+        "x": 742,
+        "y": 903,
+        "wires": [
+            [
+                "490c35f1.10b10c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "490c35f1.10b10c",
+        "type": "nibe-request",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "supply_s2",
+        "x": 893,
+        "y": 903,
+        "wires": [
+            [
+                "ec4077fa.6625d8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ec4077fa.6625d8",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "\nif(msg.supply_s2>-3276) {\nnode.send({timestamp:msg.payload,topic:\"Börvärde S2\",payload:msg.setpoint_s2});\nnode.send({timestamp:msg.payload,topic:\"Framledning S2\",payload:msg.supply_s2});\n} else if(msg.supply_s2===undefined) {\n    \n} else {\n    flow.set('s2',false);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1051,
+        "y": 903,
+        "wires": [
+            [
+                "ef643ddd.c667f"
+            ]
+        ]
+    },
+    {
+        "id": "d267ee3c.9e4e9",
+        "type": "switch",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "property": "s2",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "false"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 554,
+        "y": 903,
+        "wires": [
+            [],
+            [
+                "69d448f5.49a7d8"
             ]
         ]
     }
