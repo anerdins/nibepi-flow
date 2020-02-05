@@ -10425,14 +10425,14 @@
         "id": "6dee8bba.615d04",
         "type": "exec",
         "z": "b7f67da0.fbf1",
-        "command": "cd /tmp && bash <(curl -sL https://raw.githubusercontent.com/anerdins/nibepi-flow/master/update/update.sh)",
+        "command": "cd /tmp && wget https://raw.githubusercontent.com/anerdins/nibepi-flow/master/update/update.sh && bash update.sh",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 643,
+        "x": 673,
         "y": 1022,
         "wires": [
             [
