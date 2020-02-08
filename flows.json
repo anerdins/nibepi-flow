@@ -278,7 +278,7 @@
         "z": 0,
         "name": "Uppdateringar",
         "tab": "6aa61182.b42ed",
-        "order": 2,
+        "order": 1,
         "disp": true,
         "width": "12",
         "collapse": false
@@ -299,7 +299,7 @@
         "z": "",
         "name": "Datahantering",
         "tab": "6aa61182.b42ed",
-        "order": 4,
+        "order": 7,
         "disp": true,
         "width": "12",
         "collapse": false
@@ -342,7 +342,7 @@
         "z": "",
         "name": "Graf",
         "tab": "ad3904c7.ceae48",
-        "order": 7,
+        "order": 5,
         "disp": true,
         "width": "12",
         "collapse": false
@@ -361,12 +361,12 @@
     {
         "id": "4a7ab836.172ae8",
         "type": "ui_group",
-        "z": 0,
+        "z": "",
         "name": "Information",
         "tab": "6aa61182.b42ed",
-        "order": 5,
+        "order": 8,
         "disp": true,
-        "width": "12",
+        "width": "6",
         "collapse": false
     },
     {
@@ -375,7 +375,7 @@
         "z": 0,
         "name": "Loggning",
         "tab": "6aa61182.b42ed",
-        "order": 6,
+        "order": 4,
         "disp": true,
         "width": "12",
         "collapse": false
@@ -407,7 +407,7 @@
         "z": "",
         "name": "Inställningar Värme",
         "tab": "ad3904c7.ceae48",
-        "order": 5,
+        "order": 3,
         "disp": true,
         "width": "12",
         "collapse": false
@@ -418,7 +418,7 @@
         "z": "",
         "name": "Inställningar Varmvatten",
         "tab": "ad3904c7.ceae48",
-        "order": 6,
+        "order": 4,
         "disp": true,
         "width": "12",
         "collapse": false
@@ -429,7 +429,7 @@
         "z": 0,
         "name": "Inställningar",
         "tab": "ad3904c7.ceae48",
-        "order": 4,
+        "order": 2,
         "disp": true,
         "width": "12",
         "collapse": false
@@ -707,7 +707,7 @@
         "z": "",
         "name": "Extra givare",
         "tab": "6aa61182.b42ed",
-        "order": 7,
+        "order": 2,
         "disp": true,
         "width": "12",
         "collapse": false
@@ -740,7 +740,7 @@
         "z": "",
         "name": "Elprisreglering S1",
         "tab": "ad3904c7.ceae48",
-        "order": 2,
+        "order": 6,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -751,7 +751,7 @@
         "z": "",
         "name": "Elprisreglering S2",
         "tab": "ad3904c7.ceae48",
-        "order": 3,
+        "order": 7,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -783,7 +783,7 @@
         "z": "",
         "name": "System",
         "tab": "6aa61182.b42ed",
-        "order": 8,
+        "order": 9,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -794,7 +794,7 @@
         "z": "",
         "name": "Värmekurva S1",
         "tab": "6aa61182.b42ed",
-        "order": 9,
+        "order": 10,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -805,7 +805,7 @@
         "z": "",
         "name": "Värmekurva S2",
         "tab": "6aa61182.b42ed",
-        "order": 10,
+        "order": 11,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -857,7 +857,7 @@
         "z": "",
         "name": "RMU40 S1",
         "tab": "6aa61182.b42ed",
-        "order": 11,
+        "order": 12,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -868,7 +868,7 @@
         "z": "",
         "name": "RMU40 S2",
         "tab": "6aa61182.b42ed",
-        "order": 12,
+        "order": 13,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -889,7 +889,7 @@
         "z": "",
         "name": "Avancerat",
         "tab": "6aa61182.b42ed",
-        "order": 1,
+        "order": 5,
         "disp": true,
         "width": "12",
         "collapse": false
@@ -912,6 +912,17 @@
         "name": "Table Examples",
         "icon": "dashboard",
         "order": 1
+    },
+    {
+        "id": "723a0250.fd7dcc",
+        "type": "ui_group",
+        "z": "",
+        "name": "MQTT",
+        "tab": "6aa61182.b42ed",
+        "order": 6,
+        "disp": true,
+        "width": "6",
+        "collapse": false
     },
     {
         "id": "24d4f99f.449346",
@@ -7776,7 +7787,7 @@
         "name": "",
         "label": "MQTT Broker",
         "tooltip": "",
-        "group": "ada224d8.213a68",
+        "group": "723a0250.fd7dcc",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -7892,7 +7903,7 @@
         "name": "",
         "label": "MQTT Topic",
         "tooltip": "",
-        "group": "ada224d8.213a68",
+        "group": "723a0250.fd7dcc",
         "order": 3,
         "width": 0,
         "height": 0,
@@ -10012,7 +10023,7 @@
         "name": "",
         "label": "Host",
         "tooltip": "",
-        "group": "ada224d8.213a68",
+        "group": "723a0250.fd7dcc",
         "order": 3,
         "width": 0,
         "height": 0,
@@ -10061,7 +10072,7 @@
         "name": "",
         "label": "Port",
         "tooltip": "",
-        "group": "ada224d8.213a68",
+        "group": "723a0250.fd7dcc",
         "order": 3,
         "width": 0,
         "height": 0,
@@ -10110,7 +10121,7 @@
         "name": "",
         "label": "User",
         "tooltip": "",
-        "group": "ada224d8.213a68",
+        "group": "723a0250.fd7dcc",
         "order": 3,
         "width": 0,
         "height": 0,
@@ -10185,7 +10196,7 @@
         "name": "",
         "label": "Password",
         "tooltip": "",
-        "group": "ada224d8.213a68",
+        "group": "723a0250.fd7dcc",
         "order": 3,
         "width": 0,
         "height": 0,
@@ -10410,14 +10421,15 @@
         "color": "",
         "bgcolor": "",
         "icon": "",
-        "payload": "true",
-        "payloadType": "bool",
+        "payload": "Uppdatering påbörjar",
+        "payloadType": "str",
         "topic": "Uppdatering",
         "x": 132,
         "y": 1022,
         "wires": [
             [
-                "6dee8bba.615d04"
+                "6dee8bba.615d04",
+                "b0027373.12417"
             ]
         ]
     },
@@ -10428,7 +10440,7 @@
         "command": "cd /tmp && wget https://raw.githubusercontent.com/anerdins/nibepi-flow/master/update/update.sh && bash update.sh",
         "addpay": false,
         "append": "",
-        "useSpawn": "false",
+        "useSpawn": "true",
         "timer": "",
         "oldrc": false,
         "name": "",
@@ -12610,11 +12622,12 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 163,
+        "x": 156,
         "y": 903,
         "wires": [
             [
-                "45dd1bee.904324"
+                "d54ff528.d710e8",
+                "321fde4.84f6d22"
             ]
         ]
     },
@@ -12937,7 +12950,8 @@
             [],
             [
                 "54bb4384.e1936c",
-                "9ff28997.48cac8"
+                "9ff28997.48cac8",
+                "d383b3f8.c2437"
             ]
         ]
     },
@@ -12987,7 +13001,7 @@
                 "type": "str"
             }
         ],
-        "x": 937,
+        "x": 384,
         "y": 903,
         "wires": [
             [
@@ -12995,66 +13009,6 @@
             ],
             [
                 "217bd6b8.16c73a"
-            ]
-        ]
-    },
-    {
-        "id": "e2b3a87a.388688",
-        "type": "nibe-request",
-        "z": "960078e.e3e6d88",
-        "server": "844659a2.8d8508",
-        "name": "price_enable",
-        "x": 448,
-        "y": 903,
-        "wires": [
-            [
-                "133ad9c8.bd1bb6"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "133ad9c8.bd1bb6",
-        "type": "function",
-        "z": "960078e.e3e6d88",
-        "name": "Check if Smart Price is enabled",
-        "func": "let enable = msg.price_enable;\nif(msg.payload===true) {\n    if(enable===10) {\n        return msg;\n    } else {\n        // Do nothing\n    }\n} else if(msg.payload===false) {\n    return msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 683,
-        "y": 910,
-        "wires": [
-            [
-                "d54ff528.d710e8"
-            ]
-        ]
-    },
-    {
-        "id": "45dd1bee.904324",
-        "type": "switch",
-        "z": "960078e.e3e6d88",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 323,
-        "y": 959,
-        "wires": [
-            [
-                "e2b3a87a.388688"
-            ],
-            [
-                "133ad9c8.bd1bb6"
             ]
         ]
     },
@@ -13071,21 +13025,10 @@
         "width": 0,
         "height": 0,
         "passthru": false,
-        "options": [
-            {
-                "label": "Nibe Uplink",
-                "value": "nibe",
-                "type": "str"
-            },
-            {
-                "label": "Tibber",
-                "value": "tibber",
-                "type": "str"
-            }
-        ],
+        "options": [],
         "payload": "",
         "topic": "source",
-        "x": 235,
+        "x": 228,
         "y": 1015,
         "wires": [
             [
@@ -13110,8 +13053,8 @@
                 "type": "str"
             }
         ],
-        "x": 426,
-        "y": 1015,
+        "x": 391,
+        "y": 1057,
         "wires": [
             [
                 "2ec7e694.30d2ea"
@@ -13959,8 +13902,8 @@
         "func": "let source = msg.payload.price.source;\nif(source==\"tibber\") {\n    msg = {\n    enabled:true\n};\nreturn msg;\n} else if(source==\"nibe\") {\n    msg = {\n    enabled:false\n};\nreturn msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 681,
-        "y": 994,
+        "x": 569,
+        "y": 973,
         "wires": [
             [
                 "eafa7076.636ee",
@@ -14030,8 +13973,8 @@
         "func": "let source = msg.payload.price.enable;\nif(source===true) {\n    msg = {\n    enabled:true\n};\nreturn msg;\n} else if(source===false) {\n    msg = {\n    enabled:false\n};\n\nreturn msg;\n}\n",
         "outputs": 2,
         "noerr": 0,
-        "x": 1185,
-        "y": 903,
+        "x": 1052,
+        "y": 567,
         "wires": [
             [
                 "eafa7076.636ee",
@@ -14047,7 +13990,11 @@
                 "b30b63c9.c96a9",
                 "40c00df0.72a6e4",
                 "c30269ad.b26128",
-                "68d91eb2.2d481"
+                "68d91eb2.2d481",
+                "d07cb165.8756a",
+                "1bb82fc2.e8b78",
+                "de834f9d.9b477",
+                "b0a104eb.836b28"
             ],
             [
                 "8dd4be0a.86e46",
@@ -14269,10 +14216,10 @@
         "height": 0,
         "name": "SmartPrice Info",
         "label": "",
-        "format": "OBS. För att kunna använda NibePi's elprisreglering måste Nibes SmartPrice stängas av i värmepumpen manuellt under meny 4.1.6 Smart Price Adaption.",
+        "format": "OBS. För att kunna använda prisnivåer från Nibe Uplink måste Nibes SmartPrice vara aktiverat i värmepumpen manuellt under meny 4.1.6 Smart Price Adaption.",
         "layout": "row-spread",
         "x": 843,
-        "y": 665,
+        "y": 637,
         "wires": []
     },
     {
@@ -14287,7 +14234,8 @@
         "y": 665,
         "wires": [
             [
-                "9958a8f1.7abba8"
+                "9958a8f1.7abba8",
+                "65bf37a8.e18928"
             ]
         ]
     },
@@ -15227,7 +15175,7 @@
         "name": "",
         "label": "HA Discovery",
         "tooltip": "",
-        "group": "ada224d8.213a68",
+        "group": "723a0250.fd7dcc",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -17101,7 +17049,7 @@
         "z": "960078e.e3e6d88",
         "name": "",
         "label": "Differens",
-        "tooltip": "Lägsta temperatur differens jämfört mot Inomhusbörvärdet.",
+        "tooltip": "Lägsta temperaturdifferens jämfört mot Inomhusbörvärdet.",
         "group": "b561c5cd.249a58",
         "order": 1,
         "width": 0,
@@ -17617,6 +17565,176 @@
         "wires": [
             [
                 "9a132183.4d71"
+            ]
+        ]
+    },
+    {
+        "id": "d0af1b69.cb7df8",
+        "type": "ui_text_input",
+        "z": "df0dd648.98daa8",
+        "name": "",
+        "label": "Latitud",
+        "tooltip": "",
+        "group": "33ed6fb8.2f3ce",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "0",
+        "topic": "lat",
+        "x": 1037,
+        "y": 28,
+        "wires": [
+            [
+                "d3afa237.f2b84"
+            ]
+        ]
+    },
+    {
+        "id": "18e3ee8f.596ea1",
+        "type": "ui_text_input",
+        "z": "df0dd648.98daa8",
+        "name": "",
+        "label": "Longitud",
+        "tooltip": "",
+        "group": "33ed6fb8.2f3ce",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "0",
+        "topic": "lon",
+        "x": 1047,
+        "y": 77,
+        "wires": [
+            [
+                "4bd5cd01.e7f284"
+            ]
+        ]
+    },
+    {
+        "id": "d3afa237.f2b84",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "df0dd648.98daa8",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "home",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "lat",
+                "type": "str"
+            }
+        ],
+        "x": 1238,
+        "y": 28,
+        "wires": [
+            [
+                "d0af1b69.cb7df8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4bd5cd01.e7f284",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "df0dd648.98daa8",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "home",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "lon",
+                "type": "str"
+            }
+        ],
+        "x": 1238,
+        "y": 77,
+        "wires": [
+            [
+                "18e3ee8f.596ea1"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "65bf37a8.e18928",
+        "type": "ui_text",
+        "z": "960078e.e3e6d88",
+        "group": "f481a5f0.f9f1c8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "SmartPrice Info 2",
+        "label": "",
+        "format": "Alla åtgärder ska däremot nollställas för att NibePi ska kunna styra.",
+        "layout": "row-spread",
+        "x": 853,
+        "y": 679,
+        "wires": []
+    },
+    {
+        "id": "d383b3f8.c2437",
+        "type": "function",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "func": "var output = [{Tibber:\"tibber\"},{Nibe:\"nibe\"}];\nif(msg.payload===10) {\n    output = [{Tibber:\"tibber\"}];\n}\n\nnode.send({options:output});",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 127,
+        "y": 1078,
+        "wires": [
+            [
+                "2ec7e694.30d2ea"
+            ]
+        ]
+    },
+    {
+        "id": "50e1598f.5e01d8",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "source",
+                "type": "str"
+            }
+        ],
+        "x": 419,
+        "y": 1232,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "321fde4.84f6d22",
+        "type": "function",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "func": "if(msg.payload===false) {\n    msg.payload = \"\";\n    msg.topic = \"source\";\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 246,
+        "y": 1232,
+        "wires": [
+            [
+                "50e1598f.5e01d8"
             ]
         ]
     }
