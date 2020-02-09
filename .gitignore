@@ -1,1 +1,3 @@
-update/
+*
+!.gitignore
+!flows.json
