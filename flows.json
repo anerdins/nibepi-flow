@@ -925,6 +925,16 @@
         "collapse": false
     },
     {
+        "id": "6dbad083.a9946",
+        "type": "ui_group",
+        "z": "",
+        "name": "Förbrukning strömavkännare",
+        "tab": "b75c3bdd.9e0ae8",
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
         "id": "24d4f99f.449346",
         "type": "exec",
         "z": "64327e50.8f365",
@@ -17735,6 +17745,231 @@
         "wires": [
             [
                 "50e1598f.5e01d8"
+            ]
+        ]
+    },
+    {
+        "id": "4a8d9c43.5fb4c4",
+        "type": "nibe-input",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "40083",
+        "add": false,
+        "x": 85,
+        "y": 3073,
+        "wires": [
+            [
+                "837ea411.ac0fd8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e3cb9196.ba931",
+        "type": "nibe-input",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "40081",
+        "add": false,
+        "x": 85,
+        "y": 3122,
+        "wires": [
+            [
+                "d959527f.53779"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "94c9449e.eb7068",
+        "type": "nibe-input",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "40079",
+        "add": false,
+        "x": 85,
+        "y": 3171,
+        "wires": [
+            [
+                "c9b81c0b.6a708"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7190cf5b.062c2",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "let data = context.get('data')||{};\nif(msg.topic==\"40083\") {\n    data.L1 = msg.payload;\n} else if(msg.topic==\"40081\") {\n    data.L2 = msg.payload;\n} else if(msg.topic==\"40079\") {\n    data.L3 = msg.payload;\n}\ncontext.set('data',data);\nif(data.L1!==undefined && data.L2!==undefined && data.L3!==undefined) {\n    let ampere = data.L1+data.L2+data.L3;\nlet volt = 230;\nlet watt = Number((volt*ampere).toFixed(0));\nnode.send({topic:\"Förbrukning\",payload:watt})\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 399,
+        "y": 3122,
+        "wires": [
+            [
+                "649fa78e.58fc48",
+                "e0eef71b.f47198",
+                "4d701d7a.3c5a54"
+            ]
+        ]
+    },
+    {
+        "id": "649fa78e.58fc48",
+        "type": "debug",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 616,
+        "y": 3073,
+        "wires": []
+    },
+    {
+        "id": "e0eef71b.f47198",
+        "type": "ui_chart",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "group": "6dbad083.a9946",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Förbrukning strömavkännare",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Inga värden än.",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 652,
+        "y": 3122,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6f65686e.7365c8",
+        "type": "inject",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 336,
+        "y": 3206,
+        "wires": [
+            [
+                "4d701d7a.3c5a54"
+            ]
+        ]
+    },
+    {
+        "id": "558394be.fe0c4c",
+        "type": "ui_ui_control",
+        "z": "b7f67da0.fbf1",
+        "name": "Disable Group S2",
+        "events": "all",
+        "x": 776,
+        "y": 3206,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4d701d7a.3c5a54",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "Enable/Disable",
+        "func": "if(msg.topic!==\"\") {\n    let hide = {\n        \"group\":\n            {\"show\":\n                [\"Startsida_Förbrukning_strömavkännare\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n} else {\n    let hide = {\n        \"group\":\n            {\"hide\":\n                [\"Startsida_Förbrukning_strömavkännare\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 521,
+        "y": 3206,
+        "wires": [
+            [],
+            [
+                "558394be.fe0c4c"
+            ]
+        ]
+    },
+    {
+        "id": "837ea411.ac0fd8",
+        "type": "smooth",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "5",
+        "round": "1",
+        "mult": "single",
+        "x": 228,
+        "y": 3073,
+        "wires": [
+            [
+                "7190cf5b.062c2"
+            ]
+        ]
+    },
+    {
+        "id": "d959527f.53779",
+        "type": "smooth",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "5",
+        "round": "1",
+        "mult": "single",
+        "x": 228,
+        "y": 3115,
+        "wires": [
+            [
+                "7190cf5b.062c2"
+            ]
+        ]
+    },
+    {
+        "id": "c9b81c0b.6a708",
+        "type": "smooth",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "5",
+        "round": "1",
+        "mult": "single",
+        "x": 228,
+        "y": 3157,
+        "wires": [
+            [
+                "7190cf5b.062c2"
             ]
         ]
     }
