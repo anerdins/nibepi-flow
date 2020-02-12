@@ -49,6 +49,13 @@
         "info": ""
     },
     {
+        "id": "ae9d7ce8.0991c",
+        "type": "tab",
+        "label": "Airflow 1.1",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "7e884fc9.b6c45",
         "type": "tab",
         "label": "Tibber",
@@ -340,7 +347,7 @@
         "id": "90803197.41c34",
         "type": "ui_group",
         "z": "",
-        "name": "Graf",
+        "name": "Elprisreglering S1",
         "tab": "ad3904c7.ceae48",
         "order": 5,
         "disp": true,
@@ -930,6 +937,16 @@
         "z": "",
         "name": "Förbrukning strömavkännare",
         "tab": "b75c3bdd.9e0ae8",
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "ab2b8fca.17eca",
+        "type": "ui_group",
+        "z": "",
+        "name": "Elprisreglering S2",
+        "tab": "ad3904c7.ceae48",
         "disp": true,
         "width": "12",
         "collapse": false
@@ -4403,7 +4420,7 @@
         "label": "Lufthastighet Normal Börvärde",
         "tooltip": "",
         "group": "ad7a33f3.24adf",
-        "order": 3,
+        "order": 6,
         "width": "11",
         "height": "1",
         "passthru": false,
@@ -4563,7 +4580,7 @@
         "type": "ui_text",
         "z": "a7a0164d.f58e58",
         "group": "ad7a33f3.24adf",
-        "order": 7,
+        "order": 11,
         "width": "3",
         "height": "1",
         "name": "",
@@ -4579,7 +4596,7 @@
         "type": "ui_text",
         "z": "a7a0164d.f58e58",
         "group": "ad7a33f3.24adf",
-        "order": 8,
+        "order": 12,
         "width": "4",
         "height": "1",
         "name": "",
@@ -4612,7 +4629,7 @@
         "z": "a7a0164d.f58e58",
         "name": "",
         "group": "ad7a33f3.24adf",
-        "order": 9,
+        "order": 13,
         "width": "12",
         "height": "12",
         "label": "Lufthastighet",
@@ -5281,7 +5298,7 @@
         "label": "Lufthastighet Låg Börvärde",
         "tooltip": "",
         "group": "ad7a33f3.24adf",
-        "order": 4,
+        "order": 8,
         "width": "11",
         "height": "1",
         "passthru": false,
@@ -5333,7 +5350,7 @@
         "label": "Låg ventilation vid kompressorstopp",
         "tooltip": "",
         "group": "ad7a33f3.24adf",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -5480,7 +5497,7 @@
         "label": "CO2 Givare",
         "tooltip": "",
         "group": "ad7a33f3.24adf",
-        "order": 5,
+        "order": 14,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -5644,7 +5661,7 @@
         "label": "CO2 MQTT Topic",
         "tooltip": "",
         "group": "ad7a33f3.24adf",
-        "order": 6,
+        "order": 10,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -12859,12 +12876,12 @@
         "id": "9179d381.0be36",
         "type": "ui_chart",
         "z": "960078e.e3e6d88",
-        "name": "",
+        "name": "Elprisreglering S1",
         "group": "90803197.41c34",
         "order": 2,
         "width": 0,
         "height": 0,
-        "label": "Kostnad",
+        "label": "",
         "chartType": "line",
         "legend": "true",
         "xformat": "dd HH:mm",
@@ -12891,7 +12908,7 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 886,
+        "x": 916,
         "y": 49,
         "wires": [
             []
@@ -13252,7 +13269,8 @@
         "y": 756,
         "wires": [
             [
-                "ef64204.7fdb6e"
+                "ef64204.7fdb6e",
+                "92d4347e.266668"
             ],
             []
         ]
@@ -13996,7 +14014,6 @@
                 "2ec7e694.30d2ea",
                 "b18004d5.977448",
                 "4849d6b9.2a3868",
-                "b3a09f2.d70226",
                 "b30b63c9.c96a9",
                 "40c00df0.72a6e4",
                 "c30269ad.b26128",
@@ -14004,7 +14021,8 @@
                 "d07cb165.8756a",
                 "1bb82fc2.e8b78",
                 "de834f9d.9b477",
-                "b0a104eb.836b28"
+                "b0a104eb.836b28",
+                "b3a09f2.d70226"
             ],
             [
                 "8dd4be0a.86e46",
@@ -16623,7 +16641,7 @@
         "type": "debug",
         "z": "eee76599.b5f0d8",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -17970,6 +17988,652 @@
         "wires": [
             [
                 "7190cf5b.062c2"
+            ]
+        ]
+    },
+    {
+        "id": "9886b52.83c6e48",
+        "type": "ui_slider",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "label": "Lufthastighet Normal Börvärde",
+        "tooltip": "",
+        "group": "ad7a33f3.24adf",
+        "order": 7,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "outs": "end",
+        "topic": "fan/speed_normal",
+        "min": "0",
+        "max": "350",
+        "step": "1",
+        "x": 704,
+        "y": 364,
+        "wires": [
+            [
+                "ed6e5604.1f1578"
+            ]
+        ]
+    },
+    {
+        "id": "e5304c27.2e273",
+        "type": "ui_switch",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "label": "Aktivera",
+        "tooltip": "",
+        "group": "ad7a33f3.24adf",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "fan/enable",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 634,
+        "y": 217,
+        "wires": [
+            [
+                "ed6e5604.1f1578"
+            ]
+        ]
+    },
+    {
+        "id": "9a373f08.e2c5a",
+        "type": "ui_switch",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "label": "Låg ventilation vid kompressorstopp",
+        "tooltip": "",
+        "group": "ad7a33f3.24adf",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "fan/enable_low",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 714,
+        "y": 266,
+        "wires": [
+            [
+                "ed6e5604.1f1578"
+            ]
+        ]
+    },
+    {
+        "id": "58301c4f.167164",
+        "type": "ui_slider",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "label": "Lufthastighet Låg Börvärde",
+        "tooltip": "",
+        "group": "ad7a33f3.24adf",
+        "order": 9,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "outs": "end",
+        "topic": "fan/speed_low",
+        "min": "0",
+        "max": "350",
+        "step": "1",
+        "x": 694,
+        "y": 413,
+        "wires": [
+            [
+                "ed6e5604.1f1578"
+            ]
+        ]
+    },
+    {
+        "id": "ed6e5604.1f1578",
+        "type": "nibe-fan",
+        "z": "ae9d7ce8.0991c",
+        "server": "844659a2.8d8508",
+        "name": "",
+        "system": "s1",
+        "adjust": "0.5",
+        "x": 1008,
+        "y": 336,
+        "wires": [
+            [
+                "9943061c.2a4ed8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4683a850.88e2a8",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "fan",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "enable",
+                "type": "str"
+            }
+        ],
+        "x": 426,
+        "y": 217,
+        "wires": [
+            [
+                "e5304c27.2e273"
+            ],
+            [
+                "a496d010.6c77"
+            ]
+        ]
+    },
+    {
+        "id": "bcd35f12.d08cd",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "fan",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "enable_low",
+                "type": "str"
+            }
+        ],
+        "x": 426,
+        "y": 266,
+        "wires": [
+            [
+                "9a373f08.e2c5a"
+            ],
+            [
+                "47ca21a6.83d04"
+            ]
+        ]
+    },
+    {
+        "id": "b0cdbf5.a69164",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "fan",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "speed_normal",
+                "type": "str"
+            }
+        ],
+        "x": 426,
+        "y": 364,
+        "wires": [
+            [
+                "9886b52.83c6e48"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "719c398d.1630c8",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "fan",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "speed_low",
+                "type": "str"
+            }
+        ],
+        "x": 426,
+        "y": 413,
+        "wires": [
+            [
+                "58301c4f.167164"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9943061c.2a4ed8",
+        "type": "ui_chart",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "group": "ad7a33f3.24adf",
+        "order": 16,
+        "width": "12",
+        "height": "12",
+        "label": "Lufthastighet",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 1218,
+        "y": 336,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "74d64c2d.aaa2a4",
+        "type": "ui_switch",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "label": "Aktivera CO2 Givare",
+        "tooltip": "",
+        "group": "ad7a33f3.24adf",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "fan/enable_co2",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 674,
+        "y": 315,
+        "wires": [
+            [
+                "ed6e5604.1f1578"
+            ]
+        ]
+    },
+    {
+        "id": "22979e72.4c48e2",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "fan",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "enable_co2",
+                "type": "str"
+            }
+        ],
+        "x": 426,
+        "y": 315,
+        "wires": [
+            [
+                "74d64c2d.aaa2a4"
+            ],
+            [
+                "7a6dc14e.40cc7"
+            ]
+        ]
+    },
+    {
+        "id": "a76c0feb.f55a6",
+        "type": "ui_button",
+        "z": "ae9d7ce8.0991c",
+        "name": "Uppdatera",
+        "group": "ad7a33f3.24adf",
+        "order": 17,
+        "width": 12,
+        "height": 1,
+        "passthru": false,
+        "label": "Uppdatera",
+        "tooltip": "Begär ny data och uppdatera med nya värden.",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "update",
+        "x": 644,
+        "y": 175,
+        "wires": [
+            [
+                "ed6e5604.1f1578"
+            ]
+        ]
+    },
+    {
+        "id": "d101724f.663bc",
+        "type": "mqtt out",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "topic": "nibe/modbus/10010/set",
+        "qos": "",
+        "retain": "false",
+        "broker": "d7f6b34d.d13d6",
+        "x": 536,
+        "y": 3304,
+        "wires": []
+    },
+    {
+        "id": "139a81a7.d0c05e",
+        "type": "inject",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 256,
+        "y": 3304,
+        "wires": [
+            [
+                "d101724f.663bc"
+            ]
+        ]
+    },
+    {
+        "id": "e3f80198.6857d",
+        "type": "inject",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "topic": "",
+        "payload": "4",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 260,
+        "y": 3353,
+        "wires": [
+            [
+                "d101724f.663bc"
+            ]
+        ]
+    },
+    {
+        "id": "abc6da05.fbe198",
+        "type": "ui_ui_control",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "events": "all",
+        "x": 284,
+        "y": 483,
+        "wires": [
+            [
+                "c5f6096b.79b828"
+            ]
+        ]
+    },
+    {
+        "id": "c5f6096b.79b828",
+        "type": "function",
+        "z": "ae9d7ce8.0991c",
+        "name": "Lufthastighet",
+        "func": "var timeSaved = context.get('time')||(Date.now()-1000);\nvar time = Date.now();\nif(msg.name==\"Lufthastighet\") {\n    if(time>timeSaved) {\n        context.set('time',(time+30000));\n        return msg;\n    }\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 434,
+        "y": 483,
+        "wires": [
+            [
+                "b8e637ad.f4c198"
+            ]
+        ]
+    },
+    {
+        "id": "b8e637ad.f4c198",
+        "type": "nibe-request",
+        "z": "ae9d7ce8.0991c",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 316,
+        "y": 686,
+        "wires": [
+            [],
+            [
+                "996fbcf2.8cd2b"
+            ]
+        ]
+    },
+    {
+        "id": "589ada4b.bd1974",
+        "type": "nibe-input",
+        "z": "ae9d7ce8.0991c",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "add": false,
+        "x": 316,
+        "y": 728,
+        "wires": [
+            [
+                "996fbcf2.8cd2b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "996fbcf2.8cd2b",
+        "type": "function",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "func": "var sensors = msg.payload.home.inside_sensors||[];\nvar output = [\"Ingen\"];\nfor (const arr of sensors) {\n    output.push(arr.name)\n}\nif(output!==undefined && output!==[]) {\n    node.send({options:output});\n    if(msg.payload.fan!==undefined) {\n        node.send({payload:msg.payload.fan.sensor})\n    }\n    \n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 610,
+        "y": 728,
+        "wires": [
+            [
+                "ae39397.22484c8"
+            ]
+        ]
+    },
+    {
+        "id": "ae39397.22484c8",
+        "type": "ui_dropdown",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "label": "Välj CO2 Givare",
+        "tooltip": "",
+        "place": "Välj",
+        "group": "ad7a33f3.24adf",
+        "order": 15,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "fan/sensor",
+        "x": 808,
+        "y": 728,
+        "wires": [
+            [
+                "ed6e5604.1f1578"
+            ]
+        ]
+    },
+    {
+        "id": "a496d010.6c77",
+        "type": "function",
+        "z": "ae9d7ce8.0991c",
+        "name": "Enable/Disable Fan",
+        "func": "let source = msg.payload.fan.enable;\nif(source===true) {\n    msg = {\n    enabled:true\n};\nreturn msg;\n} else if(source===false) {\n    msg = {\n    enabled:false\n};\n\nreturn msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 559,
+        "y": 105,
+        "wires": [
+            [
+                "a76c0feb.f55a6",
+                "9a373f08.e2c5a",
+                "74d64c2d.aaa2a4",
+                "9886b52.83c6e48",
+                "58301c4f.167164",
+                "ae39397.22484c8",
+                "9943061c.2a4ed8"
+            ]
+        ]
+    },
+    {
+        "id": "7a6dc14e.40cc7",
+        "type": "function",
+        "z": "ae9d7ce8.0991c",
+        "name": "Enable/Disable CO2",
+        "func": "let source = msg.payload.fan.enable_co2;\nlet fan = msg.payload.fan.enable;\n\nif(fan===true && source===true) {\n    msg = {\n    enabled:true\n};\nreturn msg;\n} else if(fan===true && source===false) {\n    msg = {\n    enabled:false\n};\n\nreturn msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 828,
+        "y": 105,
+        "wires": [
+            [
+                "ae39397.22484c8"
+            ]
+        ]
+    },
+    {
+        "id": "47ca21a6.83d04",
+        "type": "function",
+        "z": "ae9d7ce8.0991c",
+        "name": "Enable/Disable Low Speed",
+        "func": "let source = msg.payload.fan.enable_low;\nlet fan = msg.payload.fan.enable;\nif(fan===true && source===true) {\n    msg = {\n    enabled:true\n};\nreturn msg;\n} else if(fan===true && source===false) {\n    msg = {\n    enabled:false\n};\n\nreturn msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1100,
+        "y": 105,
+        "wires": [
+            [
+                "58301c4f.167164"
+            ]
+        ]
+    },
+    {
+        "id": "92d4347e.266668",
+        "type": "ui_chart",
+        "z": "960078e.e3e6d88",
+        "name": "Elprisreglering S2",
+        "group": "ab2b8fca.17eca",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "dd HH:mm",
+        "interpolate": "step",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "48",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 839,
+        "y": 518,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e324889.d71b078",
+        "type": "ui_button",
+        "z": "960078e.e3e6d88",
+        "name": "Uppdatera S2",
+        "group": "ab2b8fca.17eca",
+        "order": 3,
+        "width": 12,
+        "height": 1,
+        "passthru": false,
+        "label": "Uppdatera",
+        "tooltip": "Begär ny data och uppdatera med nya värden.",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "update",
+        "x": 269,
+        "y": 511,
+        "wires": [
+            [
+                "aa3b6866.eabab8"
             ]
         ]
     }
