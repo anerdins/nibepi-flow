@@ -224,8 +224,8 @@
     {
         "id": "6aa61182.b42ed",
         "type": "ui_tab",
-        "z": 0,
-        "name": "Inställningar",
+        "z": "",
+        "name": "Settings",
         "icon": "settings",
         "order": 2,
         "disabled": false,
@@ -282,8 +282,8 @@
     {
         "id": "d814a7db.5cdc38",
         "type": "ui_group",
-        "z": 0,
-        "name": "Uppdateringar",
+        "z": "",
+        "name": "Update",
         "tab": "6aa61182.b42ed",
         "order": 1,
         "disp": true,
@@ -294,7 +294,7 @@
         "id": "4f8b35d1.5c8fec",
         "type": "ui_group",
         "z": "",
-        "name": "Registerhantering",
+        "name": "Register management",
         "tab": "1dc0b5a5.8e56aa",
         "disp": true,
         "width": "12",
@@ -602,7 +602,7 @@
         "id": "b75c3bdd.9e0ae8",
         "type": "ui_tab",
         "z": "",
-        "name": "Startsida",
+        "name": "Start",
         "icon": "dashboard",
         "order": 1,
         "disabled": false,
@@ -632,7 +632,7 @@
         "id": "a8bf2b6e.6abc18",
         "type": "ui_group",
         "z": "",
-        "name": "Husdata",
+        "name": "House",
         "tab": "b75c3bdd.9e0ae8",
         "disp": true,
         "width": "12",
@@ -671,7 +671,7 @@
         "id": "1dc0b5a5.8e56aa",
         "type": "ui_tab",
         "z": "",
-        "name": "Datahantering",
+        "name": "Data management",
         "icon": "dashboard",
         "order": 10,
         "disabled": false,
@@ -799,7 +799,7 @@
         "id": "605e2041.0137e",
         "type": "ui_group",
         "z": "",
-        "name": "Värmekurva S1",
+        "name": "Heatcurve S1",
         "tab": "6aa61182.b42ed",
         "order": 10,
         "disp": true,
@@ -810,7 +810,7 @@
         "id": "ea24545a.5d7038",
         "type": "ui_group",
         "z": "",
-        "name": "Värmekurva S2",
+        "name": "Heatcurve S2",
         "tab": "6aa61182.b42ed",
         "order": 11,
         "disp": true,
@@ -884,7 +884,7 @@
         "id": "1d61b1b5.3ea93e",
         "type": "ui_group",
         "z": "",
-        "name": "Kompressorförbrukning",
+        "name": "Compressor consumption",
         "tab": "b75c3bdd.9e0ae8",
         "disp": true,
         "width": "12",
@@ -894,7 +894,7 @@
         "id": "fe94277c.dcd118",
         "type": "ui_group",
         "z": "",
-        "name": "Avancerat",
+        "name": "Advanced",
         "tab": "6aa61182.b42ed",
         "order": 5,
         "disp": true,
@@ -7257,22 +7257,6 @@
         "wires": []
     },
     {
-        "id": "c29f08ae.ec2588",
-        "type": "function",
-        "z": "b7f67da0.fbf1",
-        "name": "Check Heatoffset",
-        "func": "var config = global.get('config');\nvar data = global.get('data');\nif(config===undefined || data===undefined) return;\nvar indoorSet = global.get('indoorSet')||0;\nvar priceSet = global.get('priceSet')||0;\nvar weatherSet = global.get('weatherSet')||0;\nvar heatOffset = msg.curveadjust;\nif(heatOffset===undefined) return;\nheatOffset = Number(heatOffset);\nvar dataSet = (indoorSet+priceSet+weatherSet+0.5);\nif(heatOffset!==(dataSet)) {\n    if(dataSet>10) { dataSet = 10; }\n    if(dataSet<-10) { dataSet = -10; }\n    if(dataSet>(heatOffset+0.75)) {\n        node.send({payload:heatOffset+1});\n    } else if(dataSet<(heatOffset-0.75)) {\n        node.send({payload:heatOffset-1});\n    }\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 475,
-        "y": 175,
-        "wires": [
-            [
-                "bc36a442.1154d8"
-            ]
-        ]
-    },
-    {
         "id": "9ce049af.4ea4c8",
         "type": "nibe-input",
         "z": "b7f67da0.fbf1",
@@ -7286,18 +7270,6 @@
             [
                 "39b0fc16.7de5c4"
             ]
-        ]
-    },
-    {
-        "id": "bc36a442.1154d8",
-        "type": "nibe-output",
-        "z": "b7f67da0.fbf1",
-        "server": "844659a2.8d8508",
-        "name": "curveadjust",
-        "x": 686,
-        "y": 175,
-        "wires": [
-            []
         ]
     },
     {
@@ -8066,7 +8038,7 @@
         "type": "ui_text_input",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "label": "Latitud",
+        "label": "Latitude",
         "tooltip": "",
         "group": "a8bf2b6e.6abc18",
         "order": 2,
@@ -8076,7 +8048,7 @@
         "mode": "text",
         "delay": "0",
         "topic": "lat",
-        "x": 820,
+        "x": 830,
         "y": 525,
         "wires": [
             [
@@ -8089,7 +8061,7 @@
         "type": "ui_text_input",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "label": "Longitud",
+        "label": "Longitude",
         "tooltip": "",
         "group": "a8bf2b6e.6abc18",
         "order": 3,
@@ -8230,7 +8202,7 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "func": "node.send({timestamp:msg.payload,topic:\"Utomhustemperatur\",payload:msg.outside});\nnode.send({timestamp:msg.payload,topic:\"Kurvjustering\",payload:msg.curveadjust});\nif(msg.inside>-3276) {\n    node.send({timestamp:msg.payload,topic:\"Inomhustemperatur\",payload:msg.inside});\n}\nnode.send({timestamp:msg.payload,topic:\"Börvärde S1\",payload:msg.setpoint_s1});\nnode.send({timestamp:msg.payload,topic:\"Framledning S1\",payload:msg.supply_s1});\nnode.send({timestamp:msg.payload,topic:\"Börvärde S2\",payload:msg.setpoint_s2});\nnode.send({timestamp:msg.payload,topic:\"Framledning S2\",payload:msg.supply_s2});\n",
+        "func": "node.send({timestamp:msg.payload,topic:\"Outside temperature\",payload:msg.outside});\nnode.send({timestamp:msg.payload,topic:\"Curve adjustment\",payload:msg.curveadjust});\nif(msg.inside>-3276) {\n    node.send({timestamp:msg.payload,topic:\"Inside temperature\",payload:msg.inside});\n}\nnode.send({timestamp:msg.payload,topic:\"Setpoint S1\",payload:msg.setpoint_s1});\nnode.send({timestamp:msg.payload,topic:\"Supply S1\",payload:msg.supply_s1});\nnode.send({timestamp:msg.payload,topic:\"Setpoint S2\",payload:msg.setpoint_s2});\nnode.send({timestamp:msg.payload,topic:\"Supply S2\",payload:msg.supply_s2});\n",
         "outputs": 1,
         "noerr": 0,
         "x": 1037,
@@ -8280,7 +8252,7 @@
         "order": 5,
         "width": 0,
         "height": 0,
-        "label": "Kompressorförbrukning",
+        "label": "",
         "chartType": "pie",
         "legend": "true",
         "xformat": "HH:mm",
@@ -8307,7 +8279,7 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 1139,
+        "x": 1079,
         "y": 1127,
         "wires": [
             []
@@ -8318,7 +8290,7 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "func": "if(msg.cpr_tot_kwh!==undefined && msg.cpr_tot_kwh!==0) {\n    let hide = {\n        \"group\":\n            {\"show\":\n                [\"Startsida_Kompressorförbrukning\"]\n            }\n        }\n    node.send([null,null,{payload:hide}]);\n    node.send({topic:\"Värme\",payload:Number((msg.cpr_tot_kwh-msg.cpr_hw_kwh).toFixed(0))});\n    node.send([null,{topic:\"Varmvatten\",payload:Number(msg.cpr_hw_kwh.toFixed(0))}]);\n} else {\n    let hide = {\n        \"group\":\n            {\"hide\":\n                [\"Startsida_Kompressorförbrukning\"]\n            }\n        }\n    node.send([null,null,{payload:hide}]);\n}\n",
+        "func": "if(msg.cpr_tot_kwh!==undefined && msg.cpr_tot_kwh!==0) {\n    let hide = {\n        \"group\":\n            {\"show\":\n                [\"Start_Compressor_consumption\"]\n            }\n        }\n    node.send([null,null,{payload:hide}]);\n    node.send({topic:\"Heat\",payload:Number((msg.cpr_tot_kwh-msg.cpr_hw_kwh).toFixed(0))});\n    node.send([null,{topic:\"Hotwater\",payload:Number(msg.cpr_hw_kwh.toFixed(0))}]);\n} else {\n    let hide = {\n        \"group\":\n            {\"hide\":\n                [\"Start_Compressor_consumption\"]\n            }\n        }\n    node.send([null,null,{payload:hide}]);\n}\n",
         "outputs": 3,
         "noerr": 0,
         "x": 918,
@@ -8407,11 +8379,11 @@
         "id": "67efbfba.ccf4a",
         "type": "function",
         "z": "b7f67da0.fbf1",
-        "name": "Startsida",
-        "func": "if(msg.name==\"Startsida\") {\n    return msg;\n}",
+        "name": "Start",
+        "func": "if(msg.name==\"Start\") {\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 277,
+        "x": 267,
         "y": 1134,
         "wires": [
             [
@@ -9745,39 +9717,6 @@
         ]
     },
     {
-        "id": "e0bdfc56.66c9e",
-        "type": "nibe-request",
-        "z": "b7f67da0.fbf1",
-        "server": "844659a2.8d8508",
-        "name": "curveadjust",
-        "x": 280,
-        "y": 175,
-        "wires": [
-            [
-                "c29f08ae.ec2588"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "ff3a96d9.c82cb8",
-        "type": "inject",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "60",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "x": 112,
-        "y": 175,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "f66e6a0.88cd798",
         "type": "ui_chart",
         "z": "df0dd648.98daa8",
@@ -10244,7 +10183,7 @@
         "type": "ui_slider",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "label": "Kurvjustering S1",
+        "label": "Curve adjustment S1",
         "tooltip": "",
         "group": "605e2041.0137e",
         "order": 2,
@@ -10256,7 +10195,7 @@
         "min": "-2",
         "max": "2",
         "step": "0.5",
-        "x": 451,
+        "x": 422,
         "y": 735,
         "wires": [
             [
@@ -10295,7 +10234,7 @@
         "type": "ui_slider",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "label": "Kurvjustering S2",
+        "label": "Curve adjustment S2",
         "tooltip": "",
         "group": "ea24545a.5d7038",
         "order": 2,
@@ -10307,7 +10246,7 @@
         "min": "-2",
         "max": "2",
         "step": "0.5",
-        "x": 451,
+        "x": 422,
         "y": 777,
         "wires": [
             [
@@ -10346,7 +10285,7 @@
         "type": "ui_slider",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "label": "Värmekurva S1",
+        "label": "Heatcurve S1",
         "tooltip": "",
         "group": "605e2041.0137e",
         "order": 1,
@@ -10398,7 +10337,7 @@
         "type": "ui_slider",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "label": "Värmekurva S2",
+        "label": "Heatcurve S2",
         "tooltip": "",
         "group": "ea24545a.5d7038",
         "order": 1,
@@ -10443,15 +10382,15 @@
         "width": 0,
         "height": 0,
         "passthru": false,
-        "label": "Uppdatera NibePi",
+        "label": "Update NibePi",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
         "icon": "",
-        "payload": "Uppdatering påbörjar",
+        "payload": "Update is starting.",
         "payloadType": "str",
-        "topic": "Uppdatering",
-        "x": 132,
+        "topic": "Update",
+        "x": 122,
         "y": 1022,
         "wires": [
             [
@@ -10567,7 +10506,7 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "func": "if(msg.payload.code===0) {\n    msg.payload = \"Uppdatering lyckades, startar om...\"\n}\nreturn msg;",
+        "func": "if(msg.payload.code===0) {\n    msg.payload = \"Update succesfull, restarting...\"\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 1261,
@@ -10610,7 +10549,7 @@
         "width": 0,
         "height": 0,
         "passthru": false,
-        "label": "Kolla efter uppdateringar",
+        "label": "Check for updates",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -10618,7 +10557,7 @@
         "payload": "true",
         "payloadType": "bool",
         "topic": "",
-        "x": 186,
+        "x": 166,
         "y": 1328,
         "wires": [
             [
@@ -10749,6 +10688,7 @@
         "actionType": "check",
         "allowHTML": false,
         "outputs": 1,
+        "topic": "",
         "x": 676,
         "y": 1379,
         "wires": [
@@ -11550,11 +11490,11 @@
         "id": "45726bd6.629654",
         "type": "function",
         "z": "b7f67da0.fbf1",
-        "name": "Datahantering",
-        "func": "if(msg.name==\"Datahantering\") {\n    return msg;\n}",
+        "name": "Data management",
+        "func": "if(msg.name==\"Data management\") {\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 311,
+        "x": 321,
         "y": 1428,
         "wires": [
             [
@@ -13280,7 +13220,7 @@
         "type": "ui_form",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "label": "Skicka värde",
+        "label": "Set value",
         "group": "bd199d65.157fc",
         "order": 4,
         "width": 0,
@@ -13293,7 +13233,7 @@
                 "required": true
             },
             {
-                "label": "Värde",
+                "label": "Value",
                 "value": "value",
                 "type": "number",
                 "required": true
@@ -13304,10 +13244,10 @@
             "value": ""
         },
         "payload": "",
-        "submit": "Skicka",
+        "submit": "Send",
         "cancel": "",
         "topic": "",
-        "x": 335,
+        "x": 325,
         "y": 1533,
         "wires": [
             [
@@ -16897,8 +16837,8 @@
         "type": "ui_text_input",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "label": "Kör kommando",
-        "tooltip": "Skriv ett kommando. Återkoppling i rutan nedan",
+        "label": "Run command",
+        "tooltip": "Execute a command, feedback below.",
         "group": "fe94277c.dcd118",
         "order": 1,
         "width": 0,
@@ -16970,7 +16910,7 @@
         "type": "ui_dropdown",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "label": "Ta bort Register",
+        "label": "Remove register",
         "tooltip": "",
         "place": "Välj register",
         "group": "bd199d65.157fc",
@@ -17157,7 +17097,7 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "func": "\nif(msg.supply_s2>-3276) {\nnode.send({timestamp:msg.payload,topic:\"Börvärde S2\",payload:msg.setpoint_s2});\nnode.send({timestamp:msg.payload,topic:\"Framledning S2\",payload:msg.supply_s2});\n} else if(msg.supply_s2===undefined) {\n    \n} else {\n    flow.set('s2',false);\n}",
+        "func": "\nif(msg.supply_s2>-3276) {\nnode.send({timestamp:msg.payload,topic:\"Setpoint S2\",payload:msg.setpoint_s2});\nnode.send({timestamp:msg.payload,topic:\"Supply S2\",payload:msg.supply_s2});\n} else if(msg.supply_s2===undefined) {\n    \n} else {\n    flow.set('s2',false);\n}",
         "outputs": 1,
         "noerr": 0,
         "x": 1051,
@@ -17200,7 +17140,7 @@
         "type": "ui_text_input",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "label": "Serieport",
+        "label": "Serialport",
         "tooltip": "",
         "group": "fe94277c.dcd118",
         "order": 2,
