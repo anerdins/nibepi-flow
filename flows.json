@@ -52,7 +52,7 @@
         "id": "ae9d7ce8.0991c",
         "type": "tab",
         "label": "Airflow 1.1",
-        "disabled": true,
+        "disabled": false,
         "info": ""
     },
     {
