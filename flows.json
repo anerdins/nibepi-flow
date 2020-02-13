@@ -17855,7 +17855,7 @@
         "order": 0,
         "width": 0,
         "height": 0,
-        "label": "Förbrukning strömavkännare",
+        "label": "",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -17882,7 +17882,7 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 659,
+        "x": 589,
         "y": 3122,
         "wires": [
             []
