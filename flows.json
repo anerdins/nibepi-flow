@@ -18115,7 +18115,8 @@
         "y": 336,
         "wires": [
             [
-                "9943061c.2a4ed8"
+                "9943061c.2a4ed8",
+                "ab0bb3.7711f45"
             ],
             []
         ]
@@ -18635,6 +18636,35 @@
             [
                 "aa3b6866.eabab8"
             ]
+        ]
+    },
+    {
+        "id": "ab0bb3.7711f45",
+        "type": "function",
+        "z": "ae9d7ce8.0991c",
+        "name": "Enable/Disable",
+        "func": "if(msg.enabled!==undefined && msg.enabled===false) {\n    node.send(msg);\n    let hide = {\n        \"tabs\":\n            {\"hide\":\n                [\"Lufthastighet\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n} else if(msg.enabled===true) {\n    let hide = {\n        \"tabs\":\n            {\"show\":\n                [\"Lufthastighet\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 1095,
+        "y": 427,
+        "wires": [
+            [],
+            [
+                "facd1c67.c3335"
+            ]
+        ]
+    },
+    {
+        "id": "facd1c67.c3335",
+        "type": "ui_ui_control",
+        "z": "ae9d7ce8.0991c",
+        "name": "Disable Group FAN",
+        "events": "all",
+        "x": 1217,
+        "y": 511,
+        "wires": [
+            []
         ]
     }
 ]
