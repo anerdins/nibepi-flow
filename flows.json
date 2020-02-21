@@ -6281,7 +6281,7 @@
         "y": 525,
         "wires": [
             [
-                "8b79bac6.370258"
+                "ba1e9bfe.f81a78"
             ]
         ]
     },
@@ -6304,7 +6304,7 @@
         "y": 574,
         "wires": [
             [
-                "3118479a.5faed8"
+                "18984de6.08fc72"
             ]
         ]
     },
@@ -7036,7 +7036,7 @@
                 "type": "str"
             }
         ],
-        "x": 1021,
+        "x": 1133,
         "y": 525,
         "wires": [
             [
@@ -7062,7 +7062,7 @@
                 "type": "str"
             }
         ],
-        "x": 1021,
+        "x": 1133,
         "y": 574,
         "wires": [
             [
@@ -15813,11 +15813,11 @@
         "mode": "text",
         "delay": "0",
         "topic": "lat",
-        "x": 1037,
+        "x": 918,
         "y": 28,
         "wires": [
             [
-                "d3afa237.f2b84"
+                "c49768ba.b813b8"
             ]
         ]
     },
@@ -15836,11 +15836,11 @@
         "mode": "text",
         "delay": "0",
         "topic": "lon",
-        "x": 1047,
+        "x": 928,
         "y": 77,
         "wires": [
             [
-                "4bd5cd01.e7f284"
+                "8dd7f637.d92b68"
             ]
         ]
     },
@@ -17357,5 +17357,69 @@
         "x": 622,
         "y": 945,
         "wires": []
+    },
+    {
+        "id": "c49768ba.b813b8",
+        "type": "function",
+        "z": "df0dd648.98daa8",
+        "name": "",
+        "func": "let len = msg.payload.length;\nif(len>8) {\n    msg.payload = msg.payload.slice(0, 8)\n}\nif(msg.payload.includes(',')) {\n    msg.payload = msg.payload.replace(',','.');\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1058,
+        "y": 28,
+        "wires": [
+            [
+                "d3afa237.f2b84"
+            ]
+        ]
+    },
+    {
+        "id": "8dd7f637.d92b68",
+        "type": "function",
+        "z": "df0dd648.98daa8",
+        "name": "",
+        "func": "let len = msg.payload.length;\nif(len>8) {\n    msg.payload = msg.payload.slice(0, 8)\n}\nif(msg.payload.includes(',')) {\n    msg.payload = msg.payload.replace(',','.');\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1058,
+        "y": 77,
+        "wires": [
+            [
+                "4bd5cd01.e7f284"
+            ]
+        ]
+    },
+    {
+        "id": "ba1e9bfe.f81a78",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "let len = msg.payload.length;\nif(len>8) {\n    msg.payload = msg.payload.slice(0, 8)\n}\nif(msg.payload.includes(',')) {\n    msg.payload = msg.payload.replace(',','.');\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 967,
+        "y": 525,
+        "wires": [
+            [
+                "8b79bac6.370258"
+            ]
+        ]
+    },
+    {
+        "id": "18984de6.08fc72",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "let len = msg.payload.length;\nif(len>8) {\n    msg.payload = msg.payload.slice(0, 8)\n}\nif(msg.payload.includes(',')) {\n    msg.payload = msg.payload.replace(',','.');\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 967,
+        "y": 574,
+        "wires": [
+            [
+                "3118479a.5faed8"
+            ]
+        ]
     }
 ]
