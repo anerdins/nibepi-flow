@@ -611,7 +611,7 @@
         "id": "a8bf2b6e.6abc18",
         "type": "ui_group",
         "z": "",
-        "name": "Husdata",
+        "name": "Husinformation",
         "tab": "b75c3bdd.9e0ae8",
         "disp": true,
         "width": "12",
@@ -959,6 +959,39 @@
         "disp": true,
         "width": "12",
         "collapse": false
+    },
+    {
+        "id": "4aaf21c9.38fb8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Data Export",
+        "tab": "f3ab33ed.96488",
+        "disp": true,
+        "width": "12"
+    },
+    {
+        "id": "f3ab33ed.96488",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Dashboard",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "db563368.2a2e6",
+        "type": "ui_group",
+        "z": "",
+        "name": "Default",
+        "tab": "9a2cdcec.a1512",
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "9a2cdcec.a1512",
+        "type": "ui_tab",
+        "z": "",
+        "name": "testing",
+        "icon": "dashboard"
     },
     {
         "id": "24d4f99f.449346",
@@ -17421,5 +17454,404 @@
                 "3118479a.5faed8"
             ]
         ]
+    },
+    {
+        "id": "f71e629c.3d39a",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "Set base path",
+        "func": "var filename = msg.req.params.fn;\nvar basePath = \"/tmp/\";\nif(filename==\"config.json\") {\n    basePath = \"/etc/nibepi/\"\n}\n\n\n\n\nif(filename.includes(\"..\\\\\")){\n    msg.payload = \"Illegal file path\";\n    msg.statusCode = 405;//not allowed\n    return [null, msg];//fire output 2\n} else if(filename.includes(\"../\")){\n    msg.payload = \"Illegal file path\";\n    msg.statusCode = 405;//not allowed\n    return [null, msg];//fire output 2\n} \n//TODO: add more checks\n\nmsg.filename = basePath + filename;\nreturn [msg, null];//fire output 1\n\n\n",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 948,
+        "y": 2884,
+        "wires": [
+            [
+                "8985ebdb.036268"
+            ],
+            [
+                "93ddcf2f.3d5aa"
+            ]
+        ]
+    },
+    {
+        "id": "93ddcf2f.3d5aa",
+        "type": "http response",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1298,
+        "y": 2924,
+        "wires": []
+    },
+    {
+        "id": "8985ebdb.036268",
+        "type": "file in",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "filename": "",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 1138,
+        "y": 2864,
+        "wires": [
+            [
+                "93ddcf2f.3d5aa"
+            ]
+        ]
+    },
+    {
+        "id": "1547c21f.2a8ffe",
+        "type": "catch",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 768,
+        "y": 2964,
+        "wires": [
+            [
+                "93c9a81e.83d5c8",
+                "e232e0c9.97607"
+            ]
+        ]
+    },
+    {
+        "id": "93c9a81e.83d5c8",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "Set 404",
+        "func": "msg.payload = msg.error;\nmsg.statusCode = 404;//resource not found\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1148,
+        "y": 2964,
+        "wires": [
+            [
+                "93ddcf2f.3d5aa"
+            ]
+        ]
+    },
+    {
+        "id": "e232e0c9.97607",
+        "type": "debug",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 798,
+        "y": 3004,
+        "wires": []
+    },
+    {
+        "id": "352eee8a.760e42",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "4aaf21c9.38fb8",
+        "name": "ui_temlplate - present download links on dashboard",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    var redirect = function() {\n    window.location.href = \"/files/nibepi.log\";\n    }\n</style>\n<div>\n\n<button onclick=\"redirect()\">Download</button>\n\n<div class=\"my_content_container\">\n    <a href=\"/files/nibepi.log\">Ladda ner logg</a>\n</div>\n    <a href=\"/files/config.json\">Download Config file</a>\n</div>\n\n    <style type=\"text/css\">\n.my_content_container a {\n    border-bottom: 1px solid #555555;\n    border-left: 1px solid #555555;\n    border-right: 1px solid #555555;\n    border-top: 1px solid #555555;\n    background: #a80202;\n    color: #FFFFFF;\n    display: block;\n    height: 2.5em;\n    padding: 0 1em;\n    width: 10em;       \n    text-decoration: \"-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif\";\n}\n// :hover and :active styles left as an exercise for the reader.\n</style>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1138,
+        "y": 3044,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "338edfc9.f1e53",
+        "type": "comment",
+        "z": "b7f67da0.fbf1",
+        "name": "Create http endpoint <nodered>/files/xxx  where xxx is the file name to download",
+        "info": "",
+        "x": 988,
+        "y": 2824,
+        "wires": []
+    },
+    {
+        "id": "32298a69.e14756",
+        "type": "http in",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "url": "/files/:fn",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 778,
+        "y": 2884,
+        "wires": [
+            [
+                "f71e629c.3d39a",
+                "ce58c2aa.f3c13"
+            ]
+        ]
+    },
+    {
+        "id": "b7eeea3e.3261f8",
+        "type": "ui_button",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "group": "97526682.5406d8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Ladda ner logg",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 871,
+        "y": 3094,
+        "wires": [
+            [
+                "69b3e93c.e68ea8"
+            ]
+        ]
+    },
+    {
+        "id": "69b3e93c.e68ea8",
+        "type": "http request",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://localhost:1880/files/nibepi.log",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1050,
+        "y": 3094,
+        "wires": [
+            [
+                "edc93404.dc0bc8",
+                "b7eeea3e.3261f8"
+            ]
+        ]
+    },
+    {
+        "id": "edc93404.dc0bc8",
+        "type": "debug",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1219,
+        "y": 3094,
+        "wires": []
+    },
+    {
+        "id": "ce58c2aa.f3c13",
+        "type": "debug",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 946,
+        "y": 2933,
+        "wires": []
+    },
+    {
+        "id": "5f826e3e.91bfd",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "db563368.2a2e6",
+        "name": "blue",
+        "order": 4,
+        "width": "2",
+        "height": "2",
+        "format": "\n<md-button class=\"vibrate filled touched bigfont rounded\" style=\"background-color:#2980b9\"   ng-click=\"send({payload: 'Hello World'})\"> \n    Blue<br/>button\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "x": 953,
+        "y": 3444,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "17fac7a5.903498",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "db563368.2a2e6",
+        "name": "red",
+        "order": 2,
+        "width": "2",
+        "height": "2",
+        "format": "\n<md-button class=\"vibrate filled touched bigfont rounded\" style=\"background-color:#c0392b\" ng-click=\"send({payload: 'Hello World'})\"> \n    Red<br/>button\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 953,
+        "y": 3364,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b587cbfc.4904e8",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "db563368.2a2e6",
+        "name": "green",
+        "order": 3,
+        "width": "2",
+        "height": "2",
+        "format": "\n<md-button class=\"filled touched bigfont rounded vibrate\" style=\"background-color:#27ae60\" ng-click=\"send({payload: 'Hello World'})\"> \n    Green<br/>button\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "x": 953,
+        "y": 3404,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dfca26fb.8f2d38",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "db563368.2a2e6",
+        "name": "",
+        "order": 5,
+        "width": "2",
+        "height": "1",
+        "format": "\n<md-button class=\"vibrate filled touched smallfont rounded\" style=\"background-color:#16a085\"   ng-click=\"send({payload: 'Hello World'})\"> \n    Blue<br/>button\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "x": 963,
+        "y": 3524,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ca976541.eae338",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "db563368.2a2e6",
+        "name": "",
+        "order": 6,
+        "width": "2",
+        "height": "1",
+        "format": "\n<md-button class=\"vibrate filled touched smallfont rounded\" style=\"background-color:#e67e22\" ng-click=\"send({payload: 'Hello World'})\"> \n    Red<br/>button\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "x": 963,
+        "y": 3484,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7a95eae0.16b204",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "db563368.2a2e6",
+        "name": "on",
+        "order": 7,
+        "width": "1",
+        "height": "1",
+        "format": "\n<md-button class=\"vibrate filled touched smallfont rounded\" style=\"background-color:#34495e\" ng-click=\"send({payload: 'Hello World'})\"> \n    On\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "x": 953,
+        "y": 3564,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4e6540a.1420b8",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "db563368.2a2e6",
+        "name": "off",
+        "order": 8,
+        "width": "1",
+        "height": "1",
+        "format": "\n<md-button class=\"vibrate filled touched smallfont rounded\" style=\"background-color:#8e44ad\" ng-click=\"send({payload: 'Hello World'})\"> \n    Off\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "x": 953,
+        "y": 3604,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6bb4392.8a795c8",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "db563368.2a2e6",
+        "name": "stuff",
+        "order": 0,
+        "width": "0",
+        "height": "0",
+        "format": "<style>\n  .filled { \n      height: 100% !important;\n\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n  .nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n  \n  .rounded {\n  border-radius: 12px 12px 12px 12px;\n}\n \n   .bigfont {\n  font-size: 18px;\n}\n\n   .smallfont {\n  font-size: 12px;\n}\n  \n</style>\n\n<script>\n$('.vibrate').on('click', function() {\n  navigator.vibrate(100);\n});\n\nfunction restore_bg(x) {\n            $(this).css(\"background-color\", x);\n    };\n\n$('.touched').on('mousedown', function() {\n    \n    var x= $(this).css(\"background-color\");\n    $(this).css(\"background-color\", \"yellow\");\n    \n    setTimeout(restore_bg.bind(this,x),100);\n    navigator.vibrate(80);\n    });\n    \n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 833,
+        "y": 3364,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ff0f16b.eca59e8",
+        "type": "inject",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "topic": "test/topic/sensor",
+        "payload": "3",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 905,
+        "y": 280,
+        "wires": [
+            [
+                "85f032e7.169e3"
+            ]
+        ]
+    },
+    {
+        "id": "85f032e7.169e3",
+        "type": "mqtt out",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "d7f6b34d.d13d6",
+        "x": 1127,
+        "y": 273,
+        "wires": []
     }
 ]
