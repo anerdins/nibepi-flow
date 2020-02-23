@@ -11556,6 +11556,11 @@
         "passthru": false,
         "options": [
             {
+                "label": "Stable",
+                "value": "master",
+                "type": "str"
+            },
+            {
                 "label": "Snapshot",
                 "value": "snapshot",
                 "type": "str"
@@ -12662,7 +12667,7 @@
         "func": "msg.flows_ts = toTimestamp(msg.payload.feed.entry[0].updated[0]);\nreturn msg;\n\nfunction toTimestamp(strDate) {\n    var datum = Date.parse(strDate);\n    return Number((datum).toFixed());\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 372,
+        "x": 365,
         "y": 3451,
         "wires": [
             [
