@@ -11479,7 +11479,7 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "func": "var config = msg.config;\nvar nodered = msg.nodered_ts;\nvar nibepi = msg.nibepi_ts;\nmsg.info = msg.payload;\nlet release = config.update.release;\nif(release.includes('snapshot')) {\nif(nodered>config.update.nodered || config.update.nodered===undefined || nibepi>config.update.nibepi || config.update.nibepi===undefined) {\n    newUpdate();\n} else {\n    node.send({enabled:false});\n    node.send([null,null,null,{enabled:false,payload:\"\"}]);\n}\n} else {\n    let version;\n    let newVersion;\n    newVersion = msg.version.replace(/\\./g,\"\");\n    if(newVersion.length===2) newVersion = newVersion+\"0\";\n    newVersion = Number(newVersion);\n    if(config.update.version!==undefined) {\n        version = config.update.version.replace(/\\./g,\"\");\n        if(version.length===2) version = version+\"0\";\n        version = Number(version);\n    }\n    if(version===undefined || version<newVersion) {\n        newUpdate();\n    } else {\n        node.send({enabled:false});\n        node.send([null,null,null,{enabled:false,payload:\"\"}]);\n    }\n}\nfunction toTimestamp(strDate) {\n    var datum = Date.parse(strDate);\n    return Number((datum).toFixed());\n}\nfunction newUpdate() {\n    node.send([null,null,{payload:\"Ny uppdatering tillgängling\"}]);\n    node.send([null,null,null,{enabled:true,payload:msg.info}]);\n    node.send({enabled:true});\n    msg.topic = \"timestamp\";\n    node.send([null,msg]);\n}",
+        "func": "var config = msg.config;\nvar flows = msg.flows_ts;\nvar nodered = msg.nodered_ts;\nvar nibepi = msg.nibepi_ts;\nmsg.info = msg.payload;\nlet release = config.update.release;\nif(release.includes('snapshot')) {\nif(flows>config.update.flows || config.update.flows===undefined || nodered>config.update.nodered || config.update.nodered===undefined || nibepi>config.update.nibepi || config.update.nibepi===undefined) {\n    newUpdate();\n} else {\n    node.send({enabled:false});\n    node.send([null,null,null,{enabled:false,payload:\"\"}]);\n}\n} else {\n    let version;\n    let newVersion;\n    newVersion = msg.version.replace(/\\./g,\"\");\n    if(newVersion.length===2) newVersion = newVersion+\"0\";\n    newVersion = Number(newVersion);\n    if(config.update.version!==undefined) {\n        version = config.update.version.replace(/\\./g,\"\");\n        if(version.length===2) version = version+\"0\";\n        version = Number(version);\n    }\n    if(version===undefined || version<newVersion) {\n        newUpdate();\n    } else {\n        node.send({enabled:false});\n        node.send([null,null,null,{enabled:false,payload:\"\"}]);\n    }\n}\nfunction toTimestamp(strDate) {\n    var datum = Date.parse(strDate);\n    return Number((datum).toFixed());\n}\nfunction newUpdate() {\n    node.send([null,null,{payload:\"Ny uppdatering tillgängling\"}]);\n    node.send([null,null,null,{enabled:true,payload:msg.info}]);\n    node.send({enabled:true});\n    msg.topic = \"timestamp\";\n    node.send([null,msg]);\n}",
         "outputs": 4,
         "noerr": 0,
         "x": 1072,
@@ -11604,7 +11604,7 @@
         "y": 3696,
         "wires": [
             [
-                "5c76619d.bbf42"
+                "38a6e41d.bbf2fc"
             ],
             []
         ]
@@ -11858,7 +11858,7 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "Reset after changing source",
-        "func": "let config = msg.config;\nif(config.update===undefined) return;\nif(config.update.release===undefined) return;\nif(config.update.release!==msg.payload) {\n    config.update.nodered = undefined;\n    config.update.nibepi = undefined;\n    config.update.version = undefined;\n    node.send({payload:config});\n}\n",
+        "func": "let config = msg.config;\nif(config.update===undefined) return;\nif(config.update.release===undefined) return;\nif(config.update.release!==msg.payload) {\n    config.update.nodered = undefined;\n    config.update.nibepi = undefined;\n    config.update.version = undefined;\n    config.update.flows = undefined;\n    node.send({payload:config});\n}\n",
         "outputs": 1,
         "noerr": 0,
         "x": 442,
@@ -11895,7 +11895,7 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "func": "if(msg.payload.code===0) {\n    let config = msg.config;\n    node.send({payload:\"Uppdatering färdig, startar om Node-RED om 10 sekunder\"});\n    config.update.nodered = msg.nodered_ts;\n    config.update.nibepi = msg.nibepi_ts;\n    config.update.version = msg.version;\n    node.send([null,{payload:config}]);\n}",
+        "func": "if(msg.payload.code===0) {\n    let config = msg.config;\n    node.send({payload:\"Uppdatering färdig, startar om Node-RED om 10 sekunder\"});\n    config.update.nodered = msg.nodered_ts;\n    config.update.nibepi = msg.nibepi_ts;\n    config.update.version = msg.version;\n    config.update.flows  = msg.flows_ts;\n    node.send([null,{payload:config}]);\n}",
         "outputs": 2,
         "noerr": 0,
         "x": 1190,
@@ -12652,6 +12652,75 @@
         "y": 501,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "399a6d3c.af0fb2",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "msg.flows_ts = toTimestamp(msg.payload.feed.entry[0].updated[0]);\nreturn msg;\n\nfunction toTimestamp(strDate) {\n    var datum = Date.parse(strDate);\n    return Number((datum).toFixed());\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 372,
+        "y": 3451,
+        "wires": [
+            [
+                "5c76619d.bbf42"
+            ]
+        ]
+    },
+    {
+        "id": "3f6bdb98.dc2144",
+        "type": "xml",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 694,
+        "y": 3500,
+        "wires": [
+            [
+                "399a6d3c.af0fb2"
+            ]
+        ]
+    },
+    {
+        "id": "9b7681f.840428",
+        "type": "http request",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 546,
+        "y": 3500,
+        "wires": [
+            [
+                "3f6bdb98.dc2144"
+            ]
+        ]
+    },
+    {
+        "id": "38a6e41d.bbf2fc",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "let config = msg.config;\nif(config.update===undefined) return;\nif(config.update.release===undefined) return;\nif(config.update.release==\"master\" || config.update.release==\"english\") {\n    msg.url = \"https://github.com/anerdins/nibepi-flow/commits/master.atom\";\n} else if(config.update.release==\"snapshot\" || config.update.release==\"snapshot-EN\") {\n    msg.url = \"https://github.com/anerdins/nibepi-flow/commits/snapshot.atom\";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 372,
+        "y": 3500,
+        "wires": [
+            [
+                "9b7681f.840428"
+            ]
         ]
     }
 ]
