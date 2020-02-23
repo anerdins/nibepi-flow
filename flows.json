@@ -10373,56 +10373,6 @@
         ]
     },
     {
-        "id": "193ef8d1.aea617",
-        "type": "ui_button",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "group": "d814a7db.5cdc38",
-        "order": 7,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Update NibePi",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "Update is starting.",
-        "payloadType": "str",
-        "topic": "Update",
-        "x": 122,
-        "y": 1022,
-        "wires": [
-            [
-                "6dee8bba.615d04",
-                "b0027373.12417"
-            ]
-        ]
-    },
-    {
-        "id": "6dee8bba.615d04",
-        "type": "exec",
-        "z": "b7f67da0.fbf1",
-        "command": "cd /tmp && wget https://raw.githubusercontent.com/anerdins/nibepi-flow/master/update/update.sh && bash update.sh",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "true",
-        "timer": "",
-        "oldrc": false,
-        "name": "",
-        "x": 673,
-        "y": 1022,
-        "wires": [
-            [
-                "b0027373.12417"
-            ],
-            [],
-            [
-                "f8fe14b9.8ba808"
-            ]
-        ]
-    },
-    {
         "id": "f6e7533e.8d656",
         "type": "exec",
         "z": "df0dd648.98daa8",
@@ -10458,62 +10408,6 @@
         "wires": [
             [
                 "f6e7533e.8d656"
-            ]
-        ]
-    },
-    {
-        "id": "6042fbae.0ea8b4",
-        "type": "ui_toast",
-        "z": "b7f67da0.fbf1",
-        "position": "bottom right",
-        "displayTime": "7",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "topic": "",
-        "name": "",
-        "x": 1287,
-        "y": 1064,
-        "wires": []
-    },
-    {
-        "id": "b0027373.12417",
-        "type": "delay",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "3",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 1074,
-        "y": 1078,
-        "wires": [
-            [
-                "6042fbae.0ea8b4"
-            ]
-        ]
-    },
-    {
-        "id": "f8fe14b9.8ba808",
-        "type": "function",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "func": "if(msg.payload.code===0) {\n    msg.payload = \"Update succesfull, restarting...\"\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1261,
-        "y": 994,
-        "wires": [
-            [
-                "6042fbae.0ea8b4"
             ]
         ]
     },
@@ -18523,6 +18417,597 @@
             [
                 "aa3b6866.eabab8"
             ]
+        ]
+    },
+    {
+        "id": "55a5289.e6aaad8",
+        "type": "inject",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 322,
+        "y": 3507,
+        "wires": [
+            [
+                "4462d3be.8f81ec"
+            ]
+        ]
+    },
+    {
+        "id": "a94d8024.e30d4",
+        "type": "http request",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 819,
+        "y": 3402,
+        "wires": [
+            [
+                "c1f13d9c.89939"
+            ]
+        ]
+    },
+    {
+        "id": "a6997815.775fb8",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "var config = msg.config;\nvar nodered = msg.nodered_ts;\nvar nibepi = msg.nibepi_ts;\nif(nodered>config.update.nodered || config.update.nodered===undefined || nibepi>config.update.nibepi || config.update.nibepi===undefined) {\n    node.send([null,null,{payload:\"New update available\"}]);\n    node.send({enabled:true});\n    msg.topic = \"timestamp\";\n    node.send([null,msg]);\n} else {\n    node.send({enabled:false});\n}\nfunction toTimestamp(strDate) {\n    var datum = Date.parse(strDate);\n    return Number((datum).toFixed());\n}",
+        "outputs": 3,
+        "noerr": 0,
+        "x": 1156,
+        "y": 3423,
+        "wires": [
+            [
+                "a7155712.9c0298"
+            ],
+            [
+                "b0cbac0.97cf258"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c1f13d9c.89939",
+        "type": "xml",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 967,
+        "y": 3402,
+        "wires": [
+            [
+                "14070c87.772023"
+            ]
+        ]
+    },
+    {
+        "id": "52885d8a.206fb4",
+        "type": "ui_button",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "group": "d814a7db.5cdc38",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Check for updates",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 286,
+        "y": 3458,
+        "wires": [
+            [
+                "4462d3be.8f81ec"
+            ]
+        ]
+    },
+    {
+        "id": "8a0c4feb.30fc8",
+        "type": "ui_dropdown",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "d814a7db.5cdc38",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "options": [
+            {
+                "label": "Stable release",
+                "value": "master",
+                "type": "str"
+            },
+            {
+                "label": "Snapshot release",
+                "value": "snapshot",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "release",
+        "x": 179,
+        "y": 3346,
+        "wires": [
+            [
+                "4e72b76b.9e7a78",
+                "1c57d9d3.541f86",
+                "4462d3be.8f81ec"
+            ]
+        ]
+    },
+    {
+        "id": "5a8ba91b.d56318",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "let config = msg.config;\nif(config.update===undefined) return;\nif(config.update.release===undefined) return;\nif(config.update.release==\"master\") {\n    msg.url = \"https://github.com/anerdins/node-red-contrib-nibepi/commits/master.atom\";\n} else if(config.update.release==\"snapshot\") {\n    msg.url = \"https://github.com/anerdins/node-red-contrib-nibepi/commits/snapshot.atom\";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 645,
+        "y": 3402,
+        "wires": [
+            [
+                "a94d8024.e30d4"
+            ]
+        ]
+    },
+    {
+        "id": "4e72b76b.9e7a78",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "update",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "release",
+                "type": "str"
+            }
+        ],
+        "x": 370,
+        "y": 3346,
+        "wires": [
+            [
+                "8a0c4feb.30fc8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4462d3be.8f81ec",
+        "type": "nibe-request",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 453,
+        "y": 3458,
+        "wires": [
+            [
+                "5a8ba91b.d56318"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a7155712.9c0298",
+        "type": "ui_button",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "group": "d814a7db.5cdc38",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Update NibePi",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "update",
+        "x": 640,
+        "y": 3458,
+        "wires": [
+            [
+                "6b6b607.b203da"
+            ]
+        ]
+    },
+    {
+        "id": "38c2bfe9.4cdb1",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "update",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "nodered",
+                "type": "str"
+            }
+        ],
+        "x": 958,
+        "y": 3668,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "b0cbac0.97cf258",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "if(msg.topic==\"timestamp\") {\n    context.set('save',msg);\n} else if(msg.topic==\"update\") {\n    let config = msg.config;\n    msg = context.get('save');\n    msg.config = config;\n    if(msg===undefined) return;\n    node.send(msg)\n    node.send([null,{payload:\"Looking for Node-RED folder...\"}])\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 939,
+        "y": 3486,
+        "wires": [
+            [
+                "9a3caa6e.b55bd8"
+            ],
+            [
+                "732c1334.1a29ac"
+            ]
+        ]
+    },
+    {
+        "id": "9a3caa6e.b55bd8",
+        "type": "exec",
+        "z": "b7f67da0.fbf1",
+        "command": "find / -type f -name 'flows.json' 2>/dev/null | sed -r 's|/[^/]+$||' |sort |uniq",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 551,
+        "y": 3591,
+        "wires": [
+            [
+                "9ed692a6.38875"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "732c1334.1a29ac",
+        "type": "ui_toast",
+        "z": "b7f67da0.fbf1",
+        "position": "bottom right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "",
+        "name": "",
+        "x": 1189,
+        "y": 3514,
+        "wires": []
+    },
+    {
+        "id": "9ed692a6.38875",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "let len = (msg.payload.match(/\\n/g) || []).length;\nlet release = msg.config.update.release;\nif(len>1) {\n    node.send([null,{payload:\"Multiply Node-RED folder found. aborting.\"}])\n} else if(len===1) {\n    let path = msg.payload;\n    path = path.replace('\\n','');\n    msg.path = path;\n    msg.payload = `sudo mount -o remount,rw / && cd ${path} && echo anerdins/node-red-contrib-nibepi#${release}`\n    node.send([msg,{payload:\"Node-RED folder found.\\nUpdating...\"}])\n} else {\n    node.send([null,{payload:\"Node-RED folder not found. aborting.\"}])\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 925,
+        "y": 3598,
+        "wires": [
+            [
+                "73da9d65.733104"
+            ],
+            [
+                "732c1334.1a29ac"
+            ]
+        ]
+    },
+    {
+        "id": "73da9d65.733104",
+        "type": "exec",
+        "z": "b7f67da0.fbf1",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Update modules",
+        "x": 1123,
+        "y": 3605,
+        "wires": [
+            [],
+            [],
+            [
+                "c16c022a.b5c94"
+            ]
+        ]
+    },
+    {
+        "id": "6b6b607.b203da",
+        "type": "nibe-request",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 785,
+        "y": 3486,
+        "wires": [
+            [
+                "b0cbac0.97cf258"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1810a0e3.0658ff",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "let config = msg.config;\nif(config.update===undefined) return;\nif(config.update.release===undefined) return;\nlet url = \"https://github.com/anerdins/nibepi/commits/master.atom\";\nif(config.update.release==\"master\") {\n    url = \"https://github.com/anerdins/nibepi/commits/master.atom\";\n} else if(config.update.release==\"snapshot\") {\n    url = \"https://github.com/anerdins/nibepi/commits/snapshot.atom\";\n}\nmsg.url = url;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 771,
+        "y": 3353,
+        "wires": [
+            [
+                "8ba08390.c1362"
+            ]
+        ]
+    },
+    {
+        "id": "cf559a0c.f8cbd8",
+        "type": "xml",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 1065,
+        "y": 3353,
+        "wires": [
+            [
+                "8290fdff.22074",
+                "21342eb2.63e182"
+            ]
+        ]
+    },
+    {
+        "id": "8ba08390.c1362",
+        "type": "http request",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 917,
+        "y": 3353,
+        "wires": [
+            [
+                "cf559a0c.f8cbd8"
+            ]
+        ]
+    },
+    {
+        "id": "c16c022a.b5c94",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "if(msg.payload.code===0) {\n    let config = msg.config;\n\n    node.send({topic:\"nodered\",payload:msg.nodered_ts});\n    node.send([null,{topic:\"nibepi\",payload:msg.nibepi_ts}]);\n    node.send([null,null,{payload:\"Downloading new flows for Node-RED\"}]);\n    node.send([null,null,null,{topic:\"version\",payload:msg.nibepi_ts}]);\n    node.send([null,null,null,null,{payload:`sudo mount -o remount,rw / && cd /tmp && wget https://raw.githubusercontent.com/anerdins/nibepi-flow/english/flows.json && cd /tmp && mv -f flows.json ${msg.path}/flows.json`}]);\n}",
+        "outputs": 5,
+        "noerr": 0,
+        "x": 729,
+        "y": 3696,
+        "wires": [
+            [
+                "38c2bfe9.4cdb1"
+            ],
+            [
+                "432d8a9c.2b3d74"
+            ],
+            [
+                "732c1334.1a29ac"
+            ],
+            [
+                "ec00855c.49ad08"
+            ],
+            [
+                "b111386.d1e58c8"
+            ]
+        ]
+    },
+    {
+        "id": "14070c87.772023",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "msg.nodered_ts = toTimestamp(msg.payload.feed.entry[0].updated[0]);\nreturn msg;\n\nfunction toTimestamp(strDate) {\n    var datum = Date.parse(strDate);\n    return Number((datum).toFixed());\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 645,
+        "y": 3353,
+        "wires": [
+            [
+                "1810a0e3.0658ff"
+            ]
+        ]
+    },
+    {
+        "id": "8290fdff.22074",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "msg.nibepi_ts = toTimestamp(msg.payload.feed.entry[0].updated[0]);\nreturn msg;\n\nfunction toTimestamp(strDate) {\n    var datum = Date.parse(strDate);\n    return Number((datum).toFixed());\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1191,
+        "y": 3353,
+        "wires": [
+            [
+                "a6997815.775fb8"
+            ]
+        ]
+    },
+    {
+        "id": "432d8a9c.2b3d74",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "update",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "nibepi",
+                "type": "str"
+            }
+        ],
+        "x": 958,
+        "y": 3710,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "1c57d9d3.541f86",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "Reset after changing source",
+        "func": "node.send({topic:\"nodered\",payload:undefined});\nnode.send([null,{topic:\"nibepi\",payload:undefined}]);",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 442,
+        "y": 3675,
+        "wires": [
+            [
+                "38c2bfe9.4cdb1"
+            ],
+            [
+                "432d8a9c.2b3d74"
+            ]
+        ]
+    },
+    {
+        "id": "b111386.d1e58c8",
+        "type": "exec",
+        "z": "b7f67da0.fbf1",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Update Node-RED flows",
+        "x": 992,
+        "y": 3857,
+        "wires": [
+            [],
+            [],
+            [
+                "fe1e715.253629"
+            ]
+        ]
+    },
+    {
+        "id": "fe1e715.253629",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "if(msg.payload.code===0) {\n    node.send({payload:\"Updated succesfully, restarting Node-RED\"});\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1212,
+        "y": 3857,
+        "wires": [
+            [
+                "732c1334.1a29ac"
+            ]
+        ]
+    },
+    {
+        "id": "21342eb2.63e182",
+        "type": "debug",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1204,
+        "y": 3304,
+        "wires": []
+    },
+    {
+        "id": "ec00855c.49ad08",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "update",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "version",
+                "type": "str"
+            }
+        ],
+        "x": 958,
+        "y": 3752,
+        "wires": [
+            [],
+            []
         ]
     }
 ]
