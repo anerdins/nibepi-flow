@@ -11556,6 +11556,11 @@
         "passthru": false,
         "options": [
             {
+                "label": "Stable",
+                "value": "master",
+                "type": "str"
+            },
+            {
                 "label": "Snapshot",
                 "value": "snapshot",
                 "type": "str"
