@@ -2102,7 +2102,7 @@
         "z": "358baec9.c8b902",
         "name": "",
         "label": "Utomhustemp blockering",
-        "tooltip": "",
+        "tooltip": "Välj vid vilken temperatur som värmen ska blockeras.",
         "group": "95b0af9c.89089",
         "order": 2,
         "width": "0",
@@ -3664,6 +3664,7 @@
         "actionType": "check",
         "allowHTML": false,
         "outputs": 1,
+        "topic": "",
         "x": 554,
         "y": 1624,
         "wires": [
@@ -5000,8 +5001,8 @@
         "name": "",
         "system": "s1",
         "adjust": "0",
-        "x": 615,
-        "y": 56,
+        "x": 629,
+        "y": 175,
         "wires": [
             [
                 "63612ac7.366764",
@@ -5026,7 +5027,7 @@
         "height": 0,
         "passthru": false,
         "decouple": "true",
-        "topic": "enable",
+        "topic": "price/enable",
         "style": "",
         "onvalue": "true",
         "onvalueType": "bool",
@@ -5036,12 +5037,13 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 156,
-        "y": 903,
+        "x": 352,
+        "y": 910,
         "wires": [
             [
-                "d54ff528.d710e8",
-                "321fde4.84f6d22"
+                "321fde4.84f6d22",
+                "aa3b6866.eabab8",
+                "8dd4be0a.86e46"
             ]
         ]
     },
@@ -5395,8 +5397,8 @@
                 "type": "str"
             }
         ],
-        "x": 384,
-        "y": 903,
+        "x": 111,
+        "y": 910,
         "wires": [
             [
                 "3925bdab.14e9a2"
@@ -6298,7 +6300,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 569,
-        "y": 973,
+        "y": 1001,
         "wires": [
             [
                 "eafa7076.636ee",
@@ -6696,7 +6698,7 @@
         "type": "function",
         "z": "358baec9.c8b902",
         "name": "",
-        "func": "let config = msg.config;\nlet topic = msg.topic;\nif(msg.payload==\"nibe\") {\n    config.indoor.enable_s1 = false;\n    config.indoor.sensor_s1 = undefined;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s1\",payload:1},{topic:\"setConfig\",payload:config},{enabled:true},{enabled:false}]);\n    } else {\n        node.send([null,null,{enabled:true},{enabled:false}]);\n    }\n    \n} else if(msg.payload==\"nibepi\") {\n    config.indoor.enable_s1 = true;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s1\",payload:0},{topic:\"setConfig\",payload:config},{enabled:true},{enabled:true}]);\n    } else {\n        node.send([null,null,{enabled:true},{enabled:true}]);\n    }\n} else {\n    config.indoor.enable_s1 = false;\n    config.indoor.sensor_s1 = undefined;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s1\",payload:0},{topic:\"setConfig\",payload:config},{enabled:false},{enabled:false}]);\n    } else {\n        node.send([null,null,{enabled:false},{enabled:false}]);\n    }\n}",
+        "func": "let config = msg.config;\nlet topic = msg.topic;\nif(msg.payload==\"nibe\") {\n    //config.indoor.enable_s1 = false;\n    //config.indoor.sensor_s1 = undefined;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s1\",payload:1},{topic:\"indoor/enable\",payload:false},{enabled:true},{enabled:false}]);\n        node.send([null,{topic:\"indoor/sensor\",payload:undefined}])\n    } else {\n        node.send([null,null,{enabled:true},{enabled:false}]);\n    }\n    \n} else if(msg.payload==\"nibepi\") {\n    //config.indoor.enable_s1 = true;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s1\",payload:0},{topic:\"indoor/enable\",payload:true},{enabled:true},{enabled:true}]);\n    } else {\n        node.send([null,null,{enabled:true},{enabled:true}]);\n    }\n} else {\n    //config.indoor.enable_s1 = false;\n    //config.indoor.sensor_s1 = undefined;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s1\",payload:0},{topic:\"indoor/enable\",payload:false},{enabled:false},{enabled:false}]);\n        node.send([null,{topic:\"indoor/sensor\",payload:undefined}])\n    } else {\n        node.send([null,null,{enabled:false},{enabled:false}]);\n    }\n}",
         "outputs": 4,
         "noerr": 0,
         "x": 729,
@@ -6706,7 +6708,7 @@
                 "f9a0b44f.224b78"
             ],
             [
-                "f9a0b44f.224b78"
+                "fdd4d594.2498b8"
             ],
             [
                 "a8deecfc.3d34b",
@@ -6758,8 +6760,8 @@
         "z": "358baec9.c8b902",
         "server": "844659a2.8d8508",
         "name": "",
-        "x": 903,
-        "y": 35,
+        "x": 938,
+        "y": 28,
         "wires": [
             []
         ]
@@ -7279,7 +7281,7 @@
         "type": "function",
         "z": "358baec9.c8b902",
         "name": "",
-        "func": "let config = msg.config;\nlet topic = msg.topic;\nif(msg.payload==\"nibe\") {\n    config.indoor.enable_s2 = false;\n    config.indoor.sensor_s2 = undefined;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s2\",payload:1},{topic:\"setConfig\",payload:config},{enabled:true},{enabled:false}]);\n    } else {\n        node.send([null,null,{enabled:true},{enabled:false}]);\n    }\n    \n} else if(msg.payload==\"nibepi\") {\n    config.indoor.enable_s2 = true;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s2\",payload:0},{topic:\"setConfig\",payload:config},{enabled:true},{enabled:true}]);\n    } else {\n        node.send([null,null,{enabled:true},{enabled:true}]);\n    }\n} else {\n    config.indoor.enable_s2 = false;\n    config.indoor.sensor_s2 = undefined;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s2\",payload:0},{topic:\"setConfig\",payload:config},{enabled:false},{enabled:false}]);\n    } else {\n        node.send([null,null,{enabled:false},{enabled:false}]);\n    }\n}",
+        "func": "let config = msg.config;\nlet topic = msg.topic;\nif(msg.payload==\"nibe\") {\n    //config.indoor.enable_s2 = false;\n    //config.indoor.sensor_s2 = undefined;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s2\",payload:1},{topic:\"indoor/enable\",payload:false},{enabled:true},{enabled:false}]);\n        node.send([null,{topic:\"indoor/sensor\",payload:undefined}])\n    } else {\n        node.send([null,null,{enabled:true},{enabled:false}]);\n    }\n    \n} else if(msg.payload==\"nibepi\") {\n    //config.indoor.enable_s2 = true;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s2\",payload:0},{topic:\"indoor/enable\",payload:true},{enabled:true},{enabled:true}]);\n    } else {\n        node.send([null,null,{enabled:true},{enabled:true}]);\n    }\n} else {\n    config.indoor.enable_s2 = false;\n    config.indoor.sensor_s2 = undefined;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s2\",payload:0},{topic:\"indoor/enable\",payload:false},{enabled:false},{enabled:false}]);\n        node.send([null,{topic:\"indoor/sensor\",payload:undefined}])\n    } else {\n        node.send([null,null,{enabled:false},{enabled:false}]);\n    }\n}",
         "outputs": 4,
         "noerr": 0,
         "x": 736,
@@ -7289,7 +7291,7 @@
                 "f27d9d77.fbdb"
             ],
             [
-                "f27d9d77.fbdb"
+                "26c121a.21b7bde"
             ],
             [
                 "d136e0d4.36424",
@@ -7546,7 +7548,7 @@
         "z": "fa4686d6.c21688",
         "name": "Automatisk tillfällig lyx",
         "group": "bcb5f9e4.9bc858",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "label": "",
@@ -7588,7 +7590,7 @@
         "z": "fa4686d6.c21688",
         "name": "Varmvatten prioritet",
         "group": "38b6d907.520796",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "label": "",
@@ -7630,7 +7632,7 @@
         "z": "fa4686d6.c21688",
         "name": "Uppdatera",
         "group": "bcb5f9e4.9bc858",
-        "order": 5,
+        "order": 6,
         "width": 12,
         "height": 1,
         "passthru": false,
@@ -7656,7 +7658,7 @@
         "z": "fa4686d6.c21688",
         "name": "Uppdatera",
         "group": "38b6d907.520796",
-        "order": 3,
+        "order": 4,
         "width": 12,
         "height": 1,
         "passthru": false,
@@ -7710,7 +7712,7 @@
         "label": "Aktivera",
         "tooltip": "",
         "group": "bcb5f9e4.9bc858",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -7741,7 +7743,7 @@
         "label": "Aktivera",
         "tooltip": "",
         "group": "38b6d907.520796",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -7798,7 +7800,7 @@
         "label": "Differens",
         "tooltip": "",
         "group": "bcb5f9e4.9bc858",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -7849,7 +7851,7 @@
         "label": "Tidfaktor",
         "tooltip": "",
         "group": "bcb5f9e4.9bc858",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -9190,7 +9192,7 @@
         "label": "Start",
         "tooltip": "",
         "group": "38b6d907.520796",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -10925,7 +10927,7 @@
         "label": "Luftflöde",
         "tooltip": "",
         "group": "2ed5a2d7.ca08ce",
-        "order": 9,
+        "order": 4,
         "width": "0",
         "height": "0",
         "passthru": false,
@@ -11056,7 +11058,8 @@
         "y": 56,
         "wires": [
             [
-                "f648d408.d5b588"
+                "f648d408.d5b588",
+                "b62f2b0b.3d3248"
             ]
         ]
     },
@@ -11068,7 +11071,7 @@
         "label": "Aktivera",
         "tooltip": "",
         "group": "2ed5a2d7.ca08ce",
-        "order": 6,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -11141,11 +11144,11 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "name": "Sänk luftflöde",
+        "name": "Öka luftflöde",
         "label": "",
         "format": "Öka luftflödet vid högt CO2 värde",
         "layout": "row-left",
-        "x": 591,
+        "x": 581,
         "y": 574,
         "wires": []
     },
@@ -12727,5 +12730,88 @@
                 "9b7681f.840428"
             ]
         ]
+    },
+    {
+        "id": "b62f2b0b.3d3248",
+        "type": "ui_slider",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "label": "Gränsvärde CO2",
+        "tooltip": "",
+        "group": "2ed5a2d7.ca08ce",
+        "order": 3,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "outs": "end",
+        "topic": "fan/high_co2_limit",
+        "min": "450",
+        "max": "2000",
+        "step": "25",
+        "x": 867,
+        "y": 49,
+        "wires": [
+            [
+                "ed6e5604.1f1578"
+            ]
+        ]
+    },
+    {
+        "id": "bd230e5b.604cd",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "fan",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "low_co2_limit",
+                "type": "str"
+            }
+        ],
+        "x": 629,
+        "y": 49,
+        "wires": [
+            [
+                "b62f2b0b.3d3248"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a0c72050.1c73a",
+        "type": "ui_text",
+        "z": "fa4686d6.c21688",
+        "group": "bcb5f9e4.9bc858",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Vid stort uttag av varmvatten så kan tillfällig lyx startas automatiskt. Ställ in gränsvärden här nedan.",
+        "format": "",
+        "layout": "row-left",
+        "x": 1019,
+        "y": 28,
+        "wires": []
+    },
+    {
+        "id": "bc411f62.b5f87",
+        "type": "ui_text",
+        "z": "fa4686d6.c21688",
+        "group": "38b6d907.520796",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Om tappvarmvattnet understiger den minsta inställda nivån så startar varmvattenproduktion direkt.",
+        "format": "",
+        "layout": "row-left",
+        "x": 1019,
+        "y": 112,
+        "wires": []
     }
 ]
