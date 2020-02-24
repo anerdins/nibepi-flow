@@ -11556,12 +11556,12 @@
         "passthru": false,
         "options": [
             {
-                "label": "Stable",
+                "label": "1.1 Beta",
                 "value": "master",
                 "type": "str"
             },
             {
-                "label": "Snapshot",
+                "label": "1.1-Snapshot",
                 "value": "snapshot",
                 "type": "str"
             },
