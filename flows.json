@@ -223,17 +223,6 @@
         "collapse": false
     },
     {
-        "id": "ed53104a.a7fac",
-        "type": "ui_group",
-        "z": "",
-        "name": "Datahantering",
-        "tab": "6aa61182.b42ed",
-        "order": 7,
-        "disp": true,
-        "width": "12",
-        "collapse": false
-    },
-    {
         "id": "810e862f.c36438",
         "type": "ui_group",
         "z": 0,
@@ -296,17 +285,6 @@
         "order": 8,
         "disp": true,
         "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "89f97b1b.8278f8",
-        "type": "ui_group",
-        "z": 0,
-        "name": "Loggning",
-        "tab": "6aa61182.b42ed",
-        "order": 4,
-        "disp": true,
-        "width": "12",
         "collapse": false
     },
     {
@@ -531,31 +509,12 @@
         "hidden": false
     },
     {
-        "id": "ada224d8.213a68",
-        "type": "ui_group",
-        "z": "",
-        "name": "MQTT",
-        "tab": "b75c3bdd.9e0ae8",
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "5a361c77.6aadb4",
-        "type": "ui_group",
-        "z": "",
-        "name": "Plugins",
-        "tab": "b75c3bdd.9e0ae8",
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
         "id": "a8bf2b6e.6abc18",
         "type": "ui_group",
         "z": "",
         "name": "Husinformation",
         "tab": "b75c3bdd.9e0ae8",
+        "order": 4,
         "disp": true,
         "width": "12",
         "collapse": false
@@ -786,7 +745,7 @@
         "z": "",
         "name": "RMU40 S1",
         "tab": "6aa61182.b42ed",
-        "order": 12,
+        "order": 13,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -797,7 +756,7 @@
         "z": "",
         "name": "RMU40 S2",
         "tab": "6aa61182.b42ed",
-        "order": 13,
+        "order": 14,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -808,6 +767,7 @@
         "z": "",
         "name": "Kompressorförbrukning",
         "tab": "b75c3bdd.9e0ae8",
+        "order": 5,
         "disp": true,
         "width": "12",
         "collapse": false
@@ -822,25 +782,6 @@
         "disp": true,
         "width": "12",
         "collapse": false
-    },
-    {
-        "id": "3cdc3a0c.02b986",
-        "type": "ui_group",
-        "z": "",
-        "name": "Two dimension Array",
-        "tab": "9a403c9b.86b71",
-        "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "9a403c9b.86b71",
-        "type": "ui_tab",
-        "z": "",
-        "name": "Table Examples",
-        "icon": "dashboard",
-        "order": 1
     },
     {
         "id": "723a0250.fd7dcc",
@@ -859,6 +800,7 @@
         "z": "",
         "name": "Förbrukning strömavkännare",
         "tab": "b75c3bdd.9e0ae8",
+        "order": 6,
         "disp": true,
         "width": "12",
         "collapse": false
@@ -935,6 +877,28 @@
         "z": "",
         "name": "testing",
         "icon": "dashboard"
+    },
+    {
+        "id": "6356450b.b9318c",
+        "type": "ui_group",
+        "z": "",
+        "name": "RMU40",
+        "tab": "6aa61182.b42ed",
+        "order": 12,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "da1887c7.ca0d38",
+        "type": "ui_group",
+        "z": "",
+        "name": "Förord",
+        "tab": "b75c3bdd.9e0ae8",
+        "order": 1,
+        "disp": false,
+        "width": "12",
+        "collapse": false
     },
     {
         "id": "24d4f99f.449346",
@@ -1088,7 +1052,7 @@
         "legend": "true",
         "xformat": "HH:mm",
         "interpolate": "linear",
-        "nodata": "",
+        "nodata": "Data ej tillgängligt",
         "dot": false,
         "ymin": "",
         "ymax": "",
@@ -1273,7 +1237,7 @@
         "legend": "true",
         "xformat": "dd HH:mm",
         "interpolate": "linear",
-        "nodata": "",
+        "nodata": "Data ej tillgängligt",
         "dot": false,
         "ymin": "",
         "ymax": "",
@@ -1368,7 +1332,7 @@
         "label": "MQTT Broker",
         "tooltip": "",
         "group": "723a0250.fd7dcc",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -1399,7 +1363,7 @@
         "label": "MQTT Topic",
         "tooltip": "",
         "group": "723a0250.fd7dcc",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -2104,7 +2068,7 @@
         "label": "Utomhustemp blockering",
         "tooltip": "Välj vid vilken temperatur som värmen ska blockeras.",
         "group": "95b0af9c.89089",
-        "order": 2,
+        "order": 1,
         "width": "0",
         "height": "0",
         "passthru": false,
@@ -3090,7 +3054,7 @@
         "label": "Host",
         "tooltip": "",
         "group": "723a0250.fd7dcc",
-        "order": 3,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -3139,7 +3103,7 @@
         "label": "Port",
         "tooltip": "",
         "group": "723a0250.fd7dcc",
-        "order": 3,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -3188,7 +3152,7 @@
         "label": "User",
         "tooltip": "",
         "group": "723a0250.fd7dcc",
-        "order": 3,
+        "order": 7,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -3263,7 +3227,7 @@
         "label": "Password",
         "tooltip": "",
         "group": "723a0250.fd7dcc",
-        "order": 3,
+        "order": 8,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -3286,7 +3250,7 @@
         "label": "Kurvjustering S1",
         "tooltip": "",
         "group": "605e2041.0137e",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -3337,7 +3301,7 @@
         "label": "Kurvjustering S2",
         "tooltip": "",
         "group": "ea24545a.5d7038",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -3388,7 +3352,7 @@
         "label": "Värmekurva S1",
         "tooltip": "",
         "group": "605e2041.0137e",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -3440,7 +3404,7 @@
         "label": "Värmekurva S2",
         "tooltip": "",
         "group": "ea24545a.5d7038",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -4230,7 +4194,7 @@
         "name": "",
         "label": "Lägg till givare",
         "group": "fb207b28.da59b8",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "options": [
@@ -4279,7 +4243,7 @@
         "tooltip": "",
         "place": "Välj",
         "group": "fb207b28.da59b8",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -4860,7 +4824,7 @@
         "z": "358baec9.c8b902",
         "group": "95b0af9c.89089",
         "name": "Gradminut info",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "format": "När inomhusbörvärdet är uppnått så återställs gradminuter till startvärdet<br><br>",
@@ -7410,7 +7374,7 @@
         "label": "Read-only",
         "tooltip": "",
         "group": "da3c0db0.9c6aa",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -7472,7 +7436,7 @@
         "label": "HA Discovery",
         "tooltip": "",
         "group": "723a0250.fd7dcc",
-        "order": 1,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -7973,7 +7937,7 @@
         "label": "Loggning på",
         "tooltip": "",
         "group": "97526682.5406d8",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -8031,7 +7995,7 @@
         "label": "INFO",
         "tooltip": "",
         "group": "97526682.5406d8",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -8107,7 +8071,7 @@
         "label": "ERROR",
         "tooltip": "",
         "group": "97526682.5406d8",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -8164,7 +8128,7 @@
         "label": "DEBUG",
         "tooltip": "",
         "group": "97526682.5406d8",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -8221,7 +8185,7 @@
         "label": "CORE",
         "tooltip": "",
         "group": "97526682.5406d8",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -8276,7 +8240,7 @@
         "z": "b7f67da0.fbf1",
         "group": "97526682.5406d8",
         "name": "Loggning Info",
-        "order": 6,
+        "order": 7,
         "width": 0,
         "height": 0,
         "format": "<p>Loggning sker till \"/tmp/nibepi.log\"<br>I SSH kör kommando \"tail -f /tmp/nibepi.log\"<br><br></p>",
@@ -8613,15 +8577,18 @@
         "id": "b59bafd9.45e65",
         "type": "function",
         "z": "eee76599.b5f0d8",
-        "name": "Inomhusreglering",
+        "name": "Inställningar",
         "func": "var timeSaved = context.get('time')||(Date.now()-1000);\nvar time = Date.now();\nif(msg.name==\"Inställningar\") {\n    if(time>timeSaved) {\n        context.set('time',(time+30000));\n        return msg;\n    }\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 314,
+        "x": 294,
         "y": 210,
         "wires": [
             [
-                "893baad1.277128"
+                "893baad1.277128",
+                "7bac2960.6ef798",
+                "e817a238.c8734",
+                "6cbef66.4c31208"
             ]
         ]
     },
@@ -8965,7 +8932,7 @@
         "label": "Timeout tid för MQTT givare",
         "tooltip": "Givaren måste uppdateras inom detta interval annars ignoreras den. OBS \"0\" inaktiverar timeout.",
         "group": "fb207b28.da59b8",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -9047,7 +9014,7 @@
         "z": "b7f67da0.fbf1",
         "group": "fe94277c.dcd118",
         "name": "",
-        "order": 2,
+        "order": 3,
         "width": "12",
         "height": "5",
         "format": "<p>{{msg.payload}}</p>",
@@ -9168,7 +9135,7 @@
         "label": "Kör kommando",
         "tooltip": "Skriv ett kommando. Återkoppling i rutan nedan",
         "group": "fe94277c.dcd118",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -9471,7 +9438,7 @@
         "label": "Serieport",
         "tooltip": "",
         "group": "fe94277c.dcd118",
-        "order": 2,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -9518,7 +9485,7 @@
         "z": "b7f67da0.fbf1",
         "name": "",
         "group": "fe94277c.dcd118",
-        "order": 3,
+        "order": 5,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -9680,7 +9647,7 @@
         "z": "b7f67da0.fbf1",
         "name": "",
         "group": "fe94277c.dcd118",
-        "order": 4,
+        "order": 6,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -9752,7 +9719,7 @@
         "z": "b7f67da0.fbf1",
         "name": "",
         "group": "fe94277c.dcd118",
-        "order": 6,
+        "order": 7,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -9798,7 +9765,7 @@
         "z": "b7f67da0.fbf1",
         "name": "",
         "group": "fe94277c.dcd118",
-        "order": 7,
+        "order": 8,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -12444,7 +12411,7 @@
         "z": "51e88f22.62d4a",
         "name": "",
         "group": "97526682.5406d8",
-        "order": 6,
+        "order": 8,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -12813,5 +12780,356 @@
         "x": 1019,
         "y": 112,
         "wires": []
+    },
+    {
+        "id": "7bac2960.6ef798",
+        "type": "nibe-request",
+        "z": "eee76599.b5f0d8",
+        "server": "844659a2.8d8508",
+        "name": "rmu_s1",
+        "x": 543,
+        "y": 56,
+        "wires": [
+            [],
+            [
+                "60e3b487.efea2c"
+            ]
+        ]
+    },
+    {
+        "id": "60e3b487.efea2c",
+        "type": "ui_switch",
+        "z": "eee76599.b5f0d8",
+        "name": "",
+        "label": "RMU40 System 1",
+        "tooltip": "",
+        "group": "6356450b.b9318c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "x": 748,
+        "y": 56,
+        "wires": [
+            [
+                "a8806c73.18578"
+            ]
+        ]
+    },
+    {
+        "id": "a8806c73.18578",
+        "type": "nibe-output",
+        "z": "eee76599.b5f0d8",
+        "server": "844659a2.8d8508",
+        "name": "rmu_s1",
+        "x": 942,
+        "y": 56,
+        "wires": [
+            [
+                "60e3b487.efea2c"
+            ]
+        ]
+    },
+    {
+        "id": "e817a238.c8734",
+        "type": "nibe-request",
+        "z": "eee76599.b5f0d8",
+        "server": "844659a2.8d8508",
+        "name": "rmu_s2",
+        "x": 543,
+        "y": 105,
+        "wires": [
+            [],
+            [
+                "f83ba770.b754d8"
+            ]
+        ]
+    },
+    {
+        "id": "f83ba770.b754d8",
+        "type": "ui_switch",
+        "z": "eee76599.b5f0d8",
+        "name": "",
+        "label": "RMU40 System 2",
+        "tooltip": "",
+        "group": "6356450b.b9318c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "x": 748,
+        "y": 105,
+        "wires": [
+            [
+                "4c596cb9.9e6a44"
+            ]
+        ]
+    },
+    {
+        "id": "4c596cb9.9e6a44",
+        "type": "nibe-output",
+        "z": "eee76599.b5f0d8",
+        "server": "844659a2.8d8508",
+        "name": "rmu_s2",
+        "x": 942,
+        "y": 105,
+        "wires": [
+            [
+                "f83ba770.b754d8"
+            ]
+        ]
+    },
+    {
+        "id": "6cbef66.4c31208",
+        "type": "nibe-request",
+        "z": "eee76599.b5f0d8",
+        "server": "844659a2.8d8508",
+        "name": "rmu_s3",
+        "x": 543,
+        "y": 154,
+        "wires": [
+            [],
+            [
+                "f680e178.2e0ef"
+            ]
+        ]
+    },
+    {
+        "id": "f680e178.2e0ef",
+        "type": "ui_switch",
+        "z": "eee76599.b5f0d8",
+        "name": "",
+        "label": "RMU40 System 3",
+        "tooltip": "",
+        "group": "6356450b.b9318c",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "x": 748,
+        "y": 154,
+        "wires": [
+            [
+                "f9cc9213.15fb9"
+            ]
+        ]
+    },
+    {
+        "id": "f9cc9213.15fb9",
+        "type": "nibe-output",
+        "z": "eee76599.b5f0d8",
+        "server": "844659a2.8d8508",
+        "name": "rmu_s3",
+        "x": 942,
+        "y": 154,
+        "wires": [
+            [
+                "f680e178.2e0ef"
+            ]
+        ]
+    },
+    {
+        "id": "b670321d.7c74e",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "da1887c7.ca0d38",
+        "name": "Förord",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    <h2>NibePi</h2>\n    <p>Förord 1<br><br></p>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 883,
+        "y": 35,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "288c389e.6a59c8",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "fb207b28.da59b8",
+        "name": "Extra givare 1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<p>Extra givare 1</p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 307,
+        "y": 1883,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6386c6ec.d2c768",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "97526682.5406d8",
+        "name": "Loggning info 1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<p>Loggning 1</p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 542,
+        "y": 2177,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b41bece3.1e5d4",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "fe94277c.dcd118",
+        "name": "Avancerat 1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<p>Avancerat 1</p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 791,
+        "y": 77,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4dc4d83.408c428",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "723a0250.fd7dcc",
+        "name": "MQTT 1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<p>MQTT 1</p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 508,
+        "y": 371,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae03bb3e.814858",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "da3c0db0.9c6aa",
+        "name": "System 1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<p>System 1</p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 956,
+        "y": 343,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2b72a94c.b56806",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "605e2041.0137e",
+        "name": "Värmekurva S1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<p>Värmekurva S1</p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 535,
+        "y": 490,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "41b97d73.686ca4",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "ea24545a.5d7038",
+        "name": "Värmekurva S2",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<p>Värmekurva S2</p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 626,
+        "y": 539,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "12889531.e5d9eb",
+        "type": "ui_template",
+        "z": "eee76599.b5f0d8",
+        "group": "6356450b.b9318c",
+        "name": "RMU 1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<p>RMU 1</p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 193,
+        "y": 77,
+        "wires": [
+            []
+        ]
     }
 ]
