@@ -8692,7 +8692,8 @@
         "y": 371,
         "wires": [
             [
-                "ed7a28da.800c78"
+                "ed7a28da.800c78",
+                "fe27461e.7e1e48"
             ],
             []
         ]
@@ -13128,6 +13129,35 @@
         "templateScope": "local",
         "x": 193,
         "y": 77,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fe27461e.7e1e48",
+        "type": "function",
+        "z": "eee76599.b5f0d8",
+        "name": "Enable/Disable",
+        "func": "if(msg.enabled!==undefined && msg.enabled===true) {\n    let hide = {\n        \"group\":\n            {\"show\":\n                [\"Inställningar_RMU40_S1\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n} else if(msg.enabled===false) {\n    let hide = {\n        \"group\":\n            {\"hide\":\n                [\"Inställningar_RMU40_S1\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 990,
+        "y": 315,
+        "wires": [
+            [],
+            [
+                "c7cde5a3.053a28"
+            ]
+        ]
+    },
+    {
+        "id": "c7cde5a3.053a28",
+        "type": "ui_ui_control",
+        "z": "eee76599.b5f0d8",
+        "name": "Disable Group S1",
+        "events": "all",
+        "x": 1210,
+        "y": 315,
         "wires": [
             []
         ]
