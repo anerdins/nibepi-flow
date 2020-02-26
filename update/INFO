@@ -1,5 +1,6 @@
 <b>b2</b><br>
 NibePi startade inte pga översättningsmodulen hängde sig.<br>
-<b>b1</b>
+<b>b1</b><br>
 Bugfix med RMU-40 så det passar flera klimatsystem.<br>
 Lagt till möjlighet att kunna stänga av och på RMU från inställningar.<br>
+<br>
