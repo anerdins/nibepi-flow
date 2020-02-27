@@ -56,6 +56,13 @@
         "info": ""
     },
     {
+        "id": "27236b7a.3c2274",
+        "type": "tab",
+        "label": "Diagnostic 1.1",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "64327e50.8f365",
         "type": "subflow",
         "name": "Skrivläge",
@@ -897,6 +904,35 @@
         "tab": "b75c3bdd.9e0ae8",
         "order": 1,
         "disp": false,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "c400f9d6.0a6028",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Diagnostik",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3af8f7e6.d24338",
+        "type": "ui_group",
+        "z": "",
+        "name": "Graf",
+        "tab": "c400f9d6.0a6028",
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "ffc74889.8cb7c8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Gradminut boost",
+        "tab": "57a2c311.41401c",
+        "disp": true,
         "width": "12",
         "collapse": false
     },
@@ -13193,6 +13229,483 @@
             [
                 "b658a3a0.78523"
             ]
+        ]
+    },
+    {
+        "id": "39812d59.ef2212",
+        "type": "nibe-request",
+        "z": "27236b7a.3c2274",
+        "server": "844659a2.8d8508",
+        "name": "defrost_time",
+        "x": 623,
+        "y": 259,
+        "wires": [
+            [
+                "126a4971.df4bc7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "126a4971.df4bc7",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "func": "let defrost = flow.get('defrost')||false;\nlet defrost_time = flow.get('defrost_time')||msg.defrost_time;\nflow.set('ts',msg.payload);\nif(msg.defrost_time>0) {\n    flow.set('defrost_time',msg.defrost_time);\n    node.send({topic:'Avfrostningstid (s)',payload:msg.defrost_time});\n    flow.set('defrost',true)\n} else {\n    if(defrost===true) {\n        node.send([null,{topic:\"defrost\",payload:defrost_time}]);\n        flow.set('defrost_time',msg.defrost_time);\n    }\n    node.send({topic:'Avfrostningstid (s)',payload:msg.defrost_time});\n    flow.set('defrost',false)\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 939,
+        "y": 259,
+        "wires": [
+            [
+                "fea8d324.231af",
+                "37bfdf5a.d33ea"
+            ],
+            [
+                "4b8d8363.45055c"
+            ]
+        ]
+    },
+    {
+        "id": "86d1240e.bebe18",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 224,
+        "y": 259,
+        "wires": [
+            [
+                "7d67db50.284294"
+            ]
+        ]
+    },
+    {
+        "id": "7d67db50.284294",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "Check interval",
+        "func": "// Calculate if an defrost has started.\nlet ts = flow.get('ts')||msg.payload;\nlet defrost = flow.get('defrost');\nlet check_defrost = flow.get('check_defrost')||false;\nif(defrost===undefined || defrost===true) {\n    return msg;\n} else {\n    if(check_defrost===true) {\n        if(msg.payload>=(ts+60000)) {\n            return msg;\n        }\n    } else {\n        if(msg.payload>=(ts+60000)) {\n            return msg;\n        }\n    }\n    \n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 444,
+        "y": 259,
+        "wires": [
+            [
+                "39812d59.ef2212"
+            ]
+        ]
+    },
+    {
+        "id": "fea8d324.231af",
+        "type": "ui_chart",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "group": "3af8f7e6.d24338",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Avfrostningslängd",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "dd HH:mm",
+        "interpolate": "linear",
+        "nodata": "Ingen graf tillgänglig än",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "72",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#000000",
+            "#004080",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 1153,
+        "y": 259,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d2aaa726.f14f18",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 445,
+        "y": 315,
+        "wires": [
+            [
+                "39812d59.ef2212"
+            ]
+        ]
+    },
+    {
+        "id": "35b1cf8e.97fbb",
+        "type": "nibe-request",
+        "z": "27236b7a.3c2274",
+        "server": "844659a2.8d8508",
+        "name": "cpr_act",
+        "x": 753,
+        "y": 315,
+        "wires": [
+            [
+                "b554613b.735c4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5b3368ee.607088",
+        "type": "delay",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "15",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 606,
+        "y": 315,
+        "wires": [
+            [
+                "35b1cf8e.97fbb"
+            ]
+        ]
+    },
+    {
+        "id": "6b26cdff.69be24",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 455,
+        "y": 357,
+        "wires": [
+            [
+                "5b3368ee.607088"
+            ]
+        ]
+    },
+    {
+        "id": "b554613b.735c4",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "func": "let cpr_time = flow.get('cpr_time')||msg.payload;\nlet cpr_active = flow.get('cpr_active')||false;\nlet uptime = flow.get('cpr_uptime')||0;\nif(msg.cpr_act>=1) {\n    flow.set('check_defrost',false);\n    if(cpr_active===false) {\n        flow.set('cpr_active',true);\n        flow.set('cpr_time',msg.payload);\n    } else  {\n        uptime = Number(((msg.payload-cpr_time)/1000).toFixed(0));\n        flow.set('cpr_uptime',uptime);\n        node.send({topic:\"Kompressor körtid (s)\",payload:uptime});\n    }\n} else {\n    if(cpr_active===true) {\n        node.send([null,{topic:\"uptime\",payload:uptime}])\n    }\n    flow.set('cpr_active',false);\n    flow.set('check_defrost',true);\n    node.send({topic:\"Kompressor körtid (s)\",payload:0});\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 918,
+        "y": 315,
+        "wires": [
+            [
+                "37bfdf5a.d33ea",
+                "fea8d324.231af"
+            ],
+            [
+                "4b8d8363.45055c"
+            ]
+        ]
+    },
+    {
+        "id": "37bfdf5a.d33ea",
+        "type": "debug",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1120,
+        "y": 315,
+        "wires": []
+    },
+    {
+        "id": "dfe25f69.60ecf",
+        "type": "ui_button",
+        "z": "27236b7a.3c2274",
+        "name": "Rensa graf",
+        "group": "3af8f7e6.d24338",
+        "order": 3,
+        "width": "12",
+        "height": "1",
+        "passthru": false,
+        "label": "Rensa graf",
+        "tooltip": "Rensar grafen och börjar om på nytt",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "",
+        "x": 875,
+        "y": 371,
+        "wires": [
+            [
+                "fea8d324.231af"
+            ]
+        ]
+    },
+    {
+        "id": "4b8d8363.45055c",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "func": "let uptime = flow.get('cpr_uptime');\nlet defrost = flow.get('defrost_time');\nlet cpr_efficiency = global.get('cpr_efficiency')||[];\nlet defrost_wait = flow.get('defrost_wait')||true;\nlet index = context.get('index');\nif(msg.topic==\"defrost\") {\n    defrost = msg.payload;\n    if(index!==undefined) {\n        if(cpr_efficiency[index]!==undefined) {\n            cpr_efficiency[index].defrost = defrost;\n            context.set('index',undefined);\n        }\n    }\n    \n} else if(msg.topic==\"uptime\") {\n    uptime = msg.payload;\n    if(index===undefined) {\n        cpr_efficiency.unshift({uptime:uptime});\n        index = 0;\n        context.set('index',index);\n    } else {\n        defrost = 0;\n        cpr_efficiency[index].defrost = defrost;\n        cpr_efficiency.unshift({uptime:uptime});\n        index = 0;\n        context.set('index',index);\n    }\n}\nlet active = 0;\nlet down = 0;\nfor( var i = 0; i < cpr_efficiency.length; i++){\n    if(cpr_efficiency[i].defrost!==undefined) {\n        active = active+cpr_efficiency[i].uptime;\n        down = down+cpr_efficiency[i].defrost;\n    }\n}\nif(cpr_efficiency.length>=72) {\n    cpr_efficiency.pop();\n}\nlet total = active+down;\nlet active_ = Number(((active/total)*100).toFixed(0));\nlet down_ = 100-active_;\nnode.send({topic:\"Kompressor aktiv\",payload:active_});\nnode.send({topic:\"Avfrostning\",payload:down_});\nflow.set('cpr_uptime',uptime);\nflow.set('defrost_time',defrost);\nglobal.set('cpr_efficiency',cpr_efficiency);",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1072,
+        "y": 406,
+        "wires": [
+            [
+                "a010d5de.c4ca58"
+            ]
+        ]
+    },
+    {
+        "id": "a010d5de.c4ca58",
+        "type": "ui_chart",
+        "z": "27236b7a.3c2274",
+        "name": "Cirkeldiagram",
+        "group": "3af8f7e6.d24338",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "pie",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#000000",
+            "#004080",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 1249,
+        "y": 378,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8d212f8.6fe38",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "uptime",
+        "payload": "3600",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 829,
+        "y": 434,
+        "wires": [
+            [
+                "4b8d8363.45055c"
+            ]
+        ]
+    },
+    {
+        "id": "aacfd53e.56d758",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "defrost",
+        "payload": "600",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 816,
+        "y": 476,
+        "wires": [
+            [
+                "4b8d8363.45055c"
+            ]
+        ]
+    },
+    {
+        "id": "1437cd31.c1ecb3",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 1026,
+        "y": 462,
+        "wires": [
+            [
+                "a010d5de.c4ca58"
+            ]
+        ]
+    },
+    {
+        "id": "67261556.74310c",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "fan",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "enable_dm_boost",
+                "type": "str"
+            }
+        ],
+        "x": 286,
+        "y": 1183,
+        "wires": [
+            [
+                "d71ebd3b.ad766"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d71ebd3b.ad766",
+        "type": "ui_switch",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "label": "Aktivera",
+        "tooltip": "",
+        "group": "ffc74889.8cb7c8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "fan/enable_dm_boost",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 494,
+        "y": 1183,
+        "wires": [
+            [
+                "ed6e5604.1f1578"
+            ]
+        ]
+    },
+    {
+        "id": "be8822b2.3c387",
+        "type": "ui_slider",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "label": "Luftflöde",
+        "tooltip": "",
+        "group": "ffc74889.8cb7c8",
+        "order": 5,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "outs": "end",
+        "topic": "fan/dm_boost_value",
+        "min": "0",
+        "max": "350",
+        "step": "1",
+        "x": 494,
+        "y": 1232,
+        "wires": [
+            [
+                "ed6e5604.1f1578"
+            ]
+        ]
+    },
+    {
+        "id": "a8750e84.a53ad",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "fan",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "dm_boost_value",
+                "type": "str"
+            }
+        ],
+        "x": 286,
+        "y": 1232,
+        "wires": [
+            [
+                "be8822b2.3c387"
+            ],
+            []
         ]
     }
 ]
