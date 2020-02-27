@@ -1555,7 +1555,7 @@
         "z": "b7f67da0.fbf1",
         "name": "",
         "group": "a8bf2b6e.6abc18",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "label": "Värmeinformation",
@@ -5732,77 +5732,6 @@
         "x": 882,
         "y": 105,
         "wires": []
-    },
-    {
-        "id": "488fef9f.5c0c",
-        "type": "debug",
-        "z": "960078e.e3e6d88",
-        "name": "Tibber",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "x": 981,
-        "y": 1057,
-        "wires": []
-    },
-    {
-        "id": "b10876b6.f61048",
-        "type": "http request",
-        "z": "960078e.e3e6d88",
-        "name": "",
-        "method": "POST",
-        "ret": "obj",
-        "paytoqs": false,
-        "url": "https://api.tibber.com/v1-beta/gql",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 792,
-        "y": 1053,
-        "wires": [
-            [
-                "488fef9f.5c0c"
-            ]
-        ]
-    },
-    {
-        "id": "483d9b64.2cbfa4",
-        "type": "function",
-        "z": "960078e.e3e6d88",
-        "name": "",
-        "func": "var config = global.get('config');\nvar token = config.price.token;\nmsg.headers = {\n    'Authorization': `Bearer ${token}`,\n    'Content-Type': 'application/json'\n};\n\nmsg.payload = { \"query\": \"{\\\n  viewer {\\\n    homes {\\\n      currentSubscription {\\\n        status\\\n        priceInfo {\\\n          today{\\\n            startsAt\\\n            total\\\n            energy\\\n            level\\\n            tax\\\n          }\\\n          current{\\\n            total\\\n            energy\\\n            level\\\n            tax\\\n            startsAt\\\n          }\\\n          tomorrow {\\\n            startsAt\\\n            total\\\n            level\\\n            energy\\\n            tax\\\n          }\\\n        }\\\n      }\\\n      consumption(resolution: HOURLY, last: 48) {\\\n        nodes {\\\n          from\\\n          to\\\n          consumption\\\n          consumptionUnit\\\n        }\\\n      }\\\n    }\\\n  }\\\n}\" };\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 592,
-        "y": 1053,
-        "wires": [
-            [
-                "b10876b6.f61048"
-            ]
-        ]
-    },
-    {
-        "id": "23a807b6.1785c8",
-        "type": "inject",
-        "z": "960078e.e3e6d88",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "300",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "5",
-        "x": 392,
-        "y": 1113,
-        "wires": [
-            [
-                "483d9b64.2cbfa4"
-            ]
-        ]
     },
     {
         "id": "40e36211.562a3c",
@@ -10235,7 +10164,7 @@
         "label": "Luftflöde",
         "tooltip": "",
         "group": "ad7a33f3.24adf",
-        "order": 8,
+        "order": 5,
         "width": "0",
         "height": "0",
         "passthru": false,
@@ -10260,7 +10189,7 @@
         "label": "Aktivera",
         "tooltip": "",
         "group": "ad7a33f3.24adf",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -10473,7 +10402,7 @@
         "z": "ae9d7ce8.0991c",
         "name": "",
         "group": "ad7a33f3.24adf",
-        "order": 10,
+        "order": 6,
         "width": "12",
         "height": "12",
         "label": "",
@@ -10517,7 +10446,7 @@
         "label": "Aktivera CO2 Givare",
         "tooltip": "",
         "group": "ad7a33f3.24adf",
-        "order": 5,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -10575,7 +10504,7 @@
         "z": "ae9d7ce8.0991c",
         "name": "Uppdatera",
         "group": "ad7a33f3.24adf",
-        "order": 11,
+        "order": 7,
         "width": 12,
         "height": 1,
         "passthru": false,
@@ -10637,7 +10566,8 @@
             [],
             [
                 "996fbcf2.8cd2b",
-                "ac979e91.e8a4c"
+                "ac979e91.e8a4c",
+                "9e8f4c75.ef72d"
             ]
         ]
     },
@@ -10682,7 +10612,7 @@
         "tooltip": "",
         "place": "Välj",
         "group": "ad7a33f3.24adf",
-        "order": 6,
+        "order": 4,
         "width": "0",
         "height": "0",
         "passthru": false,
@@ -12971,7 +12901,7 @@
         "order": 0,
         "width": 0,
         "height": 0,
-        "format": "<div>\n    <h2>NibePi</h2>\n    <p>Förord 1<br><br></p>\n</div>",
+        "format": "<div>\n    <h2>NibePi</h2>\n    <p>NibePi är IoT produkten som både gör värmepumpen smartare och effektivare. Med hjälp av MQTT så kan värmepumpen övervakas och styras direkt från det smarta hemmet.<br>\nDet finns flera inbyggda funktioner som kan förbättra komforten och ekonomin. Mer information finns under varje funktion.<br>\n<p>NibePi stödjer alla värmepumpar i Nibes F serie, samt elpannor med tillhörande utedel i VVM serien.<br>\nNibe F370,F470,F730,F750,F1145,F1155,F1245,F1255,F1345,F1355<br>\nVVM 225,310,320,325,500<br></p>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
@@ -13160,6 +13090,109 @@
         "y": 308,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "31e5b9cb.625536",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "a8bf2b6e.6abc18",
+        "name": "Husinfo text",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    <p>För att använda Prognosreglering behöver husets koordinater anges.<br>\n    Fastighetens storlek anges i kvm (Uppvärmd yta) och används för att beräkna rätt flöde\n    för frånluftsvärmepumpar med automatiskt luftflöde<br></p>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1008,
+        "y": 203,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "655c24ec.f9bbdc",
+        "type": "ui_text_input",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "label": "Fastighetens storlek",
+        "tooltip": "",
+        "group": "a8bf2b6e.6abc18",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "number",
+        "delay": "0",
+        "topic": "size",
+        "x": 1077,
+        "y": 245,
+        "wires": [
+            [
+                "6de034de.5247fc"
+            ]
+        ]
+    },
+    {
+        "id": "6de034de.5247fc",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "home",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "size",
+                "type": "str"
+            }
+        ],
+        "x": 1259,
+        "y": 245,
+        "wires": [
+            [
+                "655c24ec.f9bbdc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b658a3a0.78523",
+        "type": "ui_template",
+        "z": "ae9d7ce8.0991c",
+        "group": "ad7a33f3.24adf",
+        "name": "Hus storlek info",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-bind-html=\"msg.payload\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 647,
+        "y": 1113,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9e8f4c75.ef72d",
+        "type": "function",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "func": "let config = msg.payload;\nif(config.home.size!==undefined && config.home.size!==0 && config.home.size!==\"\") {\n    msg.payload = `<p>Det minsta rekommenderade flödet för fastigheten är ${(config.home.size*0.35*3.6).toFixed(0)} m3/h</p>`\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 477,
+        "y": 1113,
+        "wires": [
+            [
+                "b658a3a0.78523"
+            ]
         ]
     }
 ]
