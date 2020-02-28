@@ -13617,8 +13617,8 @@
                 "type": "str"
             }
         ],
-        "x": 286,
-        "y": 1183,
+        "x": 356,
+        "y": 1274,
         "wires": [
             [
                 "d71ebd3b.ad766"
@@ -13649,8 +13649,8 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 494,
-        "y": 1183,
+        "x": 564,
+        "y": 1274,
         "wires": [
             [
                 "ed6e5604.1f1578"
@@ -13674,8 +13674,8 @@
         "min": "0",
         "max": "350",
         "step": "1",
-        "x": 494,
-        "y": 1232,
+        "x": 564,
+        "y": 1323,
         "wires": [
             [
                 "ed6e5604.1f1578"
@@ -13699,13 +13699,29 @@
                 "type": "str"
             }
         ],
-        "x": 286,
-        "y": 1232,
+        "x": 356,
+        "y": 1323,
         "wires": [
             [
                 "be8822b2.3c387"
             ],
             []
         ]
+    },
+    {
+        "id": "81922b16.db9638",
+        "type": "ui_text",
+        "z": "ae9d7ce8.0991c",
+        "group": "ffc74889.8cb7c8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Gradminut boost",
+        "label": "",
+        "format": "För att öka effektiviteten på kompressorn så kan luftflödet öka när gradminuterna börjar närma sig start för tillsats.",
+        "layout": "row-left",
+        "x": 559,
+        "y": 1225,
+        "wires": []
     }
 ]
