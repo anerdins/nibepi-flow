@@ -920,7 +920,7 @@
         "id": "3af8f7e6.d24338",
         "type": "ui_group",
         "z": "",
-        "name": "Graf",
+        "name": "Kompressoreffektivitet",
         "tab": "c400f9d6.0a6028",
         "disp": true,
         "width": "12",
@@ -11916,8 +11916,8 @@
         "z": "b7f67da0.fbf1",
         "group": "d814a7db.5cdc38",
         "order": 11,
-        "width": 0,
-        "height": 0,
+        "width": "12",
+        "height": "10",
         "name": "",
         "label": "",
         "format": "{{msg.payload}}",
@@ -13278,11 +13278,11 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 224,
-        "y": 259,
+        "x": 196,
+        "y": 182,
         "wires": [
             [
-                "7d67db50.284294"
+                "d7af2b2a.17cdd8"
             ]
         ]
     },
@@ -13291,14 +13291,17 @@
         "type": "function",
         "z": "27236b7a.3c2274",
         "name": "Check interval",
-        "func": "// Calculate if an defrost has started.\nlet ts = flow.get('ts')||msg.payload;\nlet defrost = flow.get('defrost');\nlet check_defrost = flow.get('check_defrost')||false;\nif(defrost===undefined || defrost===true) {\n    return msg;\n} else {\n    if(check_defrost===true) {\n        if(msg.payload>=(ts+60000)) {\n            return msg;\n        }\n    } else {\n        if(msg.payload>=(ts+60000)) {\n            return msg;\n        }\n    }\n    \n}",
-        "outputs": 1,
+        "func": "// Calculate if an defrost has started.\nlet config = msg.config;\nif(config.system!==undefined && config.system.pump!==undefined && (config.system.pump==\"F730\" || config.system.pump==\"F750\")) {\n    node.send([null,{enabled:true}]);\n    let ts = flow.get('ts')||msg.payload;\n    let defrost = flow.get('defrost');\n    let check_defrost = flow.get('check_defrost')||false;\n    if(defrost===undefined || defrost===true) {\n        return msg;\n    } else {\n        if(check_defrost===true) {\n            if(msg.payload>=(ts+60000)) {\n                return msg;\n            }\n        } else {\n            if(msg.payload>=(ts+60000)) {\n                return msg;\n            }\n        }\n        \n    }\n} else {\n    node.send([null,{enabled:false}]);\n}",
+        "outputs": 2,
         "noerr": 0,
-        "x": 444,
+        "x": 416,
         "y": 259,
         "wires": [
             [
                 "39812d59.ef2212"
+            ],
+            [
+                "262ac24d.677e5e"
             ]
         ]
     },
@@ -13308,7 +13311,7 @@
         "z": "27236b7a.3c2274",
         "name": "",
         "group": "3af8f7e6.d24338",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
         "label": "Drifttider",
@@ -13414,11 +13417,11 @@
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
-        "x": 455,
-        "y": 357,
+        "x": 217,
+        "y": 364,
         "wires": [
             [
-                "5b3368ee.607088"
+                "9f255829.f279b8"
             ]
         ]
     },
@@ -13462,7 +13465,7 @@
         "z": "27236b7a.3c2274",
         "name": "Rensa graf",
         "group": "3af8f7e6.d24338",
-        "order": 3,
+        "order": 2,
         "width": "12",
         "height": "1",
         "passthru": false,
@@ -13504,7 +13507,7 @@
         "z": "27236b7a.3c2274",
         "name": "Cirkeldiagram",
         "group": "3af8f7e6.d24338",
-        "order": 1,
+        "order": 3,
         "width": 0,
         "height": 0,
         "label": "",
@@ -13541,46 +13544,6 @@
         ]
     },
     {
-        "id": "a8d212f8.6fe38",
-        "type": "inject",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "topic": "uptime",
-        "payload": "3600",
-        "payloadType": "num",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 829,
-        "y": 434,
-        "wires": [
-            [
-                "4b8d8363.45055c"
-            ]
-        ]
-    },
-    {
-        "id": "aacfd53e.56d758",
-        "type": "inject",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "topic": "defrost",
-        "payload": "600",
-        "payloadType": "num",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 816,
-        "y": 476,
-        "wires": [
-            [
-                "4b8d8363.45055c"
-            ]
-        ]
-    },
-    {
         "id": "1437cd31.c1ecb3",
         "type": "inject",
         "z": "27236b7a.3c2274",
@@ -13592,8 +13555,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 1026,
-        "y": 462,
+        "x": 883,
+        "y": 413,
         "wires": [
             [
                 "a010d5de.c4ca58"
@@ -13723,5 +13686,80 @@
         "x": 559,
         "y": 1225,
         "wires": []
+    },
+    {
+        "id": "d7af2b2a.17cdd8",
+        "type": "nibe-request",
+        "z": "27236b7a.3c2274",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 239,
+        "y": 259,
+        "wires": [
+            [
+                "7d67db50.284294"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9f255829.f279b8",
+        "type": "nibe-request",
+        "z": "27236b7a.3c2274",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 379,
+        "y": 364,
+        "wires": [
+            [
+                "f242537e.82712"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f242537e.82712",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "func": "let config = msg.config;\nif(config.system!==undefined && config.system.pump!==undefined && (config.system.pump==\"F730\" || config.system.pump==\"F750\")) {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 533,
+        "y": 364,
+        "wires": [
+            [
+                "5b3368ee.607088"
+            ]
+        ]
+    },
+    {
+        "id": "62a3d189.3d27c",
+        "type": "ui_ui_control",
+        "z": "27236b7a.3c2274",
+        "name": "Disable Group",
+        "events": "all",
+        "x": 682,
+        "y": 483,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "262ac24d.677e5e",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "Enable/Disable",
+        "func": "if(msg.enabled!==undefined && msg.enabled===false) {\n    let hide = {\n        \"group\":\n            {\"hide\":\n                [\"Diagnostik_Kompressoreffektivitet\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n} else if(msg.enabled===true) {\n    let hide = {\n        \"group\":\n            {\"show\":\n                [\"Diagnostik_Kompressoreffektivitet\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 486,
+        "y": 476,
+        "wires": [
+            [],
+            [
+                "62a3d189.3d27c"
+            ]
+        ]
     }
 ]
