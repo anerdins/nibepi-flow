@@ -1,4 +1,7 @@
-<p><b>b3</b><br>
+<p>
+<b>b4</b><br>
+Bugfix med automatisk fläkthastighet, den slutade reglera efter senaste uppdateringen.
+<b>b3</b><br>
 Nya möjlighet till diagnotisering av avfrostning och effektivitet.<br>
 Automatiskt luftflöde reglerar inte längre om forcerad fläkt är på, kräver däremot Virtuell RMU nu.<br>
 Ny möjlighet att kunna höja luftflödet när gradminuterna börjar närma sig start för tillsats, detta för att få kompressorn att gå effektivare.<br>
