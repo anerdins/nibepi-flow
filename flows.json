@@ -1174,7 +1174,7 @@
         "outs": "end",
         "topic": "wind_factor_n",
         "min": 0,
-        "max": 10,
+        "max": "2",
         "step": "0.1",
         "x": 1002,
         "y": 735,
@@ -1199,7 +1199,7 @@
         "outs": "end",
         "topic": "wind_factor_s",
         "min": 0,
-        "max": 10,
+        "max": "2",
         "step": "0.1",
         "x": 1003,
         "y": 784,
@@ -1224,7 +1224,7 @@
         "outs": "end",
         "topic": "wind_factor_w",
         "min": 0,
-        "max": 10,
+        "max": "2",
         "step": "0.1",
         "x": 1003,
         "y": 833,
@@ -1249,7 +1249,7 @@
         "outs": "end",
         "topic": "wind_factor_e",
         "min": 0,
-        "max": 10,
+        "max": "2",
         "step": "0.1",
         "x": 1003,
         "y": 882,
@@ -1680,7 +1680,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "repeat": "60",
+        "repeat": "70",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
@@ -5499,7 +5499,7 @@
         "height": 0,
         "passthru": false,
         "decouple": "true",
-        "topic": "price/enable",
+        "topic": "price/enable_heat",
         "style": "",
         "onvalue": "true",
         "onvalueType": "bool",
@@ -5530,12 +5530,12 @@
             },
             {
                 "name": "Function",
-                "value": "enable_s1",
+                "value": "enable_heat_s1",
                 "type": "str"
             }
         ],
         "x": 132,
-        "y": 98,
+        "y": 70,
         "wires": [
             [
                 "68d91eb2.2d481"
@@ -5556,7 +5556,7 @@
             },
             {
                 "name": "Function",
-                "value": "enable_s2",
+                "value": "enable_heat_s2",
                 "type": "str"
             }
         ],
@@ -5582,7 +5582,7 @@
         "height": 0,
         "passthru": false,
         "decouple": "true",
-        "topic": "price/enable",
+        "topic": "price/enable_heat",
         "style": "",
         "onvalue": "true",
         "onvalueType": "bool",
@@ -13490,7 +13490,7 @@
         "type": "function",
         "z": "27236b7a.3c2274",
         "name": "",
-        "func": "let uptime = flow.get('cpr_uptime');\nlet defrost = flow.get('defrost_time');\nlet cpr_efficiency = global.get('cpr_efficiency')||[];\nlet defrost_wait = flow.get('defrost_wait')||true;\nlet index = context.get('index');\nlet ignore_first = true;\nif(msg.topic==\"defrost\") {\n    defrost = msg.payload;\n    if(index!==undefined) {\n        if(cpr_efficiency[index]!==undefined) {\n            cpr_efficiency[index].defrost = defrost;\n            context.set('index',undefined);\n        }\n    }\n    \n} else if(msg.topic==\"uptime\") {\n    uptime = msg.payload;\n    if(ignore_first===true) {\n        ignore_first = false;\n    } else if(index===undefined) {\n        cpr_efficiency.unshift({uptime:uptime});\n        index = 0;\n        context.set('index',index);\n    } else {\n        defrost = 0;\n        cpr_efficiency[index].defrost = defrost;\n        cpr_efficiency.unshift({uptime:uptime});\n        index = 0;\n        context.set('index',index);\n    }\n}\nlet active = 0;\nlet down = 0;\nfor( var i = 0; i < cpr_efficiency.length; i++){\n    if(cpr_efficiency[i].defrost!==undefined) {\n        active = active+cpr_efficiency[i].uptime;\n        down = down+cpr_efficiency[i].defrost;\n    }\n}\nif(cpr_efficiency.length>=72) {\n    cpr_efficiency.pop();\n}\nlet total = active+down;\nlet active_ = Number(((active/total)*100).toFixed(0));\nlet down_ = 100-active_;\nnode.send({topic:\"Kompressor aktiv\",payload:active_});\nnode.send({topic:\"Avfrostning\",payload:down_});\nflow.set('cpr_uptime',uptime);\nflow.set('defrost_time',defrost);\nglobal.set('cpr_efficiency',cpr_efficiency);",
+        "func": "let uptime = flow.get('cpr_uptime');\nlet defrost = flow.get('defrost_time');\nlet cpr_efficiency = global.get('cpr_efficiency')||[];\nlet defrost_wait = flow.get('defrost_wait')||true;\nlet index = context.get('index');\nlet ignore_first = context.get('ignore')||true;\nif(msg.topic==\"defrost\") {\n    defrost = msg.payload;\n    if(index!==undefined) {\n        if(cpr_efficiency[index]!==undefined) {\n            cpr_efficiency[index].defrost = defrost;\n            context.set('index',undefined);\n        }\n    }\n    \n} else if(msg.topic==\"uptime\") {\n    uptime = msg.payload;\n    if(ignore_first===true) {\n        ignore_first = false;\n    } else if(index===undefined) {\n        cpr_efficiency.unshift({uptime:uptime});\n        index = 0;\n        context.set('index',index);\n    } else {\n        defrost = 0;\n        cpr_efficiency[index].defrost = defrost;\n        cpr_efficiency.unshift({uptime:uptime});\n        index = 0;\n        context.set('index',index);\n    }\n}\nlet active = 0;\nlet down = 0;\nfor( var i = 0; i < cpr_efficiency.length; i++){\n    if(cpr_efficiency[i].defrost!==undefined) {\n        active = active+cpr_efficiency[i].uptime;\n        down = down+cpr_efficiency[i].defrost;\n    }\n}\nif(cpr_efficiency.length>=72) {\n    cpr_efficiency.pop();\n}\nlet total = active+down;\nlet active_ = Number(((active/total)*100).toFixed(0));\nlet down_ = 100-active_;\nnode.send({topic:\"Kompressor aktiv\",payload:active_});\nnode.send({topic:\"Avfrostning\",payload:down_});\nflow.set('cpr_uptime',uptime);\nflow.set('defrost_time',defrost);\ncontext.set('ignore',ignore_first);\nglobal.set('cpr_efficiency',cpr_efficiency);",
         "outputs": 1,
         "noerr": 0,
         "x": 1072,
