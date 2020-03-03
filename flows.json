@@ -56,6 +56,13 @@
         "info": ""
     },
     {
+        "id": "27236b7a.3c2274",
+        "type": "tab",
+        "label": "Diagnostic 1.1",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "64327e50.8f365",
         "type": "subflow",
         "name": "Skrivläge",
@@ -901,6 +908,35 @@
         "collapse": false
     },
     {
+        "id": "c400f9d6.0a6028",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Diagnostik",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3af8f7e6.d24338",
+        "type": "ui_group",
+        "z": "",
+        "name": "Kompressoreffektivitet",
+        "tab": "c400f9d6.0a6028",
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "ffc74889.8cb7c8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Gradminut boost",
+        "tab": "57a2c311.41401c",
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
         "id": "24d4f99f.449346",
         "type": "exec",
         "z": "64327e50.8f365",
@@ -1138,7 +1174,7 @@
         "outs": "end",
         "topic": "wind_factor_n",
         "min": 0,
-        "max": 10,
+        "max": "2",
         "step": "0.1",
         "x": 1002,
         "y": 735,
@@ -1163,7 +1199,7 @@
         "outs": "end",
         "topic": "wind_factor_s",
         "min": 0,
-        "max": 10,
+        "max": "2",
         "step": "0.1",
         "x": 1003,
         "y": 784,
@@ -1188,7 +1224,7 @@
         "outs": "end",
         "topic": "wind_factor_w",
         "min": 0,
-        "max": 10,
+        "max": "2",
         "step": "0.1",
         "x": 1003,
         "y": 833,
@@ -1213,7 +1249,7 @@
         "outs": "end",
         "topic": "wind_factor_e",
         "min": 0,
-        "max": 10,
+        "max": "2",
         "step": "0.1",
         "x": 1003,
         "y": 882,
@@ -1597,7 +1633,7 @@
         "z": "b7f67da0.fbf1",
         "server": "844659a2.8d8508",
         "name": "outside",
-        "x": 277,
+        "x": 298,
         "y": 833,
         "wires": [
             [
@@ -1641,35 +1677,18 @@
         "type": "inject",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "topic": "",
+        "topic": "s1",
         "payload": "",
         "payloadType": "date",
-        "repeat": "60",
+        "repeat": "70",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
-        "x": 119,
-        "y": 833,
+        "x": 115,
+        "y": 903,
         "wires": [
             [
-                "4c38519b.aeeab",
                 "d267ee3c.9e4e9"
-            ]
-        ]
-    },
-    {
-        "id": "c54ce52d.73cd58",
-        "type": "function",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "func": "node.send({timestamp:msg.payload,topic:\"Utomhustemperatur\",payload:msg.outside});\nnode.send({timestamp:msg.payload,topic:\"Kurvjustering\",payload:msg.curveadjust});\nif(msg.inside>-3276) {\n    node.send({timestamp:msg.payload,topic:\"Inomhustemperatur\",payload:msg.inside});\n}\nnode.send({timestamp:msg.payload,topic:\"Börvärde S1\",payload:msg.setpoint_s1});\nnode.send({timestamp:msg.payload,topic:\"Framledning S1\",payload:msg.supply_s1});\nnode.send({timestamp:msg.payload,topic:\"Börvärde S2\",payload:msg.setpoint_s2});\nnode.send({timestamp:msg.payload,topic:\"Framledning S2\",payload:msg.supply_s2});\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1037,
-        "y": 833,
-        "wires": [
-            [
-                "ef643ddd.c667f"
             ]
         ]
     },
@@ -2030,7 +2049,7 @@
         "y": 833,
         "wires": [
             [
-                "c54ce52d.73cd58"
+                "2e1e1619.f367ca"
             ],
             []
         ]
@@ -3390,7 +3409,7 @@
         "z": "b7f67da0.fbf1",
         "server": "844659a2.8d8508",
         "name": "heatcurve_s2",
-        "x": 997,
+        "x": 990,
         "y": 637,
         "wires": [
             []
@@ -5463,7 +5482,7 @@
         "height": 0,
         "passthru": false,
         "decouple": "true",
-        "topic": "price/enable",
+        "topic": "price/enable_heat",
         "style": "",
         "onvalue": "true",
         "onvalueType": "bool",
@@ -5494,12 +5513,12 @@
             },
             {
                 "name": "Function",
-                "value": "enable_s1",
+                "value": "enable_heat_s1",
                 "type": "str"
             }
         ],
         "x": 132,
-        "y": 98,
+        "y": 70,
         "wires": [
             [
                 "68d91eb2.2d481"
@@ -5520,7 +5539,7 @@
             },
             {
                 "name": "Function",
-                "value": "enable_s2",
+                "value": "enable_heat_s2",
                 "type": "str"
             }
         ],
@@ -5546,7 +5565,7 @@
         "height": 0,
         "passthru": false,
         "decouple": "true",
-        "topic": "price/enable",
+        "topic": "price/enable_heat",
         "style": "",
         "onvalue": "true",
         "onvalueType": "bool",
@@ -7988,7 +8007,8 @@
                 "df3307ec.65d498",
                 "c548dfa7.e7696",
                 "4b9a995c.0f11b8",
-                "3b259789.2e49a8"
+                "3b259789.2e49a8",
+                "d78784c9.e2bbc8"
             ]
         ]
     },
@@ -9293,8 +9313,8 @@
         "z": "b7f67da0.fbf1",
         "server": "844659a2.8d8508",
         "name": "setpoint_s2",
-        "x": 742,
-        "y": 903,
+        "x": 525,
+        "y": 924,
         "wires": [
             [
                 "490c35f1.10b10c"
@@ -9308,29 +9328,13 @@
         "z": "b7f67da0.fbf1",
         "server": "844659a2.8d8508",
         "name": "supply_s2",
-        "x": 893,
-        "y": 903,
+        "x": 676,
+        "y": 924,
         "wires": [
             [
-                "ec4077fa.6625d8"
+                "4c38519b.aeeab"
             ],
             []
-        ]
-    },
-    {
-        "id": "ec4077fa.6625d8",
-        "type": "function",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "func": "\nif(msg.supply_s2>-3276) {\nnode.send({timestamp:msg.payload,topic:\"Börvärde S2\",payload:msg.setpoint_s2});\nnode.send({timestamp:msg.payload,topic:\"Framledning S2\",payload:msg.supply_s2});\n} else if(msg.supply_s2===undefined) {\n    \n} else {\n    flow.set('s2',false);\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1051,
-        "y": 903,
-        "wires": [
-            [
-                "ef643ddd.c667f"
-            ]
         ]
     },
     {
@@ -9351,10 +9355,12 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 554,
-        "y": 903,
+        "x": 337,
+        "y": 931,
         "wires": [
-            [],
+            [
+                "4c38519b.aeeab"
+            ],
             [
                 "69d448f5.49a7d8"
             ]
@@ -9427,8 +9433,8 @@
         "payload": "true",
         "payloadType": "bool",
         "topic": "",
-        "x": 395,
-        "y": 2520,
+        "x": 402,
+        "y": 2632,
         "wires": [
             [
                 "7c23dc92.d4de34"
@@ -9446,8 +9452,8 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 653,
-        "y": 2520,
+        "x": 645,
+        "y": 2632,
         "wires": [
             [],
             [],
@@ -9473,8 +9479,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 863,
-        "y": 2534,
+        "x": 870,
+        "y": 2646,
         "wires": [
             [
                 "431f5eda.16be7"
@@ -9492,8 +9498,8 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 1049,
-        "y": 2534,
+        "x": 1056,
+        "y": 2646,
         "wires": [
             [],
             [],
@@ -9519,8 +9525,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 828,
-        "y": 2611,
+        "x": 835,
+        "y": 2723,
         "wires": [
             [
                 "4b487231.b42a6c"
@@ -9546,8 +9552,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 981,
-        "y": 2611,
+        "x": 988,
+        "y": 2723,
         "wires": [
             [
                 "9a132183.4d71"
@@ -9567,8 +9573,8 @@
         "cancel": "",
         "topic": "",
         "name": "",
-        "x": 1247,
-        "y": 2611,
+        "x": 1254,
+        "y": 2723,
         "wires": []
     },
     {
@@ -9589,8 +9595,8 @@
         "payload": "true",
         "payloadType": "bool",
         "topic": "",
-        "x": 318,
-        "y": 2660,
+        "x": 325,
+        "y": 2772,
         "wires": [
             [
                 "b6efd9d4.d18858"
@@ -9608,8 +9614,8 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 558,
-        "y": 2660,
+        "x": 565,
+        "y": 2772,
         "wires": [
             [],
             [],
@@ -9635,8 +9641,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 864,
-        "y": 2674,
+        "x": 871,
+        "y": 2786,
         "wires": [
             [
                 "d4c42e0f.896dd"
@@ -9753,8 +9759,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1053,
-        "y": 2674,
+        "x": 1060,
+        "y": 2786,
         "wires": [
             [
                 "9a132183.4d71"
@@ -10786,7 +10792,7 @@
         "name": "Disable Group FAN",
         "events": "all",
         "x": 1203,
-        "y": 672,
+        "y": 665,
         "wires": [
             []
         ]
@@ -11880,8 +11886,8 @@
         "z": "b7f67da0.fbf1",
         "group": "d814a7db.5cdc38",
         "order": 11,
-        "width": 0,
-        "height": 0,
+        "width": "12",
+        "height": "10",
         "name": "",
         "label": "",
         "format": "{{msg.payload}}",
@@ -13192,6 +13198,706 @@
         "wires": [
             [
                 "b658a3a0.78523"
+            ]
+        ]
+    },
+    {
+        "id": "39812d59.ef2212",
+        "type": "nibe-request",
+        "z": "27236b7a.3c2274",
+        "server": "844659a2.8d8508",
+        "name": "defrost_time",
+        "x": 623,
+        "y": 259,
+        "wires": [
+            [
+                "126a4971.df4bc7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "126a4971.df4bc7",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "func": "let defrost = flow.get('defrost')||false;\nlet defrost_time = flow.get('defrost_time')||msg.defrost_time;\nflow.set('ts',msg.payload);\nif(msg.defrost_time>0) {\n    flow.set('defrost_time',msg.defrost_time);\n    node.send({topic:'Avfrostningstid (m)',payload:(Number(msg.defrost_time/60).toFixed(0))});\n    flow.set('defrost',true)\n} else {\n    if(defrost===true) {\n        node.send([null,{topic:\"defrost\",payload:defrost_time}]);\n        flow.set('defrost_time',msg.defrost_time);\n    }\n    node.send({topic:'Avfrostningstid (m)',payload:(Number(msg.defrost_time/60).toFixed(0))});\n    flow.set('defrost',false)\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 939,
+        "y": 259,
+        "wires": [
+            [
+                "fea8d324.231af",
+                "37bfdf5a.d33ea"
+            ],
+            [
+                "4b8d8363.45055c"
+            ]
+        ]
+    },
+    {
+        "id": "86d1240e.bebe18",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 196,
+        "y": 182,
+        "wires": [
+            [
+                "d7af2b2a.17cdd8"
+            ]
+        ]
+    },
+    {
+        "id": "7d67db50.284294",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "Check interval",
+        "func": "// Calculate if an defrost has started.\nlet config = msg.config;\nif(config.system!==undefined && config.system.pump!==undefined && (config.system.pump==\"F730\" || config.system.pump==\"F750\")) {\n    node.send([null,{enabled:true}]);\n    let ts = flow.get('ts')||msg.payload;\n    let defrost = flow.get('defrost');\n    let check_defrost = flow.get('check_defrost')||false;\n    if(defrost===undefined || defrost===true) {\n        return msg;\n    } else {\n        if(check_defrost===true) {\n            if(msg.payload>=(ts+60000)) {\n                return msg;\n            }\n        } else {\n            if(msg.payload>=(ts+60000)) {\n                return msg;\n            }\n        }\n        \n    }\n} else {\n    node.send([null,{enabled:false}]);\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 416,
+        "y": 259,
+        "wires": [
+            [
+                "39812d59.ef2212"
+            ],
+            [
+                "262ac24d.677e5e"
+            ]
+        ]
+    },
+    {
+        "id": "fea8d324.231af",
+        "type": "ui_chart",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "group": "3af8f7e6.d24338",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Drifttider",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "dd HH:mm",
+        "interpolate": "linear",
+        "nodata": "Ingen graf tillgänglig än",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "72",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#000000",
+            "#004080",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 1123,
+        "y": 259,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d2aaa726.f14f18",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 445,
+        "y": 315,
+        "wires": [
+            [
+                "39812d59.ef2212"
+            ]
+        ]
+    },
+    {
+        "id": "35b1cf8e.97fbb",
+        "type": "nibe-request",
+        "z": "27236b7a.3c2274",
+        "server": "844659a2.8d8508",
+        "name": "cpr_act",
+        "x": 753,
+        "y": 315,
+        "wires": [
+            [
+                "b554613b.735c4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5b3368ee.607088",
+        "type": "delay",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "15",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 606,
+        "y": 315,
+        "wires": [
+            [
+                "35b1cf8e.97fbb"
+            ]
+        ]
+    },
+    {
+        "id": "6b26cdff.69be24",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 217,
+        "y": 364,
+        "wires": [
+            [
+                "9f255829.f279b8"
+            ]
+        ]
+    },
+    {
+        "id": "b554613b.735c4",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "func": "let cpr_time = flow.get('cpr_time')||msg.payload;\nlet cpr_active = flow.get('cpr_active')||false;\nlet uptime = flow.get('cpr_uptime')||0;\nif(msg.cpr_act>=1) {\n    flow.set('check_defrost',false);\n    if(cpr_active===false) {\n        flow.set('cpr_active',true);\n        flow.set('cpr_time',msg.payload);\n    } else  {\n        uptime = Number(((msg.payload-cpr_time)/1000).toFixed(0));\n        flow.set('cpr_uptime',uptime);\n        node.send({topic:\"Kompressor körtid (m)\",payload:Number((uptime/60).toFixed(0))});\n    }\n} else {\n    if(cpr_active===true) {\n        node.send([null,{topic:\"uptime\",payload:uptime}])\n    }\n    flow.set('cpr_active',false);\n    flow.set('check_defrost',true);\n    node.send({topic:\"Kompressor körtid (m)\",payload:0});\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 918,
+        "y": 315,
+        "wires": [
+            [
+                "37bfdf5a.d33ea",
+                "fea8d324.231af"
+            ],
+            [
+                "4b8d8363.45055c"
+            ]
+        ]
+    },
+    {
+        "id": "37bfdf5a.d33ea",
+        "type": "debug",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1120,
+        "y": 315,
+        "wires": []
+    },
+    {
+        "id": "dfe25f69.60ecf",
+        "type": "ui_button",
+        "z": "27236b7a.3c2274",
+        "d": true,
+        "name": "Rensa graf",
+        "group": "3af8f7e6.d24338",
+        "order": 2,
+        "width": "12",
+        "height": "1",
+        "passthru": false,
+        "label": "Rensa graf",
+        "tooltip": "Rensar grafen och börjar om på nytt",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "",
+        "x": 875,
+        "y": 371,
+        "wires": [
+            [
+                "fea8d324.231af"
+            ]
+        ]
+    },
+    {
+        "id": "4b8d8363.45055c",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "func": "let uptime = flow.get('cpr_uptime');\nlet defrost = flow.get('defrost_time');\nlet cpr_efficiency = global.get('cpr_efficiency')||[];\nlet defrost_wait = flow.get('defrost_wait')||true;\nlet index = context.get('index');\nlet ignore_first = context.get('ignore');\nif(msg.topic==\"defrost\") {\n    defrost = msg.payload;\n    if(index!==undefined) {\n        if(cpr_efficiency[index]!==undefined) {\n            cpr_efficiency[index].defrost = defrost;\n            context.set('index',undefined);\n        }\n    }\n    \n} else if(msg.topic==\"uptime\") {\n    uptime = msg.payload;\n    if(ignore_first===undefined) {\n        context.set('ignore',false);\n    } else if(index===undefined) {\n        cpr_efficiency.unshift({uptime:uptime});\n        index = 0;\n        context.set('index',index);\n    } else {\n        defrost = 0;\n        cpr_efficiency[index].defrost = defrost;\n        cpr_efficiency.unshift({uptime:uptime});\n        index = 0;\n        context.set('index',index);\n    }\n}\nlet active = 0;\nlet down = 0;\nlet long_length = 0;\nlet short_length = 0;\nfor( var i = 0; i < cpr_efficiency.length; i++){\n    if(cpr_efficiency[i].defrost!==undefined) {\n        active = active+cpr_efficiency[i].uptime;\n        down = down+cpr_efficiency[i].defrost;\n        if(cpr_efficiency[i].defrost>900) {\n            long_length++;\n        } else {\n            short_length++;\n        }\n    }\n}\nif(cpr_efficiency.length>=72) {\n    cpr_efficiency.pop();\n}\nlet total = active+down;\nlet active_ = Number(((active/total)*100).toFixed(0));\nlet down_ = 100-active_;\nif(cpr_efficiency.length>=12) {\n    if(down_>50) {\n        node.send([null,{topic:\"Resultat\",payload:`Värmepumpens effektivitet är mycket dålig, långa avfrostningstider.<br>\n        På ${cpr_efficiency.length} cykler så har ${long_length} varit långa avfrostningar, och ${short_length} varit korta avfrostningar.<br>\n        Trolig orsak är felaktigt placerad avluftsgivare eller igensatt filter med nedsmutsning av förångare.<br>\n        Kompressorn har en effektivitet på endast ${active_} % och hela ${down_} % avfrostningstid.<br>`}])\n    } else if(down_>35) {\n        node.send([null,{topic:\"Resultat\",payload:`Värmepumpens effektivitet är dålig, långa avfrostningstider.<br>\n        På ${cpr_efficiency.length} cykler så har ${long_length} varit långa avfrostningar, och ${short_length} varit korta avfrostningar.<br>\n        Trolig orsak är felaktigt placerad avluftsgivare eller igensatt filter med nedsmutsning av förångare.<br>\n        Kompressorn har en effektivitet på ${active_} % och ${down_} % avfrostningstid.<br>`}])\n    } else if(down_>25) {\n        node.send([null,{topic:\"Resultat\",payload:`Värmepumpens effektivitet är är bra men kunde vara bättre.<br>\n        På ${cpr_efficiency.length} cykler så har ${long_length} varit långa avfrostningar, och ${short_length} varit korta avfrostningar.<br>\n        Kontrollera luftfilter.<br>\n        Kompressorn har en effektivitet på ${active_} % och ${down_} % avfrostningstid.<br>`}])\n    } else {\n        node.send([null,{topic:\"Resultat\",payload:`Värmepumpens effektivitet är mycket bra.<br>\n        På ${cpr_efficiency.length} cykler så har ${long_length} varit långa avfrostningar, och ${short_length} varit korta avfrostningar.<br>\n        Kompressorn har en effektivitet på ${active_} % och endast ${down_} % avfrostningstid.<br>`}])\n    }\n} else {\n    node.send([null,{topic:\"Resultat\",payload:`Utvärderar resultat...<br>${cpr_efficiency.length}/12 cykler färdiga, än så länge har ${long_length} avfrostningar varit långa, och ${short_length} har varit korta avfrostningar.<br>`}])\n}\nnode.send({topic:\"Kompressor aktiv\",payload:active_});\nnode.send({topic:\"Avfrostning\",payload:down_});\nflow.set('cpr_uptime',uptime);\nflow.set('defrost_time',defrost);\nglobal.set('cpr_efficiency',cpr_efficiency);",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 1086,
+        "y": 427,
+        "wires": [
+            [
+                "a010d5de.c4ca58"
+            ],
+            [
+                "5131ab8e.deaaf4"
+            ]
+        ]
+    },
+    {
+        "id": "a010d5de.c4ca58",
+        "type": "ui_chart",
+        "z": "27236b7a.3c2274",
+        "name": "Cirkeldiagram",
+        "group": "3af8f7e6.d24338",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "pie",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#000000",
+            "#004080",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 1249,
+        "y": 378,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1437cd31.c1ecb3",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 883,
+        "y": 413,
+        "wires": [
+            [
+                "a010d5de.c4ca58"
+            ]
+        ]
+    },
+    {
+        "id": "67261556.74310c",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "fan",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "enable_dm_boost",
+                "type": "str"
+            }
+        ],
+        "x": 356,
+        "y": 1274,
+        "wires": [
+            [
+                "d71ebd3b.ad766"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d71ebd3b.ad766",
+        "type": "ui_switch",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "label": "Aktivera",
+        "tooltip": "",
+        "group": "ffc74889.8cb7c8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "fan/enable_dm_boost",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 564,
+        "y": 1274,
+        "wires": [
+            [
+                "ed6e5604.1f1578"
+            ]
+        ]
+    },
+    {
+        "id": "be8822b2.3c387",
+        "type": "ui_slider",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "label": "Luftflöde",
+        "tooltip": "",
+        "group": "ffc74889.8cb7c8",
+        "order": 5,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "outs": "end",
+        "topic": "fan/dm_boost_value",
+        "min": "0",
+        "max": "350",
+        "step": "1",
+        "x": 564,
+        "y": 1323,
+        "wires": [
+            [
+                "ed6e5604.1f1578"
+            ]
+        ]
+    },
+    {
+        "id": "a8750e84.a53ad",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "fan",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "dm_boost_value",
+                "type": "str"
+            }
+        ],
+        "x": 356,
+        "y": 1323,
+        "wires": [
+            [
+                "be8822b2.3c387"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "81922b16.db9638",
+        "type": "ui_text",
+        "z": "ae9d7ce8.0991c",
+        "group": "ffc74889.8cb7c8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Gradminut boost",
+        "label": "",
+        "format": "För att öka effektiviteten på kompressorn så kan luftflödet öka när gradminuterna börjar närma sig start för tillsats.",
+        "layout": "row-left",
+        "x": 559,
+        "y": 1225,
+        "wires": []
+    },
+    {
+        "id": "d7af2b2a.17cdd8",
+        "type": "nibe-request",
+        "z": "27236b7a.3c2274",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 239,
+        "y": 259,
+        "wires": [
+            [
+                "7d67db50.284294"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9f255829.f279b8",
+        "type": "nibe-request",
+        "z": "27236b7a.3c2274",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 379,
+        "y": 364,
+        "wires": [
+            [
+                "f242537e.82712"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f242537e.82712",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "func": "let config = msg.config;\nif(config.system!==undefined && config.system.pump!==undefined && (config.system.pump==\"F730\" || config.system.pump==\"F750\")) {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 533,
+        "y": 364,
+        "wires": [
+            [
+                "5b3368ee.607088"
+            ]
+        ]
+    },
+    {
+        "id": "62a3d189.3d27c",
+        "type": "ui_ui_control",
+        "z": "27236b7a.3c2274",
+        "name": "Disable Group",
+        "events": "all",
+        "x": 682,
+        "y": 483,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "262ac24d.677e5e",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "Enable/Disable",
+        "func": "if(msg.enabled!==undefined && msg.enabled===false) {\n    let hide = {\n        \"group\":\n            {\"hide\":\n                [\"Diagnostik_Kompressoreffektivitet\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n} else if(msg.enabled===true) {\n    let hide = {\n        \"group\":\n            {\"show\":\n                [\"Diagnostik_Kompressoreffektivitet\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 486,
+        "y": 476,
+        "wires": [
+            [],
+            [
+                "62a3d189.3d27c"
+            ]
+        ]
+    },
+    {
+        "id": "845a0a55.098ee8",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "uptime",
+        "payload": "240",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 875,
+        "y": 490,
+        "wires": [
+            [
+                "4b8d8363.45055c"
+            ]
+        ]
+    },
+    {
+        "id": "cc927a8.a77fb88",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "defrost",
+        "payload": "10",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 872,
+        "y": 532,
+        "wires": [
+            [
+                "4b8d8363.45055c"
+            ]
+        ]
+    },
+    {
+        "id": "d78784c9.e2bbc8",
+        "type": "ui_switch",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "label": "Automatiskt luftflöde",
+        "tooltip": "",
+        "group": "97526682.5406d8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "fan",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 331,
+        "y": 2471,
+        "wires": [
+            [
+                "9ba7c561.6e6b08"
+            ]
+        ]
+    },
+    {
+        "id": "9ba7c561.6e6b08",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "log",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "fan",
+                "type": "str"
+            }
+        ],
+        "x": 545,
+        "y": 2471,
+        "wires": [
+            [
+                "d78784c9.e2bbc8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5131ab8e.deaaf4",
+        "type": "ui_text",
+        "z": "27236b7a.3c2274",
+        "group": "3af8f7e6.d24338",
+        "order": 3,
+        "width": "12",
+        "height": "3",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "x": 1219,
+        "y": 427,
+        "wires": []
+    },
+    {
+        "id": "3736f6a9.78b61a",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "update",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 882,
+        "y": 574,
+        "wires": [
+            [
+                "4b8d8363.45055c"
+            ]
+        ]
+    },
+    {
+        "id": "4f5917dd.809ed8",
+        "type": "debug",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1198,
+        "y": 889,
+        "wires": []
+    },
+    {
+        "id": "2e1e1619.f367ca",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "let graphs = global.get('graphs')||{};\nif(graphs.start_1===undefined) graphs.start_1 = {};\nlet data = graphs.start_1;\nif(data.outside===undefined) data.outside = [];\nif(data.adjust===undefined) data.adjust = [];\nif(data.inside===undefined) data.inside = [];\nif(data.setpoint_s1===undefined) data.setpoint_s1 = [];\nif(data.supply_s1===undefined) data.supply_s1 = [];\nif(data.setpoint_s2===undefined) data.setpoint_s2 = [];\nif(data.supply_s2===undefined) data.supply_s2 = [];\nlet time = Date.now();\n    data.outside.push({x:time,y:msg.outside});\n    //data.outside.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    data.adjust.push({x:time,y:msg.curveadjust});\n    //data.adjust.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    if(msg.inside>-3276) {\n        data.inside.push({x:time,y:msg.inside});\n        //data.inside.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    }\n    data.setpoint_s1.push({x:time,y:msg.setpoint_s1});\n    //data.setpoint_s1.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    data.supply_s1.push({x:time,y:msg.supply_s1});\n    //data.supply_s1.sort((a, b) => (a.x > b.x) ? 1 : -1);\n\n\nvar array = [\n    {\n    \"series\":[\"Utomhustemperatur\",\"Kurvjustering\",\"Inomhustemperatur\",\"Börvärde S1\",\"Framledning S1\"],\n    \"data\":[data.outside,data.adjust,data.inside,data.setpoint_s1,data.supply_s1],\n    \"labels\":[\"\"]\n}];\n\n    if(msg.supply_s2>-3276) {\n        let index = array[0].series.findIndex(i => i == \"Börvärde S2\");\n        if(index===-1) {\n            array[0].series.push(\"Börvärde S2\");\n            let i = array[0].series.findIndex(i => i == \"Börvärde S2\");\n            if(array[0].data[i]===undefined) array[0].data[i] = [];\n            array[0].data[i].push({x:time,y:msg.setpoint_s2});\n        } else {\n            array[0].data[index].push({x:time,y:msg.setpoint_s2});\n        }\n        data.setpoint_s2.push({x:time,y:msg.setpoint_s2});\n        let index2 = array[0].series.findIndex(i => i == \"Framledning S2\");\n        if(index2===-1) {\n            array[0].series.push(\"Framledning S2\");\n            let i = array[0].series.findIndex(i => i == \"Framledning S2\");\n            if(array[0].data[i]===undefined) array[0].data[i] = [];\n            array[0].data[i].push({x:time,y:msg.supply_s2});\n        } else {\n            array[0].data[index2].push({x:time,y:msg.supply_s2});\n        }\n        data.supply_s2.push({x:time,y:msg.supply_s2});\n    } else if(msg.supply_s2===undefined) {\n    \n} else {\n    flow.set('s2',false);\n}\n\ngraphs.start_1 = data;\nglobal.set('graphs',graphs);\n                \nnode.send({payload:array});",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1051,
+        "y": 861,
+        "wires": [
+            [
+                "ef643ddd.c667f",
+                "4f5917dd.809ed8"
             ]
         ]
     }
