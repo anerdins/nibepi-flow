@@ -1624,9 +1624,7 @@
         "x": 1231,
         "y": 833,
         "wires": [
-            [
-                "4f5917dd.809ed8"
-            ]
+            []
         ]
     },
     {
@@ -1635,7 +1633,7 @@
         "z": "b7f67da0.fbf1",
         "server": "844659a2.8d8508",
         "name": "outside",
-        "x": 277,
+        "x": 298,
         "y": 833,
         "wires": [
             [
@@ -1679,35 +1677,18 @@
         "type": "inject",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "topic": "",
+        "topic": "s1",
         "payload": "",
         "payloadType": "date",
         "repeat": "70",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
-        "x": 119,
-        "y": 833,
+        "x": 115,
+        "y": 903,
         "wires": [
             [
-                "4c38519b.aeeab",
                 "d267ee3c.9e4e9"
-            ]
-        ]
-    },
-    {
-        "id": "c54ce52d.73cd58",
-        "type": "function",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "func": "node.send({timestamp:msg.payload,topic:\"Utomhustemperatur\",payload:msg.outside});\nnode.send({timestamp:msg.payload,topic:\"Kurvjustering\",payload:msg.curveadjust});\nif(msg.inside>-3276) {\n    node.send({timestamp:msg.payload,topic:\"Inomhustemperatur\",payload:msg.inside});\n}\nnode.send({timestamp:msg.payload,topic:\"Börvärde S1\",payload:msg.setpoint_s1});\nnode.send({timestamp:msg.payload,topic:\"Framledning S1\",payload:msg.supply_s1});\nnode.send({timestamp:msg.payload,topic:\"Börvärde S2\",payload:msg.setpoint_s2});\nnode.send({timestamp:msg.payload,topic:\"Framledning S2\",payload:msg.supply_s2});\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1037,
-        "y": 833,
-        "wires": [
-            [
-                "ef643ddd.c667f"
             ]
         ]
     },
@@ -2068,7 +2049,7 @@
         "y": 833,
         "wires": [
             [
-                "c54ce52d.73cd58"
+                "2e1e1619.f367ca"
             ],
             []
         ]
@@ -9332,8 +9313,8 @@
         "z": "b7f67da0.fbf1",
         "server": "844659a2.8d8508",
         "name": "setpoint_s2",
-        "x": 742,
-        "y": 903,
+        "x": 525,
+        "y": 924,
         "wires": [
             [
                 "490c35f1.10b10c"
@@ -9347,29 +9328,13 @@
         "z": "b7f67da0.fbf1",
         "server": "844659a2.8d8508",
         "name": "supply_s2",
-        "x": 893,
-        "y": 903,
+        "x": 676,
+        "y": 924,
         "wires": [
             [
-                "ec4077fa.6625d8"
+                "4c38519b.aeeab"
             ],
             []
-        ]
-    },
-    {
-        "id": "ec4077fa.6625d8",
-        "type": "function",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "func": "\nif(msg.supply_s2>-3276) {\nnode.send({timestamp:msg.payload,topic:\"Börvärde S2\",payload:msg.setpoint_s2});\nnode.send({timestamp:msg.payload,topic:\"Framledning S2\",payload:msg.supply_s2});\n} else if(msg.supply_s2===undefined) {\n    \n} else {\n    flow.set('s2',false);\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1051,
-        "y": 903,
-        "wires": [
-            [
-                "ef643ddd.c667f"
-            ]
         ]
     },
     {
@@ -9390,10 +9355,12 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 554,
-        "y": 903,
+        "x": 337,
+        "y": 931,
         "wires": [
-            [],
+            [
+                "4c38519b.aeeab"
+            ],
             [
                 "69d448f5.49a7d8"
             ]
@@ -13916,5 +13883,22 @@
         "x": 1198,
         "y": 889,
         "wires": []
+    },
+    {
+        "id": "2e1e1619.f367ca",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "func": "let graphs = global.get('graphs')||{};\nif(graphs.start_1===undefined) graphs.start_1 = {};\nlet data = graphs.start_1;\nif(data.outside===undefined) data.outside = [];\nif(data.adjust===undefined) data.adjust = [];\nif(data.inside===undefined) data.inside = [];\nif(data.setpoint_s1===undefined) data.setpoint_s1 = [];\nif(data.supply_s1===undefined) data.supply_s1 = [];\nif(data.setpoint_s2===undefined) data.setpoint_s2 = [];\nif(data.supply_s2===undefined) data.supply_s2 = [];\nlet time = Date.now();\n    data.outside.push({x:time,y:msg.outside});\n    //data.outside.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    data.adjust.push({x:time,y:msg.curveadjust});\n    //data.adjust.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    if(msg.inside>-3276) {\n        data.inside.push({x:time,y:msg.inside});\n        //data.inside.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    }\n    data.setpoint_s1.push({x:time,y:msg.setpoint_s1});\n    //data.setpoint_s1.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    data.supply_s1.push({x:time,y:msg.supply_s1});\n    //data.supply_s1.sort((a, b) => (a.x > b.x) ? 1 : -1);\n\n\nvar array = [\n    {\n    \"series\":[\"Utomhustemperatur\",\"Kurvjustering\",\"Inomhustemperatur\",\"Börvärde S1\",\"Framledning S1\"],\n    \"data\":[data.outside,data.adjust,data.inside,data.setpoint_s1,data.supply_s1],\n    \"labels\":[\"\"]\n}];\n\n    if(msg.supply_s2>-3276) {\n        let index = array[0].series.findIndex(i => i == \"Börvärde S2\");\n        if(index===-1) {\n            array[0].series.push(\"Börvärde S2\");\n            let i = array[0].series.findIndex(i => i == \"Börvärde S2\");\n            if(array[0].data[i]===undefined) array[0].data[i] = [];\n            array[0].data[i].push({x:time,y:msg.setpoint_s2});\n        } else {\n            array[0].data[index].push({x:time,y:msg.setpoint_s2});\n        }\n        data.setpoint_s2.push({x:time,y:msg.setpoint_s2});\n        let index2 = array[0].series.findIndex(i => i == \"Framledning S2\");\n        if(index2===-1) {\n            array[0].series.push(\"Framledning S2\");\n            let i = array[0].series.findIndex(i => i == \"Framledning S2\");\n            if(array[0].data[i]===undefined) array[0].data[i] = [];\n            array[0].data[i].push({x:time,y:msg.supply_s2});\n        } else {\n            array[0].data[index2].push({x:time,y:msg.supply_s2});\n        }\n        data.supply_s2.push({x:time,y:msg.supply_s2});\n    } else if(msg.supply_s2===undefined) {\n    \n} else {\n    flow.set('s2',false);\n}\n\ngraphs.start_1 = data;\nglobal.set('graphs',graphs);\n                \nnode.send({payload:array});",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1051,
+        "y": 861,
+        "wires": [
+            [
+                "ef643ddd.c667f",
+                "4f5917dd.809ed8"
+            ]
+        ]
     }
 ]
