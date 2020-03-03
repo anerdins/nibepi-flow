@@ -1624,7 +1624,9 @@
         "x": 1231,
         "y": 833,
         "wires": [
-            []
+            [
+                "4f5917dd.809ed8"
+            ]
         ]
     },
     {
@@ -8024,7 +8026,8 @@
                 "df3307ec.65d498",
                 "c548dfa7.e7696",
                 "4b9a995c.0f11b8",
-                "3b259789.2e49a8"
+                "3b259789.2e49a8",
+                "d78784c9.e2bbc8"
             ]
         ]
     },
@@ -9463,8 +9466,8 @@
         "payload": "true",
         "payloadType": "bool",
         "topic": "",
-        "x": 395,
-        "y": 2520,
+        "x": 402,
+        "y": 2632,
         "wires": [
             [
                 "7c23dc92.d4de34"
@@ -9482,8 +9485,8 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 653,
-        "y": 2520,
+        "x": 645,
+        "y": 2632,
         "wires": [
             [],
             [],
@@ -9509,8 +9512,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 863,
-        "y": 2534,
+        "x": 870,
+        "y": 2646,
         "wires": [
             [
                 "431f5eda.16be7"
@@ -9528,8 +9531,8 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 1049,
-        "y": 2534,
+        "x": 1056,
+        "y": 2646,
         "wires": [
             [],
             [],
@@ -9555,8 +9558,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 828,
-        "y": 2611,
+        "x": 835,
+        "y": 2723,
         "wires": [
             [
                 "4b487231.b42a6c"
@@ -9582,8 +9585,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 981,
-        "y": 2611,
+        "x": 988,
+        "y": 2723,
         "wires": [
             [
                 "9a132183.4d71"
@@ -9603,8 +9606,8 @@
         "cancel": "",
         "topic": "",
         "name": "",
-        "x": 1247,
-        "y": 2611,
+        "x": 1254,
+        "y": 2723,
         "wires": []
     },
     {
@@ -9625,8 +9628,8 @@
         "payload": "true",
         "payloadType": "bool",
         "topic": "",
-        "x": 318,
-        "y": 2660,
+        "x": 325,
+        "y": 2772,
         "wires": [
             [
                 "b6efd9d4.d18858"
@@ -9644,8 +9647,8 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 558,
-        "y": 2660,
+        "x": 565,
+        "y": 2772,
         "wires": [
             [],
             [],
@@ -9671,8 +9674,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 864,
-        "y": 2674,
+        "x": 871,
+        "y": 2786,
         "wires": [
             [
                 "d4c42e0f.896dd"
@@ -9789,8 +9792,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1053,
-        "y": 2674,
+        "x": 1060,
+        "y": 2786,
         "wires": [
             [
                 "9a132183.4d71"
@@ -13463,6 +13466,7 @@
         "id": "dfe25f69.60ecf",
         "type": "ui_button",
         "z": "27236b7a.3c2274",
+        "d": true,
         "name": "Rensa graf",
         "group": "3af8f7e6.d24338",
         "order": 2,
@@ -13490,14 +13494,17 @@
         "type": "function",
         "z": "27236b7a.3c2274",
         "name": "",
-        "func": "let uptime = flow.get('cpr_uptime');\nlet defrost = flow.get('defrost_time');\nlet cpr_efficiency = global.get('cpr_efficiency')||[];\nlet defrost_wait = flow.get('defrost_wait')||true;\nlet index = context.get('index');\nlet ignore_first = context.get('ignore')||true;\nif(msg.topic==\"defrost\") {\n    defrost = msg.payload;\n    if(index!==undefined) {\n        if(cpr_efficiency[index]!==undefined) {\n            cpr_efficiency[index].defrost = defrost;\n            context.set('index',undefined);\n        }\n    }\n    \n} else if(msg.topic==\"uptime\") {\n    uptime = msg.payload;\n    if(ignore_first===true) {\n        ignore_first = false;\n    } else if(index===undefined) {\n        cpr_efficiency.unshift({uptime:uptime});\n        index = 0;\n        context.set('index',index);\n    } else {\n        defrost = 0;\n        cpr_efficiency[index].defrost = defrost;\n        cpr_efficiency.unshift({uptime:uptime});\n        index = 0;\n        context.set('index',index);\n    }\n}\nlet active = 0;\nlet down = 0;\nfor( var i = 0; i < cpr_efficiency.length; i++){\n    if(cpr_efficiency[i].defrost!==undefined) {\n        active = active+cpr_efficiency[i].uptime;\n        down = down+cpr_efficiency[i].defrost;\n    }\n}\nif(cpr_efficiency.length>=72) {\n    cpr_efficiency.pop();\n}\nlet total = active+down;\nlet active_ = Number(((active/total)*100).toFixed(0));\nlet down_ = 100-active_;\nnode.send({topic:\"Kompressor aktiv\",payload:active_});\nnode.send({topic:\"Avfrostning\",payload:down_});\nflow.set('cpr_uptime',uptime);\nflow.set('defrost_time',defrost);\ncontext.set('ignore',ignore_first);\nglobal.set('cpr_efficiency',cpr_efficiency);",
-        "outputs": 1,
+        "func": "let uptime = flow.get('cpr_uptime');\nlet defrost = flow.get('defrost_time');\nlet cpr_efficiency = global.get('cpr_efficiency')||[];\nlet defrost_wait = flow.get('defrost_wait')||true;\nlet index = context.get('index');\nlet ignore_first = context.get('ignore');\nif(msg.topic==\"defrost\") {\n    defrost = msg.payload;\n    if(index!==undefined) {\n        if(cpr_efficiency[index]!==undefined) {\n            cpr_efficiency[index].defrost = defrost;\n            context.set('index',undefined);\n        }\n    }\n    \n} else if(msg.topic==\"uptime\") {\n    uptime = msg.payload;\n    if(ignore_first===undefined) {\n        context.set('ignore',false);\n    } else if(index===undefined) {\n        cpr_efficiency.unshift({uptime:uptime});\n        index = 0;\n        context.set('index',index);\n    } else {\n        defrost = 0;\n        cpr_efficiency[index].defrost = defrost;\n        cpr_efficiency.unshift({uptime:uptime});\n        index = 0;\n        context.set('index',index);\n    }\n}\nlet active = 0;\nlet down = 0;\nlet long_length = 0;\nlet short_length = 0;\nfor( var i = 0; i < cpr_efficiency.length; i++){\n    if(cpr_efficiency[i].defrost!==undefined) {\n        active = active+cpr_efficiency[i].uptime;\n        down = down+cpr_efficiency[i].defrost;\n        if(cpr_efficiency[i].defrost>900) {\n            long_length++;\n        } else {\n            short_length++;\n        }\n    }\n}\nif(cpr_efficiency.length>=72) {\n    cpr_efficiency.pop();\n}\nlet total = active+down;\nlet active_ = Number(((active/total)*100).toFixed(0));\nlet down_ = 100-active_;\nif(cpr_efficiency.length>=12) {\n    if(down_>50) {\n        node.send([null,{topic:\"Resultat\",payload:`Värmepumpens effektivitet är mycket dålig, långa avfrostningstider.<br>\n        På ${cpr_efficiency.length} cykler så har ${long_length} varit långa avfrostningar, och ${short_length} varit korta avfrostningar.<br>\n        Trolig orsak är felaktigt placerad avluftsgivare eller igensatt filter med nedsmutsning av förångare.<br>\n        Kompressorn har en effektivitet på endast ${active_} % och hela ${down_} % avfrostningstid.<br>`}])\n    } else if(down_>35) {\n        node.send([null,{topic:\"Resultat\",payload:`Värmepumpens effektivitet är dålig, långa avfrostningstider.<br>\n        På ${cpr_efficiency.length} cykler så har ${long_length} varit långa avfrostningar, och ${short_length} varit korta avfrostningar.<br>\n        Trolig orsak är felaktigt placerad avluftsgivare eller igensatt filter med nedsmutsning av förångare.<br>\n        Kompressorn har en effektivitet på ${active_} % och ${down_} % avfrostningstid.<br>`}])\n    } else if(down_>25) {\n        node.send([null,{topic:\"Resultat\",payload:`Värmepumpens effektivitet är är bra men kunde vara bättre.<br>\n        På ${cpr_efficiency.length} cykler så har ${long_length} varit långa avfrostningar, och ${short_length} varit korta avfrostningar.<br>\n        Kontrollera luftfilter.<br>\n        Kompressorn har en effektivitet på ${active_} % och ${down_} % avfrostningstid.<br>`}])\n    } else {\n        node.send([null,{topic:\"Resultat\",payload:`Värmepumpens effektivitet är mycket bra.<br>\n        På ${cpr_efficiency.length} cykler så har ${long_length} varit långa avfrostningar, och ${short_length} varit korta avfrostningar.<br>\n        Kompressorn har en effektivitet på ${active_} % och endast ${down_} % avfrostningstid.<br>`}])\n    }\n} else {\n    node.send([null,{topic:\"Resultat\",payload:`Utvärderar resultat...<br>${cpr_efficiency.length}/12 cykler färdiga, än så länge har ${long_length} avfrostningar varit långa, och ${short_length} har varit korta avfrostningar.<br>`}])\n}\nnode.send({topic:\"Kompressor aktiv\",payload:active_});\nnode.send({topic:\"Avfrostning\",payload:down_});\nflow.set('cpr_uptime',uptime);\nflow.set('defrost_time',defrost);\nglobal.set('cpr_efficiency',cpr_efficiency);",
+        "outputs": 2,
         "noerr": 0,
-        "x": 1072,
-        "y": 406,
+        "x": 1086,
+        "y": 427,
         "wires": [
             [
                 "a010d5de.c4ca58"
+            ],
+            [
+                "5131ab8e.deaaf4"
             ]
         ]
     },
@@ -13761,5 +13768,153 @@
                 "62a3d189.3d27c"
             ]
         ]
+    },
+    {
+        "id": "845a0a55.098ee8",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "uptime",
+        "payload": "240",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 875,
+        "y": 490,
+        "wires": [
+            [
+                "4b8d8363.45055c"
+            ]
+        ]
+    },
+    {
+        "id": "cc927a8.a77fb88",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "defrost",
+        "payload": "10",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 872,
+        "y": 532,
+        "wires": [
+            [
+                "4b8d8363.45055c"
+            ]
+        ]
+    },
+    {
+        "id": "d78784c9.e2bbc8",
+        "type": "ui_switch",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "label": "Automatiskt luftflöde",
+        "tooltip": "",
+        "group": "97526682.5406d8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "fan",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 331,
+        "y": 2471,
+        "wires": [
+            [
+                "9ba7c561.6e6b08"
+            ]
+        ]
+    },
+    {
+        "id": "9ba7c561.6e6b08",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "log",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "fan",
+                "type": "str"
+            }
+        ],
+        "x": 545,
+        "y": 2471,
+        "wires": [
+            [
+                "d78784c9.e2bbc8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5131ab8e.deaaf4",
+        "type": "ui_text",
+        "z": "27236b7a.3c2274",
+        "group": "3af8f7e6.d24338",
+        "order": 3,
+        "width": "12",
+        "height": "3",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "x": 1219,
+        "y": 427,
+        "wires": []
+    },
+    {
+        "id": "3736f6a9.78b61a",
+        "type": "inject",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "topic": "update",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 882,
+        "y": 574,
+        "wires": [
+            [
+                "4b8d8363.45055c"
+            ]
+        ]
+    },
+    {
+        "id": "4f5917dd.809ed8",
+        "type": "debug",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1198,
+        "y": 889,
+        "wires": []
     }
 ]
