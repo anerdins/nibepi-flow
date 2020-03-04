@@ -3409,7 +3409,7 @@
         "z": "b7f67da0.fbf1",
         "server": "844659a2.8d8508",
         "name": "heatcurve_s2",
-        "x": 997,
+        "x": 990,
         "y": 637,
         "wires": [
             []
@@ -3629,7 +3629,8 @@
         "y": 1379,
         "wires": [
             [
-                "d46527de.09f758"
+                "d46527de.09f758",
+                "4249c2be.4caddc"
             ],
             []
         ]
@@ -8891,8 +8892,8 @@
         "min": 0,
         "max": "120",
         "step": 1,
-        "x": 337,
-        "y": 1764,
+        "x": 302,
+        "y": 1771,
         "wires": [
             [
                 "9961a077.ae64e"
@@ -11352,8 +11353,8 @@
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
-        "x": 322,
-        "y": 3745,
+        "x": 301,
+        "y": 3759,
         "wires": [
             [
                 "4ed7b706.b4b118"
@@ -11440,8 +11441,8 @@
         "payload": "true",
         "payloadType": "bool",
         "topic": "",
-        "x": 306,
-        "y": 3696,
+        "x": 215,
+        "y": 3710,
         "wires": [
             [
                 "4ed7b706.b4b118"
@@ -13874,7 +13875,7 @@
         "type": "debug",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -13889,7 +13890,7 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "func": "let graphs = global.get('graphs')||{};\nif(graphs.start_1===undefined) graphs.start_1 = {};\nlet data = graphs.start_1;\nif(data.outside===undefined) data.outside = [];\nif(data.adjust===undefined) data.adjust = [];\nif(data.inside===undefined) data.inside = [];\nif(data.setpoint_s1===undefined) data.setpoint_s1 = [];\nif(data.supply_s1===undefined) data.supply_s1 = [];\nif(data.setpoint_s2===undefined) data.setpoint_s2 = [];\nif(data.supply_s2===undefined) data.supply_s2 = [];\nlet time = Date.now();\n    data.outside.push({x:time,y:msg.outside});\n    //data.outside.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    data.adjust.push({x:time,y:msg.curveadjust});\n    //data.adjust.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    if(msg.inside>-3276) {\n        data.inside.push({x:time,y:msg.inside});\n        //data.inside.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    }\n    data.setpoint_s1.push({x:time,y:msg.setpoint_s1});\n    //data.setpoint_s1.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    data.supply_s1.push({x:time,y:msg.supply_s1});\n    //data.supply_s1.sort((a, b) => (a.x > b.x) ? 1 : -1);\n\n\nvar array = [\n    {\n    \"series\":[\"Utomhustemperatur\",\"Kurvjustering\",\"Inomhustemperatur\",\"Börvärde S1\",\"Framledning S1\"],\n    \"data\":[data.outside,data.adjust,data.inside,data.setpoint_s1,data.supply_s1],\n    \"labels\":[\"\"]\n}];\n\n    if(msg.supply_s2>-3276) {\n        let index = array[0].series.findIndex(i => i == \"Börvärde S2\");\n        if(index===-1) {\n            array[0].series.push(\"Börvärde S2\");\n            let i = array[0].series.findIndex(i => i == \"Börvärde S2\");\n            if(array[0].data[i]===undefined) array[0].data[i] = [];\n            array[0].data[i].push({x:time,y:msg.setpoint_s2});\n        } else {\n            array[0].data[index].push({x:time,y:msg.setpoint_s2});\n        }\n        data.setpoint_s2.push({x:time,y:msg.setpoint_s2});\n        let index2 = array[0].series.findIndex(i => i == \"Framledning S2\");\n        if(index2===-1) {\n            array[0].series.push(\"Framledning S2\");\n            let i = array[0].series.findIndex(i => i == \"Framledning S2\");\n            if(array[0].data[i]===undefined) array[0].data[i] = [];\n            array[0].data[i].push({x:time,y:msg.supply_s2});\n        } else {\n            array[0].data[index2].push({x:time,y:msg.supply_s2});\n        }\n        data.supply_s2.push({x:time,y:msg.supply_s2});\n    } else if(msg.supply_s2===undefined) {\n    \n} else {\n    flow.set('s2',false);\n}\n\ngraphs.start_1 = data;\nglobal.set('graphs',graphs);\n                \nnode.send({payload:array});",
+        "func": "let graphs = global.get('graphs')||{};\nif(graphs.start_1===undefined) graphs.start_1 = {};\nlet data = graphs.start_1;\nif(data.outside===undefined) data.outside = [];\nif(data.adjust===undefined) data.adjust = [];\nif(data.inside===undefined) data.inside = [];\nif(data.setpoint_s1===undefined) data.setpoint_s1 = [];\nif(data.supply_s1===undefined) data.supply_s1 = [];\nif(data.setpoint_s2===undefined) data.setpoint_s2 = [];\nif(data.supply_s2===undefined) data.supply_s2 = [];\nlet time = Date.now();\n    data.outside.push({x:time,y:msg.outside});\n    data.adjust.push({x:time,y:msg.curveadjust});\n    if(msg.inside>-3276) {\n        data.inside.push({x:time,y:msg.inside});\n    }\n    data.setpoint_s1.push({x:time,y:msg.setpoint_s1});\n    data.supply_s1.push({x:time,y:msg.supply_s1});\n\n\nvar array = [\n    {\n    \"series\":[\"Utomhustemperatur\",\"Kurvjustering\",\"Inomhustemperatur\",\"Börvärde S1\",\"Framledning S1\"],\n    \"data\":[data.outside,data.adjust,data.inside,data.setpoint_s1,data.supply_s1],\n    \"labels\":[\"\"]\n}];\n\n    if(msg.supply_s2>-3276) {\n        let index = array[0].series.findIndex(i => i == \"Börvärde S2\");\n        if(index===-1) {\n            array[0].series.push(\"Börvärde S2\");\n            let i = array[0].series.findIndex(i => i == \"Börvärde S2\");\n            if(array[0].data[i]===undefined) array[0].data[i] = [];\n            array[0].data[i].push({x:time,y:msg.setpoint_s2});\n        } else {\n            array[0].data[index].push({x:time,y:msg.setpoint_s2});\n        }\n        data.setpoint_s2.push({x:time,y:msg.setpoint_s2});\n        let index2 = array[0].series.findIndex(i => i == \"Framledning S2\");\n        if(index2===-1) {\n            array[0].series.push(\"Framledning S2\");\n            let i = array[0].series.findIndex(i => i == \"Framledning S2\");\n            if(array[0].data[i]===undefined) array[0].data[i] = [];\n            array[0].data[i].push({x:time,y:msg.supply_s2});\n        } else {\n            array[0].data[index2].push({x:time,y:msg.supply_s2});\n        }\n        data.supply_s2.push({x:time,y:msg.supply_s2});\n    } else if(msg.supply_s2===undefined) {\n    \n} else {\n    flow.set('s2',false);\n}\n\ngraphs.start_1 = data;\nglobal.set('graphs',graphs);\n                \nnode.send({payload:array});",
         "outputs": 1,
         "noerr": 0,
         "x": 1051,
@@ -13899,6 +13900,77 @@
                 "ef643ddd.c667f",
                 "4f5917dd.809ed8"
             ]
+        ]
+    },
+    {
+        "id": "4249c2be.4caddc",
+        "type": "debug",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 322,
+        "y": 1344,
+        "wires": []
+    },
+    {
+        "id": "b0e24ccb.86c35",
+        "type": "ui_switch",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "label": "Spara grafer",
+        "tooltip": "",
+        "group": "da3c0db0.9c6aa",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "save_graph",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 406,
+        "y": 2107,
+        "wires": [
+            [
+                "aa96a81d.82d6c8"
+            ]
+        ]
+    },
+    {
+        "id": "aa96a81d.82d6c8",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "system",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "save_graph",
+                "type": "str"
+            }
+        ],
+        "x": 630,
+        "y": 2107,
+        "wires": [
+            [
+                "b0e24ccb.86c35"
+            ],
+            []
         ]
     }
 ]
