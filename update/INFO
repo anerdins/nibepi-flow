@@ -1,4 +1,6 @@
 <p>
+<b>b7</b><br>
+Bugfix med timeout för Extra givare. Om värdet 0 var ställt så blev det fruktansvärd kort timeout. 0 betyder nu ingen timeout.<br>
 <b>b6</b><br>
 Optimering av fläktstyrning<br>
 Uppdaterat Diagnostiken med resultat efter körning. (Frånluftsvärmepumpar)<br>
