@@ -1,6 +1,7 @@
 <p>
 <b>b7</b><br>
 Ny funktion tillagd för att spara grafer, aktivera under Inställningar -> System.<br>
+Snabbare webbinterface tack vare ändring av hur graferna presenteras.<br>
 Mindre buggfixar med extra givare och timeout tid 0 (oändlig)<br>
 <b>b6</b><br>
 Optimering av fläktstyrning<br>
