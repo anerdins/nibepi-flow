@@ -1,19 +1,18 @@
 <p>
+<b>b7</b><br>
+Ny funktion tillagd för att spara grafer, aktivera under Inställningar -> System.<br>
+Mindre buggfixar med extra givare och timeout tid 0 (oändlig)<br>
 <b>b6</b><br>
 Optimering av fläktstyrning<br>
 Uppdaterat Diagnostiken med resultat efter körning. (Frånluftsvärmepumpar)<br>
-<b>b5</b><br>
+<b>b1-b5</b><br>
 Elprisreglering gick inte att stänga av och på reglering av värme<br>
 Inomhusreglering visade inte graf om styrning med Nibe användes<br>
-<b>b4</b><br>
 Bugfix med automatisk fläkthastighet, den slutade reglera efter senaste uppdateringen.<br>
-<b>b3</b><br>
 Nya möjlighet till diagnotisering av avfrostning och effektivitet.<br>
 Automatiskt luftflöde reglerar inte längre om forcerad fläkt är på, kräver däremot Virtuell RMU nu.<br>
 Ny möjlighet att kunna höja luftflödet när gradminuterna börjar närma sig start för tillsats, detta för att få kompressorn att gå effektivare.<br>
-<b>b2</b><br>
 NibePi startade inte pga översättningsmodulen hängde sig.<br>
-<b>b1</b><br>
 Bugfix med RMU-40 så det passar flera klimatsystem.<br>
 Lagt till möjlighet att kunna stänga av och på RMU från inställningar.<br>
 <br>
