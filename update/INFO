@@ -1,6 +1,6 @@
 <p>
 <b>b8</b><br>
-Bugfix så att System 2 döljs om en tillgängligt<br>
+Bugfix så att System 2 döljs om ej tillgängligt<br>
 <b>b7</b><br>
 Ny funktion tillagd för att spara grafer, aktivera under Inställningar -> System.<br>
 Snabbare webbinterface tack vare ändring av hur graferna presenteras.<br>
