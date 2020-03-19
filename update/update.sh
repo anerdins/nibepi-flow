@@ -7,10 +7,10 @@ echo "Stopping Node-RED..."
 sudo service nodered stop
 mount=$(sudo mount -o remount,rw / 2>/tmp/tar_stderr);
 echo "Installing the NibePi addon to Node-RED"
-cd $dirNode && npm uninstall node-red-contrib-nibepi && npm install --save anerdins/node-red-contrib-nibepi#master
+cd $dirNode && npm uninstall node-red-contrib-nibepi && npm install --save anerdins/node-red-contrib-nibepi#snapshot
 echo "Downloading new flows for Node-RED"
 mount=$(sudo mount -o remount,rw / 2>/tmp/tar_stderr);
-cd /tmp && wget https://raw.githubusercontent.com/anerdins/nibepi-flow/master/flows.json
+cd /tmp && wget https://raw.githubusercontent.com/anerdins/nibepi-flow/snapshot/flows.json
 cd /tmp && mv -f flows.json $dirNode/flows.json
 echo "Updated succesfully"
 echo "Restarting Node-RED."
