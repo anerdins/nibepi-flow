@@ -1,14 +1,15 @@
 <p>
-<b>b8</b><br>
+<b>b9</b><br>
+Automatiskt luftflöde tillåter inte längre hastigheter under 100 m3/h.<br>
+Varmvattenreglering visade inte rätt graf på stoppvärde vid automatisk tillfällig lyx<br>
+Elprisreglering stannar inte längre kompressorn vid väldigt högt/högt pris, utan återställer gradminuter till nästan stopp.<br>
+<b>b1-b8</b><br>
 Bugfix så att System 2 döljs om ej tillgängligt<br>
-<b>b7</b><br>
 Ny funktion tillagd för att spara grafer, aktivera under Inställningar -> System.<br>
 Snabbare webbinterface tack vare ändring av hur graferna presenteras.<br>
 Mindre buggfixar med extra givare och timeout tid 0 (oändlig)<br>
-<b>b6</b><br>
 Optimering av fläktstyrning<br>
 Uppdaterat Diagnostiken med resultat efter körning. (Frånluftsvärmepumpar)<br>
-<b>b1-b5</b><br>
 Elprisreglering gick inte att stänga av och på reglering av värme<br>
 Inomhusreglering visade inte graf om styrning med Nibe användes<br>
 Bugfix med automatisk fläkthastighet, den slutade reglera efter senaste uppdateringen.<br>
