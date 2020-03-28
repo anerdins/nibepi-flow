@@ -63,6 +63,13 @@
         "info": ""
     },
     {
+        "id": "65e6bc5.05f2644",
+        "type": "tab",
+        "label": "Graph 1.1",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "64327e50.8f365",
         "type": "subflow",
         "name": "Skrivläge",
@@ -265,7 +272,7 @@
         "id": "90803197.41c34",
         "type": "ui_group",
         "z": "",
-        "name": "Elprisreglering S1",
+        "name": "Graf S1",
         "tab": "ad3904c7.ceae48",
         "order": 5,
         "disp": true,
@@ -637,7 +644,7 @@
         "tab": "ad3904c7.ceae48",
         "order": 6,
         "disp": true,
-        "width": "6",
+        "width": "12",
         "collapse": false
     },
     {
@@ -648,7 +655,7 @@
         "tab": "ad3904c7.ceae48",
         "order": 7,
         "disp": true,
-        "width": "6",
+        "width": "12",
         "collapse": false
     },
     {
@@ -816,7 +823,7 @@
         "id": "ab2b8fca.17eca",
         "type": "ui_group",
         "z": "",
-        "name": "Elprisreglering S2",
+        "name": "Graf S2",
         "tab": "ad3904c7.ceae48",
         "disp": true,
         "width": "12",
@@ -987,22 +994,6 @@
         "wires": []
     },
     {
-        "id": "c29f08ae.ec2588",
-        "type": "function",
-        "z": "b7f67da0.fbf1",
-        "name": "Check Heatoffset",
-        "func": "var config = global.get('config');\nvar data = global.get('data');\nif(config===undefined || data===undefined) return;\nvar indoorSet = global.get('indoorSet')||0;\nvar priceSet = global.get('priceSet')||0;\nvar weatherSet = global.get('weatherSet')||0;\nvar heatOffset = msg.curveadjust;\nif(heatOffset===undefined) return;\nheatOffset = Number(heatOffset);\nvar dataSet = (indoorSet+priceSet+weatherSet+0.5);\nif(heatOffset!==(dataSet)) {\n    if(dataSet>10) { dataSet = 10; }\n    if(dataSet<-10) { dataSet = -10; }\n    if(dataSet>(heatOffset+0.75)) {\n        node.send({payload:heatOffset+1});\n    } else if(dataSet<(heatOffset-0.75)) {\n        node.send({payload:heatOffset-1});\n    }\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 475,
-        "y": 175,
-        "wires": [
-            [
-                "bc36a442.1154d8"
-            ]
-        ]
-    },
-    {
         "id": "9ce049af.4ea4c8",
         "type": "nibe-input",
         "z": "b7f67da0.fbf1",
@@ -1016,18 +1007,6 @@
             [
                 "39b0fc16.7de5c4"
             ]
-        ]
-    },
-    {
-        "id": "bc36a442.1154d8",
-        "type": "nibe-output",
-        "z": "b7f67da0.fbf1",
-        "server": "844659a2.8d8508",
-        "name": "curveadjust",
-        "x": 686,
-        "y": 175,
-        "wires": [
-            []
         ]
     },
     {
@@ -1072,74 +1051,6 @@
         "y": 938,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "5b087f5d.586d1",
-        "type": "ui_chart",
-        "z": "df0dd648.98daa8",
-        "name": "Prognostemperatur S1",
-        "group": "7e910a08.c6c984",
-        "order": 4,
-        "width": "0",
-        "height": "0",
-        "label": "",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm",
-        "interpolate": "linear",
-        "nodata": "Data ej tillgängligt",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "24",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 1010,
-        "y": 231,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f31aa5c9.c6b598",
-        "type": "ui_button",
-        "z": "df0dd648.98daa8",
-        "name": "Rensa graf S1",
-        "group": "7e910a08.c6c984",
-        "order": 6,
-        "width": "12",
-        "height": "1",
-        "passthru": false,
-        "label": "Rensa graf",
-        "tooltip": "Rensar grafen och börjar om på nytt",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "[]",
-        "payloadType": "json",
-        "topic": "",
-        "x": 787,
-        "y": 231,
-        "wires": [
-            [
-                "5b087f5d.586d1"
-            ]
         ]
     },
     {
@@ -1581,116 +1492,9 @@
         "z": "b7f67da0.fbf1",
         "name": "Husdata",
         "info": "",
-        "x": 711,
-        "y": 427,
+        "x": 683,
+        "y": 420,
         "wires": []
-    },
-    {
-        "id": "ef643ddd.c667f",
-        "type": "ui_chart",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "group": "a8bf2b6e.6abc18",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "label": "Värmeinformation",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "48",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 1231,
-        "y": 833,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4c38519b.aeeab",
-        "type": "nibe-request",
-        "z": "b7f67da0.fbf1",
-        "server": "844659a2.8d8508",
-        "name": "outside",
-        "x": 298,
-        "y": 833,
-        "wires": [
-            [
-                "40f570f3.e161b"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "40f570f3.e161b",
-        "type": "nibe-request",
-        "z": "b7f67da0.fbf1",
-        "server": "844659a2.8d8508",
-        "name": "inside",
-        "x": 431,
-        "y": 833,
-        "wires": [
-            [
-                "d3b6328e.1b609"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "d3b6328e.1b609",
-        "type": "nibe-request",
-        "z": "b7f67da0.fbf1",
-        "server": "844659a2.8d8508",
-        "name": "curveadjust",
-        "x": 584,
-        "y": 833,
-        "wires": [
-            [
-                "fc8e2b29.3e7da8"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "3e7fe8f9.0f2ab8",
-        "type": "inject",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "topic": "s1",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "70",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "x": 115,
-        "y": 903,
-        "wires": [
-            [
-                "d267ee3c.9e4e9"
-            ]
-        ]
     },
     {
         "id": "6b8355d0.18512c",
@@ -2022,36 +1826,6 @@
             [
                 "3f21aae7.95c2e6"
             ]
-        ]
-    },
-    {
-        "id": "fc8e2b29.3e7da8",
-        "type": "nibe-request",
-        "z": "b7f67da0.fbf1",
-        "server": "844659a2.8d8508",
-        "name": "setpoint_s1",
-        "x": 742,
-        "y": 833,
-        "wires": [
-            [
-                "8dbe30.114691d"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "8dbe30.114691d",
-        "type": "nibe-request",
-        "z": "b7f67da0.fbf1",
-        "server": "844659a2.8d8508",
-        "name": "supply_s1",
-        "x": 900,
-        "y": 833,
-        "wires": [
-            [
-                "2e1e1619.f367ca"
-            ],
-            []
         ]
     },
     {
@@ -2705,9 +2479,7 @@
         "x": 458,
         "y": 245,
         "wires": [
-            [
-                "5b087f5d.586d1"
-            ],
+            [],
             [
                 "73f9e0db.d20a2"
             ]
@@ -2719,7 +2491,7 @@
         "z": "df0dd648.98daa8",
         "name": "Uppdatera S1",
         "group": "7e910a08.c6c984",
-        "order": 5,
+        "order": 6,
         "width": "12",
         "height": "1",
         "passthru": false,
@@ -2767,81 +2539,6 @@
         ]
     },
     {
-        "id": "e0bdfc56.66c9e",
-        "type": "nibe-request",
-        "z": "b7f67da0.fbf1",
-        "server": "844659a2.8d8508",
-        "name": "curveadjust",
-        "x": 280,
-        "y": 175,
-        "wires": [
-            [
-                "c29f08ae.ec2588"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "ff3a96d9.c82cb8",
-        "type": "inject",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "60",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "x": 112,
-        "y": 175,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f66e6a0.88cd798",
-        "type": "ui_chart",
-        "z": "df0dd648.98daa8",
-        "name": "Prognostemperatur S2",
-        "group": "197ce413.27432c",
-        "order": 3,
-        "width": "0",
-        "height": "0",
-        "label": "",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm",
-        "interpolate": "linear",
-        "nodata": "System ej anslutet",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "24",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 1045,
-        "y": 483,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "33987348.04de5c",
         "type": "nibe-weather",
         "z": "df0dd648.98daa8",
@@ -2856,63 +2553,9 @@
         "y": 462,
         "wires": [
             [
-                "f66e6a0.88cd798",
                 "c6b38433.c27d98"
             ],
             []
-        ]
-    },
-    {
-        "id": "17ff2266.b209be",
-        "type": "ui_button",
-        "z": "df0dd648.98daa8",
-        "name": "Rensa graf S2",
-        "group": "197ce413.27432c",
-        "order": 5,
-        "width": "12",
-        "height": "1",
-        "passthru": false,
-        "label": "Rensa graf",
-        "tooltip": "Rensar grafen och börjar om på nytt",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "topic": "",
-        "x": 983,
-        "y": 567,
-        "wires": [
-            [
-                "7e712cf3.b50024"
-            ]
-        ]
-    },
-    {
-        "id": "7e712cf3.b50024",
-        "type": "change",
-        "z": "df0dd648.98daa8",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "[]",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1179,
-        "y": 567,
-        "wires": [
-            [
-                "f66e6a0.88cd798"
-            ]
         ]
     },
     {
@@ -2921,7 +2564,7 @@
         "z": "df0dd648.98daa8",
         "name": "Uppdatera S2",
         "group": "197ce413.27432c",
-        "order": 4,
+        "order": 6,
         "width": "12",
         "height": "1",
         "passthru": false,
@@ -2949,7 +2592,7 @@
         "label": "Prognostid",
         "tooltip": "",
         "group": "7e910a08.c6c984",
-        "order": 7,
+        "order": 3,
         "width": "0",
         "height": "0",
         "passthru": false,
@@ -3000,7 +2643,7 @@
         "label": "Prognostid",
         "tooltip": "",
         "group": "197ce413.27432c",
-        "order": 6,
+        "order": 3,
         "width": "0",
         "height": "0",
         "passthru": false,
@@ -3055,7 +2698,6 @@
         "y": 539,
         "wires": [
             [
-                "17ff2266.b209be",
                 "6321d043.e7772",
                 "e7144dfe.63ec7",
                 "191d7af8.9d5725"
@@ -3275,8 +2917,8 @@
         "passthru": false,
         "outs": "end",
         "topic": "adjust_s1",
-        "min": "-2",
-        "max": "2",
+        "min": "-6",
+        "max": "6",
         "step": "0.5",
         "x": 451,
         "y": 735,
@@ -3326,8 +2968,8 @@
         "passthru": false,
         "outs": "end",
         "topic": "adjust_s2",
-        "min": "-2",
-        "max": "2",
+        "min": "-6",
+        "max": "6",
         "step": "0.5",
         "x": 451,
         "y": 777,
@@ -3583,6 +3225,7 @@
         "actionType": "check",
         "allowHTML": false,
         "outputs": 1,
+        "topic": "",
         "x": 676,
         "y": 1379,
         "wires": [
@@ -3629,31 +3272,10 @@
         "y": 1379,
         "wires": [
             [
-                "d46527de.09f758"
+                "d46527de.09f758",
+                "4249c2be.4caddc"
             ],
             []
-        ]
-    },
-    {
-        "id": "311a6080.15131",
-        "type": "ui_list",
-        "z": "b7f67da0.fbf1",
-        "group": "bd199d65.157fc",
-        "name": "Data",
-        "order": 2,
-        "width": "12",
-        "height": "11",
-        "lineType": "three",
-        "actionType": "check",
-        "allowHTML": false,
-        "outputs": 1,
-        "topic": "",
-        "x": 554,
-        "y": 1624,
-        "wires": [
-            [
-                "353f9a08.a4fce6"
-            ]
         ]
     },
     {
@@ -3661,15 +3283,13 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "Data",
-        "func": "var data = global.get('data');\nlet icons = {\n    \"\":\"fa-bars\",\n    \"°C\":\"fa-thermometer-three-quarters\",\n    \"A\":\"fa-flash\",\n    \"Hz\":\"fa-bar-chart\",\n    \"min\":\"fa-clock-o\",\n    \"h\":\"fa-clock-o\",\n    \"m\":\"fa-clock-o\",\n    \"kWh\":\"fa-area-chart\",\n    \"W\":\"fa-flash\",\n    \"l/m\":\"fa-leaf\",\n    \"%RH\":\"fa-cloud\",\n    \"%\":\"fa-percent\"\n}\nvar config = global.get('config');\nif(config===undefined) return;\nlet time = Date.now();\nif(data===undefined) return;\nvar outRegister = [];\nfor( var n = 0; n < config.registers.length; n++){\n    for( var i = 0; i < data.length; i++){\n        if(config.registers[n]==data[i].register) {\n            outRegister[n] = {};\n            outRegister[n].title = `${data[i].register}, ${data[i].titel}`;\n            outRegister[n].description = `${data[i].data} ${data[i].unit}`;\n            outRegister[n].register = data[i].register;\n            outRegister[n].icon_name = icons[data[i].unit];\n            outRegister[n].isChecked = data[i].isChecked;\n            if(data[i].register==\"45001\") outRegister[n].icon_name = \"fa-warning\";\n            if(data[i].register==\"10001\") outRegister[n].icon_name = \"fa-warning\";\n        }\n    }\n    \n}\noutRegister.sort((a, b) => (a.register > b.register) ? 1 : -1)\nif(outRegister!==undefined && outRegister!==[]) {\n    node.send({payload:outRegister});\n}\n",
+        "func": "var data = global.get('data');\nlet icons = {\n    \"\":\"fa-bars\",\n    \"°C\":\"fa-thermometer-three-quarters\",\n    \"A\":\"fa-flash\",\n    \"Hz\":\"fa-bar-chart\",\n    \"min\":\"fa-clock-o\",\n    \"h\":\"fa-clock-o\",\n    \"m\":\"fa-clock-o\",\n    \"kWh\":\"fa-area-chart\",\n    \"W\":\"fa-flash\",\n    \"l/m\":\"fa-leaf\",\n    \"%RH\":\"fa-cloud\",\n    \"%\":\"fa-percent\"\n}\nvar config = msg.payload;\nif(config===undefined) return;\n\nlet time = Date.now();\nif(data===undefined) return;\nvar outRegister = [];\nfor( var n = 0; n < config.registers.length; n++){\n    for( var i = 0; i < data.length; i++){\n        if(config.registers[n]==data[i].register) {\n            outRegister[n] = {};\n            outRegister[n].title = `${data[i].register}, ${data[i].titel}`;\n            outRegister[n].description = `${data[i].data} ${data[i].unit}`;\n            outRegister[n].register = data[i].register;\n            outRegister[n].icon_name = icons[data[i].unit];\n            outRegister[n].isChecked = data[i].isChecked;\n            if(data[i].register==\"45001\") outRegister[n].icon_name = \"fa-warning\";\n            if(data[i].register==\"10001\") outRegister[n].icon_name = \"fa-warning\";\n        }\n    }\n    \n}\noutRegister.sort((a, b) => (a.register > b.register) ? 1 : -1)\nif(outRegister!==undefined && outRegister!==[]) {\n    node.send({payload:outRegister});\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 365,
+        "x": 421,
         "y": 1624,
         "wires": [
-            [
-                "311a6080.15131"
-            ]
+            []
         ]
     },
     {
@@ -3684,11 +3304,11 @@
         "crontab": "",
         "once": true,
         "onceDelay": "1",
-        "x": 195,
+        "x": 139,
         "y": 1624,
         "wires": [
             [
-                "79bf305.f523ad"
+                "5e0de75.c411d18"
             ]
         ]
     },
@@ -3704,71 +3324,8 @@
         "y": 1680,
         "wires": [
             [
-                "3e55e8d3.612298",
                 "bdd50741.a958d8"
             ]
-        ]
-    },
-    {
-        "id": "6b107a4c.37da94",
-        "type": "inject",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "topic": "",
-        "payload": "[]",
-        "payloadType": "json",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 855,
-        "y": 1631,
-        "wires": [
-            [
-                "3e55e8d3.612298"
-            ]
-        ]
-    },
-    {
-        "id": "3e55e8d3.612298",
-        "type": "ui_chart",
-        "z": "b7f67da0.fbf1",
-        "name": "Graf",
-        "group": "261b1f51.5c37e",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm",
-        "interpolate": "linear",
-        "nodata": "Data saknas",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "48",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 987,
-        "y": 1680,
-        "wires": [
-            []
         ]
     },
     {
@@ -3805,32 +3362,6 @@
         "x": 1008,
         "y": 1722,
         "wires": []
-    },
-    {
-        "id": "7bce371c.40e5f8",
-        "type": "ui_button",
-        "z": "b7f67da0.fbf1",
-        "name": "Rensa graf",
-        "group": "261b1f51.5c37e",
-        "order": 2,
-        "width": "18",
-        "height": "1",
-        "passthru": false,
-        "label": "Rensa graf",
-        "tooltip": "Rensar grafen och börjar om på nytt",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "[]",
-        "payloadType": "json",
-        "topic": "",
-        "x": 833,
-        "y": 1589,
-        "wires": [
-            [
-                "3e55e8d3.612298"
-            ]
-        ]
     },
     {
         "id": "3d76f90c.3a1716",
@@ -4594,49 +4125,9 @@
             [
                 "7c62f68b.7e53a8"
             ],
-            []
-        ]
-    },
-    {
-        "id": "a10195f0.da9188",
-        "type": "ui_chart",
-        "z": "358baec9.c8b902",
-        "name": "Inomhusreglering S1",
-        "group": "a2cfe148.70708",
-        "order": 9,
-        "width": "0",
-        "height": "0",
-        "label": "",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm",
-        "interpolate": "linear",
-        "nodata": "Data ej tillgängligt ännu.",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "24",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 1276,
-        "y": 371,
-        "wires": [
-            []
+            [
+                "96122fbe.f0ca2"
+            ]
         ]
     },
     {
@@ -4645,7 +4136,7 @@
         "z": "358baec9.c8b902",
         "name": "Uppdatera S1",
         "group": "a2cfe148.70708",
-        "order": 10,
+        "order": 11,
         "width": "12",
         "height": "1",
         "passthru": false,
@@ -4785,12 +4276,10 @@
         "y": 371,
         "wires": [
             [
-                "5e1062d0.a33cbc",
-                "a10195f0.da9188"
+                "5e1062d0.a33cbc"
             ],
             [
-                "61436d60.0601e4",
-                "a10195f0.da9188"
+                "61436d60.0601e4"
             ],
             [
                 "5f8c6837.106e18"
@@ -4800,7 +4289,6 @@
                 "cf0c0b96.d635f8"
             ],
             [
-                "a10195f0.da9188",
                 "c475b1a1.ae577"
             ]
         ]
@@ -5313,7 +4801,8 @@
         "wires": [
             [
                 "1e4f140c.04c97c",
-                "419d4955.0dded8"
+                "419d4955.0dded8",
+                "749fe356.3ce75c"
             ]
         ]
     },
@@ -5677,7 +5166,7 @@
         "y": 1533,
         "wires": [
             [
-                "79bf305.f523ad"
+                "5e0de75.c411d18"
             ]
         ]
     },
@@ -5956,7 +5445,7 @@
         "label": "Högt pris",
         "tooltip": "Hur mycket ska kurvjusteringen vara när det är högt pris?",
         "group": "1b40f24f.7b6d9e",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -5981,7 +5470,7 @@
         "label": "Lågt pris",
         "tooltip": "Hur mycket ska kurvjusteringen vara när det är lågt pris?",
         "group": "1b40f24f.7b6d9e",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -6006,7 +5495,7 @@
         "label": "Väldigt lågt pris",
         "tooltip": "Hur mycket ska kurvjusteringen vara när det är väldigt lågt pris?",
         "group": "1b40f24f.7b6d9e",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -6057,7 +5546,7 @@
         "label": "Väldigt högt pris",
         "tooltip": "Hur mycket ska kurvjusteringen vara när det är väldigt högt pris?",
         "group": "1b40f24f.7b6d9e",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -6250,7 +5739,7 @@
         "type": "function",
         "z": "960078e.e3e6d88",
         "name": "Enable/Disable",
-        "func": "if(msg.enabled!==undefined) {\n    let hide = {\n        \"group\":\n            {\"hide\":\n                [\"Elprisreglering_Elprisreglering_S2\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n} else {\n    let hide = {\n        \"group\":\n            {\"show\":\n                [\"Elprisreglering_Elprisreglering_S2\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n}",
+        "func": "if(msg.enabled!==undefined) {\n    let hide = {\n        \"group\":\n            {\"hide\":\n                [\"Elprisreglering_Graf_S2\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n} else {\n    let hide = {\n        \"group\":\n            {\"show\":\n                [\"Elprisreglering_Graf_S2\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n}",
         "outputs": 2,
         "noerr": 0,
         "x": 822,
@@ -6319,7 +5808,7 @@
         "label": "Högt pris",
         "tooltip": "Hur mycket ska kurvjusteringen vara när det är högt pris?",
         "group": "94305680.d32c48",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -6344,7 +5833,7 @@
         "label": "Lågt pris",
         "tooltip": "Hur mycket ska kurvjusteringen vara när det är lågt pris?",
         "group": "94305680.d32c48",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -6369,7 +5858,7 @@
         "label": "Väldigt lågt pris",
         "tooltip": "Hur mycket ska kurvjusteringen vara när det är väldigt lågt pris?",
         "group": "94305680.d32c48",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -6420,7 +5909,7 @@
         "label": "Väldigt högt pris",
         "tooltip": "Hur mycket ska kurvjusteringen vara när det är väldigt högt pris?",
         "group": "94305680.d32c48",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -6627,8 +6116,7 @@
                 "8a3192fa.29d1d",
                 "d68a22ce.9289d",
                 "c0a999e9.8d63b8",
-                "9f4e48ae.0cdd88",
-                "a10195f0.da9188"
+                "9f4e48ae.0cdd88"
             ],
             [
                 "e1739c13.ca664",
@@ -6897,54 +6385,12 @@
         ]
     },
     {
-        "id": "9ad9efa4.3453",
-        "type": "ui_chart",
-        "z": "358baec9.c8b902",
-        "name": "Inomhusreglering S2",
-        "group": "6ee1e12a.a6f04",
-        "order": 9,
-        "width": "0",
-        "height": "0",
-        "label": "",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm",
-        "interpolate": "linear",
-        "nodata": "Data ej tillgängligt ännu.",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "24",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 1283,
-        "y": 1204,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "98a2ba00.9574c8",
         "type": "ui_button",
         "z": "358baec9.c8b902",
         "name": "Uppdatera S2",
         "group": "6ee1e12a.a6f04",
-        "order": 10,
+        "order": 11,
         "width": "12",
         "height": "1",
         "passthru": false,
@@ -7026,19 +6472,15 @@
         "y": 1204,
         "wires": [
             [
-                "2f4cb05b.407d1",
-                "9ad9efa4.3453"
+                "2f4cb05b.407d1"
             ],
-            [
-                "9ad9efa4.3453"
-            ],
+            [],
             [],
             [],
             [
                 "8d1f9f48.44fef"
             ],
             [
-                "9ad9efa4.3453",
                 "ced9439e.afef"
             ]
         ]
@@ -7208,8 +6650,7 @@
             [
                 "d136e0d4.36424",
                 "d5bb2eff.594fe",
-                "98a2ba00.9574c8",
-                "9ad9efa4.3453"
+                "98a2ba00.9574c8"
             ],
             [
                 "a20f3f7d.f9096",
@@ -7446,95 +6887,7 @@
         "x": 388,
         "y": 203,
         "wires": [
-            [
-                "7f37b8e4.ad3808"
-            ],
-            [
-                "2b767fd6.e7bdd"
-            ]
-        ]
-    },
-    {
-        "id": "7f37b8e4.ad3808",
-        "type": "ui_chart",
-        "z": "fa4686d6.c21688",
-        "name": "Automatisk tillfällig lyx",
-        "group": "bcb5f9e4.9bc858",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "48",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 709,
-        "y": 168,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "2b767fd6.e7bdd",
-        "type": "ui_chart",
-        "z": "fa4686d6.c21688",
-        "name": "Varmvatten prioritet",
-        "group": "38b6d907.520796",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "48",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 692,
-        "y": 231,
-        "wires": [
+            [],
             []
         ]
     },
@@ -7544,7 +6897,7 @@
         "z": "fa4686d6.c21688",
         "name": "Uppdatera",
         "group": "bcb5f9e4.9bc858",
-        "order": 6,
+        "order": 7,
         "width": 12,
         "height": 1,
         "passthru": false,
@@ -7570,7 +6923,7 @@
         "z": "fa4686d6.c21688",
         "name": "Uppdatera",
         "group": "38b6d907.520796",
-        "order": 4,
+        "order": 5,
         "width": 12,
         "height": 1,
         "passthru": false,
@@ -8008,7 +7361,9 @@
                 "c548dfa7.e7696",
                 "4b9a995c.0f11b8",
                 "3b259789.2e49a8",
-                "d78784c9.e2bbc8"
+                "d78784c9.e2bbc8",
+                "b819b51e.7e2888",
+                "5b3bd5b.489a32c"
             ]
         ]
     },
@@ -8260,8 +7615,8 @@
         "z": "df0dd648.98daa8",
         "name": "",
         "events": "all",
-        "x": 690,
-        "y": 112,
+        "x": 851,
+        "y": 182,
         "wires": [
             [
                 "b21fd6b9.6b28e8"
@@ -8276,8 +7631,8 @@
         "func": "var timeSaved = context.get('time')||(Date.now()-1000);\nvar time = Date.now();\nif(msg.name==\"Prognosreglering\") {\n    if(time>timeSaved) {\n        context.set('time',(time+30000));\n        return msg;\n    }\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 860,
-        "y": 112,
+        "x": 1021,
+        "y": 182,
         "wires": [
             [
                 "8a714b3a.55fa18"
@@ -8290,8 +7645,8 @@
         "z": "df0dd648.98daa8",
         "server": "844659a2.8d8508",
         "name": "Config",
-        "x": 1044,
-        "y": 112,
+        "x": 1205,
+        "y": 182,
         "wires": [
             [],
             [
@@ -8891,8 +8246,8 @@
         "min": 0,
         "max": "120",
         "step": 1,
-        "x": 337,
-        "y": 1764,
+        "x": 302,
+        "y": 1771,
         "wires": [
             [
                 "9961a077.ae64e"
@@ -9109,7 +8464,7 @@
         "label": "Start",
         "tooltip": "",
         "group": "38b6d907.520796",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -9234,8 +8589,8 @@
         "label": "Välj Inomhusgivare",
         "tooltip": "",
         "place": "Välj",
-        "group": "b561c5cd.249a58",
-        "order": 8,
+        "group": "1b40f24f.7b6d9e",
+        "order": 9,
         "width": "0",
         "height": "0",
         "passthru": false,
@@ -9263,15 +8618,15 @@
         "name": "",
         "label": "Differens",
         "tooltip": "Lägsta temperaturdifferens jämfört mot Inomhusbörvärdet.",
-        "group": "b561c5cd.249a58",
-        "order": 1,
+        "group": "1b40f24f.7b6d9e",
+        "order": 8,
         "width": 0,
         "height": 0,
         "passthru": false,
         "outs": "end",
         "topic": "price/temp_low",
         "min": "-3",
-        "max": "0",
+        "max": "2",
         "step": "0.1",
         "x": 1033,
         "y": 315,
@@ -9305,65 +8660,6 @@
                 "551009f1.15c058"
             ],
             []
-        ]
-    },
-    {
-        "id": "69d448f5.49a7d8",
-        "type": "nibe-request",
-        "z": "b7f67da0.fbf1",
-        "server": "844659a2.8d8508",
-        "name": "setpoint_s2",
-        "x": 525,
-        "y": 924,
-        "wires": [
-            [
-                "490c35f1.10b10c"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "490c35f1.10b10c",
-        "type": "nibe-request",
-        "z": "b7f67da0.fbf1",
-        "server": "844659a2.8d8508",
-        "name": "supply_s2",
-        "x": 676,
-        "y": 924,
-        "wires": [
-            [
-                "4c38519b.aeeab"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "d267ee3c.9e4e9",
-        "type": "switch",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "property": "s2",
-        "propertyType": "flow",
-        "rules": [
-            {
-                "t": "false"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 337,
-        "y": 931,
-        "wires": [
-            [
-                "4c38519b.aeeab"
-            ],
-            [
-                "69d448f5.49a7d8"
-            ]
         ]
     },
     {
@@ -9671,8 +8967,8 @@
         "y": 2898,
         "wires": [
             [
-                "7e7da779.2a9ea8",
-                "9a132183.4d71"
+                "9a132183.4d71",
+                "796d2d88.6cda84"
             ]
         ]
     },
@@ -9687,7 +8983,7 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 457,
+        "x": 1030,
         "y": 2898,
         "wires": [
             [],
@@ -9710,14 +9006,14 @@
         "color": "",
         "bgcolor": "",
         "icon": "",
-        "payload": "Startar om Node-RED",
+        "payload": "Startar om NibePi hårdvara",
         "payloadType": "str",
         "topic": "",
         "x": 205,
         "y": 2968,
         "wires": [
             [
-                "1601f8.7c0cee09"
+                "fb6e013f.6f056"
             ]
         ]
     },
@@ -9732,7 +9028,7 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 414,
+        "x": 672,
         "y": 2968,
         "wires": [
             [],
@@ -9886,7 +9182,7 @@
         "type": "function",
         "z": "960078e.e3e6d88",
         "name": "",
-        "func": "var output = [{Tibber:\"tibber\"},{Nibe:\"nibe\"}];\nif(msg.payload===10) {\n    output = [{Tibber:\"tibber\"}];\n}\n\nnode.send({options:output});",
+        "func": "var output = [{Tibber:\"tibber\"},{Nibe:\"nibe\"}];\nif(msg.payload===undefined || msg.payload===10) {\n    output = [{Tibber:\"tibber\"}];\n}\n\nnode.send({options:output});",
         "outputs": 1,
         "noerr": 0,
         "x": 127,
@@ -10286,7 +9582,6 @@
         "y": 336,
         "wires": [
             [
-                "9943061c.2a4ed8",
                 "ab0bb3.7711f45",
                 "cbe9662e.b59308"
             ],
@@ -10403,48 +9698,6 @@
         ]
     },
     {
-        "id": "9943061c.2a4ed8",
-        "type": "ui_chart",
-        "z": "ae9d7ce8.0991c",
-        "name": "",
-        "group": "ad7a33f3.24adf",
-        "order": 6,
-        "width": "12",
-        "height": "12",
-        "label": "",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "24",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 1198,
-        "y": 336,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "74d64c2d.aaa2a4",
         "type": "ui_switch",
         "z": "ae9d7ce8.0991c",
@@ -10510,7 +9763,7 @@
         "z": "ae9d7ce8.0991c",
         "name": "Uppdatera",
         "group": "ad7a33f3.24adf",
-        "order": 7,
+        "order": 8,
         "width": 12,
         "height": 1,
         "passthru": false,
@@ -10657,7 +9910,6 @@
                 "9886b52.83c6e48",
                 "58301c4f.167164",
                 "ae39397.22484c8",
-                "9943061c.2a4ed8",
                 "19d59f35.ad8c81",
                 "a843b767.1617d8",
                 "c7e4714f.38ce"
@@ -11245,7 +10497,7 @@
         "rules": [
             {
                 "t": "eq",
-                "v": "Filter effektivitet",
+                "v": "Filtereffektivitet",
                 "vt": "str"
             }
         ],
@@ -11352,8 +10604,8 @@
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
-        "x": 322,
-        "y": 3745,
+        "x": 301,
+        "y": 3759,
         "wires": [
             [
                 "4ed7b706.b4b118"
@@ -11440,8 +10692,8 @@
         "payload": "true",
         "payloadType": "bool",
         "topic": "",
-        "x": 306,
-        "y": 3696,
+        "x": 215,
+        "y": 3710,
         "wires": [
             [
                 "4ed7b706.b4b118"
@@ -11656,7 +10908,8 @@
         "wires": [
             [
                 "b578486a.7078d8",
-                "b27c8dd9.02c3e"
+                "b27c8dd9.02c3e",
+                "44d61721.dc1b18"
             ],
             []
         ]
@@ -11792,8 +11045,8 @@
         "timer": "",
         "oldrc": false,
         "name": "Update Node-RED flows",
-        "x": 970,
-        "y": 4098,
+        "x": 894,
+        "y": 4074,
         "wires": [
             [],
             [],
@@ -11818,7 +11071,7 @@
             ],
             [
                 "de4b40e1.dc59f",
-                "525036.2cc69fcc"
+                "236a4859.181cd8"
             ]
         ]
     },
@@ -11957,7 +11210,7 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 774,
+        "x": 683,
         "y": 4060,
         "wires": [
             [
@@ -12226,8 +11479,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 717,
-        "y": 201,
+        "x": 848,
+        "y": 189,
         "wires": []
     },
     {
@@ -13132,7 +12385,7 @@
         "mode": "number",
         "delay": "0",
         "topic": "size",
-        "x": 1077,
+        "x": 1024,
         "y": 245,
         "wires": [
             [
@@ -13198,342 +12451,6 @@
         "wires": [
             [
                 "b658a3a0.78523"
-            ]
-        ]
-    },
-    {
-        "id": "39812d59.ef2212",
-        "type": "nibe-request",
-        "z": "27236b7a.3c2274",
-        "server": "844659a2.8d8508",
-        "name": "defrost_time",
-        "x": 623,
-        "y": 259,
-        "wires": [
-            [
-                "126a4971.df4bc7"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "126a4971.df4bc7",
-        "type": "function",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "func": "let defrost = flow.get('defrost')||false;\nlet defrost_time = flow.get('defrost_time')||msg.defrost_time;\nflow.set('ts',msg.payload);\nif(msg.defrost_time>0) {\n    flow.set('defrost_time',msg.defrost_time);\n    node.send({topic:'Avfrostningstid (m)',payload:(Number(msg.defrost_time/60).toFixed(0))});\n    flow.set('defrost',true)\n} else {\n    if(defrost===true) {\n        node.send([null,{topic:\"defrost\",payload:defrost_time}]);\n        flow.set('defrost_time',msg.defrost_time);\n    }\n    node.send({topic:'Avfrostningstid (m)',payload:(Number(msg.defrost_time/60).toFixed(0))});\n    flow.set('defrost',false)\n}",
-        "outputs": 2,
-        "noerr": 0,
-        "x": 939,
-        "y": 259,
-        "wires": [
-            [
-                "fea8d324.231af",
-                "37bfdf5a.d33ea"
-            ],
-            [
-                "4b8d8363.45055c"
-            ]
-        ]
-    },
-    {
-        "id": "86d1240e.bebe18",
-        "type": "inject",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "10",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 196,
-        "y": 182,
-        "wires": [
-            [
-                "d7af2b2a.17cdd8"
-            ]
-        ]
-    },
-    {
-        "id": "7d67db50.284294",
-        "type": "function",
-        "z": "27236b7a.3c2274",
-        "name": "Check interval",
-        "func": "// Calculate if an defrost has started.\nlet config = msg.config;\nif(config.system!==undefined && config.system.pump!==undefined && (config.system.pump==\"F730\" || config.system.pump==\"F750\")) {\n    node.send([null,{enabled:true}]);\n    let ts = flow.get('ts')||msg.payload;\n    let defrost = flow.get('defrost');\n    let check_defrost = flow.get('check_defrost')||false;\n    if(defrost===undefined || defrost===true) {\n        return msg;\n    } else {\n        if(check_defrost===true) {\n            if(msg.payload>=(ts+60000)) {\n                return msg;\n            }\n        } else {\n            if(msg.payload>=(ts+60000)) {\n                return msg;\n            }\n        }\n        \n    }\n} else {\n    node.send([null,{enabled:false}]);\n}",
-        "outputs": 2,
-        "noerr": 0,
-        "x": 416,
-        "y": 259,
-        "wires": [
-            [
-                "39812d59.ef2212"
-            ],
-            [
-                "262ac24d.677e5e"
-            ]
-        ]
-    },
-    {
-        "id": "fea8d324.231af",
-        "type": "ui_chart",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "group": "3af8f7e6.d24338",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "label": "Drifttider",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "dd HH:mm",
-        "interpolate": "linear",
-        "nodata": "Ingen graf tillgänglig än",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "72",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#000000",
-            "#004080",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 1123,
-        "y": 259,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d2aaa726.f14f18",
-        "type": "inject",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 445,
-        "y": 315,
-        "wires": [
-            [
-                "39812d59.ef2212"
-            ]
-        ]
-    },
-    {
-        "id": "35b1cf8e.97fbb",
-        "type": "nibe-request",
-        "z": "27236b7a.3c2274",
-        "server": "844659a2.8d8508",
-        "name": "cpr_act",
-        "x": 753,
-        "y": 315,
-        "wires": [
-            [
-                "b554613b.735c4"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "5b3368ee.607088",
-        "type": "delay",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "15",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 606,
-        "y": 315,
-        "wires": [
-            [
-                "35b1cf8e.97fbb"
-            ]
-        ]
-    },
-    {
-        "id": "6b26cdff.69be24",
-        "type": "inject",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "60",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "x": 217,
-        "y": 364,
-        "wires": [
-            [
-                "9f255829.f279b8"
-            ]
-        ]
-    },
-    {
-        "id": "b554613b.735c4",
-        "type": "function",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "func": "let cpr_time = flow.get('cpr_time')||msg.payload;\nlet cpr_active = flow.get('cpr_active')||false;\nlet uptime = flow.get('cpr_uptime')||0;\nif(msg.cpr_act>=1) {\n    flow.set('check_defrost',false);\n    if(cpr_active===false) {\n        flow.set('cpr_active',true);\n        flow.set('cpr_time',msg.payload);\n    } else  {\n        uptime = Number(((msg.payload-cpr_time)/1000).toFixed(0));\n        flow.set('cpr_uptime',uptime);\n        node.send({topic:\"Kompressor körtid (m)\",payload:Number((uptime/60).toFixed(0))});\n    }\n} else {\n    if(cpr_active===true) {\n        node.send([null,{topic:\"uptime\",payload:uptime}])\n    }\n    flow.set('cpr_active',false);\n    flow.set('check_defrost',true);\n    node.send({topic:\"Kompressor körtid (m)\",payload:0});\n}",
-        "outputs": 2,
-        "noerr": 0,
-        "x": 918,
-        "y": 315,
-        "wires": [
-            [
-                "37bfdf5a.d33ea",
-                "fea8d324.231af"
-            ],
-            [
-                "4b8d8363.45055c"
-            ]
-        ]
-    },
-    {
-        "id": "37bfdf5a.d33ea",
-        "type": "debug",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 1120,
-        "y": 315,
-        "wires": []
-    },
-    {
-        "id": "dfe25f69.60ecf",
-        "type": "ui_button",
-        "z": "27236b7a.3c2274",
-        "d": true,
-        "name": "Rensa graf",
-        "group": "3af8f7e6.d24338",
-        "order": 2,
-        "width": "12",
-        "height": "1",
-        "passthru": false,
-        "label": "Rensa graf",
-        "tooltip": "Rensar grafen och börjar om på nytt",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "[]",
-        "payloadType": "json",
-        "topic": "",
-        "x": 875,
-        "y": 371,
-        "wires": [
-            [
-                "fea8d324.231af"
-            ]
-        ]
-    },
-    {
-        "id": "4b8d8363.45055c",
-        "type": "function",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "func": "let uptime = flow.get('cpr_uptime');\nlet defrost = flow.get('defrost_time');\nlet cpr_efficiency = global.get('cpr_efficiency')||[];\nlet defrost_wait = flow.get('defrost_wait')||true;\nlet index = context.get('index');\nlet ignore_first = context.get('ignore');\nif(msg.topic==\"defrost\") {\n    defrost = msg.payload;\n    if(index!==undefined) {\n        if(cpr_efficiency[index]!==undefined) {\n            cpr_efficiency[index].defrost = defrost;\n            context.set('index',undefined);\n        }\n    }\n    \n} else if(msg.topic==\"uptime\") {\n    uptime = msg.payload;\n    if(ignore_first===undefined) {\n        context.set('ignore',false);\n    } else if(index===undefined) {\n        cpr_efficiency.unshift({uptime:uptime});\n        index = 0;\n        context.set('index',index);\n    } else {\n        defrost = 0;\n        cpr_efficiency[index].defrost = defrost;\n        cpr_efficiency.unshift({uptime:uptime});\n        index = 0;\n        context.set('index',index);\n    }\n}\nlet active = 0;\nlet down = 0;\nlet long_length = 0;\nlet short_length = 0;\nfor( var i = 0; i < cpr_efficiency.length; i++){\n    if(cpr_efficiency[i].defrost!==undefined) {\n        active = active+cpr_efficiency[i].uptime;\n        down = down+cpr_efficiency[i].defrost;\n        if(cpr_efficiency[i].defrost>900) {\n            long_length++;\n        } else {\n            short_length++;\n        }\n    }\n}\nif(cpr_efficiency.length>=72) {\n    cpr_efficiency.pop();\n}\nlet total = active+down;\nlet active_ = Number(((active/total)*100).toFixed(0));\nlet down_ = 100-active_;\nif(cpr_efficiency.length>=12) {\n    if(down_>50) {\n        node.send([null,{topic:\"Resultat\",payload:`Värmepumpens effektivitet är mycket dålig, långa avfrostningstider.<br>\n        På ${cpr_efficiency.length} cykler så har ${long_length} varit långa avfrostningar, och ${short_length} varit korta avfrostningar.<br>\n        Trolig orsak är felaktigt placerad avluftsgivare eller igensatt filter med nedsmutsning av förångare.<br>\n        Kompressorn har en effektivitet på endast ${active_} % och hela ${down_} % avfrostningstid.<br>`}])\n    } else if(down_>35) {\n        node.send([null,{topic:\"Resultat\",payload:`Värmepumpens effektivitet är dålig, långa avfrostningstider.<br>\n        På ${cpr_efficiency.length} cykler så har ${long_length} varit långa avfrostningar, och ${short_length} varit korta avfrostningar.<br>\n        Trolig orsak är felaktigt placerad avluftsgivare eller igensatt filter med nedsmutsning av förångare.<br>\n        Kompressorn har en effektivitet på ${active_} % och ${down_} % avfrostningstid.<br>`}])\n    } else if(down_>25) {\n        node.send([null,{topic:\"Resultat\",payload:`Värmepumpens effektivitet är är bra men kunde vara bättre.<br>\n        På ${cpr_efficiency.length} cykler så har ${long_length} varit långa avfrostningar, och ${short_length} varit korta avfrostningar.<br>\n        Kontrollera luftfilter.<br>\n        Kompressorn har en effektivitet på ${active_} % och ${down_} % avfrostningstid.<br>`}])\n    } else {\n        node.send([null,{topic:\"Resultat\",payload:`Värmepumpens effektivitet är mycket bra.<br>\n        På ${cpr_efficiency.length} cykler så har ${long_length} varit långa avfrostningar, och ${short_length} varit korta avfrostningar.<br>\n        Kompressorn har en effektivitet på ${active_} % och endast ${down_} % avfrostningstid.<br>`}])\n    }\n} else {\n    node.send([null,{topic:\"Resultat\",payload:`Utvärderar resultat...<br>${cpr_efficiency.length}/12 cykler färdiga, än så länge har ${long_length} avfrostningar varit långa, och ${short_length} har varit korta avfrostningar.<br>`}])\n}\nnode.send({topic:\"Kompressor aktiv\",payload:active_});\nnode.send({topic:\"Avfrostning\",payload:down_});\nflow.set('cpr_uptime',uptime);\nflow.set('defrost_time',defrost);\nglobal.set('cpr_efficiency',cpr_efficiency);",
-        "outputs": 2,
-        "noerr": 0,
-        "x": 1086,
-        "y": 427,
-        "wires": [
-            [
-                "a010d5de.c4ca58"
-            ],
-            [
-                "5131ab8e.deaaf4"
-            ]
-        ]
-    },
-    {
-        "id": "a010d5de.c4ca58",
-        "type": "ui_chart",
-        "z": "27236b7a.3c2274",
-        "name": "Cirkeldiagram",
-        "group": "3af8f7e6.d24338",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "pie",
-        "legend": "true",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#000000",
-            "#004080",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 1249,
-        "y": 378,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1437cd31.c1ecb3",
-        "type": "inject",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "topic": "",
-        "payload": "[]",
-        "payloadType": "json",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 883,
-        "y": 413,
-        "wires": [
-            [
-                "a010d5de.c4ca58"
             ]
         ]
     },
@@ -13662,121 +12579,6 @@
         "wires": []
     },
     {
-        "id": "d7af2b2a.17cdd8",
-        "type": "nibe-request",
-        "z": "27236b7a.3c2274",
-        "server": "844659a2.8d8508",
-        "name": "Config",
-        "x": 239,
-        "y": 259,
-        "wires": [
-            [
-                "7d67db50.284294"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "9f255829.f279b8",
-        "type": "nibe-request",
-        "z": "27236b7a.3c2274",
-        "server": "844659a2.8d8508",
-        "name": "Config",
-        "x": 379,
-        "y": 364,
-        "wires": [
-            [
-                "f242537e.82712"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "f242537e.82712",
-        "type": "function",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "func": "let config = msg.config;\nif(config.system!==undefined && config.system.pump!==undefined && (config.system.pump==\"F730\" || config.system.pump==\"F750\")) {\n    return msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 533,
-        "y": 364,
-        "wires": [
-            [
-                "5b3368ee.607088"
-            ]
-        ]
-    },
-    {
-        "id": "62a3d189.3d27c",
-        "type": "ui_ui_control",
-        "z": "27236b7a.3c2274",
-        "name": "Disable Group",
-        "events": "all",
-        "x": 682,
-        "y": 483,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "262ac24d.677e5e",
-        "type": "function",
-        "z": "27236b7a.3c2274",
-        "name": "Enable/Disable",
-        "func": "if(msg.enabled!==undefined && msg.enabled===false) {\n    let hide = {\n        \"group\":\n            {\"hide\":\n                [\"Diagnostik_Kompressoreffektivitet\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n} else if(msg.enabled===true) {\n    let hide = {\n        \"group\":\n            {\"show\":\n                [\"Diagnostik_Kompressoreffektivitet\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n}",
-        "outputs": 2,
-        "noerr": 0,
-        "x": 486,
-        "y": 476,
-        "wires": [
-            [],
-            [
-                "62a3d189.3d27c"
-            ]
-        ]
-    },
-    {
-        "id": "845a0a55.098ee8",
-        "type": "inject",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "topic": "uptime",
-        "payload": "240",
-        "payloadType": "num",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 875,
-        "y": 490,
-        "wires": [
-            [
-                "4b8d8363.45055c"
-            ]
-        ]
-    },
-    {
-        "id": "cc927a8.a77fb88",
-        "type": "inject",
-        "z": "27236b7a.3c2274",
-        "name": "",
-        "topic": "defrost",
-        "payload": "10",
-        "payloadType": "num",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 872,
-        "y": 532,
-        "wires": [
-            [
-                "4b8d8363.45055c"
-            ]
-        ]
-    },
-    {
         "id": "d78784c9.e2bbc8",
         "type": "ui_switch",
         "z": "b7f67da0.fbf1",
@@ -13834,45 +12636,400 @@
         ]
     },
     {
-        "id": "5131ab8e.deaaf4",
-        "type": "ui_text",
-        "z": "27236b7a.3c2274",
-        "group": "3af8f7e6.d24338",
-        "order": 3,
-        "width": "12",
-        "height": "3",
+        "id": "4249c2be.4caddc",
+        "type": "debug",
+        "z": "b7f67da0.fbf1",
         "name": "",
-        "label": "",
-        "format": "{{msg.payload}}",
-        "layout": "row-left",
-        "x": 1219,
-        "y": 427,
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 322,
+        "y": 1344,
         "wires": []
     },
     {
-        "id": "3736f6a9.78b61a",
-        "type": "inject",
-        "z": "27236b7a.3c2274",
+        "id": "b0e24ccb.86c35",
+        "type": "ui_switch",
+        "z": "b7f67da0.fbf1",
         "name": "",
-        "topic": "update",
-        "payload": "true",
-        "payloadType": "bool",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 882,
-        "y": 574,
+        "label": "Spara grafer",
+        "tooltip": "",
+        "group": "da3c0db0.9c6aa",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "save_graph",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 406,
+        "y": 2107,
         "wires": [
             [
-                "4b8d8363.45055c"
+                "aa96a81d.82d6c8"
             ]
         ]
     },
     {
-        "id": "4f5917dd.809ed8",
+        "id": "aa96a81d.82d6c8",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "system",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "save_graph",
+                "type": "str"
+            }
+        ],
+        "x": 630,
+        "y": 2107,
+        "wires": [
+            [
+                "b0e24ccb.86c35"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "796d2d88.6cda84",
+        "type": "nibe-output",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "saveGraph",
+        "x": 567,
+        "y": 2898,
+        "wires": [
+            [
+                "7e7da779.2a9ea8"
+            ]
+        ]
+    },
+    {
+        "id": "fb6e013f.6f056",
+        "type": "nibe-output",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "saveGraph",
+        "x": 469,
+        "y": 2968,
+        "wires": [
+            [
+                "1601f8.7c0cee09"
+            ]
+        ]
+    },
+    {
+        "id": "236a4859.181cd8",
+        "type": "nibe-output",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "saveGraph",
+        "x": 1099,
+        "y": 4123,
+        "wires": [
+            [
+                "525036.2cc69fcc"
+            ]
+        ]
+    },
+    {
+        "id": "5e0de75.c411d18",
+        "type": "nibe-request",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 253,
+        "y": 1582,
+        "wires": [
+            [],
+            [
+                "79bf305.f523ad"
+            ]
+        ]
+    },
+    {
+        "id": "34add1d5.a2b94e",
         "type": "debug",
         "z": "b7f67da0.fbf1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 820,
+        "y": 1757,
+        "wires": []
+    },
+    {
+        "id": "ec00f757.4cdbe8",
+        "type": "nibe-graph",
+        "z": "65e6bc5.05f2644",
+        "server": "844659a2.8d8508",
+        "name": "",
+        "system": "s1",
+        "select": "datagraph",
+        "x": 476,
+        "y": 252,
+        "wires": [
+            [
+                "d1515232.e5969",
+                "8524887c.d97728"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d1515232.e5969",
+        "type": "debug",
+        "z": "65e6bc5.05f2644",
+        "name": "Graph IN",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 690,
+        "y": 294,
+        "wires": []
+    },
+    {
+        "id": "71de0e01.6c188",
+        "type": "ui_chart",
+        "z": "65e6bc5.05f2644",
+        "name": "Graf",
+        "group": "261b1f51.5c37e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "dd HH:mm",
+        "interpolate": "linear",
+        "nodata": "Data saknas",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "48",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 1100,
+        "y": 231,
+        "wires": [
+            [
+                "606c5425.846fec"
+            ]
+        ]
+    },
+    {
+        "id": "54623482.22352c",
+        "type": "ui_button",
+        "z": "65e6bc5.05f2644",
+        "name": "Uppdatera",
+        "group": "261b1f51.5c37e",
+        "order": 2,
+        "width": "18",
+        "height": "1",
+        "passthru": false,
+        "label": "Uppdatera",
+        "tooltip": "Uppdaterar grafen",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "update",
+        "x": 623,
+        "y": 140,
+        "wires": [
+            [
+                "ec00f757.4cdbe8"
+            ]
+        ]
+    },
+    {
+        "id": "63058c8e.1043f4",
+        "type": "inject",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "topic": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 645,
+        "y": 189,
+        "wires": [
+            [
+                "71de0e01.6c188"
+            ]
+        ]
+    },
+    {
+        "id": "4f2c3fe1.ee64c",
+        "type": "inject",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "topic": "update",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 240,
+        "y": 252,
+        "wires": [
+            [
+                "ec00f757.4cdbe8"
+            ]
+        ]
+    },
+    {
+        "id": "702b6eb2.c73b2",
+        "type": "nibe-output",
+        "z": "65e6bc5.05f2644",
+        "server": "844659a2.8d8508",
+        "name": "",
+        "x": 1022,
+        "y": 378,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9ffa29c1.b3d8c8",
+        "type": "function",
+        "z": "65e6bc5.05f2644",
+        "name": "Save graph registers",
+        "func": "var data = global.get('data');\nvar time = Date.now();\nlet config = msg.config;\nif(config.data===undefined) config.data = {};\nif(config.data.graph===undefined) config.data.graph = [];\nif(msg.payload.isChecked===false) {\n    // Remove register\n    let index = config.data.graph.findIndex(n => n == msg.payload.register);\n    if(index!==-1) {\n        config.data.graph.splice(index);\n        node.send({topic:\"setConfig\",payload:config});\n    } else {\n        // Nothing to remove\n    }\n} else if(msg.payload.isChecked===true) {\n    let index = config.data.graph.findIndex(n => n == msg.payload.register);\n    if(index===-1) {\n        config.data.graph.push(msg.payload.register);\n        node.send({topic:\"setConfig\",payload:config});\n    } else {\n        // Register already exists\n    }\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 765,
+        "y": 385,
+        "wires": [
+            [
+                "702b6eb2.c73b2",
+                "54e899fa.d59218"
+            ]
+        ]
+    },
+    {
+        "id": "b58200b4.f0de1",
+        "type": "nibe-request",
+        "z": "65e6bc5.05f2644",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 554,
+        "y": 385,
+        "wires": [
+            [
+                "9ffa29c1.b3d8c8",
+                "a9882946.4e8888"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "39af3c28.745144",
+        "type": "ui_list",
+        "z": "65e6bc5.05f2644",
+        "group": "bd199d65.157fc",
+        "name": "Data",
+        "order": 2,
+        "width": "12",
+        "height": "11",
+        "lineType": "three",
+        "actionType": "check",
+        "allowHTML": false,
+        "outputs": 1,
+        "topic": "",
+        "x": 414,
+        "y": 385,
+        "wires": [
+            [
+                "b58200b4.f0de1"
+            ]
+        ]
+    },
+    {
+        "id": "7209703c.94e2",
+        "type": "nibe-graph",
+        "z": "65e6bc5.05f2644",
+        "server": "844659a2.8d8508",
+        "name": "",
+        "system": "s1",
+        "select": "registers_selected",
+        "x": 234,
+        "y": 385,
+        "wires": [
+            [
+                "39af3c28.745144",
+                "910decb4.e0a23"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "850769c.f7b9598",
+        "type": "inject",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "topic": "update",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 177,
+        "y": 315,
+        "wires": [
+            [
+                "7209703c.94e2"
+            ]
+        ]
+    },
+    {
+        "id": "910decb4.e0a23",
+        "type": "debug",
+        "z": "65e6bc5.05f2644",
         "name": "",
         "active": false,
         "tosidebar": true,
@@ -13880,25 +13037,1841 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 1198,
-        "y": 889,
+        "x": 533,
+        "y": 336,
         "wires": []
     },
     {
-        "id": "2e1e1619.f367ca",
-        "type": "function",
-        "z": "b7f67da0.fbf1",
+        "id": "96122fbe.f0ca2",
+        "type": "debug",
+        "z": "358baec9.c8b902",
         "name": "",
-        "func": "let graphs = global.get('graphs')||{};\nif(graphs.start_1===undefined) graphs.start_1 = {};\nlet data = graphs.start_1;\nif(data.outside===undefined) data.outside = [];\nif(data.adjust===undefined) data.adjust = [];\nif(data.inside===undefined) data.inside = [];\nif(data.setpoint_s1===undefined) data.setpoint_s1 = [];\nif(data.supply_s1===undefined) data.supply_s1 = [];\nif(data.setpoint_s2===undefined) data.setpoint_s2 = [];\nif(data.supply_s2===undefined) data.supply_s2 = [];\nlet time = Date.now();\n    data.outside.push({x:time,y:msg.outside});\n    //data.outside.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    data.adjust.push({x:time,y:msg.curveadjust});\n    //data.adjust.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    if(msg.inside>-3276) {\n        data.inside.push({x:time,y:msg.inside});\n        //data.inside.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    }\n    data.setpoint_s1.push({x:time,y:msg.setpoint_s1});\n    //data.setpoint_s1.sort((a, b) => (a.x > b.x) ? 1 : -1);\n    data.supply_s1.push({x:time,y:msg.supply_s1});\n    //data.supply_s1.sort((a, b) => (a.x > b.x) ? 1 : -1);\n\n\nvar array = [\n    {\n    \"series\":[\"Utomhustemperatur\",\"Kurvjustering\",\"Inomhustemperatur\",\"Börvärde S1\",\"Framledning S1\"],\n    \"data\":[data.outside,data.adjust,data.inside,data.setpoint_s1,data.supply_s1],\n    \"labels\":[\"\"]\n}];\n\n    if(msg.supply_s2>-3276) {\n        let index = array[0].series.findIndex(i => i == \"Börvärde S2\");\n        if(index===-1) {\n            array[0].series.push(\"Börvärde S2\");\n            let i = array[0].series.findIndex(i => i == \"Börvärde S2\");\n            if(array[0].data[i]===undefined) array[0].data[i] = [];\n            array[0].data[i].push({x:time,y:msg.setpoint_s2});\n        } else {\n            array[0].data[index].push({x:time,y:msg.setpoint_s2});\n        }\n        data.setpoint_s2.push({x:time,y:msg.setpoint_s2});\n        let index2 = array[0].series.findIndex(i => i == \"Framledning S2\");\n        if(index2===-1) {\n            array[0].series.push(\"Framledning S2\");\n            let i = array[0].series.findIndex(i => i == \"Framledning S2\");\n            if(array[0].data[i]===undefined) array[0].data[i] = [];\n            array[0].data[i].push({x:time,y:msg.supply_s2});\n        } else {\n            array[0].data[index2].push({x:time,y:msg.supply_s2});\n        }\n        data.supply_s2.push({x:time,y:msg.supply_s2});\n    } else if(msg.supply_s2===undefined) {\n    \n} else {\n    flow.set('s2',false);\n}\n\ngraphs.start_1 = data;\nglobal.set('graphs',graphs);\n                \nnode.send({payload:array});",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1051,
-        "y": 861,
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1226,
+        "y": 448,
+        "wires": []
+    },
+    {
+        "id": "6d821dfd.4142d4",
+        "type": "ui_ui_control",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "events": "all",
+        "x": 333,
+        "y": 700,
         "wires": [
             [
-                "ef643ddd.c667f",
-                "4f5917dd.809ed8"
+                "90aa5691.0f27d8",
+                "8524887c.d97728",
+                "9e36c8ff.1ecbf8",
+                "db88bff5.9059f",
+                "fb9ec5ab.879b38",
+                "4f496004.61176",
+                "82a3ab6e.f68b98",
+                "74dba304.b28b2c",
+                "1ad79da9.daa052",
+                "326e9c2d.201cd4"
             ]
+        ]
+    },
+    {
+        "id": "90aa5691.0f27d8",
+        "type": "debug",
+        "z": "65e6bc5.05f2644",
+        "name": "UI",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1093,
+        "y": 287,
+        "wires": []
+    },
+    {
+        "id": "8524887c.d97728",
+        "type": "function",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "func": "var ui = msg.payload;\nvar name = msg.name;\nvar tab = \"Datahantering\";\nvar graph = msg.graph;\nvar block = context.get('block')||{};\nif(ui==\"change\") {\n    if(name==tab) {\n        block[msg.socketid] = false;\n        node.send([null,{topic:\"update\"}])\n        \n    } else {\n        block[msg.socketid] = true;\n    }\n} else if(ui==\"lost\") {\n    block[msg.socketid] = true;\n}\nif(graph!==undefined) {\n    let blocked = true;\n    for (var object in block) {\n                    if (block.hasOwnProperty(object)) {\n                        if(block[object]===false) {\n                            blocked = false;\n                        }\n                    }\n                }\n    if(blocked===false) {\n        return msg;\n    } else if(blocked===true) {\n    node.send({payload:[]});\n}\n}\n\ncontext.set('block',block);",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 785,
+        "y": 217,
+        "wires": [
+            [
+                "71de0e01.6c188",
+                "dc988b21.09bf38"
+            ],
+            [
+                "ec00f757.4cdbe8"
+            ]
+        ]
+    },
+    {
+        "id": "606c5425.846fec",
+        "type": "debug",
+        "z": "65e6bc5.05f2644",
+        "name": "Graph OUT",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1246,
+        "y": 231,
+        "wires": []
+    },
+    {
+        "id": "dc988b21.09bf38",
+        "type": "debug",
+        "z": "65e6bc5.05f2644",
+        "name": "NODE",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 981,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "11630e74.8dac82",
+        "type": "inject",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "topic": "time",
+        "payload": "3",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 211,
+        "y": 462,
+        "wires": [
+            [
+                "ec00f757.4cdbe8"
+            ]
+        ]
+    },
+    {
+        "id": "96e42b24.7aaa78",
+        "type": "ui_slider",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "label": "Tid",
+        "tooltip": "",
+        "group": "261b1f51.5c37e",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "time",
+        "min": 0,
+        "max": "72",
+        "step": 1,
+        "x": 217,
+        "y": 504,
+        "wires": [
+            [
+                "ec00f757.4cdbe8"
+            ]
+        ]
+    },
+    {
+        "id": "c298bb69.805ce8",
+        "type": "nibe-graph",
+        "z": "65e6bc5.05f2644",
+        "server": "844659a2.8d8508",
+        "name": "",
+        "system": "s1",
+        "select": "start_1",
+        "x": 451,
+        "y": 623,
+        "wires": [
+            [
+                "9e36c8ff.1ecbf8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e36871c4.db782",
+        "type": "ui_chart",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "group": "a8bf2b6e.6abc18",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "label": "Värmeinformation",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "48",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 853,
+        "y": 623,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b71782d0.0b1ed",
+        "type": "ui_slider",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "label": "Tid",
+        "tooltip": "",
+        "group": "a8bf2b6e.6abc18",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "time",
+        "min": 0,
+        "max": "72",
+        "step": 1,
+        "x": 246,
+        "y": 623,
+        "wires": [
+            [
+                "c298bb69.805ce8"
+            ]
+        ]
+    },
+    {
+        "id": "a9882946.4e8888",
+        "type": "debug",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 578,
+        "y": 446,
+        "wires": []
+    },
+    {
+        "id": "54e899fa.d59218",
+        "type": "debug",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 932,
+        "y": 455,
+        "wires": []
+    },
+    {
+        "id": "9dbabd89.67234",
+        "type": "nibe-graph",
+        "z": "65e6bc5.05f2644",
+        "server": "844659a2.8d8508",
+        "name": "",
+        "system": "s1",
+        "select": "forecast_1",
+        "x": 458,
+        "y": 763,
+        "wires": [
+            [
+                "db88bff5.9059f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "26eb3859.ff5d48",
+        "type": "ui_chart",
+        "z": "65e6bc5.05f2644",
+        "name": "Prognostemperatur S1",
+        "group": "7e910a08.c6c984",
+        "order": 4,
+        "width": "0",
+        "height": "0",
+        "label": "",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "Data ej tillgängligt",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 842,
+        "y": 763,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9e36c8ff.1ecbf8",
+        "type": "function",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "func": "var ui = msg.payload;\nvar name = msg.name;\nvar tab = \"Startsida\";\nvar graph = msg.graph;\nvar block = context.get('block')||{};\nif(ui==\"change\") {\n    if(name==tab) {\n        block[msg.socketid] = false;\n        node.send([null,{topic:\"update\"}])\n        \n    } else {\n        block[msg.socketid] = true;\n    }\n} else if(ui==\"lost\") {\n    block[msg.socketid] = true;\n}\nif(graph!==undefined) {\n    let blocked = true;\n    for (var object in block) {\n                    if (block.hasOwnProperty(object)) {\n                        if(block[object]===false) {\n                            blocked = false;\n                        }\n                    }\n                }\n    if(blocked===false) {\n        return msg;\n    } else if(blocked===true) {\n    node.send({payload:[]});\n}\n}\n\ncontext.set('block',block);",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 652,
+        "y": 623,
+        "wires": [
+            [
+                "e36871c4.db782"
+            ],
+            [
+                "c298bb69.805ce8"
+            ]
+        ]
+    },
+    {
+        "id": "db88bff5.9059f",
+        "type": "function",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "func": "var ui = msg.payload;\nvar name = msg.name;\nvar tab = \"Prognosreglering\";\nvar graph = msg.graph;\nvar block = context.get('block')||{};\nif(ui==\"change\") {\n    if(name==tab) {\n        block[msg.socketid] = false;\n        node.send([null,{topic:\"update\"}])\n        \n    } else {\n        block[msg.socketid] = true;\n    }\n} else if(ui==\"lost\") {\n    block[msg.socketid] = true;\n}\nif(graph!==undefined) {\n    let blocked = true;\n    for (var object in block) {\n                    if (block.hasOwnProperty(object)) {\n                        if(block[object]===false) {\n                            blocked = false;\n                        }\n                    }\n                }\n    if(blocked===false) {\n        return msg;\n    } else if(blocked===true) {\n    node.send({payload:[]});\n}\n}\n\ncontext.set('block',block);",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 631,
+        "y": 763,
+        "wires": [
+            [
+                "26eb3859.ff5d48"
+            ],
+            [
+                "9dbabd89.67234"
+            ]
+        ]
+    },
+    {
+        "id": "41f84924.bc1198",
+        "type": "ui_slider",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "label": "Tid",
+        "tooltip": "",
+        "group": "7e910a08.c6c984",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "time",
+        "min": 0,
+        "max": "72",
+        "step": 1,
+        "x": 246,
+        "y": 763,
+        "wires": [
+            [
+                "9dbabd89.67234"
+            ]
+        ]
+    },
+    {
+        "id": "b8e45a29.097168",
+        "type": "ui_button",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "group": "fe94277c.dcd118",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Stäng av NibePi hårdvara",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "Stänger av NibePi",
+        "payloadType": "str",
+        "topic": "",
+        "x": 782,
+        "y": 3017,
+        "wires": [
+            [
+                "5ef6c9b8.bf6d08"
+            ]
+        ]
+    },
+    {
+        "id": "5ef6c9b8.bf6d08",
+        "type": "nibe-output",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "saveGraph",
+        "x": 1056,
+        "y": 3017,
+        "wires": [
+            [
+                "7de64138.6b5d3"
+            ]
+        ]
+    },
+    {
+        "id": "7de64138.6b5d3",
+        "type": "exec",
+        "z": "b7f67da0.fbf1",
+        "command": "sudo halt",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 1249,
+        "y": 3017,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "b881d2a8.569a4",
+        "type": "nibe-graph",
+        "z": "65e6bc5.05f2644",
+        "server": "844659a2.8d8508",
+        "name": "",
+        "system": "s1",
+        "select": "hw_lux",
+        "x": 458,
+        "y": 896,
+        "wires": [
+            [
+                "fb9ec5ab.879b38"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fb9ec5ab.879b38",
+        "type": "function",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "func": "var ui = msg.payload;\nvar name = msg.name;\nvar tab = \"Varmvattenreglering\";\nvar graph = msg.graph;\nvar block = context.get('block')||{};\nif(ui==\"change\") {\n    if(name==tab) {\n        block[msg.socketid] = false;\n        node.send([null,{topic:\"update\"}])\n        \n    } else {\n        block[msg.socketid] = true;\n    }\n} else if(ui==\"lost\") {\n    block[msg.socketid] = true;\n}\nif(graph!==undefined) {\n    let blocked = true;\n    for (var object in block) {\n                    if (block.hasOwnProperty(object)) {\n                        if(block[object]===false) {\n                            blocked = false;\n                        }\n                    }\n                }\n    if(blocked===false) {\n        return msg;\n    } else if(blocked===true) {\n    node.send({payload:[]});\n}\n}\n\ncontext.set('block',block);",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 631,
+        "y": 896,
+        "wires": [
+            [
+                "878eb7cb.141428"
+            ],
+            [
+                "b881d2a8.569a4"
+            ]
+        ]
+    },
+    {
+        "id": "176a8ef5.3e5701",
+        "type": "ui_slider",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "label": "Tid",
+        "tooltip": "",
+        "group": "bcb5f9e4.9bc858",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "time",
+        "min": 0,
+        "max": "72",
+        "step": 1,
+        "x": 246,
+        "y": 896,
+        "wires": [
+            [
+                "b881d2a8.569a4"
+            ]
+        ]
+    },
+    {
+        "id": "878eb7cb.141428",
+        "type": "ui_chart",
+        "z": "65e6bc5.05f2644",
+        "name": "Automatisk tillfällig lyx",
+        "group": "bcb5f9e4.9bc858",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "48",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 849,
+        "y": 896,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "93ac06c3.827608",
+        "type": "ui_chart",
+        "z": "65e6bc5.05f2644",
+        "name": "Varmvatten prioritet",
+        "group": "38b6d907.520796",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "48",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 825,
+        "y": 959,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "130583bb.67283c",
+        "type": "nibe-graph",
+        "z": "65e6bc5.05f2644",
+        "server": "844659a2.8d8508",
+        "name": "",
+        "system": "s1",
+        "select": "hw_prio",
+        "x": 458,
+        "y": 959,
+        "wires": [
+            [
+                "4f496004.61176"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4f496004.61176",
+        "type": "function",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "func": "var ui = msg.payload;\nvar name = msg.name;\nvar tab = \"Varmvattenreglering\";\nvar graph = msg.graph;\nvar block = context.get('block')||{};\nif(ui==\"change\") {\n    if(name==tab) {\n        block[msg.socketid] = false;\n        node.send([null,{topic:\"update\"}])\n        \n    } else {\n        block[msg.socketid] = true;\n    }\n} else if(ui==\"lost\") {\n    block[msg.socketid] = true;\n}\nif(graph!==undefined) {\n    let blocked = true;\n    for (var object in block) {\n                    if (block.hasOwnProperty(object)) {\n                        if(block[object]===false) {\n                            blocked = false;\n                        }\n                    }\n                }\n    if(blocked===false) {\n        return msg;\n    } else if(blocked===true) {\n    node.send({payload:[]});\n}\n}\n\ncontext.set('block',block);",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 631,
+        "y": 959,
+        "wires": [
+            [
+                "93ac06c3.827608"
+            ],
+            [
+                "130583bb.67283c"
+            ]
+        ]
+    },
+    {
+        "id": "5662a415.06708c",
+        "type": "ui_slider",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "label": "Tid",
+        "tooltip": "",
+        "group": "38b6d907.520796",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "time",
+        "min": 0,
+        "max": "72",
+        "step": 1,
+        "x": 246,
+        "y": 959,
+        "wires": [
+            [
+                "130583bb.67283c"
+            ]
+        ]
+    },
+    {
+        "id": "c3d3b2ea.73a9b",
+        "type": "nibe-output",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "saveGraph",
+        "x": 469,
+        "y": 3304,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2dc12b74.a0ebb4",
+        "type": "inject",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 238,
+        "y": 3304,
+        "wires": [
+            [
+                "c3d3b2ea.73a9b"
+            ]
+        ]
+    },
+    {
+        "id": "49882825.7b48d8",
+        "type": "ui_switch",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "label": "Uppdatera grafer med data",
+        "tooltip": "Aktiverar att hämta registerdata och uppdatera NibePis interna grafer.",
+        "group": "da3c0db0.9c6aa",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "auto_update",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 337,
+        "y": 70,
+        "wires": [
+            [
+                "fa95fd50.94cac"
+            ]
+        ]
+    },
+    {
+        "id": "fa95fd50.94cac",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "system",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "auto_update",
+                "type": "str"
+            }
+        ],
+        "x": 587,
+        "y": 70,
+        "wires": [
+            [
+                "49882825.7b48d8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "741e9555.45552c",
+        "type": "nibe-graph",
+        "z": "65e6bc5.05f2644",
+        "server": "844659a2.8d8508",
+        "name": "",
+        "system": "s2",
+        "select": "forecast_1",
+        "x": 465,
+        "y": 819,
+        "wires": [
+            [
+                "82a3ab6e.f68b98"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "82a3ab6e.f68b98",
+        "type": "function",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "func": "var ui = msg.payload;\nvar name = msg.name;\nvar tab = \"Prognosreglering\";\nvar graph = msg.graph;\nvar block = context.get('block')||{};\nif(ui==\"change\") {\n    if(name==tab) {\n        block[msg.socketid] = false;\n        node.send([null,{topic:\"update\"}])\n        \n    } else {\n        block[msg.socketid] = true;\n    }\n} else if(ui==\"lost\") {\n    block[msg.socketid] = true;\n}\nif(graph!==undefined) {\n    let blocked = true;\n    for (var object in block) {\n                    if (block.hasOwnProperty(object)) {\n                        if(block[object]===false) {\n                            blocked = false;\n                        }\n                    }\n                }\n    if(blocked===false) {\n        return msg;\n    } else if(blocked===true) {\n    node.send({payload:[]});\n}\n}\n\ncontext.set('block',block);",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 638,
+        "y": 819,
+        "wires": [
+            [
+                "1045d759.a961c9"
+            ],
+            [
+                "741e9555.45552c"
+            ]
+        ]
+    },
+    {
+        "id": "e8bbd657.4aa3b8",
+        "type": "ui_slider",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "label": "Tid",
+        "tooltip": "",
+        "group": "197ce413.27432c",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "time",
+        "min": 0,
+        "max": "72",
+        "step": 1,
+        "x": 253,
+        "y": 819,
+        "wires": [
+            [
+                "741e9555.45552c"
+            ]
+        ]
+    },
+    {
+        "id": "1045d759.a961c9",
+        "type": "ui_chart",
+        "z": "65e6bc5.05f2644",
+        "name": "Prognostemperatur S2",
+        "group": "197ce413.27432c",
+        "order": 4,
+        "width": "0",
+        "height": "0",
+        "label": "",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "System ej anslutet",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 842,
+        "y": 819,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1249eda5.8ac642",
+        "type": "nibe-graph",
+        "z": "65e6bc5.05f2644",
+        "server": "844659a2.8d8508",
+        "name": "",
+        "system": "s1",
+        "select": "indoor_1",
+        "x": 458,
+        "y": 1022,
+        "wires": [
+            [
+                "74dba304.b28b2c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "74dba304.b28b2c",
+        "type": "function",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "func": "var ui = msg.payload;\nvar name = msg.name;\nvar tab = \"Inomhusreglering\";\nvar graph = msg.graph;\nvar block = context.get('block')||{};\nif(ui==\"change\") {\n    if(name==tab) {\n        block[msg.socketid] = false;\n        node.send([null,{topic:\"update\"}])\n        \n    } else {\n        block[msg.socketid] = true;\n    }\n} else if(ui==\"lost\") {\n    block[msg.socketid] = true;\n}\nif(graph!==undefined) {\n    let blocked = true;\n    for (var object in block) {\n                    if (block.hasOwnProperty(object)) {\n                        if(block[object]===false) {\n                            blocked = false;\n                        }\n                    }\n                }\n    if(blocked===false) {\n        return msg;\n    } else if(blocked===true) {\n    node.send({payload:[]});\n}\n}\n\ncontext.set('block',block);",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 631,
+        "y": 1022,
+        "wires": [
+            [
+                "5f434aee.4ca444"
+            ],
+            [
+                "1249eda5.8ac642"
+            ]
+        ]
+    },
+    {
+        "id": "a5f5926b.ba0a",
+        "type": "ui_slider",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "label": "Tid",
+        "tooltip": "",
+        "group": "a2cfe148.70708",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "time",
+        "min": 0,
+        "max": "72",
+        "step": 1,
+        "x": 246,
+        "y": 1022,
+        "wires": [
+            [
+                "1249eda5.8ac642"
+            ]
+        ]
+    },
+    {
+        "id": "6b58d375.81bc6c",
+        "type": "nibe-graph",
+        "z": "65e6bc5.05f2644",
+        "server": "844659a2.8d8508",
+        "name": "",
+        "system": "s2",
+        "select": "indoor_1",
+        "x": 465,
+        "y": 1078,
+        "wires": [
+            [
+                "1ad79da9.daa052"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1ad79da9.daa052",
+        "type": "function",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "func": "var ui = msg.payload;\nvar name = msg.name;\nvar tab = \"Inomhusreglering\";\nvar graph = msg.graph;\nvar block = context.get('block')||{};\nif(ui==\"change\") {\n    if(name==tab) {\n        block[msg.socketid] = false;\n        node.send([null,{topic:\"update\"}])\n        \n    } else {\n        block[msg.socketid] = true;\n    }\n} else if(ui==\"lost\") {\n    block[msg.socketid] = true;\n}\nif(graph!==undefined) {\n    let blocked = true;\n    for (var object in block) {\n                    if (block.hasOwnProperty(object)) {\n                        if(block[object]===false) {\n                            blocked = false;\n                        }\n                    }\n                }\n    if(blocked===false) {\n        return msg;\n    } else if(blocked===true) {\n    node.send({payload:[]});\n}\n}\n\ncontext.set('block',block);",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 638,
+        "y": 1078,
+        "wires": [
+            [
+                "1b015e0a.ec6bc2"
+            ],
+            [
+                "6b58d375.81bc6c"
+            ]
+        ]
+    },
+    {
+        "id": "a83973b3.c3d1e",
+        "type": "ui_slider",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "label": "Tid",
+        "tooltip": "",
+        "group": "6ee1e12a.a6f04",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "time",
+        "min": 0,
+        "max": "72",
+        "step": 1,
+        "x": 253,
+        "y": 1078,
+        "wires": [
+            [
+                "6b58d375.81bc6c"
+            ]
+        ]
+    },
+    {
+        "id": "1b015e0a.ec6bc2",
+        "type": "ui_chart",
+        "z": "65e6bc5.05f2644",
+        "name": "Inomhusreglering S2",
+        "group": "6ee1e12a.a6f04",
+        "order": 9,
+        "width": "0",
+        "height": "0",
+        "label": "",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "Data ej tillgängligt ännu.",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 842,
+        "y": 1078,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5f434aee.4ca444",
+        "type": "ui_chart",
+        "z": "65e6bc5.05f2644",
+        "name": "Inomhusreglering S1",
+        "group": "a2cfe148.70708",
+        "order": 9,
+        "width": "0",
+        "height": "0",
+        "label": "",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "Data ej tillgängligt ännu.",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 835,
+        "y": 1022,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b982aa7.a56ab58",
+        "type": "ui_chart",
+        "z": "65e6bc5.05f2644",
+        "name": "Automatiskt luftflöde",
+        "group": "ad7a33f3.24adf",
+        "order": 6,
+        "width": "12",
+        "height": "12",
+        "label": "",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 842,
+        "y": 1134,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "451cdade.53c734",
+        "type": "nibe-graph",
+        "z": "65e6bc5.05f2644",
+        "server": "844659a2.8d8508",
+        "name": "",
+        "system": "s1",
+        "select": "fan_1",
+        "x": 465,
+        "y": 1134,
+        "wires": [
+            [
+                "326e9c2d.201cd4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "326e9c2d.201cd4",
+        "type": "function",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "func": "var ui = msg.payload;\nvar name = msg.name;\nvar tab = \"Automatiskt luftflöde\";\nvar graph = msg.graph;\nvar block = context.get('block')||{};\nif(ui==\"change\") {\n    if(name==tab) {\n        block[msg.socketid] = false;\n        node.send([null,{topic:\"update\"}])\n        \n    } else {\n        block[msg.socketid] = true;\n    }\n} else if(ui==\"lost\") {\n    block[msg.socketid] = true;\n}\nif(graph!==undefined) {\n    let blocked = true;\n    for (var object in block) {\n                    if (block.hasOwnProperty(object)) {\n                        if(block[object]===false) {\n                            blocked = false;\n                        }\n                    }\n                }\n    if(blocked===false) {\n        return msg;\n    } else if(blocked===true) {\n    node.send({payload:[]});\n}\n}\n\ncontext.set('block',block);",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 638,
+        "y": 1134,
+        "wires": [
+            [
+                "b982aa7.a56ab58"
+            ],
+            [
+                "451cdade.53c734"
+            ]
+        ]
+    },
+    {
+        "id": "41a4486e.6ac608",
+        "type": "ui_slider",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "label": "Tid",
+        "tooltip": "",
+        "group": "ad7a33f3.24adf",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "time",
+        "min": 0,
+        "max": "72",
+        "step": 1,
+        "x": 253,
+        "y": 1134,
+        "wires": [
+            [
+                "451cdade.53c734"
+            ]
+        ]
+    },
+    {
+        "id": "44d61721.dc1b18",
+        "type": "change",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Uppdatering pågår, rör inget... Invänta omstart.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1011,
+        "y": 3899,
+        "wires": [
+            [
+                "28a0d61e.83686a"
+            ]
+        ]
+    },
+    {
+        "id": "b819b51e.7e2888",
+        "type": "ui_switch",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "label": "Diagnostik",
+        "tooltip": "",
+        "group": "97526682.5406d8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "diagnostic",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 301,
+        "y": 2520,
+        "wires": [
+            [
+                "a6b3697.c8d4498"
+            ]
+        ]
+    },
+    {
+        "id": "a6b3697.c8d4498",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "log",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "diagnostic",
+                "type": "str"
+            }
+        ],
+        "x": 545,
+        "y": 2520,
+        "wires": [
+            [
+                "b819b51e.7e2888"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5b3bd5b.489a32c",
+        "type": "ui_switch",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "label": "Prognosreglering",
+        "tooltip": "",
+        "group": "97526682.5406d8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "weather",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 321,
+        "y": 2569,
+        "wires": [
+            [
+                "2764fba3.e4d1e4"
+            ]
+        ]
+    },
+    {
+        "id": "2764fba3.e4d1e4",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "log",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "weather",
+                "type": "str"
+            }
+        ],
+        "x": 545,
+        "y": 2569,
+        "wires": [
+            [
+                "5b3bd5b.489a32c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "156d24ac.25da5b",
+        "type": "ui_chart",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "group": "3af8f7e6.d24338",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Drifttider",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "dd HH:mm",
+        "interpolate": "linear",
+        "nodata": "Ingen graf tillgänglig än",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "72",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#ff0000",
+            "#004080",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 767,
+        "y": 147,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b1f34ef2.e9568",
+        "type": "nibe-graph",
+        "z": "27236b7a.3c2274",
+        "server": "844659a2.8d8508",
+        "name": "",
+        "system": "s1",
+        "select": "diagnostic_defrost",
+        "x": 423,
+        "y": 147,
+        "wires": [
+            [
+                "9af4587d.39cc28",
+                "592d06bd.f1bce8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9af4587d.39cc28",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "func": "var ui = msg.payload;\nvar name = msg.name;\nvar tab = \"Diagnostik\";\nvar graph = msg.graph;\nvar block = context.get('block')||{};\nif(ui==\"change\") {\n    if(name==tab) {\n        block[msg.socketid] = false;\n        node.send([null,{topic:\"update\"}])\n        \n    } else {\n        block[msg.socketid] = true;\n    }\n} else if(ui==\"lost\") {\n    block[msg.socketid] = true;\n}\nif(graph!==undefined) {\n    let blocked = true;\n    for (var object in block) {\n                    if (block.hasOwnProperty(object)) {\n                        if(block[object]===false) {\n                            blocked = false;\n                        }\n                    }\n                }\n    if(blocked===false) {\n        return msg;\n    } else if(blocked===true) {\n    node.send({payload:[]});\n}\n}\n\ncontext.set('block',block);",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 596,
+        "y": 147,
+        "wires": [
+            [
+                "156d24ac.25da5b"
+            ],
+            [
+                "b1f34ef2.e9568"
+            ]
+        ]
+    },
+    {
+        "id": "ce0658.913ce9a8",
+        "type": "ui_slider",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "label": "Tid",
+        "tooltip": "",
+        "group": "3af8f7e6.d24338",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "time",
+        "min": 0,
+        "max": "72",
+        "step": 1,
+        "x": 211,
+        "y": 147,
+        "wires": [
+            [
+                "b1f34ef2.e9568"
+            ]
+        ]
+    },
+    {
+        "id": "592d06bd.f1bce8",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "Enable/Disable",
+        "func": "if(msg.enabled===false) {\n    let hide = {\n        \"group\":\n            {\"hide\":\n                [\"Diagnostik_Kompressoreffektivitet\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n} else {\n    let hide = {\n        \"group\":\n            {\"show\":\n                [\"Diagnostik_Kompressoreffektivitet\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 794,
+        "y": 196,
+        "wires": [
+            [],
+            [
+                "9ea7c2b5.47c55"
+            ]
+        ]
+    },
+    {
+        "id": "9ea7c2b5.47c55",
+        "type": "ui_ui_control",
+        "z": "27236b7a.3c2274",
+        "name": "Disable Group S2",
+        "events": "all",
+        "x": 1007,
+        "y": 196,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4948671e.3c3978",
+        "type": "nibe-graph",
+        "z": "27236b7a.3c2274",
+        "server": "844659a2.8d8508",
+        "name": "",
+        "system": "s1",
+        "select": "efficiency_graph",
+        "x": 423,
+        "y": 259,
+        "wires": [
+            [
+                "2518a7e6.c9baa8"
+            ],
+            [
+                "94e7615d.bd035"
+            ]
+        ]
+    },
+    {
+        "id": "2518a7e6.c9baa8",
+        "type": "function",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "func": "var ui = msg.payload;\nvar name = msg.name;\nvar tab = \"Diagnostik\";\nvar graph = msg.graph;\nvar block = context.get('block')||{};\nif(ui==\"change\") {\n    if(name==tab) {\n        block[msg.socketid] = false;\n        node.send([null,{topic:\"update\"}])\n        \n    } else {\n        block[msg.socketid] = true;\n    }\n} else if(ui==\"lost\") {\n    block[msg.socketid] = true;\n}\nif(graph!==undefined) {\n    let blocked = true;\n    for (var object in block) {\n                    if (block.hasOwnProperty(object)) {\n                        if(block[object]===false) {\n                            blocked = false;\n                        }\n                    }\n                }\n    if(blocked===false) {\n        return msg;\n    } else if(blocked===true) {\n    node.send({payload:[]});\n}\n}\n\ncontext.set('block',block);",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 596,
+        "y": 259,
+        "wires": [
+            [
+                "c1ddf43e.eca518"
+            ],
+            [
+                "4948671e.3c3978"
+            ]
+        ]
+    },
+    {
+        "id": "fb927d2f.89856",
+        "type": "ui_slider",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "label": "Dagar",
+        "tooltip": "",
+        "group": "3af8f7e6.d24338",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "time",
+        "min": 0,
+        "max": "90",
+        "step": 1,
+        "x": 211,
+        "y": 259,
+        "wires": [
+            [
+                "4948671e.3c3978"
+            ]
+        ]
+    },
+    {
+        "id": "c1ddf43e.eca518",
+        "type": "ui_chart",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "group": "3af8f7e6.d24338",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Effektivitet",
+        "chartType": "pie",
+        "legend": "true",
+        "xformat": "dd HH:mm",
+        "interpolate": "linear",
+        "nodata": "Ingen graf tillgänglig än",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "72",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#ff0000",
+            "#004080",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 784,
+        "y": 259,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "94e7615d.bd035",
+        "type": "ui_text",
+        "z": "27236b7a.3c2274",
+        "group": "3af8f7e6.d24338",
+        "order": 7,
+        "width": "12",
+        "height": "3",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "x": 764,
+        "y": 301,
+        "wires": []
+    },
+    {
+        "id": "b45691c3.2405a",
+        "type": "ui_ui_control",
+        "z": "27236b7a.3c2274",
+        "name": "",
+        "events": "all",
+        "x": 137,
+        "y": 203,
+        "wires": [
+            [
+                "9af4587d.39cc28",
+                "2518a7e6.c9baa8"
+            ]
+        ]
+    },
+    {
+        "id": "22fa46b9.2067fa",
+        "type": "ui_text",
+        "z": "960078e.e3e6d88",
+        "group": "1b40f24f.7b6d9e",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "Info värme",
+        "label": "Begränsa elprisregleringens påverkan med hjälp av en inomhusgivare.<br>Ställ in en differens för den lägsta temperaturen som tillåts vid högt elpris för reglering mot ditt rumsbörvärde.",
+        "format": "",
+        "layout": "col-center",
+        "x": 1085,
+        "y": 252,
+        "wires": []
+    },
+    {
+        "id": "b5e41612.13ed78",
+        "type": "ui_text",
+        "z": "960078e.e3e6d88",
+        "group": "94305680.d32c48",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "Info värme",
+        "label": "Begränsa elprisregleringens påverkan med hjälp av en inomhusgivare.<br>Ställ in en differens för den lägsta temperaturen som tillåts vid högt elpris för reglering mot ditt rumsbörvärde.",
+        "format": "",
+        "layout": "col-center",
+        "x": 574,
+        "y": 1386,
+        "wires": []
+    },
+    {
+        "id": "a55dd36.0c7fe3",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "temp_low_s2",
+                "type": "str"
+            }
+        ],
+        "x": 384,
+        "y": 1442,
+        "wires": [
+            [
+                "d41292d7.71f9c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d41292d7.71f9c",
+        "type": "ui_slider",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "label": "Differens",
+        "tooltip": "Lägsta temperaturdifferens jämfört mot Inomhusbörvärdet.",
+        "group": "94305680.d32c48",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "price/temp_low",
+        "min": "-3",
+        "max": "2",
+        "step": "0.1",
+        "x": 564,
+        "y": 1442,
+        "wires": [
+            [
+                "aa3b6866.eabab8"
+            ]
+        ]
+    },
+    {
+        "id": "749fe356.3ce75c",
+        "type": "nibe-request",
+        "z": "960078e.e3e6d88",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 120,
+        "y": 1288,
+        "wires": [
+            [],
+            [
+                "a7d38e8d.3912f"
+            ]
+        ]
+    },
+    {
+        "id": "953c6e6b.cd62f",
+        "type": "nibe-input",
+        "z": "960078e.e3e6d88",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 120,
+        "y": 1330,
+        "wires": [
+            [
+                "a7d38e8d.3912f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a7d38e8d.3912f",
+        "type": "function",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "func": "var sensors = msg.payload.home.inside_sensors||[];\nvar output = [\"Ingen\"];\nfor (const arr of sensors) {\n    output.push(arr.name)\n}\nif(output!==undefined && output!==[]) {\n    node.send({options:output});\n    if(msg.payload.price!==undefined) {\n        node.send({payload:msg.payload.price.sensor_s2})\n    }\n    \n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 414,
+        "y": 1330,
+        "wires": [
+            [
+                "4dfc1afe.d9ca64"
+            ]
+        ]
+    },
+    {
+        "id": "4dfc1afe.d9ca64",
+        "type": "ui_dropdown",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "label": "Välj Inomhusgivare",
+        "tooltip": "",
+        "place": "Välj",
+        "group": "94305680.d32c48",
+        "order": 9,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "price/sensor",
+        "x": 587,
+        "y": 1330,
+        "wires": [
+            [
+                "aa3b6866.eabab8"
+            ]
+        ]
+    },
+    {
+        "id": "d12fa6cf.081468",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "enable_temp_s1",
+                "type": "str"
+            }
+        ],
+        "x": 1084,
+        "y": 105,
+        "wires": [
+            [
+                "33724643.85cd6a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "33724643.85cd6a",
+        "type": "ui_switch",
+        "z": "960078e.e3e6d88",
+        "name": "Aktivera Temp S1",
+        "label": "Inomhusgivare",
+        "tooltip": "",
+        "group": "1b40f24f.7b6d9e",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "price/enable_temp",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 1294,
+        "y": 133,
+        "wires": [
+            [
+                "8dd4be0a.86e46"
+            ]
+        ]
+    },
+    {
+        "id": "716b8844.bf4848",
+        "type": "ui_switch",
+        "z": "960078e.e3e6d88",
+        "name": "Aktivera Temp S2",
+        "label": "Inomhusgivare",
+        "tooltip": "",
+        "group": "94305680.d32c48",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "price/enable_temp",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 391,
+        "y": 1498,
+        "wires": [
+            [
+                "aa3b6866.eabab8"
+            ]
+        ]
+    },
+    {
+        "id": "6207d08.841933",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "enable_temp_s2",
+                "type": "str"
+            }
+        ],
+        "x": 181,
+        "y": 1470,
+        "wires": [
+            [
+                "716b8844.bf4848"
+            ],
+            []
         ]
     }
 ]
