@@ -3835,7 +3835,7 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "func": "var sensors = msg.payload.home.inside_sensors||[];\nvar output = [];\nif(sensors.length!==0) {\n    for (const arr of sensors) {\n        output.push({[arr.name]:arr})\n    }\n}\nif(output!==undefined) {\n    node.send({options:output});\n}",
+        "func": "var sensors = msg.payload.home.inside_sensors||[];\nvar output = [];\nif(sensors.length!==0) {\n    for (const arr of sensors) {\n        let name = `${arr.name} / ${arr.register}`\n        output.push({[name]:arr})\n    }\n}\nif(output!==undefined) {\n    node.send({options:output});\n}",
         "outputs": 1,
         "noerr": 0,
         "x": 854,
@@ -4164,7 +4164,7 @@
         "label": "Gradminut återställning",
         "tooltip": "",
         "group": "95b0af9c.89089",
-        "order": 3,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -4245,21 +4245,6 @@
             },
             {
                 "t": "eq",
-                "v": "Utomhustemperatur",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Gradminuter",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Tid",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
                 "v": "Avvikelse",
                 "vt": "str"
             },
@@ -4271,20 +4256,13 @@
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 6,
+        "outputs": 3,
         "x": 1058,
         "y": 371,
         "wires": [
             [
                 "5e1062d0.a33cbc"
             ],
-            [
-                "61436d60.0601e4"
-            ],
-            [
-                "5f8c6837.106e18"
-            ],
-            [],
             [
                 "cf0c0b96.d635f8"
             ],
@@ -4331,7 +4309,7 @@
         "z": "358baec9.c8b902",
         "group": "95b0af9c.89089",
         "name": "Gradminut info",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "format": "När inomhusbörvärdet är uppnått så återställs gradminuter till startvärdet<br><br>",
@@ -6102,8 +6080,8 @@
         "func": "let config = msg.config;\nlet topic = msg.topic;\nif(msg.payload==\"nibe\") {\n    //config.indoor.enable_s1 = false;\n    //config.indoor.sensor_s1 = undefined;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s1\",payload:1},{topic:\"indoor/enable\",payload:false},{enabled:true},{enabled:false}]);\n        node.send([null,{topic:\"indoor/sensor\",payload:undefined}])\n    } else {\n        node.send([null,null,{enabled:true},{enabled:false}]);\n    }\n    \n} else if(msg.payload==\"nibepi\") {\n    //config.indoor.enable_s1 = true;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s1\",payload:0},{topic:\"indoor/enable\",payload:true},{enabled:true},{enabled:true}]);\n    } else {\n        node.send([null,null,{enabled:true},{enabled:true}]);\n    }\n} else {\n    //config.indoor.enable_s1 = false;\n    //config.indoor.sensor_s1 = undefined;\n    if(topic==\"site\") {\n        node.send([{topic:\"inside_enable_s1\",payload:0},{topic:\"indoor/enable\",payload:false},{enabled:false},{enabled:false}]);\n        node.send([null,{topic:\"indoor/sensor\",payload:undefined}])\n    } else {\n        node.send([null,null,{enabled:false},{enabled:false}]);\n    }\n}",
         "outputs": 4,
         "noerr": 0,
-        "x": 729,
-        "y": 35,
+        "x": 687,
+        "y": 98,
         "wires": [
             [
                 "f9a0b44f.224b78"
@@ -6268,8 +6246,8 @@
         "func": "var timeSaved = context.get('time')||(Date.now()-1000);\nvar time = Date.now();\nif(msg.name==\"Inomhusreglering\") {\n    if(time>timeSaved) {\n        context.set('time',(time+30000));\n        return msg;\n    }\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 272,
-        "y": 1015,
+        "x": 244,
+        "y": 1078,
         "wires": [
             [
                 "b123c693.644da8"
@@ -6668,7 +6646,8 @@
         "y": 966,
         "wires": [
             [
-                "38c0fc67.e35064"
+                "38c0fc67.e35064",
+                "8b9852c2.592fa"
             ],
             []
         ]
@@ -7837,7 +7816,7 @@
         "func": "msg = {\n    enabled:msg.payload\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 773,
+        "x": 787,
         "y": 1442,
         "wires": [
             [
@@ -10791,8 +10770,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "update",
-        "x": 650,
-        "y": 3696,
+        "x": 664,
+        "y": 3668,
         "wires": [
             [
                 "ce6c9aaf.cb21b8",
@@ -10972,7 +10951,7 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "func": "if(msg.payload.code===0) {\n    let config = msg.config;\n    msg.payload = `sudo mount -o remount,rw / && cd /tmp && wget https://raw.githubusercontent.com/anerdins/nibepi-flow/${config.update.release}/flows.json && cd /tmp && mv -f flows.json ${msg.path}/flows.json`;\n    node.send({payload:\"Lddar ner nya flöden till Node-RED\"});\n    node.send([null,msg]);\n} else {\n    node.send({payload:\"Uppdatering misslyckades.\"});\n}",
+        "func": "if(msg.payload.code===0) {\n    let config = msg.config;\n    msg.payload = `sudo mount -o remount,rw / && cd /tmp && wget https://raw.githubusercontent.com/anerdins/nibepi-flow/${config.update.release}/flows.json && cd /tmp && mv -f flows.json ${msg.path}/flows.json`;\n    node.send({payload:\"Laddar ner nya flöden till Node-RED\"});\n    node.send([null,msg]);\n} else {\n    node.send({payload:\"Uppdatering misslyckades.\"});\n}",
         "outputs": 2,
         "noerr": 0,
         "x": 530,
@@ -14872,6 +14851,25 @@
                 "716b8844.bf4848"
             ],
             []
+        ]
+    },
+    {
+        "id": "8b9852c2.592fa",
+        "type": "function",
+        "z": "358baec9.c8b902",
+        "name": "Enable/Disable",
+        "func": "let enable = true;\nif(msg.config.system.pump==\"F370\" || msg.config.system.pump==\"F470\") {\n    enable = false;\n}\nmsg = {\n    enabled:enable\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 374,
+        "y": 1323,
+        "wires": [
+            [
+                "c0a999e9.8d63b8",
+                "e0751200.e40b5",
+                "46fd6a28.346e94",
+                "a56e3e6c.baf92"
+            ]
         ]
     }
 ]
