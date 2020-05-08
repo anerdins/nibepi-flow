@@ -1,4 +1,9 @@
 <p>
+<b>b11</b><br>
+Bugfix för F370,F470 vissa funktioner funkade inte pga avsaknaden av gradminuter.<br>
+Gradminutboost i automatiskt luftflöde återgår nu från boostläge.<br>
+Register 47260 används nu för att kontrollera fläktforcering, ingen virtuell RMU är nödvändig längre.<br>
+Extra givare på Inställningar visar nu vilket topic/register som namnet är knytet till.<br>
 <b>b10</b><br>
 Lade till register 47260 för F370,470,730,750. Det ger möjlighet till tillfällig fläktforcering (Jamie Walters).<br>
 Forcering av varmvatten fixar register 48132.<br>
