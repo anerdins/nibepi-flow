@@ -1,4 +1,7 @@
 <p>
+<b>b10</b><br>
+Lade till register 47260 för F370,470,730,750. Det ger möjlighet till tillfällig fläktforcering (Jamie Walters).<br>
+Forcering av varmvatten fixar register 48132.<br>
 <b>b9</b><br>
 Automatiskt luftflöde tillåter inte längre hastigheter under 100 m3/h.<br>
 Varmvattenreglering visade inte rätt graf på stoppvärde vid automatisk tillfällig lyx<br>
