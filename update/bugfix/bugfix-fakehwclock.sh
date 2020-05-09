@@ -1,10 +1,10 @@
 #!/bin/bash
 
 file1="/etc/cron.hourly/fake-hwclock"
-file2="/tmp/fake-hwclock"
+file2="/tmp/bugfix/fake-hwclock"
 if [ ! -f ${file2} ];
 then
-cd /tmp && wget "https://raw.githubusercontent.com/bebben88/NibePi/master/update/bugfix/fake-hwclock"
+cd /tmp/bugfix && wget "https://raw.githubusercontent.com/anerdins/nibepi-flow/master/update/bugfix/fake-hwclock"
 fi
 if [ -f ${file2} ];
 then
