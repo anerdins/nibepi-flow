@@ -13,3 +13,4 @@ for filename in /tmp/bugfix/bugfix-*.sh; do
     sudo bash $filename
     echo "Done with $filename"
 done
+rm -R -f /tmp/bugfix
