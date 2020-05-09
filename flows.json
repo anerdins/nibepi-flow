@@ -10770,12 +10770,12 @@
         "payload": "",
         "payloadType": "str",
         "topic": "update",
-        "x": 664,
+        "x": 650,
         "y": 3668,
         "wires": [
             [
-                "ce6c9aaf.cb21b8",
-                "2615b7fa.27ee48"
+                "2615b7fa.27ee48",
+                "1530f51e.2bcddb"
             ]
         ]
     },
@@ -10882,8 +10882,8 @@
         "z": "b7f67da0.fbf1",
         "server": "844659a2.8d8508",
         "name": "Config",
-        "x": 785,
-        "y": 3724,
+        "x": 771,
+        "y": 3717,
         "wires": [
             [
                 "b578486a.7078d8",
@@ -11905,7 +11905,7 @@
             },
             {
                 "name": "Function",
-                "value": "low_co2_limit",
+                "value": "high_co2_limit",
                 "type": "str"
             }
         ],
@@ -14870,6 +14870,27 @@
                 "46fd6a28.346e94",
                 "a56e3e6c.baf92"
             ]
+        ]
+    },
+    {
+        "id": "1530f51e.2bcddb",
+        "type": "exec",
+        "z": "b7f67da0.fbf1",
+        "command": "cd /tmp && wget https://raw.githubusercontent.com/anerdins/nibepi-flow/master/update/update-bugfixes.sh && bash /tmp/update-bugfixes.sh && rm -R -f /tmp/update-bugfixes.sh",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 1091,
+        "y": 3395,
+        "wires": [
+            [
+                "ce6c9aaf.cb21b8"
+            ],
+            [],
+            []
         ]
     }
 ]
