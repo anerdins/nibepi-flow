@@ -8384,7 +8384,7 @@
         "type": "ui_text",
         "z": "b7f67da0.fbf1",
         "group": "4a7ab836.172ae8",
-        "order": 7,
+        "order": 2,
         "width": 0,
         "height": 0,
         "name": "Nibe",
@@ -8400,7 +8400,7 @@
         "type": "ui_text",
         "z": "b7f67da0.fbf1",
         "group": "4a7ab836.172ae8",
-        "order": 7,
+        "order": 3,
         "width": 0,
         "height": 0,
         "name": "Firmware",
@@ -8649,7 +8649,7 @@
         "label": "Serieport",
         "tooltip": "",
         "group": "fe94277c.dcd118",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -8696,7 +8696,7 @@
         "z": "b7f67da0.fbf1",
         "name": "",
         "group": "fe94277c.dcd118",
-        "order": 5,
+        "order": 6,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -8858,7 +8858,7 @@
         "z": "b7f67da0.fbf1",
         "name": "",
         "group": "fe94277c.dcd118",
-        "order": 6,
+        "order": 7,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -8930,7 +8930,7 @@
         "z": "b7f67da0.fbf1",
         "name": "",
         "group": "fe94277c.dcd118",
-        "order": 7,
+        "order": 8,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -8976,7 +8976,7 @@
         "z": "b7f67da0.fbf1",
         "name": "",
         "group": "fe94277c.dcd118",
-        "order": 8,
+        "order": 9,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -10659,7 +10659,7 @@
         "z": "b7f67da0.fbf1",
         "name": "",
         "group": "d814a7db.5cdc38",
-        "order": 6,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -10758,7 +10758,7 @@
         "z": "b7f67da0.fbf1",
         "name": "",
         "group": "d814a7db.5cdc38",
-        "order": 10,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -11117,7 +11117,7 @@
         "type": "ui_text",
         "z": "b7f67da0.fbf1",
         "group": "d814a7db.5cdc38",
-        "order": 11,
+        "order": 5,
         "width": "12",
         "height": "10",
         "name": "",
@@ -11373,22 +11373,6 @@
                 "45747834.4faa58"
             ]
         ]
-    },
-    {
-        "id": "6fca90d2.2ce3",
-        "type": "ui_text",
-        "z": "b7f67da0.fbf1",
-        "group": "d814a7db.5cdc38",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "Uppdatering info",
-        "label": "Välj vilken version du vill köra med. Efter färdig uppdatering startar Node-RED om.",
-        "format": "",
-        "layout": "row-left",
-        "x": 667,
-        "y": 3549,
-        "wires": []
     },
     {
         "id": "2615b7fa.27ee48",
@@ -12158,7 +12142,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<p>Extra givare 1</p>",
+        "format": "<p>Här kan du lägga till extra givare som kan användas i funktionerna<br>\nDet går att välja givare från register i värmepumpen eller via ett MQTT Topic<br><br></p>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
@@ -12196,7 +12180,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<p>Avancerat 1</p>",
+        "format": "<p>\n    Här går det att köra enkla SSH kommandon på NibePi.<br>\n</p>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
@@ -12215,7 +12199,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<p>MQTT 1</p>",
+        "format": "<p>\n    Aktivera åtkomst till MQTT broker.<br>\n    NibePi har en inbyggd broker på 127.0.0.1:1883<br>\n    Välj annars en extern broker.<br>\n    Aktivera HA Discovery om Home Assistant automatiskt ska upptäcka aktiverade givare från NibePi<br>\n    <br>\n</p>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
@@ -12234,7 +12218,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<p>System 1</p>",
+        "format": "<p>\n    Systeminställningar, ska NibePi köras som read-only och bli mer driftsäker?<br>\n    Ska graferna i NibePi uppdateras automatiskt?<br>\n    Ska graferna sparas på SD-kortet och laddas in automatiskt vid uppstart?<br>\n</p>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
@@ -13410,7 +13394,7 @@
         "z": "b7f67da0.fbf1",
         "name": "",
         "group": "fe94277c.dcd118",
-        "order": 8,
+        "order": 10,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -14890,6 +14874,86 @@
                 "ce6c9aaf.cb21b8"
             ],
             [],
+            []
+        ]
+    },
+    {
+        "id": "9b66b6cf.5a3668",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "b7f67da0.fbf1",
+        "name": "NibePi Version",
+        "env": [
+            {
+                "name": "Name",
+                "value": "update",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "version",
+                "type": "str"
+            }
+        ],
+        "x": 1081,
+        "y": 679,
+        "wires": [
+            [
+                "8faacc60.30ba2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8faacc60.30ba2",
+        "type": "ui_text",
+        "z": "b7f67da0.fbf1",
+        "group": "4a7ab836.172ae8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "NibePi",
+        "label": "",
+        "format": "NibePi {{msg.payload}}",
+        "layout": "row-left",
+        "x": 1282,
+        "y": 679,
+        "wires": []
+    },
+    {
+        "id": "1cf2a1c0.9db11e",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "d814a7db.5cdc38",
+        "name": "Uppdatering info",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<p>\n    Välj vilken version av NibePi som uppdateringar ska visas för.\n</p>\n<p>\n    Det finns flera olika utgåvor, Stable release är den senaste tillgängliga versionen.<br>\n    Beta versionen är en test version som anses tillräckligt stabil att kunna provas.<br>\n    Snapshot versionen är experimentell och används för att prova fram lösningar på olika problem som uppstår för användare<br>\n    <br>\n    Efter färdig uppdatering startar NibePi om och Modbus kommunikationslarm kan genereras.\n    <br>\n</p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 965,
+        "y": 3465,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "16d56a4a.5b6d46",
+        "type": "ui_template",
+        "z": "b7f67da0.fbf1",
+        "group": "fe94277c.dcd118",
+        "name": "Avancerat 2",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "format": "<p>\n    Välj vilken serieport NibePi ska kommunicera med värmepumpen på.<br>\n</p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 966,
+        "y": 70,
+        "wires": [
             []
         ]
     }
