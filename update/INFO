@@ -1,4 +1,8 @@
 <p>
+b13<br>
+Mer informationstexter under Inställningar, uppdatering av bugfix modul för automatisk synkronisering av tid mot internet.<br>
+</p>
+<p>
 b12<br>
 Bugfix Automatiskt luftflöde, två sliders visade samma värde<br>
 JSON strängar skickas nu på MQTT med ändelsen {REGISTER}/json<br>
@@ -8,12 +12,4 @@ Bugfix för F370,F470 vissa funktioner funkade inte pga avsaknaden av gradminute
 Gradminutboost i automatiskt luftflöde återgår nu från boostläge.<br>
 Register 47260 används nu för att kontrollera fläktforcering, ingen virtuell RMU är nödvändig längre.<br>
 Extra givare på Inställningar visar nu vilket topic/register som namnet är knytet till.<br>
-<b>b10</b><br>
-Lade till register 47260 för F370,470,730,750. Det ger möjlighet till tillfällig fläktforcering (Jamie Walters).<br>
-Forcering av varmvatten fixar register 48132.<br>
-<b>b9</b><br>
-Automatiskt luftflöde tillåter inte längre hastigheter under 100 m3/h.<br>
-Varmvattenreglering visade inte rätt graf på stoppvärde vid automatisk tillfällig lyx<br>
-Elprisreglering stannar inte längre kompressorn vid väldigt högt/högt pris, utan återställer gradminuter till nästan stopp.<br>
-<br>
 </p>
