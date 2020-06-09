@@ -1,4 +1,9 @@
 <p>
+b14<br>
+Löpande arbete på informationstexter och förbättringar i interfacet.<br>
+Lagt till nyfunna register 43110, 43111 (Heating allowed och Cooling allowed)<br>
+</p>
+<p>
 b13<br>
 Mer informationstexter under Inställningar, uppdatering av bugfix modul för automatisk synkronisering av tid mot internet.<br>
 Version av NibePi visas nu under Inställningar -> Information<br>
