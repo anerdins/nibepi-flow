@@ -138,7 +138,7 @@
     {
         "id": "f947788.96a2488",
         "type": "subflow",
-        "name": "Update",
+        "name": "Update labels",
         "info": "",
         "category": "",
         "in": [
@@ -351,7 +351,7 @@
         "name": "Graf S1",
         "tab": "ad3904c7.ceae48",
         "order": 5,
-        "disp": true,
+        "disp": false,
         "width": "12",
         "collapse": false
     },
@@ -416,18 +416,18 @@
         "name": "Inställningar Varmvatten",
         "tab": "ad3904c7.ceae48",
         "order": 4,
-        "disp": true,
+        "disp": false,
         "width": "12",
         "collapse": false
     },
     {
         "id": "f481a5f0.f9f1c8",
         "type": "ui_group",
-        "z": 0,
+        "z": "",
         "name": "Inställningar",
         "tab": "ad3904c7.ceae48",
         "order": 2,
-        "disp": true,
+        "disp": false,
         "width": "12",
         "collapse": false
     },
@@ -719,7 +719,7 @@
         "name": "Elprisreglering S1",
         "tab": "ad3904c7.ceae48",
         "order": 6,
-        "disp": true,
+        "disp": false,
         "width": "12",
         "collapse": false
     },
@@ -730,7 +730,7 @@
         "name": "Elprisreglering S2",
         "tab": "ad3904c7.ceae48",
         "order": 7,
-        "disp": true,
+        "disp": false,
         "width": "12",
         "collapse": false
     },
@@ -741,7 +741,7 @@
         "name": "Information",
         "tab": "ad3904c7.ceae48",
         "order": 1,
-        "disp": true,
+        "disp": false,
         "width": "12",
         "collapse": false
     },
@@ -901,7 +901,7 @@
         "z": "",
         "name": "Graf S2",
         "tab": "ad3904c7.ceae48",
-        "disp": true,
+        "disp": false,
         "width": "12",
         "collapse": false
     },
@@ -1433,7 +1433,7 @@
         "type": "function",
         "z": "c191a5d.5d76258",
         "name": "",
-        "func": "    let topic = env.get(\"Function\");\n    let language = \"SE\";\n    if(msg.payload.system!==undefined && msg.payload.system.language!==undefined) {\n        language = msg.payload.system.language;\n    }\n    let pluginName = env.get(\"Name\");\n    let translate = global.get('translate');\n    let info = topic;\n    if(translate!==undefined && translate.dash!==undefined && translate.dash[topic]!==undefined && translate.dash[topic][language]!==undefined) {\n        info = translate.dash[topic][language]\n    }\n\n    if(topic!==undefined) {\n        if(msg.payload[pluginName]===undefined) {\n            msg.payload[pluginName] = {};\n        }\n        if(msg.payload[pluginName][topic]!==undefined) {\n            node.send({payload:msg.payload[pluginName][topic],topic:\"Start\"});\n            if(info!==topic) {\n            node.send({label:info});\n                \n            }\n            node.send([null,{topic:\"config\",payload:msg.payload}]);\n        }\n        if(pluginName==\"info\") {\n            node.send({label:info});\n        }\n    }",
+        "func": "    let topic = env.get(\"Function\");\n    //let language = \"SE\";\n    //if(msg.payload.system!==undefined && msg.payload.system.language!==undefined) {\n    //    language = msg.payload.system.language;\n    //}\n    let pluginName = env.get(\"Name\");\n    //let translate = global.get('translate');\n    //let info = topic;\n    //if(translate!==undefined && translate.dash!==undefined && translate.dash[topic]!==undefined && translate.dash[topic][language]!==undefined) {\n    //    info = translate.dash[topic][language]\n    //}\n\n    if(topic!==undefined) {\n        if(msg.payload[pluginName]===undefined) {\n            msg.payload[pluginName] = {};\n        }\n        if(msg.payload[pluginName][topic]!==undefined) {\n            node.send({payload:msg.payload[pluginName][topic],topic:\"Start\"});\n            //if(info!==topic) {\n            //node.send({label:info});    \n            //}\n            node.send([null,{topic:\"config\",payload:msg.payload}]);\n        }\n        //if(pluginName==\"info\") {\n        //    node.send({label:info});\n        //}\n    }",
         "outputs": 2,
         "noerr": 0,
         "x": 330,
@@ -1465,7 +1465,8 @@
         "wires": [
             [
                 "1d1c593e.bdd0c7",
-                "b4a9d18b.4c69a"
+                "b4a9d18b.4c69a",
+                "6bc64440.7be37c"
             ],
             []
         ]
@@ -2100,7 +2101,7 @@
         "y": 525,
         "wires": [
             [
-                "c559c6e7.c4b388"
+                "24df5e7e.26cf62"
             ],
             []
         ]
@@ -2126,7 +2127,7 @@
         "y": 574,
         "wires": [
             [
-                "3698a0bc.b86fc"
+                "f0ecc454.9aff08"
             ],
             []
         ]
@@ -2980,8 +2981,7 @@
         "y": 735,
         "wires": [
             [
-                "6b8dea99.d85884",
-                "fcb52823.5a2a88"
+                "e0074a53.36d978"
             ],
             []
         ]
@@ -3032,7 +3032,7 @@
         "y": 819,
         "wires": [
             [
-                "3976a9c5.383436"
+                "7fef39f9.6ecc28"
             ],
             []
         ]
@@ -4328,13 +4328,13 @@
         "name": "",
         "system": "s1",
         "adjust": "0",
-        "x": 629,
-        "y": 175,
+        "x": 790,
+        "y": 245,
         "wires": [
             [
                 "63612ac7.366764",
                 "9179d381.0be36",
-                "91d8769c.f63f68"
+                "d00a5f55.781ef"
             ],
             [
                 "63612ac7.366764"
@@ -4349,7 +4349,7 @@
         "label": "NibePis Elprisreglering",
         "tooltip": "",
         "group": "f481a5f0.f9f1c8",
-        "order": 3,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -4364,8 +4364,8 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 352,
-        "y": 910,
+        "x": 527,
+        "y": 959,
         "wires": [
             [
                 "321fde4.84f6d22",
@@ -4378,12 +4378,12 @@
         "id": "eafa7076.636ee",
         "type": "ui_dropdown",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Väldigt högt pris",
-        "tooltip": "Varmvattenproduktion vid väldigt högt pris",
+        "name": "HW Very high price",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "place": "Välj",
         "group": "2e9c7d75.ee6312",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -4406,7 +4406,7 @@
         ],
         "payload": "",
         "topic": "hotwater_very_expensive",
-        "x": 822,
+        "x": 1238,
         "y": 1099,
         "wires": [
             [
@@ -4418,49 +4418,9 @@
         "id": "4a4b467b.cb3d98",
         "type": "ui_dropdown",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Normalt pris",
-        "tooltip": "Varmvattenproduktion vid normalt pris",
-        "place": "Välj",
-        "group": "2e9c7d75.ee6312",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "options": [
-            {
-                "label": "Ekonomi (0)",
-                "value": "0",
-                "type": "str"
-            },
-            {
-                "label": "Normal (1)",
-                "value": "1",
-                "type": "str"
-            },
-            {
-                "label": "Lyx (2)",
-                "value": "2",
-                "type": "str"
-            }
-        ],
-        "payload": "",
-        "topic": "hotwater_normal",
-        "x": 812,
-        "y": 1190,
-        "wires": [
-            [
-                "58a6446.c8ceebc"
-            ]
-        ]
-    },
-    {
-        "id": "64b8af88.aedae",
-        "type": "ui_dropdown",
-        "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Lågt pris",
-        "tooltip": "Varmvattenproduktion vid lågt pris",
+        "name": "HW Price normal",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "place": "Välj",
         "group": "2e9c7d75.ee6312",
         "order": 5,
@@ -4485,22 +4445,22 @@
             }
         ],
         "payload": "",
-        "topic": "hotwater_cheap",
-        "x": 802,
-        "y": 1239,
+        "topic": "hotwater_normal",
+        "x": 1238,
+        "y": 1190,
         "wires": [
             [
-                "5ea44899.ef5278"
+                "58a6446.c8ceebc"
             ]
         ]
     },
     {
-        "id": "3b93422b.85e62e",
+        "id": "64b8af88.aedae",
         "type": "ui_dropdown",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Väldigt lågt pris",
-        "tooltip": "Varmvattenproduktion vid väldigtlågt pris",
+        "name": "HW Price low",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "place": "Välj",
         "group": "2e9c7d75.ee6312",
         "order": 6,
@@ -4525,8 +4485,48 @@
             }
         ],
         "payload": "",
+        "topic": "hotwater_cheap",
+        "x": 1228,
+        "y": 1239,
+        "wires": [
+            [
+                "5ea44899.ef5278"
+            ]
+        ]
+    },
+    {
+        "id": "3b93422b.85e62e",
+        "type": "ui_dropdown",
+        "z": "960078e.e3e6d88",
+        "name": "HW Very low price",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "place": "Välj",
+        "group": "2e9c7d75.ee6312",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "options": [
+            {
+                "label": "Ekonomi (0)",
+                "value": "0",
+                "type": "str"
+            },
+            {
+                "label": "Normal (1)",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "label": "Lyx (2)",
+                "value": "2",
+                "type": "str"
+            }
+        ],
+        "payload": "",
         "topic": "hotwater_very_cheap",
-        "x": 822,
+        "x": 1238,
         "y": 1288,
         "wires": [
             [
@@ -4538,11 +4538,11 @@
         "id": "e0b7517f.586f3",
         "type": "ui_switch",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Varmvattenreglering",
-        "tooltip": "Vill du att varmvattnet ska reglera sig efter elpriset enligt nedan",
+        "name": "Varmvattenreglering",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "group": "2e9c7d75.ee6312",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -4557,8 +4557,8 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 824,
-        "y": 1393,
+        "x": 1409,
+        "y": 1400,
         "wires": [
             [
                 "d67cd90b.4e8bd8"
@@ -4573,15 +4573,15 @@
         "label": "Tibber Token",
         "tooltip": "",
         "group": "f481a5f0.f9f1c8",
-        "order": 6,
+        "order": 7,
         "width": 0,
         "height": 0,
         "passthru": false,
         "mode": "text",
         "delay": "0",
         "topic": "token",
-        "x": 987,
-        "y": 791,
+        "x": 1281,
+        "y": 840,
         "wires": [
             [
                 "73a31dd2.de8774"
@@ -4636,8 +4636,8 @@
         "z": "960078e.e3e6d88",
         "name": "",
         "events": "all",
-        "x": 193,
-        "y": 847,
+        "x": 95,
+        "y": 854,
         "wires": [
             [
                 "912b5ed8.d07cf"
@@ -4652,8 +4652,8 @@
         "func": "var timeSaved = context.get('time')||(Date.now()-1000);\nvar time = Date.now();\nif(msg.name==\"Elprisreglering\") {\n    if(time>timeSaved) {\n        context.set('time',(time+60000));\n        return msg;\n    }\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 353,
-        "y": 847,
+        "x": 276,
+        "y": 854,
         "wires": [
             [
                 "1e4f140c.04c97c",
@@ -4668,14 +4668,14 @@
         "z": "960078e.e3e6d88",
         "server": "844659a2.8d8508",
         "name": "price_enable",
-        "x": 546,
-        "y": 847,
+        "x": 469,
+        "y": 854,
         "wires": [
             [],
             [
-                "54bb4384.e1936c",
                 "9ff28997.48cac8",
-                "d383b3f8.c2437"
+                "d383b3f8.c2437",
+                "b1268c57.e21f8"
             ]
         ]
     },
@@ -4687,7 +4687,7 @@
         "label": "Nibes Elprisreglering",
         "tooltip": "",
         "group": "f481a5f0.f9f1c8",
-        "order": 2,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -4702,8 +4702,8 @@
         "offvalueType": "num",
         "officon": "",
         "offcolor": "",
-        "x": 758,
-        "y": 847,
+        "x": 527,
+        "y": 917,
         "wires": [
             []
         ]
@@ -4729,7 +4729,7 @@
         "y": 910,
         "wires": [
             [
-                "3925bdab.14e9a2"
+                "ca69923.4d49f7"
             ],
             [
                 "217bd6b8.16c73a"
@@ -4745,7 +4745,7 @@
         "tooltip": "Välj vart elprisuppgifter ska hämtas från",
         "place": "Välj datakälla",
         "group": "f481a5f0.f9f1c8",
-        "order": 4,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -4798,16 +4798,16 @@
         "width": 12,
         "height": 1,
         "passthru": false,
-        "label": "Uppdatera",
-        "tooltip": "Begär ny data och uppdatera med nya värden.",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "color": "",
         "bgcolor": "",
         "icon": "",
         "payload": "true",
         "payloadType": "bool",
         "topic": "update",
-        "x": 367,
-        "y": 56,
+        "x": 619,
+        "y": 49,
         "wires": [
             [
                 "8dd4be0a.86e46"
@@ -4819,10 +4819,10 @@
         "type": "ui_switch",
         "z": "960078e.e3e6d88",
         "name": "Aktivera S1",
-        "label": "Aktivera",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "1b40f24f.7b6d9e",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -4837,8 +4837,8 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 322,
-        "y": 98,
+        "x": 518,
+        "y": 112,
         "wires": [
             [
                 "8dd4be0a.86e46"
@@ -4862,11 +4862,11 @@
                 "type": "str"
             }
         ],
-        "x": 132,
-        "y": 70,
+        "x": 104,
+        "y": 98,
         "wires": [
             [
-                "68d91eb2.2d481"
+                "4b74034e.97b88c"
             ],
             []
         ]
@@ -4892,7 +4892,7 @@
         "y": 777,
         "wires": [
             [
-                "4849d6b9.2a3868"
+                "ebb4c96d.141e78"
             ],
             []
         ]
@@ -4902,10 +4902,10 @@
         "type": "ui_switch",
         "z": "960078e.e3e6d88",
         "name": "Aktivera S2",
-        "label": "Aktivera",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "94305680.d32c48",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -4920,7 +4920,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 301,
+        "x": 490,
         "y": 777,
         "wires": [
             [
@@ -4945,8 +4945,8 @@
                 "type": "str"
             }
         ],
-        "x": 1336,
-        "y": 791,
+        "x": 1231,
+        "y": 952,
         "wires": [
             [
                 "5a685251.39ba2c"
@@ -4962,8 +4962,8 @@
         "name": "",
         "system": "s2",
         "adjust": "0",
-        "x": 601,
-        "y": 756,
+        "x": 790,
+        "y": 777,
         "wires": [
             [
                 "ef64204.7fdb6e",
@@ -5050,8 +5050,8 @@
         "func": "if(msg.payload!==\"\" && msg.payload!==undefined) {\n    msg.payload = \"Token inlagd\";\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 819,
-        "y": 791,
+        "x": 1064,
+        "y": 840,
         "wires": [
             [
                 "b18004d5.977448"
@@ -5075,8 +5075,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1162,
-        "y": 791,
+        "x": 1065,
+        "y": 952,
         "wires": [
             [
                 "360796e8.919dfa"
@@ -5114,11 +5114,11 @@
                 "type": "str"
             }
         ],
-        "x": 1035,
+        "x": 839,
         "y": 1099,
         "wires": [
             [
-                "eafa7076.636ee"
+                "3acfc69e.2e5b7a"
             ],
             []
         ]
@@ -5127,12 +5127,12 @@
         "id": "9e47d1c5.a1f6a",
         "type": "ui_dropdown",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Högt pris",
-        "tooltip": "Varmvattenproduktion vid högt pris",
+        "name": "HW Price high",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "place": "Välj",
         "group": "2e9c7d75.ee6312",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -5155,7 +5155,7 @@
         ],
         "payload": "",
         "topic": "hotwater_expensive",
-        "x": 802,
+        "x": 1228,
         "y": 1141,
         "wires": [
             [
@@ -5180,11 +5180,11 @@
                 "type": "str"
             }
         ],
-        "x": 986,
+        "x": 839,
         "y": 1141,
         "wires": [
             [
-                "9e47d1c5.a1f6a"
+                "8f047f2c.17ca2"
             ],
             []
         ]
@@ -5206,11 +5206,11 @@
                 "type": "str"
             }
         ],
-        "x": 1007,
+        "x": 839,
         "y": 1190,
         "wires": [
             [
-                "4a4b467b.cb3d98"
+                "4d894d01.bf0bd4"
             ],
             []
         ]
@@ -5232,11 +5232,11 @@
                 "type": "str"
             }
         ],
-        "x": 1007,
+        "x": 839,
         "y": 1239,
         "wires": [
             [
-                "64b8af88.aedae"
+                "a5849259.9e6af"
             ],
             []
         ]
@@ -5258,11 +5258,11 @@
                 "type": "str"
             }
         ],
-        "x": 1021,
-        "y": 1288,
+        "x": 839,
+        "y": 1281,
         "wires": [
             [
-                "3b93422b.85e62e"
+                "4d67c25.01caa3c"
             ],
             []
         ]
@@ -5284,11 +5284,11 @@
                 "type": "str"
             }
         ],
-        "x": 1042,
-        "y": 1393,
+        "x": 993,
+        "y": 1400,
         "wires": [
             [
-                "e0b7517f.586f3"
+                "6d8f9864.7c5bd8"
             ],
             []
         ]
@@ -5297,11 +5297,11 @@
         "id": "40c00df0.72a6e4",
         "type": "ui_slider",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Högt pris",
-        "tooltip": "Hur mycket ska kurvjusteringen vara när det är högt pris?",
+        "name": "S1 High price",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "group": "1b40f24f.7b6d9e",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -5310,8 +5310,8 @@
         "min": "-10",
         "max": "0",
         "step": 1,
-        "x": 312,
-        "y": 203,
+        "x": 549,
+        "y": 224,
         "wires": [
             [
                 "8dd4be0a.86e46"
@@ -5322,11 +5322,11 @@
         "id": "b30b63c9.c96a9",
         "type": "ui_slider",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Lågt pris",
-        "tooltip": "Hur mycket ska kurvjusteringen vara när det är lågt pris?",
+        "name": "S1 Low price",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "group": "1b40f24f.7b6d9e",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -5335,8 +5335,8 @@
         "min": "0",
         "max": 10,
         "step": 1,
-        "x": 312,
-        "y": 252,
+        "x": 539,
+        "y": 273,
         "wires": [
             [
                 "8dd4be0a.86e46"
@@ -5347,11 +5347,11 @@
         "id": "b3a09f2.d70226",
         "type": "ui_slider",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Väldigt lågt pris",
-        "tooltip": "Hur mycket ska kurvjusteringen vara när det är väldigt lågt pris?",
+        "name": "S1 Very low price",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "group": "1b40f24f.7b6d9e",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -5360,8 +5360,8 @@
         "min": "0",
         "max": 10,
         "step": 1,
-        "x": 332,
-        "y": 301,
+        "x": 559,
+        "y": 322,
         "wires": [
             [
                 "8dd4be0a.86e46"
@@ -5385,11 +5385,11 @@
                 "type": "str"
             }
         ],
-        "x": 132,
-        "y": 203,
+        "x": 118,
+        "y": 231,
         "wires": [
             [
-                "40c00df0.72a6e4"
+                "2bf75acd.6e0c56"
             ],
             []
         ]
@@ -5398,11 +5398,11 @@
         "id": "c30269ad.b26128",
         "type": "ui_slider",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Väldigt högt pris",
-        "tooltip": "Hur mycket ska kurvjusteringen vara när det är väldigt högt pris?",
+        "name": "S1 Very high price",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "group": "1b40f24f.7b6d9e",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -5411,8 +5411,8 @@
         "min": "-10",
         "max": "0",
         "step": 1,
-        "x": 332,
-        "y": 154,
+        "x": 559,
+        "y": 175,
         "wires": [
             [
                 "8dd4be0a.86e46"
@@ -5436,11 +5436,11 @@
                 "type": "str"
             }
         ],
-        "x": 132,
-        "y": 154,
+        "x": 118,
+        "y": 182,
         "wires": [
             [
-                "c30269ad.b26128"
+                "441f61ff.6102a"
             ],
             []
         ]
@@ -5462,11 +5462,11 @@
                 "type": "str"
             }
         ],
-        "x": 132,
-        "y": 252,
+        "x": 118,
+        "y": 280,
         "wires": [
             [
-                "b30b63c9.c96a9"
+                "505cc480.19349c"
             ],
             []
         ]
@@ -5488,11 +5488,11 @@
                 "type": "str"
             }
         ],
-        "x": 132,
-        "y": 301,
+        "x": 118,
+        "y": 329,
         "wires": [
             [
-                "b3a09f2.d70226"
+                "cf92a1d0.7c1e4"
             ],
             []
         ]
@@ -5502,15 +5502,15 @@
         "type": "ui_text",
         "z": "960078e.e3e6d88",
         "group": "e6946a7.5e1e698",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
-        "name": "",
-        "label": "Nuvarande Elpris",
-        "format": "{{msg.payload}} öre",
+        "name": "Nuvarande elpris",
+        "label": "{{msg.label}}",
+        "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 1028,
-        "y": 161,
+        "x": 1119,
+        "y": 203,
         "wires": []
     },
     {
@@ -5518,15 +5518,15 @@
         "type": "ui_text",
         "z": "960078e.e3e6d88",
         "group": "e6946a7.5e1e698",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
-        "name": "",
-        "label": "Nuvarande Elprisnivå",
+        "name": "Nuvarande Elprisnivå",
+        "label": "{{msg.label}}",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 1038,
-        "y": 203,
+        "x": 1255,
+        "y": 245,
         "wires": []
     },
     {
@@ -5534,17 +5534,17 @@
         "type": "function",
         "z": "960078e.e3e6d88",
         "name": "",
-        "func": "let level = {\n    UNKNOWN: \"Okänt\",\n    VERY_CHEAP: \"Väldigt lågt pris\",\n    CHEAP: \"Lågt pris\",\n    NORMAL:\"Normalt pris\",\n    EXPENSIVE: \"Högt pris\",\n    VERY_EXPENSIVE: \"Väldigt högt pris\"\n}\nif(msg.topic==\"Nuvarande Elpris\") {\n    node.send([{payload:msg.payload}])\n} else if(msg.topic==\"Nuvarande Elprisnivå\") {\n    node.send([null,{payload:level[msg.payload]}])\n}",
+        "func": "let config = msg.config;\nlet lang = config.system.language;\nif(lang===undefined) lang = \"SE\";\nlet translate = global.get('translate');\nif(translate===undefined) return;\nlet level = {\n    UNKNOWN: translate.dash.unknown[lang],\n    VERY_CHEAP: translate.dash.price_very_low[lang],\n    CHEAP: translate.dash.price_low[lang],\n    NORMAL:translate.dash.price_normal[lang],\n    EXPENSIVE: translate.dash.price_high[lang],\n    VERY_EXPENSIVE: translate.dash.price_very_high[lang]\n}\nif(msg.topic==\"Nuvarande Elpris\") {\n    node.send([{payload:`${msg.payload} ${translate.dash.currency[lang]}`}])\n} else if(msg.topic==\"Nuvarande Elprisnivå\") {\n    node.send([null,{payload:level[msg.payload]}])\n}",
         "outputs": 2,
         "noerr": 0,
-        "x": 848,
-        "y": 175,
+        "x": 841,
+        "y": 168,
         "wires": [
             [
-                "523b61b1.02fb1"
+                "c2fe36ce.9b31c8"
             ],
             [
-                "800a0005.55ffc"
+                "b5708131.42abc"
             ]
         ]
     },
@@ -5556,17 +5556,17 @@
         "func": "let source = msg.payload.price.source;\nif(source==\"tibber\") {\n    msg = {\n    enabled:true\n};\nreturn msg;\n} else if(source==\"nibe\") {\n    msg = {\n    enabled:false\n};\nreturn msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 569,
-        "y": 1001,
+        "x": 660,
+        "y": 1050,
         "wires": [
             [
-                "eafa7076.636ee",
                 "3b93422b.85e62e",
-                "c30269ad.b26128",
-                "b3a09f2.d70226",
                 "b18004d5.977448",
-                "d07cb165.8756a",
-                "b0a104eb.836b28"
+                "441f61ff.6102a",
+                "cf92a1d0.7c1e4",
+                "fb86684e.674ae8",
+                "18e6dbef.c26bc4",
+                "3acfc69e.2e5b7a"
             ]
         ]
     },
@@ -5578,8 +5578,8 @@
         "func": "if(msg.enabled!==undefined) {\n    let hide = {\n        \"group\":\n            {\"hide\":\n                [\"Elprisreglering_Graf_S2\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n} else {\n    let hide = {\n        \"group\":\n            {\"show\":\n                [\"Elprisreglering_Graf_S2\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n}",
         "outputs": 2,
         "noerr": 0,
-        "x": 822,
-        "y": 728,
+        "x": 1011,
+        "y": 749,
         "wires": [
             [],
             [
@@ -5593,8 +5593,8 @@
         "z": "960078e.e3e6d88",
         "name": "Disable Group S2",
         "events": "all",
-        "x": 1035,
-        "y": 728,
+        "x": 1224,
+        "y": 749,
         "wires": [
             []
         ]
@@ -5607,28 +5607,28 @@
         "func": "let source = msg.payload.price.enable;\nif(source===true) {\n    msg = {\n    enabled:true\n};\nreturn msg;\n} else if(source===false) {\n    msg = {\n    enabled:false\n};\n\nreturn msg;\n}\n",
         "outputs": 2,
         "noerr": 0,
-        "x": 1052,
-        "y": 567,
+        "x": 1241,
+        "y": 588,
         "wires": [
             [
-                "eafa7076.636ee",
-                "9e47d1c5.a1f6a",
-                "4a4b467b.cb3d98",
-                "64b8af88.aedae",
-                "3b93422b.85e62e",
-                "e0b7517f.586f3",
                 "2ec7e694.30d2ea",
                 "b18004d5.977448",
-                "4849d6b9.2a3868",
-                "b30b63c9.c96a9",
-                "40c00df0.72a6e4",
-                "c30269ad.b26128",
-                "68d91eb2.2d481",
-                "d07cb165.8756a",
-                "1bb82fc2.e8b78",
-                "de834f9d.9b477",
-                "b0a104eb.836b28",
-                "b3a09f2.d70226"
+                "8f047f2c.17ca2",
+                "4d894d01.bf0bd4",
+                "a5849259.9e6af",
+                "4d67c25.01caa3c",
+                "441f61ff.6102a",
+                "2bf75acd.6e0c56",
+                "505cc480.19349c",
+                "cf92a1d0.7c1e4",
+                "fb86684e.674ae8",
+                "49bcf77d.cd5d98",
+                "a637f228.74303",
+                "18e6dbef.c26bc4",
+                "ebb4c96d.141e78",
+                "4b74034e.97b88c",
+                "3acfc69e.2e5b7a",
+                "6d8f9864.7c5bd8"
             ],
             [
                 "8dd4be0a.86e46",
@@ -5640,11 +5640,11 @@
         "id": "1bb82fc2.e8b78",
         "type": "ui_slider",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Högt pris",
-        "tooltip": "Hur mycket ska kurvjusteringen vara när det är högt pris?",
+        "name": "S2 High price",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "group": "94305680.d32c48",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -5653,7 +5653,7 @@
         "min": "-10",
         "max": "0",
         "step": 1,
-        "x": 291,
+        "x": 493,
         "y": 609,
         "wires": [
             [
@@ -5665,11 +5665,11 @@
         "id": "de834f9d.9b477",
         "type": "ui_slider",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Lågt pris",
-        "tooltip": "Hur mycket ska kurvjusteringen vara när det är lågt pris?",
+        "name": "S2 Low price",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "group": "94305680.d32c48",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -5678,7 +5678,7 @@
         "min": "0",
         "max": 10,
         "step": 1,
-        "x": 291,
+        "x": 483,
         "y": 658,
         "wires": [
             [
@@ -5690,11 +5690,11 @@
         "id": "b0a104eb.836b28",
         "type": "ui_slider",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Väldigt lågt pris",
-        "tooltip": "Hur mycket ska kurvjusteringen vara när det är väldigt lågt pris?",
+        "name": "S2 Very low price",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "group": "94305680.d32c48",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -5703,8 +5703,8 @@
         "min": "0",
         "max": 10,
         "step": 1,
-        "x": 311,
-        "y": 707,
+        "x": 503,
+        "y": 714,
         "wires": [
             [
                 "aa3b6866.eabab8"
@@ -5732,7 +5732,7 @@
         "y": 609,
         "wires": [
             [
-                "1bb82fc2.e8b78"
+                "49bcf77d.cd5d98"
             ],
             []
         ]
@@ -5741,11 +5741,11 @@
         "id": "d07cb165.8756a",
         "type": "ui_slider",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Väldigt högt pris",
-        "tooltip": "Hur mycket ska kurvjusteringen vara när det är väldigt högt pris?",
+        "name": "S2 Very high price",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "group": "94305680.d32c48",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -5754,7 +5754,7 @@
         "min": "-10",
         "max": "0",
         "step": 1,
-        "x": 311,
+        "x": 503,
         "y": 560,
         "wires": [
             [
@@ -5783,7 +5783,7 @@
         "y": 560,
         "wires": [
             [
-                "d07cb165.8756a"
+                "fb86684e.674ae8"
             ],
             []
         ]
@@ -5809,7 +5809,7 @@
         "y": 658,
         "wires": [
             [
-                "de834f9d.9b477"
+                "a637f228.74303"
             ],
             []
         ]
@@ -5835,7 +5835,7 @@
         "y": 707,
         "wires": [
             [
-                "b0a104eb.836b28"
+                "18e6dbef.c26bc4"
             ],
             []
         ]
@@ -5845,15 +5845,15 @@
         "type": "ui_text",
         "z": "960078e.e3e6d88",
         "group": "f481a5f0.f9f1c8",
-        "order": 1,
-        "width": 0,
-        "height": 0,
+        "order": 2,
+        "width": "12",
+        "height": "2",
         "name": "SmartPrice Info",
-        "label": "",
-        "format": "OBS. För att kunna använda prisnivåer från Nibe Uplink måste Nibes SmartPrice vara aktiverat i värmepumpen manuellt under meny 4.1.6 Smart Price Adaption.",
+        "label": "{{msg.label}}",
+        "format": "",
         "layout": "row-spread",
-        "x": 843,
-        "y": 637,
+        "x": 1487,
+        "y": 658,
         "wires": []
     },
     {
@@ -5864,12 +5864,11 @@
         "func": "let source = msg.payload;\nif(source==\"30\") {\n    msg = {\n    enabled:true\n};\nreturn msg;\n} else if(source==\"10\") {\n    msg = {\n    enabled:false\n};\nreturn msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 603,
-        "y": 665,
+        "x": 792,
+        "y": 686,
         "wires": [
             [
-                "9958a8f1.7abba8",
-                "65bf37a8.e18928"
+                "f3502562.d64188"
             ]
         ]
     },
@@ -6536,7 +6535,7 @@
         "y": 399,
         "wires": [
             [
-                "9414a4e7.3d88c8"
+                "a4e3fd6e.1230d"
             ],
             []
         ]
@@ -6967,13 +6966,13 @@
         "type": "debug",
         "z": "b7f67da0.fbf1",
         "name": "Status",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": true,
         "complete": "payload",
         "targetType": "msg",
-        "x": 540,
+        "x": 498,
         "y": 70,
         "wires": []
     },
@@ -7020,8 +7019,8 @@
         "id": "22798341.63387c",
         "type": "ui_switch",
         "z": "b7f67da0.fbf1",
-        "name": "",
-        "label": "Loggning på",
+        "name": "Loggning på",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "97526682.5406d8",
         "order": 2,
@@ -7039,7 +7038,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 300,
+        "x": 413,
         "y": 2226,
         "wires": [
             [
@@ -7064,12 +7063,12 @@
                 "type": "str"
             }
         ],
-        "x": 524,
+        "x": 643,
         "y": 2226,
         "wires": [
             [
-                "22798341.63387c",
-                "d464fe8e.e8ef7"
+                "d464fe8e.e8ef7",
+                "7c2f5c37.52f8d4"
             ],
             []
         ]
@@ -7078,8 +7077,8 @@
         "id": "df3307ec.65d498",
         "type": "ui_switch",
         "z": "b7f67da0.fbf1",
-        "name": "",
-        "label": "INFO",
+        "name": "INFO",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "97526682.5406d8",
         "order": 3,
@@ -7097,7 +7096,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 281,
+        "x": 394,
         "y": 2275,
         "wires": [
             [
@@ -7122,11 +7121,11 @@
                 "type": "str"
             }
         ],
-        "x": 525,
+        "x": 643,
         "y": 2275,
         "wires": [
             [
-                "df3307ec.65d498"
+                "c5443635.dd1e68"
             ],
             []
         ]
@@ -7139,16 +7138,16 @@
         "func": "if(msg.topic==\"Start\") {\n    msg = {\n    enabled:msg.payload\n};\nreturn msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 759,
+        "x": 1046,
         "y": 2226,
         "wires": [
             [
-                "df3307ec.65d498",
-                "c548dfa7.e7696",
-                "4b9a995c.0f11b8",
-                "3b259789.2e49a8",
-                "d78784c9.e2bbc8",
-                "b819b51e.7e2888",
+                "c5443635.dd1e68",
+                "23cf2be0.ec9df4",
+                "fc61aa11.3533c8",
+                "4d212125.d27d5",
+                "43f513e6.278bac",
+                "10a1363d.d965ca",
                 "5b3bd5b.489a32c"
             ]
         ]
@@ -7157,8 +7156,8 @@
         "id": "c548dfa7.e7696",
         "type": "ui_switch",
         "z": "b7f67da0.fbf1",
-        "name": "",
-        "label": "ERROR",
+        "name": "ERROR",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "97526682.5406d8",
         "order": 4,
@@ -7176,7 +7175,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 291,
+        "x": 404,
         "y": 2324,
         "wires": [
             [
@@ -7201,7 +7200,7 @@
                 "type": "str"
             }
         ],
-        "x": 525,
+        "x": 643,
         "y": 2324,
         "wires": [
             [
@@ -7214,8 +7213,8 @@
         "id": "4b9a995c.0f11b8",
         "type": "ui_switch",
         "z": "b7f67da0.fbf1",
-        "name": "",
-        "label": "DEBUG",
+        "name": "DEBUG",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "97526682.5406d8",
         "order": 5,
@@ -7233,7 +7232,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 291,
+        "x": 404,
         "y": 2373,
         "wires": [
             [
@@ -7258,11 +7257,11 @@
                 "type": "str"
             }
         ],
-        "x": 525,
+        "x": 643,
         "y": 2373,
         "wires": [
             [
-                "4b9a995c.0f11b8"
+                "fc61aa11.3533c8"
             ],
             []
         ]
@@ -7271,8 +7270,8 @@
         "id": "3b259789.2e49a8",
         "type": "ui_switch",
         "z": "b7f67da0.fbf1",
-        "name": "",
-        "label": "CORE",
+        "name": "CORE",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "97526682.5406d8",
         "order": 6,
@@ -7290,7 +7289,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 281,
+        "x": 394,
         "y": 2422,
         "wires": [
             [
@@ -7315,11 +7314,11 @@
                 "type": "str"
             }
         ],
-        "x": 525,
+        "x": 643,
         "y": 2422,
         "wires": [
             [
-                "3b259789.2e49a8"
+                "4d212125.d27d5"
             ],
             []
         ]
@@ -7361,10 +7360,10 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "Enable/Disable",
-        "func": "if(msg.payload===true) {\n    node.send({enabled:false});\n} else {\n    node.send({enabled:true});\n}",
+        "func": "if(msg.topic==\"Start\") {\n    if(msg.payload===true) {\n        node.send({enabled:false});\n    } else {\n        node.send({enabled:true});\n    }\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 766,
+        "x": 647,
         "y": 231,
         "wires": [
             [
@@ -7372,7 +7371,8 @@
                 "e15ebfa.d82e94",
                 "a923c708.719db8",
                 "25889506.584bea",
-                "8626d815.9571a8"
+                "8626d815.9571a8",
+                "ae2fe9c8.8c98d8"
             ]
         ]
     },
@@ -7985,7 +7985,7 @@
         "y": 1771,
         "wires": [
             [
-                "85e36ab1.21f178"
+                "7b2578fc.c91978"
             ],
             []
         ]
@@ -8309,7 +8309,7 @@
         "y": 420,
         "wires": [
             [
-                "5b35fb44.679dc4"
+                "53e86819.c4da48"
             ]
         ]
     },
@@ -8347,12 +8347,12 @@
         "id": "5b35fb44.679dc4",
         "type": "ui_dropdown",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Välj Inomhusgivare",
+        "name": "Välj Inomhusgivare",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "place": "Välj",
         "group": "1b40f24f.7b6d9e",
-        "order": 9,
+        "order": 10,
         "width": "0",
         "height": "0",
         "passthru": false,
@@ -8365,7 +8365,7 @@
         ],
         "payload": "",
         "topic": "price/sensor",
-        "x": 601,
+        "x": 706,
         "y": 420,
         "wires": [
             [
@@ -8377,11 +8377,11 @@
         "id": "551009f1.15c058",
         "type": "ui_slider",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Differens",
-        "tooltip": "Lägsta temperaturdifferens jämfört mot Inomhusbörvärdet.",
+        "name": "Differens",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "group": "1b40f24f.7b6d9e",
-        "order": 8,
+        "order": 9,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -8390,8 +8390,8 @@
         "min": "-3",
         "max": "2",
         "step": "0.1",
-        "x": 1033,
-        "y": 315,
+        "x": 1166,
+        "y": 322,
         "wires": [
             [
                 "8dd4be0a.86e46"
@@ -8415,11 +8415,11 @@
                 "type": "str"
             }
         ],
-        "x": 853,
-        "y": 315,
+        "x": 797,
+        "y": 308,
         "wires": [
             [
-                "551009f1.15c058"
+                "baebbfcf.16886"
             ],
             []
         ]
@@ -8927,22 +8927,6 @@
         ]
     },
     {
-        "id": "65bf37a8.e18928",
-        "type": "ui_text",
-        "z": "960078e.e3e6d88",
-        "group": "f481a5f0.f9f1c8",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "SmartPrice Info 2",
-        "label": "",
-        "format": "Alla åtgärder ska däremot nollställas för att NibePi ska kunna styra.",
-        "layout": "row-spread",
-        "x": 853,
-        "y": 679,
-        "wires": []
-    },
-    {
         "id": "d383b3f8.c2437",
         "type": "function",
         "z": "960078e.e3e6d88",
@@ -8999,31 +8983,6 @@
         ]
     },
     {
-        "id": "9886b52.83c6e48",
-        "type": "ui_slider",
-        "z": "ae9d7ce8.0991c",
-        "name": "Luftflöde Normal",
-        "label": "{{msg.label}}",
-        "tooltip": "",
-        "group": "ad7a33f3.24adf",
-        "order": 5,
-        "width": "0",
-        "height": "0",
-        "passthru": false,
-        "outs": "end",
-        "topic": "fan/speed_normal",
-        "min": "0",
-        "max": "350",
-        "step": "1",
-        "x": 647,
-        "y": 511,
-        "wires": [
-            [
-                "ed6e5604.1f1578"
-            ]
-        ]
-    },
-    {
         "id": "e5304c27.2e273",
         "type": "ui_switch",
         "z": "ae9d7ce8.0991c",
@@ -9046,7 +9005,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 627,
+        "x": 634,
         "y": 217,
         "wires": [
             [
@@ -9149,7 +9108,7 @@
         "y": 217,
         "wires": [
             [
-                "e5304c27.2e273"
+                "46cb362b.e3bd18"
             ],
             [
                 "a496d010.6c77",
@@ -9425,8 +9384,8 @@
         ],
         "payload": "",
         "topic": "fan/sensor",
-        "x": 815,
-        "y": 1036,
+        "x": 906,
+        "y": 1050,
         "wires": [
             [
                 "ed6e5604.1f1578"
@@ -9441,8 +9400,8 @@
         "func": "let source = msg.payload.fan.enable;\nif(source===true) {\n    msg = {\n    enabled:true\n};\nreturn msg;\n} else if(source===false) {\n    msg = {\n    enabled:false\n};\n\nreturn msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 958,
-        "y": 490,
+        "x": 944,
+        "y": 497,
         "wires": [
             [
                 "ae39397.22484c8",
@@ -9536,8 +9495,8 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 839,
-        "y": 518,
+        "x": 1028,
+        "y": 539,
         "wires": [
             []
         ]
@@ -9560,7 +9519,7 @@
         "payload": "true",
         "payloadType": "bool",
         "topic": "update",
-        "x": 269,
+        "x": 311,
         "y": 511,
         "wires": [
             [
@@ -9640,8 +9599,8 @@
         "min": "0",
         "max": "350",
         "step": "1",
-        "x": 571,
-        "y": 665,
+        "x": 592,
+        "y": 672,
         "wires": [
             [
                 "ed6e5604.1f1578"
@@ -10074,8 +10033,8 @@
         "label": "{{msg.label}}",
         "format": "{{msg.payload}} %",
         "layout": "row-spread",
-        "x": 742,
-        "y": 945,
+        "x": 763,
+        "y": 952,
         "wires": []
     },
     {
@@ -11762,8 +11721,8 @@
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 1008,
-        "y": 203,
+        "x": 973,
+        "y": 175,
         "wires": [
             []
         ]
@@ -11937,7 +11896,7 @@
         "label": "{{msg.label}}",
         "format": "",
         "layout": "row-left",
-        "x": 1336,
+        "x": 1350,
         "y": 406,
         "wires": []
     },
@@ -11945,8 +11904,8 @@
         "id": "d78784c9.e2bbc8",
         "type": "ui_switch",
         "z": "b7f67da0.fbf1",
-        "name": "",
-        "label": "Automatiskt luftflöde",
+        "name": "Automatiskt luftflöde",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "97526682.5406d8",
         "order": 7,
@@ -11964,7 +11923,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 331,
+        "x": 444,
         "y": 2471,
         "wires": [
             [
@@ -11989,11 +11948,11 @@
                 "type": "str"
             }
         ],
-        "x": 545,
+        "x": 663,
         "y": 2471,
         "wires": [
             [
-                "d78784c9.e2bbc8"
+                "43f513e6.278bac"
             ],
             []
         ]
@@ -12003,7 +11962,7 @@
         "type": "debug",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -12035,7 +11994,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 406,
+        "x": 378,
         "y": 2107,
         "wires": [
             [
@@ -12064,7 +12023,7 @@
         "y": 2107,
         "wires": [
             [
-                "b0e24ccb.86c35"
+                "4d561a36.50fd34"
             ],
             []
         ]
@@ -13092,7 +13051,7 @@
         "y": 70,
         "wires": [
             [
-                "49882825.7b48d8"
+                "db88d24f.a6d11"
             ],
             []
         ]
@@ -13540,8 +13499,8 @@
         "id": "b819b51e.7e2888",
         "type": "ui_switch",
         "z": "b7f67da0.fbf1",
-        "name": "",
-        "label": "Diagnostik",
+        "name": "Diagnostik",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "97526682.5406d8",
         "order": 8,
@@ -13559,7 +13518,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 301,
+        "x": 414,
         "y": 2520,
         "wires": [
             [
@@ -13584,11 +13543,11 @@
                 "type": "str"
             }
         ],
-        "x": 545,
+        "x": 663,
         "y": 2520,
         "wires": [
             [
-                "b819b51e.7e2888"
+                "10a1363d.d965ca"
             ],
             []
         ]
@@ -13597,8 +13556,8 @@
         "id": "5b3bd5b.489a32c",
         "type": "ui_switch",
         "z": "b7f67da0.fbf1",
-        "name": "",
-        "label": "Prognosreglering",
+        "name": "Prognosreglering",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "97526682.5406d8",
         "order": 9,
@@ -13616,7 +13575,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 321,
+        "x": 434,
         "y": 2569,
         "wires": [
             [
@@ -13641,11 +13600,11 @@
                 "type": "str"
             }
         ],
-        "x": 545,
+        "x": 663,
         "y": 2569,
         "wires": [
             [
-                "5b3bd5b.489a32c"
+                "7dc0a2c4.3a9bec"
             ],
             []
         ]
@@ -13924,15 +13883,15 @@
         "type": "ui_text",
         "z": "960078e.e3e6d88",
         "group": "1b40f24f.7b6d9e",
-        "order": 6,
-        "width": 0,
-        "height": 0,
+        "order": 7,
+        "width": "12",
+        "height": "2",
         "name": "Info värme",
-        "label": "Begränsa elprisregleringens påverkan med hjälp av en inomhusgivare.<br>Ställ in en differens för den lägsta temperaturen som tillåts vid högt elpris för reglering mot ditt rumsbörvärde.",
+        "label": "{{msg.label}}",
         "format": "",
         "layout": "col-center",
-        "x": 1085,
-        "y": 252,
+        "x": 1589,
+        "y": 301,
         "wires": []
     },
     {
@@ -13940,11 +13899,11 @@
         "type": "ui_text",
         "z": "960078e.e3e6d88",
         "group": "94305680.d32c48",
-        "order": 6,
-        "width": 0,
-        "height": 0,
+        "order": 7,
+        "width": "12",
+        "height": "2",
         "name": "Info värme",
-        "label": "Begränsa elprisregleringens påverkan med hjälp av en inomhusgivare.<br>Ställ in en differens för den lägsta temperaturen som tillåts vid högt elpris för reglering mot ditt rumsbörvärde.",
+        "label": "{{msg.label}}",
         "format": "",
         "layout": "col-center",
         "x": 574,
@@ -13968,11 +13927,11 @@
                 "type": "str"
             }
         ],
-        "x": 384,
-        "y": 1442,
+        "x": 181,
+        "y": 1421,
         "wires": [
             [
-                "d41292d7.71f9c"
+                "9a5f07b1.e95648"
             ],
             []
         ]
@@ -13981,11 +13940,11 @@
         "id": "d41292d7.71f9c",
         "type": "ui_slider",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Differens",
-        "tooltip": "Lägsta temperaturdifferens jämfört mot Inomhusbörvärdet.",
+        "name": "Differens",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "group": "94305680.d32c48",
-        "order": 8,
+        "order": 9,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -14040,11 +13999,11 @@
         "func": "var sensors = msg.payload.home.inside_sensors||[];\nvar output = [\"Ingen\"];\nfor (const arr of sensors) {\n    output.push(arr.name)\n}\nif(output!==undefined && output!==[]) {\n    node.send({options:output});\n    if(msg.payload.price!==undefined) {\n        node.send({payload:msg.payload.price.sensor_s2})\n    }\n    \n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 414,
-        "y": 1330,
+        "x": 253,
+        "y": 1316,
         "wires": [
             [
-                "4dfc1afe.d9ca64"
+                "5cf6bf8.d338a4"
             ]
         ]
     },
@@ -14052,12 +14011,12 @@
         "id": "4dfc1afe.d9ca64",
         "type": "ui_dropdown",
         "z": "960078e.e3e6d88",
-        "name": "",
-        "label": "Välj Inomhusgivare",
+        "name": "Välj Inomhusgivare",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "place": "Välj",
         "group": "94305680.d32c48",
-        "order": 9,
+        "order": 10,
         "width": "0",
         "height": "0",
         "passthru": false,
@@ -14099,7 +14058,7 @@
         "y": 105,
         "wires": [
             [
-                "33724643.85cd6a"
+                "78397971.cac8a8"
             ],
             []
         ]
@@ -14108,11 +14067,11 @@
         "id": "33724643.85cd6a",
         "type": "ui_switch",
         "z": "960078e.e3e6d88",
-        "name": "Aktivera Temp S1",
-        "label": "Inomhusgivare",
+        "name": "Inomhusgivare S1",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "1b40f24f.7b6d9e",
-        "order": 7,
+        "order": 8,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -14127,8 +14086,8 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 1294,
-        "y": 133,
+        "x": 1525,
+        "y": 140,
         "wires": [
             [
                 "8dd4be0a.86e46"
@@ -14139,11 +14098,11 @@
         "id": "716b8844.bf4848",
         "type": "ui_switch",
         "z": "960078e.e3e6d88",
-        "name": "Aktivera Temp S2",
-        "label": "Inomhusgivare",
+        "name": "Inomhusgivare S2",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "94305680.d32c48",
-        "order": 7,
+        "order": 8,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -14158,8 +14117,8 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 391,
-        "y": 1498,
+        "x": 594,
+        "y": 1491,
         "wires": [
             [
                 "aa3b6866.eabab8"
@@ -14187,7 +14146,7 @@
         "y": 1470,
         "wires": [
             [
-                "716b8844.bf4848"
+                "e1438a5e.e99d08"
             ],
             []
         ]
@@ -14314,7 +14273,7 @@
         "y": 350,
         "wires": [
             [
-                "e3e6f96f.4410a8"
+                "2ba47fa0.3a966"
             ],
             []
         ]
@@ -14459,12 +14418,11 @@
                 "type": "str"
             }
         ],
-        "x": 482,
-        "y": 889,
+        "x": 419,
+        "y": 882,
         "wires": [
             [
-                "dd0ea32d.95666",
-                "136652e.48ad5ad"
+                "6e7ce78e.1a42c8"
             ],
             []
         ]
@@ -14506,7 +14464,7 @@
         "type": "function",
         "z": "f947788.96a2488",
         "name": "",
-        "func": "let config = msg.config;\n    let language = \"SE\";\n    if(config.system!==undefined && config.system.language!==undefined) {\n        language = config.system.language;\n    }\n    let name = env.get(\"Name\");\n    let translate = global.get('translate');\n    let info = name;\n    if(translate!==undefined && translate.dash!==undefined && translate.dash[name]!==undefined && translate.dash[name][language]!==undefined) {\n        info = translate.dash[name][language]\n    }\nmsg.label = info;\nreturn msg;",
+        "func": "let config = msg.config;\n/*let enable = context.get('enable');\nif(enable===undefined) {\n    enable = true;\n}\nif(msg.enabled!==undefined) {\n    enable = msg.enabled;\n}\ncontext.set('enable',enable);\nmsg.enabled = enable;*/\n    let language = \"SE\";\n    if(config.system!==undefined && config.system.language!==undefined) {\n        language = config.system.language;\n    }\n    let name = env.get(\"Name\");\n    let translate = global.get('translate');\n    let info = name;\n    if(translate!==undefined && translate.dash!==undefined && translate.dash[name]!==undefined && translate.dash[name][language]!==undefined) {\n        info = translate.dash[name][language]\n    }\nmsg.label = info;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 435,
@@ -14592,21 +14550,6 @@
                 "cc633084.d7567"
             ]
         ]
-    },
-    {
-        "id": "6b8dea99.d85884",
-        "type": "debug",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 855,
-        "y": 819,
-        "wires": []
     },
     {
         "id": "98de0442.e782d8",
@@ -16009,8 +15952,8 @@
                 "type": "str"
             }
         ],
-        "x": 308,
-        "y": 2149,
+        "x": 340,
+        "y": 2163,
         "wires": [
             [
                 "a0a5fd31.68a1b"
@@ -17529,11 +17472,11 @@
                 "type": "str"
             }
         ],
-        "x": 452,
+        "x": 472,
         "y": 511,
         "wires": [
             [
-                "9886b52.83c6e48"
+                "725c9eb8.7b68f"
             ]
         ]
     },
@@ -17629,8 +17572,8 @@
                 "type": "str"
             }
         ],
-        "x": 641,
-        "y": 889,
+        "x": 640,
+        "y": 896,
         "wires": [
             [
                 "dfda48a5.0eeb08"
@@ -17889,7 +17832,8 @@
         "y": 322,
         "wires": [
             [
-                "3f2df90a.87e2f6"
+                "3f2df90a.87e2f6",
+                "71cc10e5.6e02a"
             ]
         ]
     },
@@ -17970,6 +17914,1414 @@
         "wires": [
             [
                 "6fe84622.e973e8"
+            ]
+        ]
+    },
+    {
+        "id": "4d561a36.50fd34",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "save_graph",
+                "type": "str"
+            }
+        ],
+        "x": 144,
+        "y": 2107,
+        "wires": [
+            [
+                "b0e24ccb.86c35"
+            ]
+        ]
+    },
+    {
+        "id": "71cc10e5.6e02a",
+        "type": "debug",
+        "z": "b7f67da0.fbf1",
+        "name": "Data",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 491,
+        "y": 182,
+        "wires": []
+    },
+    {
+        "id": "ae2fe9c8.8c98d8",
+        "type": "debug",
+        "z": "b7f67da0.fbf1",
+        "name": "Data 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 750,
+        "y": 168,
+        "wires": []
+    },
+    {
+        "id": "6bc64440.7be37c",
+        "type": "debug",
+        "z": "b7f67da0.fbf1",
+        "name": "Data 0",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 617,
+        "y": 147,
+        "wires": []
+    },
+    {
+        "id": "a4e6e6a8.b26e98",
+        "type": "function",
+        "z": "b7f67da0.fbf1",
+        "name": "Enable/Disable",
+        "func": "if(msg.topic==\"Start\") {\n    if(msg.payload===true) {\n        node.send({enabled:false});\n    } else {\n        node.send({enabled:true});\n    }\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 808,
+        "y": 2177,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7c2f5c37.52f8d4",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "log_enable",
+                "type": "str"
+            }
+        ],
+        "x": 234,
+        "y": 2226,
+        "wires": [
+            [
+                "22798341.63387c"
+            ]
+        ]
+    },
+    {
+        "id": "c5443635.dd1e68",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "log_info",
+                "type": "str"
+            }
+        ],
+        "x": 234,
+        "y": 2275,
+        "wires": [
+            [
+                "df3307ec.65d498"
+            ]
+        ]
+    },
+    {
+        "id": "23cf2be0.ec9df4",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "log_error",
+                "type": "str"
+            }
+        ],
+        "x": 220,
+        "y": 2324,
+        "wires": [
+            [
+                "c548dfa7.e7696"
+            ]
+        ]
+    },
+    {
+        "id": "fc61aa11.3533c8",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "log_debug",
+                "type": "str"
+            }
+        ],
+        "x": 220,
+        "y": 2373,
+        "wires": [
+            [
+                "4b9a995c.0f11b8"
+            ]
+        ]
+    },
+    {
+        "id": "4d212125.d27d5",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "log_core",
+                "type": "str"
+            }
+        ],
+        "x": 220,
+        "y": 2422,
+        "wires": [
+            [
+                "3b259789.2e49a8"
+            ]
+        ]
+    },
+    {
+        "id": "43f513e6.278bac",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "log_fan",
+                "type": "str"
+            }
+        ],
+        "x": 220,
+        "y": 2471,
+        "wires": [
+            [
+                "d78784c9.e2bbc8"
+            ]
+        ]
+    },
+    {
+        "id": "10a1363d.d965ca",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "log_diag",
+                "type": "str"
+            }
+        ],
+        "x": 220,
+        "y": 2520,
+        "wires": [
+            [
+                "b819b51e.7e2888"
+            ]
+        ]
+    },
+    {
+        "id": "7dc0a2c4.3a9bec",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "log_weather",
+                "type": "str"
+            }
+        ],
+        "x": 220,
+        "y": 2569,
+        "wires": [
+            [
+                "5b3bd5b.489a32c"
+            ]
+        ]
+    },
+    {
+        "id": "7b2578fc.c91978",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "sensor_timeout",
+                "type": "str"
+            }
+        ],
+        "x": 108,
+        "y": 1848,
+        "wires": [
+            [
+                "85e36ab1.21f178"
+            ]
+        ]
+    },
+    {
+        "id": "6e7ce78e.1a42c8",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "heatcurve_info",
+                "type": "str"
+            }
+        ],
+        "x": 486,
+        "y": 931,
+        "wires": [
+            [
+                "dd0ea32d.95666",
+                "136652e.48ad5ad"
+            ]
+        ]
+    },
+    {
+        "id": "7fef39f9.6ecc28",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "adjust_s2",
+                "type": "str"
+            }
+        ],
+        "x": 143,
+        "y": 868,
+        "wires": [
+            [
+                "3976a9c5.383436"
+            ]
+        ]
+    },
+    {
+        "id": "e0074a53.36d978",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "adjust_s1",
+                "type": "str"
+            }
+        ],
+        "x": 269,
+        "y": 777,
+        "wires": [
+            [
+                "fcb52823.5a2a88"
+            ]
+        ]
+    },
+    {
+        "id": "24df5e7e.26cf62",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "lat",
+                "type": "str"
+            }
+        ],
+        "x": 682,
+        "y": 455,
+        "wires": [
+            [
+                "c559c6e7.c4b388"
+            ]
+        ]
+    },
+    {
+        "id": "f0ecc454.9aff08",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "lon",
+                "type": "str"
+            }
+        ],
+        "x": 654,
+        "y": 546,
+        "wires": [
+            [
+                "3698a0bc.b86fc"
+            ]
+        ]
+    },
+    {
+        "id": "2ba47fa0.3a966",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "language",
+                "type": "str"
+            }
+        ],
+        "x": 1130,
+        "y": 308,
+        "wires": [
+            [
+                "e3e6f96f.4410a8"
+            ]
+        ]
+    },
+    {
+        "id": "a4e3fd6e.1230d",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "readonly",
+                "type": "str"
+            }
+        ],
+        "x": 1270,
+        "y": 448,
+        "wires": [
+            [
+                "9414a4e7.3d88c8"
+            ]
+        ]
+    },
+    {
+        "id": "db88d24f.a6d11",
+        "type": "subflow:f947788.96a2488",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "auto_update",
+                "type": "str"
+            }
+        ],
+        "x": 129,
+        "y": 126,
+        "wires": [
+            [
+                "49882825.7b48d8"
+            ]
+        ]
+    },
+    {
+        "id": "46cb362b.e3bd18",
+        "type": "subflow:f947788.96a2488",
+        "z": "ae9d7ce8.0991c",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "enable",
+                "type": "str"
+            }
+        ],
+        "x": 472,
+        "y": 210,
+        "wires": [
+            [
+                "e5304c27.2e273"
+            ]
+        ]
+    },
+    {
+        "id": "e51d88b5.82e018",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "update_run",
+                "type": "str"
+            }
+        ],
+        "x": 420,
+        "y": 49,
+        "wires": [
+            [
+                "4d63b4e4.90710c"
+            ]
+        ]
+    },
+    {
+        "id": "4b74034e.97b88c",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "enable",
+                "type": "str"
+            }
+        ],
+        "x": 304,
+        "y": 98,
+        "wires": [
+            [
+                "68d91eb2.2d481"
+            ]
+        ]
+    },
+    {
+        "id": "441f61ff.6102a",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_very_high",
+                "type": "str"
+            }
+        ],
+        "x": 325,
+        "y": 175,
+        "wires": [
+            [
+                "c30269ad.b26128"
+            ]
+        ]
+    },
+    {
+        "id": "2bf75acd.6e0c56",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_high",
+                "type": "str"
+            }
+        ],
+        "x": 325,
+        "y": 224,
+        "wires": [
+            [
+                "40c00df0.72a6e4"
+            ]
+        ]
+    },
+    {
+        "id": "505cc480.19349c",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_low",
+                "type": "str"
+            }
+        ],
+        "x": 325,
+        "y": 273,
+        "wires": [
+            [
+                "b30b63c9.c96a9"
+            ]
+        ]
+    },
+    {
+        "id": "cf92a1d0.7c1e4",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_very_low",
+                "type": "str"
+            }
+        ],
+        "x": 325,
+        "y": 322,
+        "wires": [
+            [
+                "b3a09f2.d70226"
+            ]
+        ]
+    },
+    {
+        "id": "d0060765.8cab88",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "update_run",
+                "type": "str"
+            }
+        ],
+        "x": 115,
+        "y": 511,
+        "wires": [
+            [
+                "e324889.d71b078"
+            ]
+        ]
+    },
+    {
+        "id": "fb86684e.674ae8",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_very_high",
+                "type": "str"
+            }
+        ],
+        "x": 311,
+        "y": 560,
+        "wires": [
+            [
+                "d07cb165.8756a"
+            ]
+        ]
+    },
+    {
+        "id": "49bcf77d.cd5d98",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_high",
+                "type": "str"
+            }
+        ],
+        "x": 311,
+        "y": 609,
+        "wires": [
+            [
+                "1bb82fc2.e8b78"
+            ]
+        ]
+    },
+    {
+        "id": "a637f228.74303",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_low",
+                "type": "str"
+            }
+        ],
+        "x": 311,
+        "y": 658,
+        "wires": [
+            [
+                "de834f9d.9b477"
+            ]
+        ]
+    },
+    {
+        "id": "18e6dbef.c26bc4",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_very_low",
+                "type": "str"
+            }
+        ],
+        "x": 311,
+        "y": 707,
+        "wires": [
+            [
+                "b0a104eb.836b28"
+            ]
+        ]
+    },
+    {
+        "id": "ebb4c96d.141e78",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "enable",
+                "type": "str"
+            }
+        ],
+        "x": 318,
+        "y": 777,
+        "wires": [
+            [
+                "4849d6b9.2a3868"
+            ]
+        ]
+    },
+    {
+        "id": "b1268c57.e21f8",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_nibe_label",
+                "type": "str"
+            }
+        ],
+        "x": 311,
+        "y": 917,
+        "wires": [
+            [
+                "54bb4384.e1936c"
+            ]
+        ]
+    },
+    {
+        "id": "ca69923.4d49f7",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_nibepi_label",
+                "type": "str"
+            }
+        ],
+        "x": 311,
+        "y": 959,
+        "wires": [
+            [
+                "3925bdab.14e9a2"
+            ]
+        ]
+    },
+    {
+        "id": "8f047f2c.17ca2",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_high",
+                "type": "str"
+            }
+        ],
+        "x": 1032,
+        "y": 1141,
+        "wires": [
+            [
+                "9e47d1c5.a1f6a"
+            ]
+        ]
+    },
+    {
+        "id": "4d894d01.bf0bd4",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_normal",
+                "type": "str"
+            }
+        ],
+        "x": 1032,
+        "y": 1190,
+        "wires": [
+            [
+                "4a4b467b.cb3d98"
+            ]
+        ]
+    },
+    {
+        "id": "a5849259.9e6af",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_low",
+                "type": "str"
+            }
+        ],
+        "x": 1032,
+        "y": 1239,
+        "wires": [
+            [
+                "64b8af88.aedae"
+            ]
+        ]
+    },
+    {
+        "id": "4d67c25.01caa3c",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_very_low",
+                "type": "str"
+            }
+        ],
+        "x": 1032,
+        "y": 1288,
+        "wires": [
+            [
+                "3b93422b.85e62e"
+            ]
+        ]
+    },
+    {
+        "id": "725c9eb8.7b68f",
+        "type": "ui_slider",
+        "z": "ae9d7ce8.0991c",
+        "name": "Luftflöde Normal",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "ad7a33f3.24adf",
+        "order": 5,
+        "width": "12",
+        "height": "1",
+        "passthru": false,
+        "outs": "end",
+        "topic": "fan/speed_normal",
+        "min": "0",
+        "max": "350",
+        "step": "1",
+        "x": 584,
+        "y": 567,
+        "wires": [
+            [
+                "ed6e5604.1f1578"
+            ]
+        ]
+    },
+    {
+        "id": "3acfc69e.2e5b7a",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_very_high",
+                "type": "str"
+            }
+        ],
+        "x": 1032,
+        "y": 1099,
+        "wires": [
+            [
+                "eafa7076.636ee"
+            ]
+        ]
+    },
+    {
+        "id": "b2b2e797.bdd858",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_info",
+                "type": "str"
+            }
+        ],
+        "x": 1109,
+        "y": 49,
+        "wires": [
+            [
+                "10389fda.d75a6"
+            ]
+        ]
+    },
+    {
+        "id": "10389fda.d75a6",
+        "type": "ui_text",
+        "z": "960078e.e3e6d88",
+        "group": "e6946a7.5e1e698",
+        "order": 1,
+        "width": "12",
+        "height": "3",
+        "name": "Information",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-spread",
+        "x": 1322,
+        "y": 49,
+        "wires": []
+    },
+    {
+        "id": "c2fe36ce.9b31c8",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_now",
+                "type": "str"
+            }
+        ],
+        "x": 1046,
+        "y": 154,
+        "wires": [
+            [
+                "523b61b1.02fb1"
+            ]
+        ]
+    },
+    {
+        "id": "b5708131.42abc",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_now",
+                "type": "str"
+            }
+        ],
+        "x": 1046,
+        "y": 245,
+        "wires": [
+            [
+                "800a0005.55ffc"
+            ]
+        ]
+    },
+    {
+        "id": "d00a5f55.781ef",
+        "type": "nibe-request",
+        "z": "960078e.e3e6d88",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 701,
+        "y": 119,
+        "wires": [
+            [
+                "91d8769c.f63f68"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c68fd0bd.7ff08",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_hw_settings",
+                "type": "str"
+            }
+        ],
+        "x": 1214,
+        "y": 371,
+        "wires": [
+            [
+                "298758cc.91bb28"
+            ]
+        ]
+    },
+    {
+        "id": "298758cc.91bb28",
+        "type": "ui_text",
+        "z": "960078e.e3e6d88",
+        "group": "2e9c7d75.ee6312",
+        "order": 1,
+        "width": "12",
+        "height": "2",
+        "name": "Inställningar varmvatten",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-spread",
+        "x": 1467,
+        "y": 371,
+        "wires": []
+    },
+    {
+        "id": "70e3d2df.fd511c",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_settings",
+                "type": "str"
+            }
+        ],
+        "x": 1214,
+        "y": 413,
+        "wires": [
+            [
+                "2b3f98b9.ca5488"
+            ]
+        ]
+    },
+    {
+        "id": "2b3f98b9.ca5488",
+        "type": "ui_text",
+        "z": "960078e.e3e6d88",
+        "group": "f481a5f0.f9f1c8",
+        "order": 1,
+        "width": "12",
+        "height": "3",
+        "name": "Inställningar",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-spread",
+        "x": 1427,
+        "y": 413,
+        "wires": []
+    },
+    {
+        "id": "6d8f9864.7c5bd8",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_enable_hw",
+                "type": "str"
+            }
+        ],
+        "x": 1200,
+        "y": 1400,
+        "wires": [
+            [
+                "e0b7517f.586f3"
+            ]
+        ]
+    },
+    {
+        "id": "f3502562.d64188",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_smart1_info",
+                "type": "str"
+            }
+        ],
+        "x": 1277,
+        "y": 658,
+        "wires": [
+            [
+                "9958a8f1.7abba8"
+            ]
+        ]
+    },
+    {
+        "id": "5c8e5a10.b35014",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_sensor_info",
+                "type": "str"
+            }
+        ],
+        "x": 1410,
+        "y": 301,
+        "wires": [
+            [
+                "22fa46b9.2067fa"
+            ]
+        ]
+    },
+    {
+        "id": "6c5b4fe9.8b14",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_sensor_info",
+                "type": "str"
+            }
+        ],
+        "x": 381,
+        "y": 1386,
+        "wires": [
+            [
+                "b5e41612.13ed78"
+            ]
+        ]
+    },
+    {
+        "id": "93fc1b3.24e3ee8",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_s1_info",
+                "type": "str"
+            }
+        ],
+        "x": 1571,
+        "y": 476,
+        "wires": [
+            [
+                "4b98ffb1.6d6cd"
+            ]
+        ]
+    },
+    {
+        "id": "4b98ffb1.6d6cd",
+        "type": "ui_text",
+        "z": "960078e.e3e6d88",
+        "group": "1b40f24f.7b6d9e",
+        "order": 1,
+        "width": "12",
+        "height": "3",
+        "name": "Elprisreglering S1",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-spread",
+        "x": 1804,
+        "y": 476,
+        "wires": []
+    },
+    {
+        "id": "c847916d.92125",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_s2_info",
+                "type": "str"
+            }
+        ],
+        "x": 1571,
+        "y": 518,
+        "wires": [
+            [
+                "2ae4da14.9b0a56"
+            ]
+        ]
+    },
+    {
+        "id": "2ae4da14.9b0a56",
+        "type": "ui_text",
+        "z": "960078e.e3e6d88",
+        "group": "94305680.d32c48",
+        "order": 1,
+        "width": "12",
+        "height": "3",
+        "name": "Elprisreglering S2",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-spread",
+        "x": 1804,
+        "y": 518,
+        "wires": []
+    },
+    {
+        "id": "9a5f07b1.e95648",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "difference",
+                "type": "str"
+            }
+        ],
+        "x": 395,
+        "y": 1428,
+        "wires": [
+            [
+                "d41292d7.71f9c"
+            ]
+        ]
+    },
+    {
+        "id": "e1438a5e.e99d08",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "indoor_sensor",
+                "type": "str"
+            }
+        ],
+        "x": 388,
+        "y": 1477,
+        "wires": [
+            [
+                "716b8844.bf4848"
+            ]
+        ]
+    },
+    {
+        "id": "baebbfcf.16886",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "difference",
+                "type": "str"
+            }
+        ],
+        "x": 1004,
+        "y": 315,
+        "wires": [
+            [
+                "551009f1.15c058"
+            ]
+        ]
+    },
+    {
+        "id": "78397971.cac8a8",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "indoor_sensor",
+                "type": "str"
+            }
+        ],
+        "x": 1312,
+        "y": 126,
+        "wires": [
+            [
+                "33724643.85cd6a"
+            ]
+        ]
+    },
+    {
+        "id": "53e86819.c4da48",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "indoor_sensor_label",
+                "type": "str"
+            }
+        ],
+        "x": 675,
+        "y": 497,
+        "wires": [
+            [
+                "5b35fb44.679dc4"
+            ]
+        ]
+    },
+    {
+        "id": "5cf6bf8.d338a4",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "indoor_sensor_label",
+                "type": "str"
+            }
+        ],
+        "x": 402,
+        "y": 1288,
+        "wires": [
+            [
+                "4dfc1afe.d9ca64"
+            ]
+        ]
+    },
+    {
+        "id": "33b72ea6.898002",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_s1_graph",
+                "type": "str"
+            }
+        ],
+        "x": 1571,
+        "y": 560,
+        "wires": [
+            [
+                "11ed4b46.e82ea5"
+            ]
+        ]
+    },
+    {
+        "id": "11ed4b46.e82ea5",
+        "type": "ui_text",
+        "z": "960078e.e3e6d88",
+        "group": "90803197.41c34",
+        "order": 1,
+        "width": "12",
+        "height": "1",
+        "name": "Graf S1",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-spread",
+        "x": 1774,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "e196b987.b803d8",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_s2_graph",
+                "type": "str"
+            }
+        ],
+        "x": 1571,
+        "y": 602,
+        "wires": [
+            [
+                "a8246cb1.17a87"
+            ]
+        ]
+    },
+    {
+        "id": "a8246cb1.17a87",
+        "type": "ui_text",
+        "z": "960078e.e3e6d88",
+        "group": "ab2b8fca.17eca",
+        "order": 1,
+        "width": "12",
+        "height": "1",
+        "name": "Graf S2",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-spread",
+        "x": 1774,
+        "y": 602,
+        "wires": []
+    },
+    {
+        "id": "f50f82ef.da61",
+        "type": "inject",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 743,
+        "y": 875,
+        "wires": [
+            [
+                "c6a13ba3.351018"
+            ]
+        ]
+    },
+    {
+        "id": "c6a13ba3.351018",
+        "type": "function",
+        "z": "960078e.e3e6d88",
+        "name": "Enable manually",
+        "func": "msg = {\n    enabled:msg.payload\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 927,
+        "y": 896,
+        "wires": [
+            [
+                "ef64204.7fdb6e"
+            ]
+        ]
+    },
+    {
+        "id": "d35a4dc2.16808",
+        "type": "inject",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 740,
+        "y": 917,
+        "wires": [
+            [
+                "c6a13ba3.351018"
             ]
         ]
     }
