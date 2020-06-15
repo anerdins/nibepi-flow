@@ -308,7 +308,7 @@
         "z": "",
         "name": "Registerhantering",
         "tab": "1dc0b5a5.8e56aa",
-        "disp": true,
+        "disp": false,
         "width": "12",
         "collapse": false
     },
@@ -605,7 +605,7 @@
         "name": "Husinformation",
         "tab": "b75c3bdd.9e0ae8",
         "order": 4,
-        "disp": true,
+        "disp": false,
         "width": "12",
         "collapse": false
     },
@@ -654,7 +654,7 @@
         "z": "",
         "name": "Data",
         "tab": "1dc0b5a5.8e56aa",
-        "disp": true,
+        "disp": false,
         "width": "12",
         "collapse": false
     },
@@ -664,7 +664,7 @@
         "z": "",
         "name": "Graf",
         "tab": "1dc0b5a5.8e56aa",
-        "disp": true,
+        "disp": false,
         "width": "18",
         "collapse": false
     },
@@ -858,7 +858,7 @@
         "name": "Kompressorförbrukning",
         "tab": "b75c3bdd.9e0ae8",
         "order": 5,
-        "disp": true,
+        "disp": false,
         "width": "12",
         "collapse": false
     },
@@ -1505,7 +1505,7 @@
         "label": "{{msg.label}}",
         "tooltip": "",
         "group": "a8bf2b6e.6abc18",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -1528,7 +1528,7 @@
         "label": "{{msg.label}}",
         "tooltip": "",
         "group": "a8bf2b6e.6abc18",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -1587,12 +1587,12 @@
         "id": "99ffc02f.7bb77",
         "type": "ui_chart",
         "z": "b7f67da0.fbf1",
-        "name": "",
+        "name": "Kompressorförbrukning",
         "group": "1d61b1b5.3ea93e",
         "order": 5,
         "width": 0,
         "height": 0,
-        "label": "Kompressorförbrukning",
+        "label": "",
         "chartType": "pie",
         "legend": "true",
         "xformat": "HH:mm",
@@ -3240,7 +3240,7 @@
                 "bd1f8046.e4efe"
             ],
             [
-                "a06c6ec7.72b5e"
+                "a845852f.e7dfd8"
             ]
         ]
     },
@@ -3394,44 +3394,6 @@
         "x": 1008,
         "y": 1722,
         "wires": []
-    },
-    {
-        "id": "3d76f90c.3a1716",
-        "type": "ui_template",
-        "z": "b7f67da0.fbf1",
-        "group": "4f8b35d1.5c8fec",
-        "name": "Registerinfo",
-        "order": 1,
-        "width": "12",
-        "height": "2",
-        "format": "<div><p>Välj vilka register som ska hämtas från värmepumpen<br>\nRegister aktiverade med LOG.SET är förvalda och går ej ta bort.<br>\n</p></div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 672,
-        "y": 1337,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f7bb30d9.a8d72",
-        "type": "ui_template",
-        "z": "b7f67da0.fbf1",
-        "group": "bd199d65.157fc",
-        "name": "Datainfo",
-        "order": 1,
-        "width": "12",
-        "height": "2",
-        "format": "<div><p>Alla valda register visas här under, inkl. nuvarande värde.<br>\nFör att visa data i graf nedan, markera register.<br>\n</p></div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 536,
-        "y": 1582,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "9489e9a0.cd1268",
@@ -4977,7 +4939,7 @@
         "type": "ui_form",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "label": "Skicka värde",
+        "label": "Send value",
         "group": "bd199d65.157fc",
         "order": 4,
         "width": 0,
@@ -4990,7 +4952,7 @@
                 "required": true
             },
             {
-                "label": "Värde",
+                "label": "Value",
                 "value": "value",
                 "type": "number",
                 "required": true
@@ -5001,10 +4963,10 @@
             "value": ""
         },
         "payload": "",
-        "submit": "Skicka",
+        "submit": "Send",
         "cancel": "",
         "topic": "",
-        "x": 335,
+        "x": 325,
         "y": 1533,
         "wires": [
             [
@@ -5578,8 +5540,8 @@
         "func": "if(msg.enabled!==undefined) {\n    let hide = {\n        \"group\":\n            {\"hide\":\n                [\"Elprisreglering_Graf_S2\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n} else {\n    let hide = {\n        \"group\":\n            {\"show\":\n                [\"Elprisreglering_Graf_S2\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n}",
         "outputs": 2,
         "noerr": 0,
-        "x": 1011,
-        "y": 749,
+        "x": 1018,
+        "y": 777,
         "wires": [
             [],
             [
@@ -5965,8 +5927,8 @@
         "z": "358baec9.c8b902",
         "server": "844659a2.8d8508",
         "name": "Config",
-        "x": 589,
-        "y": 154,
+        "x": 610,
+        "y": 133,
         "wires": [
             [
                 "f65e7c49.0cfac"
@@ -6410,8 +6372,7 @@
         "y": 987,
         "wires": [
             [
-                "67f0bc49.0491c4",
-                "edac8d3e.c5625"
+                "67f0bc49.0491c4"
             ]
         ]
     },
@@ -6464,8 +6425,8 @@
         "z": "358baec9.c8b902",
         "server": "844659a2.8d8508",
         "name": "Config",
-        "x": 603,
-        "y": 987,
+        "x": 575,
+        "y": 889,
         "wires": [
             [
                 "edac8d3e.c5625"
@@ -7148,7 +7109,7 @@
                 "4d212125.d27d5",
                 "43f513e6.278bac",
                 "10a1363d.d965ca",
-                "5b3bd5b.489a32c"
+                "7dc0a2c4.3a9bec"
             ]
         ]
     },
@@ -8271,10 +8232,10 @@
         "id": "a06c6ec7.72b5e",
         "type": "ui_dropdown",
         "z": "b7f67da0.fbf1",
-        "name": "",
-        "label": "Ta bort Register",
+        "name": "Ta bort Register",
+        "label": "{{msg.label}}",
         "tooltip": "",
-        "place": "Välj register",
+        "place": "",
         "group": "bd199d65.157fc",
         "order": 3,
         "width": 0,
@@ -8289,8 +8250,8 @@
         ],
         "payload": "",
         "topic": "removeRegister",
-        "x": 871,
-        "y": 1421,
+        "x": 1025,
+        "y": 1442,
         "wires": [
             [
                 "1b0cc4df.6a668b"
@@ -11709,41 +11670,22 @@
         ]
     },
     {
-        "id": "31e5b9cb.625536",
-        "type": "ui_template",
-        "z": "b7f67da0.fbf1",
-        "group": "a8bf2b6e.6abc18",
-        "name": "Husinfo text",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    <p>För att använda Prognosreglering behöver husets koordinater anges.<br>\n    Fastighetens storlek anges i kvm (Uppvärmd yta) och används för att beräkna rätt flöde\n    för frånluftsvärmepumpar med automatiskt luftflöde<br></p>\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 973,
-        "y": 175,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "655c24ec.f9bbdc",
         "type": "ui_text_input",
         "z": "b7f67da0.fbf1",
-        "name": "",
-        "label": "Fastighetens storlek",
+        "name": "Fastighetens storlek",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "a8bf2b6e.6abc18",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": false,
         "mode": "number",
         "delay": "0",
         "topic": "size",
-        "x": 1024,
-        "y": 245,
+        "x": 1549,
+        "y": 238,
         "wires": [
             [
                 "6de034de.5247fc"
@@ -11767,11 +11709,11 @@
                 "type": "str"
             }
         ],
-        "x": 1259,
-        "y": 245,
+        "x": 1119,
+        "y": 238,
         "wires": [
             [
-                "655c24ec.f9bbdc"
+                "d2d81f6.b578ce"
             ],
             []
         ]
@@ -12172,8 +12114,8 @@
         "width": "18",
         "height": "1",
         "passthru": false,
-        "label": "Uppdatera",
-        "tooltip": "Uppdaterar grafen",
+        "label": "{{msg.label}}",
+        "tooltip": "",
         "color": "",
         "bgcolor": "",
         "icon": "",
@@ -12475,8 +12417,8 @@
         "id": "96e42b24.7aaa78",
         "type": "ui_slider",
         "z": "65e6bc5.05f2644",
-        "name": "",
-        "label": "Tid",
+        "name": "Tid",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "261b1f51.5c37e",
         "order": 2,
@@ -12517,12 +12459,12 @@
         "id": "e36871c4.db782",
         "type": "ui_chart",
         "z": "65e6bc5.05f2644",
-        "name": "",
+        "name": "Värmeinformation",
         "group": "a8bf2b6e.6abc18",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
-        "label": "Värmeinformation",
+        "label": "{{msg.label}}",
         "chartType": "line",
         "legend": "true",
         "xformat": "HH:mm",
@@ -12549,8 +12491,8 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 853,
-        "y": 623,
+        "x": 979,
+        "y": 616,
         "wires": [
             []
         ]
@@ -12559,11 +12501,11 @@
         "id": "b71782d0.0b1ed",
         "type": "ui_slider",
         "z": "65e6bc5.05f2644",
-        "name": "",
-        "label": "Tid",
+        "name": "Tid",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "a8bf2b6e.6abc18",
-        "order": 6,
+        "order": 7,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -12681,7 +12623,7 @@
         "y": 623,
         "wires": [
             [
-                "e36871c4.db782"
+                "a63ca1a1.650e9"
             ],
             [
                 "c298bb69.805ce8"
@@ -12711,8 +12653,8 @@
         "id": "41f84924.bc1198",
         "type": "ui_slider",
         "z": "65e6bc5.05f2644",
-        "name": "",
-        "label": "Tid",
+        "name": "Tid",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "7e910a08.c6c984",
         "order": 5,
@@ -12833,8 +12775,8 @@
         "id": "176a8ef5.3e5701",
         "type": "ui_slider",
         "z": "65e6bc5.05f2644",
-        "name": "",
-        "label": "Tid",
+        "name": "Tid",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "bcb5f9e4.9bc858",
         "order": 6,
@@ -12978,8 +12920,8 @@
         "id": "5662a415.06708c",
         "type": "ui_slider",
         "z": "65e6bc5.05f2644",
-        "name": "",
-        "label": "Tid",
+        "name": "Tid",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "38b6d907.520796",
         "order": 4,
@@ -13096,8 +13038,8 @@
         "id": "e8bbd657.4aa3b8",
         "type": "ui_slider",
         "z": "65e6bc5.05f2644",
-        "name": "",
-        "label": "Tid",
+        "name": "Tid",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "197ce413.27432c",
         "order": 5,
@@ -13199,8 +13141,8 @@
         "id": "a5f5926b.ba0a",
         "type": "ui_slider",
         "z": "65e6bc5.05f2644",
-        "name": "",
-        "label": "Tid",
+        "name": "Tid",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "a2cfe148.70708",
         "order": 11,
@@ -13260,8 +13202,8 @@
         "id": "a83973b3.c3d1e",
         "type": "ui_slider",
         "z": "65e6bc5.05f2644",
-        "name": "",
-        "label": "Tid",
+        "name": "Tid",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "6ee1e12a.a6f04",
         "order": 11,
@@ -13447,8 +13389,8 @@
         "id": "41a4486e.6ac608",
         "type": "ui_slider",
         "z": "65e6bc5.05f2644",
-        "name": "",
-        "label": "Tid",
+        "name": "Tid",
+        "label": "{{msg.label}}",
         "tooltip": "",
         "group": "ad7a33f3.24adf",
         "order": 7,
@@ -18148,7 +18090,7 @@
                 "type": "str"
             }
         ],
-        "x": 220,
+        "x": 241,
         "y": 2569,
         "wires": [
             [
@@ -19322,6 +19264,258 @@
         "wires": [
             [
                 "c6a13ba3.351018"
+            ]
+        ]
+    },
+    {
+        "id": "c462f11.01db51",
+        "type": "subflow:f947788.96a2488",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "update_run",
+                "type": "str"
+            }
+        ],
+        "x": 451,
+        "y": 140,
+        "wires": [
+            [
+                "54623482.22352c"
+            ]
+        ]
+    },
+    {
+        "id": "d6b2c164.d814d",
+        "type": "subflow:f947788.96a2488",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "time",
+                "type": "str"
+            }
+        ],
+        "x": 108,
+        "y": 686,
+        "wires": [
+            [
+                "b71782d0.0b1ed",
+                "41f84924.bc1198",
+                "e8bbd657.4aa3b8",
+                "176a8ef5.3e5701",
+                "5662a415.06708c",
+                "a5f5926b.ba0a",
+                "a83973b3.c3d1e",
+                "41a4486e.6ac608",
+                "96e42b24.7aaa78"
+            ]
+        ]
+    },
+    {
+        "id": "a63ca1a1.650e9",
+        "type": "subflow:f947788.96a2488",
+        "z": "65e6bc5.05f2644",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "start_heat_info",
+                "type": "str"
+            }
+        ],
+        "x": 822,
+        "y": 560,
+        "wires": [
+            [
+                "e36871c4.db782"
+            ]
+        ]
+    },
+    {
+        "id": "d2d81f6.b578ce",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "home_size",
+                "type": "str"
+            }
+        ],
+        "x": 1326,
+        "y": 238,
+        "wires": [
+            [
+                "655c24ec.f9bbdc"
+            ]
+        ]
+    },
+    {
+        "id": "ae840e39.79e8e",
+        "type": "ui_text",
+        "z": "b7f67da0.fbf1",
+        "group": "a8bf2b6e.6abc18",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Startsida info 2",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-left",
+        "x": 1325,
+        "y": 70,
+        "wires": []
+    },
+    {
+        "id": "dcdbedd1.ab06a",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "start_info",
+                "type": "str"
+            }
+        ],
+        "x": 1144,
+        "y": 70,
+        "wires": [
+            [
+                "ae840e39.79e8e"
+            ]
+        ]
+    },
+    {
+        "id": "8516c39f.d8ebe",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "cpr_info",
+                "type": "str"
+            }
+        ],
+        "x": 1088,
+        "y": 1050,
+        "wires": [
+            [
+                "9cdefbbf.f141f8"
+            ]
+        ]
+    },
+    {
+        "id": "9cdefbbf.f141f8",
+        "type": "ui_text",
+        "z": "b7f67da0.fbf1",
+        "group": "1d61b1b5.3ea93e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Kompressorförbrukning",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-left",
+        "x": 1299,
+        "y": 1050,
+        "wires": []
+    },
+    {
+        "id": "5f36060d.523928",
+        "type": "ui_text",
+        "z": "b7f67da0.fbf1",
+        "group": "4f8b35d1.5c8fec",
+        "order": 1,
+        "width": "12",
+        "height": "4",
+        "name": "Registerhantering",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-left",
+        "x": 733,
+        "y": 1295,
+        "wires": []
+    },
+    {
+        "id": "e1bdb302.3b92d",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "register_info",
+                "type": "str"
+            }
+        ],
+        "x": 528,
+        "y": 1295,
+        "wires": [
+            [
+                "5f36060d.523928"
+            ]
+        ]
+    },
+    {
+        "id": "8e749cda.9b501",
+        "type": "ui_text",
+        "z": "b7f67da0.fbf1",
+        "group": "bd199d65.157fc",
+        "order": 1,
+        "width": "12",
+        "height": "3",
+        "name": "Datahantering",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-left",
+        "x": 744,
+        "y": 1617,
+        "wires": []
+    },
+    {
+        "id": "f12acdec.abfff",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "data_info",
+                "type": "str"
+            }
+        ],
+        "x": 556,
+        "y": 1596,
+        "wires": [
+            [
+                "8e749cda.9b501"
+            ]
+        ]
+    },
+    {
+        "id": "a845852f.e7dfd8",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "remove_register",
+                "type": "str"
+            }
+        ],
+        "x": 822,
+        "y": 1463,
+        "wires": [
+            [
+                "a06c6ec7.72b5e"
             ]
         ]
     }
