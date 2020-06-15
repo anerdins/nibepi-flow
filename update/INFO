@@ -1,4 +1,9 @@
 <p>
+<b>b16</b><br>
+<i>Löpande arbete på informationstexter och förbättringar i interfacet.<br>
+Bugfix med automatisk luftflöde, ett snabbt ökat luftflöde tolkas nu som forcering, detta gör att nattsvalka kan användas utan att störa.
+</i></p>
+<p>
 b15<br>
 Löpande arbete på informationstexter och förbättringar i interfacet.<br>
 Allt verkar stabilt och lanseringen av 1.1 verkar vara nära.
