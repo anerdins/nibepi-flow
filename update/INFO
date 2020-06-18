@@ -1,29 +1,14 @@
-<p>
-<b>b16</b><br>
-<i>Löpande arbete på informationstexter och förbättringar i interfacet.<br>
-Bugfix med automatisk luftflöde, ett snabbt ökat luftflöde tolkas nu som forcering, detta gör att nattsvalka kan användas utan att störa.
+<p><b>b17</b><br>
+<i>Informationstexter tillagda. Denna version är ett prov av en fullständing version av NibePi 1.1. Den kommer senare att förflyttas till beta nivå och testas ytterligare. Efter det är 1.1 redo för lansering.<br>
 </i></p>
-<p>
-b15<br>
-Löpande arbete på informationstexter och förbättringar i interfacet.<br>
-Allt verkar stabilt och lanseringen av 1.1 verkar vara nära.
-</p>
-<p>
-b14<br>
-Löpande arbete på informationstexter och förbättringar i interfacet.<br>
+<b>b11-b16</b><br>
+Bugfix med automatisk luftflöde, ett snabbt ökat luftflöde tolkas nu som forcering, detta gör att nattsvalka kan användas utan att störa.
 Lagt till nyfunna register 43110, 43111 (Heating allowed och Cooling allowed)<br>
-</p>
-<p>
-b13<br>
-Mer informationstexter under Inställningar, uppdatering av bugfix modul för automatisk synkronisering av tid mot internet.<br>
+Uppdatering av bugfix modul för automatisk synkronisering av tid mot internet.<br>
 Version av NibePi visas nu under Inställningar -> Information<br>
-</p>
-<p>
-b12<br>
 Bugfix Automatiskt luftflöde, två sliders visade samma värde<br>
 JSON strängar skickas nu på MQTT med ändelsen {REGISTER}/json<br>
 Utökat uppdateringsproceduren att göra systembugfixar också<br>
-<b>b11</b><br>
 Bugfix för F370,F470 vissa funktioner funkade inte pga avsaknaden av gradminuter.<br>
 Gradminutboost i automatiskt luftflöde återgår nu från boostläge.<br>
 Register 47260 används nu för att kontrollera fläktforcering, ingen virtuell RMU är nödvändig längre.<br>
