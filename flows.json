@@ -19766,7 +19766,7 @@
         "width": 0,
         "height": 0,
         "passthru": false,
-        "mode": "number",
+        "mode": "text",
         "delay": "0",
         "topic": "addRegister",
         "x": 632,
