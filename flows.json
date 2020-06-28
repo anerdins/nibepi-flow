@@ -4960,7 +4960,7 @@
         "name": "",
         "label": "Send value",
         "group": "bd199d65.157fc",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "options": [
@@ -8206,7 +8206,7 @@
         "tooltip": "",
         "place": "",
         "group": "bd199d65.157fc",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -12171,7 +12171,7 @@
         "z": "65e6bc5.05f2644",
         "group": "bd199d65.157fc",
         "name": "Data",
-        "order": 2,
+        "order": 3,
         "width": "12",
         "height": "11",
         "lineType": "three",
@@ -19769,8 +19769,8 @@
         "mode": "text",
         "delay": "0",
         "topic": "addRegister",
-        "x": 632,
-        "y": 1295,
+        "x": 772,
+        "y": 1281,
         "wires": [
             [
                 "1b0cc4df.6a668b"
@@ -19789,11 +19789,54 @@
                 "type": "str"
             }
         ],
-        "x": 409,
+        "x": 549,
         "y": 1281,
         "wires": [
             [
                 "2368dc7d.50b594"
+            ]
+        ]
+    },
+    {
+        "id": "7725e90c.8db518",
+        "type": "ui_text_input",
+        "z": "b7f67da0.fbf1",
+        "name": "Manual Remove Register",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "bd199d65.157fc",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "0",
+        "topic": "removeRegister",
+        "x": 782,
+        "y": 1323,
+        "wires": [
+            [
+                "1b0cc4df.6a668b"
+            ]
+        ]
+    },
+    {
+        "id": "82ed0274.3d55d",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "register_remove",
+                "type": "str"
+            }
+        ],
+        "x": 549,
+        "y": 1323,
+        "wires": [
+            [
+                "7725e90c.8db518"
             ]
         ]
     }
