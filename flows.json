@@ -3269,7 +3269,7 @@
         "z": "b7f67da0.fbf1",
         "group": "4f8b35d1.5c8fec",
         "name": "Register",
-        "order": 3,
+        "order": 4,
         "width": "12",
         "height": "16",
         "lineType": "three",
@@ -19762,7 +19762,7 @@
         "label": "{{msg.label}}",
         "tooltip": "",
         "group": "4f8b35d1.5c8fec",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -19838,6 +19838,83 @@
             [
                 "7725e90c.8db518"
             ]
+        ]
+    },
+    {
+        "id": "b97c7a5a.7fe898",
+        "type": "ui_switch",
+        "z": "b7f67da0.fbf1",
+        "name": "Testmode",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "4f8b35d1.5c8fec",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "testmode",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 312,
+        "y": 1232,
+        "wires": [
+            [
+                "fd39122e.7c955"
+            ]
+        ]
+    },
+    {
+        "id": "4523ff41.d5bbb",
+        "type": "subflow:f947788.96a2488",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "testmode",
+                "type": "str"
+            }
+        ],
+        "x": 129,
+        "y": 1232,
+        "wires": [
+            [
+                "b97c7a5a.7fe898"
+            ]
+        ]
+    },
+    {
+        "id": "fd39122e.7c955",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "system",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "testmode",
+                "type": "str"
+            }
+        ],
+        "x": 237,
+        "y": 1288,
+        "wires": [
+            [
+                "4523ff41.d5bbb"
+            ],
+            []
         ]
     }
 ]
