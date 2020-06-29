@@ -1,23 +1,17 @@
-<p>
-<b>b8-b9</b><br>
-Automatiskt luftflöde tillåter inte längre hastigheter under 100 m3/h.<br>
-Varmvattenreglering visade inte rätt graf på stoppvärde vid automatisk tillfällig lyx<br>
-Elprisreglering stannar inte längre kompressorn vid väldigt högt/högt pris, utan återställer gradminuter till nästan stopp.<br>
-Bugfix så att System 2 döljs om ej tillgängligt<br>
-Ny funktion tillagd för att spara grafer, aktivera under Inställningar -> System.<br>
-Snabbare webbinterface tack vare ändring av hur graferna presenteras.<br>
-<b>b1-b7</b><br>
-Mindre buggfixar med extra givare och timeout tid 0 (oändlig)<br>
-Optimering av fläktstyrning<br>
-Uppdaterat Diagnostiken med resultat efter körning. (Frånluftsvärmepumpar)<br>
-Elprisreglering gick inte att stänga av och på reglering av värme<br>
-Inomhusreglering visade inte graf om styrning med Nibe användes<br>
-Bugfix med automatisk fläkthastighet, den slutade reglera efter senaste uppdateringen.<br>
-Nya möjlighet till diagnotisering av avfrostning och effektivitet.<br>
-Automatiskt luftflöde reglerar inte längre om forcerad fläkt är på, kräver däremot Virtuell RMU nu.<br>
-Ny möjlighet att kunna höja luftflödet när gradminuterna börjar närma sig start för tillsats, detta för att få kompressorn att gå effektivare.<br>
-NibePi startade inte pga översättningsmodulen hängde sig.<br>
-Bugfix med RMU-40 så det passar flera klimatsystem.<br>
-Lagt till möjlighet att kunna stänga av och på RMU från inställningar.<br>
-<br>
+  
+<p><b>b17</b><br>
+<i>Informationstexter tillagda. Denna version är ett prov av en fullständing version av NibePi 1.1.<br>
+</i></p>
+<b>b11-b16</b><br>
+Bugfix med automatisk luftflöde, ett snabbt ökat luftflöde tolkas nu som forcering, detta gör att nattsvalka kan användas utan att störa.
+Lagt till nyfunna register 43110, 43111 (Heating allowed och Cooling allowed)<br>
+Uppdatering av bugfix modul för automatisk synkronisering av tid mot internet.<br>
+Version av NibePi visas nu under Inställningar -> Information<br>
+Bugfix Automatiskt luftflöde, två sliders visade samma värde<br>
+JSON strängar skickas nu på MQTT med ändelsen {REGISTER}/json<br>
+Utökat uppdateringsproceduren att göra systembugfixar också<br>
+Bugfix för F370,F470 vissa funktioner funkade inte pga avsaknaden av gradminuter.<br>
+Gradminutboost i automatiskt luftflöde återgår nu från boostläge.<br>
+Register 47260 används nu för att kontrollera fläktforcering, ingen virtuell RMU är nödvändig längre.<br>
+Extra givare på Inställningar visar nu vilket topic/register som namnet är knytet till.<br>
 </p>
