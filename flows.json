@@ -11366,7 +11366,7 @@
         "group": "bcb5f9e4.9bc858",
         "order": 1,
         "width": "12",
-        "height": "3",
+        "height": "4",
         "name": "Automatisk tillfällig lyx info",
         "label": "{{msg.label}}",
         "format": "",
@@ -14178,11 +14178,12 @@
         "label": "{{msg.label}}",
         "tooltip": "",
         "place": "Select option",
-        "group": "da3c0db0.9c6aa",
+        "group": "da1887c7.ca0d38",
         "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
+        "multiple": false,
         "options": [
             {
                 "label": "Svenska",
@@ -14192,6 +14193,11 @@
             {
                 "label": "English",
                 "value": "EN",
+                "type": "str"
+            },
+            {
+                "label": "Deutsch",
+                "value": "DE",
                 "type": "str"
             }
         ],
@@ -15695,7 +15701,7 @@
         "group": "fb207b28.da59b8",
         "order": 1,
         "width": "12",
-        "height": "2",
+        "height": "3",
         "name": "Extra givare",
         "label": "{{msg.label}}",
         "format": "",
@@ -16179,7 +16185,7 @@
         "group": "33ed6fb8.2f3ce",
         "order": 1,
         "width": "12",
-        "height": "2",
+        "height": "3",
         "name": "Inställningar",
         "label": "{{msg.label}}",
         "format": "",
@@ -19420,7 +19426,7 @@
         "group": "bd199d65.157fc",
         "order": 1,
         "width": "12",
-        "height": "3",
+        "height": "4",
         "name": "Datahantering",
         "label": "{{msg.label}}",
         "format": "",
@@ -19723,9 +19729,9 @@
         "type": "ui_text",
         "z": "b7f67da0.fbf1",
         "group": "da1887c7.ca0d38",
-        "order": 6,
+        "order": 1,
         "width": "12",
-        "height": "5",
+        "height": "6",
         "name": "Förord",
         "label": "{{msg.label}}",
         "format": "",
