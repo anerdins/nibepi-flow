@@ -8402,7 +8402,7 @@
         "z": "b7f67da0.fbf1",
         "name": "Starta Samba",
         "group": "fe94277c.dcd118",
-        "order": 10,
+        "order": 11,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -8564,7 +8564,7 @@
         "z": "b7f67da0.fbf1",
         "name": "Stoppa samba",
         "group": "fe94277c.dcd118",
-        "order": 11,
+        "order": 12,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -8636,7 +8636,7 @@
         "z": "b7f67da0.fbf1",
         "name": "Starta om Node-RED",
         "group": "fe94277c.dcd118",
-        "order": 12,
+        "order": 13,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -8683,7 +8683,7 @@
         "z": "b7f67da0.fbf1",
         "name": "Starta om NibePi hårdvara",
         "group": "fe94277c.dcd118",
-        "order": 13,
+        "order": 14,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -12604,7 +12604,7 @@
         "z": "b7f67da0.fbf1",
         "name": "Stäng av NibePi hårdvara",
         "group": "fe94277c.dcd118",
-        "order": 14,
+        "order": 15,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -19746,7 +19746,7 @@
         "label": "{{msg.label}}",
         "tooltip": "",
         "group": "fe94277c.dcd118",
-        "order": 8,
+        "order": 9,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -19769,7 +19769,7 @@
         "label": "{{msg.label}}",
         "tooltip": "",
         "group": "fe94277c.dcd118",
-        "order": 9,
+        "order": 10,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -19808,8 +19808,8 @@
         "func": "let config = msg.payload;\nlet lang = config.system.language;\nif(lang===undefined) lang = \"SE\";\nlet translate = global.get('translate');\nif(translate===undefined) return;\nlet options = [ {[translate.dash.serial[lang]]:\"serial\"}, {[translate.dash.modbus[lang]]:\"tcp\"}, {[translate.dash.nibegw[lang]]:\"nibegw\"} ]\nmsg.label = translate.dash.con_type[lang];\nnode.send({options:options,label:translate.dash.con_type[lang]});\nmsg.payload = config.connection.enable;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 582,
-        "y": 658,
+        "x": 596,
+        "y": 756,
         "wires": [
             [
                 "303e9741.624d58"
@@ -19822,8 +19822,8 @@
         "z": "e1790e01.0f346",
         "server": "844659a2.8d8508",
         "name": "Config",
-        "x": 386,
-        "y": 658,
+        "x": 400,
+        "y": 756,
         "wires": [
             [],
             [
@@ -19854,8 +19854,8 @@
         ],
         "payload": "",
         "topic": "enable",
-        "x": 762,
-        "y": 658,
+        "x": 776,
+        "y": 756,
         "wires": [
             [
                 "97add5cd.2a83c8"
@@ -19870,8 +19870,8 @@
         "func": "let config = msg.payload;\nlet lang = config.system.language;\nif(lang===undefined) lang = \"SE\";\nlet translate = global.get('translate');\nif(translate===undefined) return;\nlet options = [];\nif(config.connection.enable==\"serial\") {\n    options.push({[translate.dash.fSeries[lang]]:\"fSeries\"});\n    if(config.connection.series!=\"fSeries\") {\n        msg.payload = \"\";\n    } else {\n        msg.payload = config.connection.series;\n    }\n} else if (config.connection.enable==\"nibegw\") {\n    options.push({[translate.dash.fSeries[lang]]:\"fSeries\"});\n    if(config.connection.series!=\"fSeries\") {\n        msg.payload = \"\";\n    } else {\n        msg.payload = config.connection.series;\n    }\n} else if (config.connection.enable==\"tcp\") {\n    options.push({[translate.dash.sSeries[lang]]:\"sSeries\"});\n    if(config.connection.series!=\"sSeries\") {\n        msg.payload = \"\";\n    } else {\n        msg.payload = config.connection.series;\n    }\n}\nmsg.label = translate.dash.con_series[lang];\nnode.send({options:options,label:translate.dash.con_series[lang]});\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 582,
-        "y": 728,
+        "x": 596,
+        "y": 826,
         "wires": [
             [
                 "51251a34.a196e4"
@@ -19884,8 +19884,8 @@
         "z": "e1790e01.0f346",
         "server": "844659a2.8d8508",
         "name": "Config",
-        "x": 386,
-        "y": 728,
+        "x": 400,
+        "y": 826,
         "wires": [
             [],
             [
@@ -19916,8 +19916,8 @@
         ],
         "payload": "",
         "topic": "series",
-        "x": 772,
-        "y": 728,
+        "x": 786,
+        "y": 826,
         "wires": [
             [
                 "580b7874.703488"
@@ -20118,8 +20118,8 @@
                 "type": "str"
             }
         ],
-        "x": 979,
-        "y": 658,
+        "x": 993,
+        "y": 756,
         "wires": [
             [],
             [
@@ -20144,8 +20144,8 @@
                 "type": "str"
             }
         ],
-        "x": 993,
-        "y": 721,
+        "x": 1007,
+        "y": 819,
         "wires": [
             [],
             [
@@ -20246,6 +20246,84 @@
         "wires": [
             [
                 "c91b7c2b.c9715"
+            ]
+        ]
+    },
+    {
+        "id": "4bb370c2.7131",
+        "type": "function",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "func": "let config = msg.payload;\nlet lang = config.system.language;\nif(lang===undefined) lang = \"SE\";\nlet translate = global.get('translate');\nif(translate===undefined) return;\nnode.send({enabled:false,payload:\"\"})\nif(config.connection.enable==\"tcp\") {\n    msg.label = translate.dash.tcp_pump[lang];\n    msg.payload = config.tcp.pump;\n    msg.enabled = true;\n} else {\n    msg.label = \"\";\n    msg.payload = \"\";\n    msg.enabled = false;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 799,
+        "y": 658,
+        "wires": [
+            [
+                "9edd84cb.1c5fc8"
+            ]
+        ]
+    },
+    {
+        "id": "a2eff1f.cf84c1",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "tcp",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "pump",
+                "type": "str"
+            }
+        ],
+        "x": 559,
+        "y": 630,
+        "wires": [
+            [],
+            [
+                "4bb370c2.7131"
+            ]
+        ]
+    },
+    {
+        "id": "9edd84cb.1c5fc8",
+        "type": "ui_dropdown",
+        "z": "e1790e01.0f346",
+        "name": "Modell",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "fe94277c.dcd118",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Ingen",
+                "value": "",
+                "type": "str"
+            },
+            {
+                "label": "S1255",
+                "value": "S1255",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "pump",
+        "x": 1142,
+        "y": 623,
+        "wires": [
+            [
+                "a2eff1f.cf84c1"
             ]
         ]
     }
