@@ -1,10 +1,7 @@
 <p><b>b18</b><br>
-<i>Påbörjat tillägg av engelska och tyska språket. (Välj på första sidan). Integrering mot Nibes nya S serie finns ett prov ute nu, samt integrering med NibeGW över UDP istället för direktanslutning via seriekabel<br>
+<i>Bugfix på automatisk fläkthastighet, ibland kunde fläkthastighet ställas till 0%<br>Påbörjat tillägg av engelska och tyska språket. (Välj på första sidan). Integrering mot Nibes nya S serie finns ett prov ute nu, samt integrering med NibeGW över UDP istället för direktanslutning via seriekabel<br>
 </i></p>
-<p><b>b17</b><br>
-<i>Informationstexter tillagda. Denna version är ett prov av en fullständing version av NibePi 1.1. Den kommer senare att förflyttas till beta nivå och testas ytterligare. Efter det är 1.1 redo för lansering.<br>
-</i></p>
-<b>b11-b16</b><br>
+<b>b11-b17</b><br>
 Bugfix med automatisk luftflöde, ett snabbt ökat luftflöde tolkas nu som forcering, detta gör att nattsvalka kan användas utan att störa.
 Lagt till nyfunna register 43110, 43111 (Heating allowed och Cooling allowed)<br>
 Uppdatering av bugfix modul för automatisk synkronisering av tid mot internet.<br>
