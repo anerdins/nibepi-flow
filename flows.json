@@ -14,6 +14,13 @@
         "info": ""
     },
     {
+        "id": "e1790e01.0f346",
+        "type": "tab",
+        "label": "Settings",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "df0dd648.98daa8",
         "type": "tab",
         "label": "SMHI 1.1",
@@ -128,7 +135,18 @@
                 ]
             }
         ],
-        "env": [],
+        "env": [
+            {
+                "name": "Name",
+                "type": "str",
+                "value": ""
+            },
+            {
+                "name": "Function",
+                "type": "str",
+                "value": ""
+            }
+        ],
         "color": "#DDAA99",
         "outputLabels": [
             "Node Config",
@@ -3269,7 +3287,7 @@
         "z": "b7f67da0.fbf1",
         "group": "4f8b35d1.5c8fec",
         "name": "Register",
-        "order": 4,
+        "order": 3,
         "width": "12",
         "height": "16",
         "lineType": "three",
@@ -8355,29 +8373,6 @@
         ]
     },
     {
-        "id": "cf821e30.dde36",
-        "type": "ui_text_input",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "label": "Serieport",
-        "tooltip": "",
-        "group": "fe94277c.dcd118",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "mode": "text",
-        "delay": "0",
-        "topic": "port",
-        "x": 1012,
-        "y": 1491,
-        "wires": [
-            [
-                "f0042dae.d44d"
-            ]
-        ]
-    },
-    {
         "id": "f0042dae.d44d",
         "type": "subflow:c191a5d.5d76258",
         "z": "b7f67da0.fbf1",
@@ -8397,9 +8392,7 @@
         "x": 1189,
         "y": 1491,
         "wires": [
-            [
-                "cf821e30.dde36"
-            ],
+            [],
             []
         ]
     },
@@ -8409,7 +8402,7 @@
         "z": "b7f67da0.fbf1",
         "name": "Starta Samba",
         "group": "fe94277c.dcd118",
-        "order": 6,
+        "order": 11,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -8571,7 +8564,7 @@
         "z": "b7f67da0.fbf1",
         "name": "Stoppa samba",
         "group": "fe94277c.dcd118",
-        "order": 7,
+        "order": 12,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -8643,7 +8636,7 @@
         "z": "b7f67da0.fbf1",
         "name": "Starta om Node-RED",
         "group": "fe94277c.dcd118",
-        "order": 8,
+        "order": 13,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -8690,7 +8683,7 @@
         "z": "b7f67da0.fbf1",
         "name": "Starta om NibePi hårdvara",
         "group": "fe94277c.dcd118",
-        "order": 9,
+        "order": 14,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -11366,7 +11359,7 @@
         "group": "bcb5f9e4.9bc858",
         "order": 1,
         "width": "12",
-        "height": "3",
+        "height": "4",
         "name": "Automatisk tillfällig lyx info",
         "label": "{{msg.label}}",
         "format": "",
@@ -11569,25 +11562,6 @@
             [
                 "a987e708.5634a8"
             ]
-        ]
-    },
-    {
-        "id": "b41bece3.1e5d4",
-        "type": "ui_template",
-        "z": "b7f67da0.fbf1",
-        "group": "fe94277c.dcd118",
-        "name": "Avancerat 1",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "format": "<p>\n    Här går det att köra enkla SSH kommandon på NibePi.<br>\n</p>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 791,
-        "y": 77,
-        "wires": [
-            []
         ]
     },
     {
@@ -12630,7 +12604,7 @@
         "z": "b7f67da0.fbf1",
         "name": "Stäng av NibePi hårdvara",
         "group": "fe94277c.dcd118",
-        "order": 10,
+        "order": 15,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -12677,7 +12651,7 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 753,
+        "x": 745,
         "y": 3206,
         "wires": [
             [],
@@ -14126,25 +14100,6 @@
         "wires": []
     },
     {
-        "id": "16d56a4a.5b6d46",
-        "type": "ui_template",
-        "z": "b7f67da0.fbf1",
-        "group": "fe94277c.dcd118",
-        "name": "Avancerat 2",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "format": "<p>\n    Välj vilken serieport NibePi ska kommunicera med värmepumpen på.<br>\n</p>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 966,
-        "y": 70,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "e0c72072.da4e6",
         "type": "subflow:c191a5d.5d76258",
         "z": "b7f67da0.fbf1",
@@ -14178,11 +14133,12 @@
         "label": "{{msg.label}}",
         "tooltip": "",
         "place": "Select option",
-        "group": "da3c0db0.9c6aa",
+        "group": "da1887c7.ca0d38",
         "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
+        "multiple": false,
         "options": [
             {
                 "label": "Svenska",
@@ -14192,6 +14148,11 @@
             {
                 "label": "English",
                 "value": "EN",
+                "type": "str"
+            },
+            {
+                "label": "Deutsch",
+                "value": "DE",
                 "type": "str"
             }
         ],
@@ -15695,7 +15656,7 @@
         "group": "fb207b28.da59b8",
         "order": 1,
         "width": "12",
-        "height": "2",
+        "height": "3",
         "name": "Extra givare",
         "label": "{{msg.label}}",
         "format": "",
@@ -16179,7 +16140,7 @@
         "group": "33ed6fb8.2f3ce",
         "order": 1,
         "width": "12",
-        "height": "2",
+        "height": "3",
         "name": "Inställningar",
         "label": "{{msg.label}}",
         "format": "",
@@ -19420,7 +19381,7 @@
         "group": "bd199d65.157fc",
         "order": 1,
         "width": "12",
-        "height": "3",
+        "height": "4",
         "name": "Datahantering",
         "label": "{{msg.label}}",
         "format": "",
@@ -19723,9 +19684,9 @@
         "type": "ui_text",
         "z": "b7f67da0.fbf1",
         "group": "da1887c7.ca0d38",
-        "order": 6,
+        "order": 1,
         "width": "12",
-        "height": "5",
+        "height": "6",
         "name": "Förord",
         "label": "{{msg.label}}",
         "format": "",
@@ -19751,6 +19712,621 @@
         "wires": [
             [
                 "4dd76ed6.7c0aa"
+            ]
+        ]
+    },
+    {
+        "id": "f2a8da0c.23d4c8",
+        "type": "ui_text_input",
+        "z": "e1790e01.0f346",
+        "name": "Serieport",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "fe94277c.dcd118",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "0",
+        "topic": "port",
+        "x": 718,
+        "y": 462,
+        "wires": [
+            [
+                "23c0a228.93272e"
+            ]
+        ]
+    },
+    {
+        "id": "f51c4fb1.4e2ec",
+        "type": "ui_text_input",
+        "z": "e1790e01.0f346",
+        "d": true,
+        "name": "TCP-Server",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "fe94277c.dcd118",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "0",
+        "topic": "host",
+        "x": 1169,
+        "y": 532,
+        "wires": [
+            [
+                "ec2445f9.6bf988"
+            ]
+        ]
+    },
+    {
+        "id": "675f4bbf.147a74",
+        "type": "ui_text_input",
+        "z": "e1790e01.0f346",
+        "d": true,
+        "name": "TCP-Port",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "fe94277c.dcd118",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "0",
+        "topic": "port",
+        "x": 1159,
+        "y": 581,
+        "wires": [
+            [
+                "b088190f.da5358"
+            ]
+        ]
+    },
+    {
+        "id": "b527d2e9.c1d98",
+        "type": "ui_text",
+        "z": "e1790e01.0f346",
+        "group": "fe94277c.dcd118",
+        "order": 4,
+        "width": "12",
+        "height": "2",
+        "name": "Avancerat 2",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-left",
+        "x": 938,
+        "y": 385,
+        "wires": []
+    },
+    {
+        "id": "7bf8ebeb.e58404",
+        "type": "function",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "func": "let config = msg.payload;\nlet lang = config.system.language;\nif(lang===undefined) lang = \"SE\";\nlet translate = global.get('translate');\nif(translate===undefined) return;\nlet options = [ {[translate.dash.serial[lang]]:\"serial\"},/* {[translate.dash.modbus[lang]]:\"tcp\"},*/ {[translate.dash.nibegw[lang]]:\"nibegw\"} ]\nmsg.label = translate.dash.con_type[lang];\nnode.send({options:options,label:translate.dash.con_type[lang]});\nmsg.payload = config.connection.enable;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 596,
+        "y": 756,
+        "wires": [
+            [
+                "303e9741.624d58"
+            ]
+        ]
+    },
+    {
+        "id": "eb8f7156.4566",
+        "type": "nibe-request",
+        "z": "e1790e01.0f346",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 400,
+        "y": 756,
+        "wires": [
+            [],
+            [
+                "7bf8ebeb.e58404"
+            ]
+        ]
+    },
+    {
+        "id": "303e9741.624d58",
+        "type": "ui_dropdown",
+        "z": "e1790e01.0f346",
+        "name": "Anslutningstyp",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "place": "",
+        "group": "fe94277c.dcd118",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "enable",
+        "x": 776,
+        "y": 756,
+        "wires": [
+            [
+                "97add5cd.2a83c8"
+            ]
+        ]
+    },
+    {
+        "id": "57bd758e.8e3bec",
+        "type": "function",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "func": "let config = msg.payload;\nlet lang = config.system.language;\nif(lang===undefined) lang = \"SE\";\nlet translate = global.get('translate');\nif(translate===undefined) return;\nlet options = [];\nif(config.connection.enable==\"serial\") {\n    options.push({[translate.dash.fSeries[lang]]:\"fSeries\"});\n    if(config.connection.series!=\"fSeries\") {\n        msg.payload = \"\";\n    } else {\n        msg.payload = config.connection.series;\n    }\n} else if (config.connection.enable==\"nibegw\") {\n    options.push({[translate.dash.fSeries[lang]]:\"fSeries\"});\n    if(config.connection.series!=\"fSeries\") {\n        msg.payload = \"\";\n    } else {\n        msg.payload = config.connection.series;\n    }\n}/* else if (config.connection.enable==\"tcp\") {\n    options.push({[translate.dash.sSeries[lang]]:\"sSeries\"});\n    if(config.connection.series!=\"sSeries\") {\n        msg.payload = \"\";\n    } else {\n        msg.payload = config.connection.series;\n    }\n}*/\nmsg.label = translate.dash.con_series[lang];\nnode.send({options:options,label:translate.dash.con_series[lang]});\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 596,
+        "y": 826,
+        "wires": [
+            [
+                "51251a34.a196e4"
+            ]
+        ]
+    },
+    {
+        "id": "1f6115d4.3b3a9a",
+        "type": "nibe-request",
+        "z": "e1790e01.0f346",
+        "server": "844659a2.8d8508",
+        "name": "Config",
+        "x": 400,
+        "y": 826,
+        "wires": [
+            [],
+            [
+                "57bd758e.8e3bec"
+            ]
+        ]
+    },
+    {
+        "id": "51251a34.a196e4",
+        "type": "ui_dropdown",
+        "z": "e1790e01.0f346",
+        "name": "Anslutnings serie",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "place": "",
+        "group": "fe94277c.dcd118",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "series",
+        "x": 786,
+        "y": 826,
+        "wires": [
+            [
+                "580b7874.703488"
+            ]
+        ]
+    },
+    {
+        "id": "44db6d47.b2f784",
+        "type": "function",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "func": "let config = msg.payload;\nlet lang = config.system.language;\nif(lang===undefined) lang = \"SE\";\nlet translate = global.get('translate');\nif(translate===undefined) return;\nnode.send({enabled:false,payload:\"\"})\nif(config.connection.enable==\"serial\") {\n    msg.label = translate.dash.con_serialport[lang];\n    msg.payload = config.serial.port;\n    msg.enabled = true;\n} else if(config.connection.enable==\"nibegw\") {\n    msg.label = translate.dash.con_nibegw[lang];\n    msg.payload = config.serial.port;\n    msg.enabled = true;\n} else if(config.connection.enable==\"tcp\") {\n    msg.label = \"\";\n    msg.payload = \"\";\n    msg.enabled = false;\n} \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 547,
+        "y": 483,
+        "wires": [
+            [
+                "f2a8da0c.23d4c8"
+            ]
+        ]
+    },
+    {
+        "id": "ea6fda30.77d798",
+        "type": "function",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "func": "let config = msg.payload;\nlet lang = config.system.language;\nif(lang===undefined) lang = \"SE\";\nlet translate = global.get('translate');\nif(translate===undefined) return;\nif(config.connection.enable==\"tcp\") {\n    msg.label = translate.dash.tcp_server[lang];\n    msg.payload = config.tcp.host;\n    msg.enabled = true;\n} else {\n    msg.label = \"\";\n    msg.payload = \"\";\n    msg.enabled = false;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 785,
+        "y": 525,
+        "wires": [
+            [
+                "f51c4fb1.4e2ec"
+            ]
+        ]
+    },
+    {
+        "id": "a95c1410.288c18",
+        "type": "function",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "func": "let config = msg.payload;\nlet lang = config.system.language;\nif(lang===undefined) lang = \"SE\";\nlet translate = global.get('translate');\nif(translate===undefined) return;\nnode.send({enabled:false,payload:\"\"})\nif(config.connection.enable==\"tcp\") {\n    msg.label = translate.dash.tcp_port[lang];\n    msg.payload = config.tcp.port;\n    msg.enabled = true;\n} else {\n    msg.label = \"\";\n    msg.payload = \"\";\n    msg.enabled = false;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 792,
+        "y": 581,
+        "wires": [
+            [
+                "675f4bbf.147a74"
+            ]
+        ]
+    },
+    {
+        "id": "79222f29.2ba71",
+        "type": "ui_ui_control",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "events": "change",
+        "x": 221,
+        "y": 266,
+        "wires": [
+            [
+                "8653f909.89ac88"
+            ]
+        ]
+    },
+    {
+        "id": "8653f909.89ac88",
+        "type": "function",
+        "z": "e1790e01.0f346",
+        "name": "Settings",
+        "func": "if(msg.name==\"Settings\") {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 368,
+        "y": 266,
+        "wires": [
+            [
+                "eb8f7156.4566",
+                "1f6115d4.3b3a9a"
+            ]
+        ]
+    },
+    {
+        "id": "d29af515.90ddf8",
+        "type": "subflow:f947788.96a2488",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "advanced_2",
+                "type": "str"
+            }
+        ],
+        "x": 724,
+        "y": 392,
+        "wires": [
+            [
+                "b527d2e9.c1d98"
+            ]
+        ]
+    },
+    {
+        "id": "23c0a228.93272e",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "serial",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "port",
+                "type": "str"
+            }
+        ],
+        "x": 272,
+        "y": 462,
+        "wires": [
+            [],
+            [
+                "44db6d47.b2f784"
+            ]
+        ]
+    },
+    {
+        "id": "ec2445f9.6bf988",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "tcp",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "host",
+                "type": "str"
+            }
+        ],
+        "x": 559,
+        "y": 532,
+        "wires": [
+            [],
+            [
+                "ea6fda30.77d798"
+            ]
+        ]
+    },
+    {
+        "id": "b088190f.da5358",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "tcp",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "port",
+                "type": "str"
+            }
+        ],
+        "x": 559,
+        "y": 581,
+        "wires": [
+            [],
+            [
+                "a95c1410.288c18"
+            ]
+        ]
+    },
+    {
+        "id": "97add5cd.2a83c8",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "connection",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "enable",
+                "type": "str"
+            }
+        ],
+        "x": 993,
+        "y": 756,
+        "wires": [
+            [],
+            [
+                "7bf8ebeb.e58404"
+            ]
+        ]
+    },
+    {
+        "id": "580b7874.703488",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "connection",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "series",
+                "type": "str"
+            }
+        ],
+        "x": 1007,
+        "y": 819,
+        "wires": [
+            [],
+            [
+                "57bd758e.8e3bec"
+            ]
+        ]
+    },
+    {
+        "id": "67cd646a.6b3a4c",
+        "type": "ui_template",
+        "z": "e1790e01.0f346",
+        "group": "fe94277c.dcd118",
+        "name": "Avancerat 1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<p>\n    Här går det att köra enkla SSH kommandon på NibePi.<br>\n</p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 742,
+        "y": 259,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c91b7c2b.c9715",
+        "type": "ui_switch",
+        "z": "e1790e01.0f346",
+        "name": "Testmode",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "4f8b35d1.5c8fec",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "testmode",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 480,
+        "y": 917,
+        "wires": [
+            [
+                "b4feb558.030e38"
+            ]
+        ]
+    },
+    {
+        "id": "b4feb558.030e38",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "system",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "testmode",
+                "type": "str"
+            }
+        ],
+        "x": 699,
+        "y": 917,
+        "wires": [
+            [
+                "6078937c.e1e86c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6078937c.e1e86c",
+        "type": "subflow:f947788.96a2488",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "testmode",
+                "type": "str"
+            }
+        ],
+        "x": 304,
+        "y": 917,
+        "wires": [
+            [
+                "c91b7c2b.c9715"
+            ]
+        ]
+    },
+    {
+        "id": "4bb370c2.7131",
+        "type": "function",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "func": "let config = msg.payload;\nlet lang = config.system.language;\nif(lang===undefined) lang = \"SE\";\nlet translate = global.get('translate');\nif(translate===undefined) return;\nnode.send({enabled:false,payload:\"\"})\nif(config.connection.enable==\"tcp\") {\n    msg.label = translate.dash.tcp_pump[lang];\n    msg.payload = config.tcp.pump;\n    msg.enabled = true;\n} else {\n    msg.label = \"\";\n    msg.payload = \"\";\n    msg.enabled = false;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 799,
+        "y": 658,
+        "wires": [
+            [
+                "9edd84cb.1c5fc8"
+            ]
+        ]
+    },
+    {
+        "id": "a2eff1f.cf84c1",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "tcp",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "pump",
+                "type": "str"
+            }
+        ],
+        "x": 559,
+        "y": 630,
+        "wires": [
+            [],
+            [
+                "4bb370c2.7131"
+            ]
+        ]
+    },
+    {
+        "id": "9edd84cb.1c5fc8",
+        "type": "ui_dropdown",
+        "z": "e1790e01.0f346",
+        "d": true,
+        "name": "Modell",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "fe94277c.dcd118",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Ingen",
+                "value": "",
+                "type": "str"
+            },
+            {
+                "label": "S1255",
+                "value": "S1255",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "pump",
+        "x": 1142,
+        "y": 623,
+        "wires": [
+            [
+                "a2eff1f.cf84c1"
             ]
         ]
     }
