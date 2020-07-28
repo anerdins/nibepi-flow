@@ -1,8 +1,7 @@
-  
-<p><b>b17</b><br>
-<i>Informationstexter tillagda. Denna version är ett prov av en fullständing version av NibePi 1.1.<br>
+<p><b>b18</b><br>
+<i>Bugfix på automatisk fläkthastighet, ibland kunde fläkthastighet ställas till 0%<br>Påbörjat tillägg av engelska och tyska språket. (Välj på första sidan). Ttegrering med NibeGW över UDP istället för direktanslutning via seriekabel är nu möjligt<br>
 </i></p>
-<b>b11-b16</b><br>
+<b>b11-b17</b><br>
 Bugfix med automatisk luftflöde, ett snabbt ökat luftflöde tolkas nu som forcering, detta gör att nattsvalka kan användas utan att störa.
 Lagt till nyfunna register 43110, 43111 (Heating allowed och Cooling allowed)<br>
 Uppdatering av bugfix modul för automatisk synkronisering av tid mot internet.<br>
