@@ -10289,7 +10289,7 @@
         "type": "function",
         "z": "b7f67da0.fbf1",
         "name": "",
-        "func": "let len = (msg.payload.match(/\\n/g) || []).length;\nlet release = msg.config.update.release;\nif(release.includes('snapshot')) release = \"snapshot\";\nif(len>1) {\n    node.send([null,{payload:\"Flera Node-RED mappar hittade, avbryter..\"}])\n} else if(len===1) {\n    let path = msg.payload;\n    path = path.replace('\\n','');\n    msg.path = path;\n    msg.payload = `sudo mount -o remount,rw / && cd ${path} && npm uninstall node-red-contrib-nibepi && npm install --save anerdins/node-red-contrib-nibepi#${release}`\n    node.send([msg,{payload:\"Node-RED mapp hittad.\\nUppdaterar...\"}])\n} else {\n    node.send([null,{payload:\"Node-RED mapp inte hittad. Avbryter.\"}])\n}",
+        "func": "let len = (msg.payload.match(/\\n/g) || []).length;\nlet release = msg.config.update.release;\nif(release.includes('snapshot')) release = \"snapshot\";\nif(len>1) {\n    node.send([null,{payload:\"Flera Node-RED mappar hittade, avbryter..\"}])\n} else if(len===1) {\n    let path = msg.payload;\n    path = path.replace('\\n','');\n    msg.path = path;\n    msg.payload = `sudo mount -o remount,rw / && cd ${path} && npm uninstall node-red-contrib-nibepi && npm uninstall nibepi && npm install --save anerdins/node-red-contrib-nibepi#${release}`\n    node.send([msg,{payload:\"Node-RED mapp hittad.\\nUppdaterar...\"}])\n} else {\n    node.send([null,{payload:\"Node-RED mapp inte hittad. Avbryter.\"}])\n}",
         "outputs": 2,
         "noerr": 0,
         "x": 925,
