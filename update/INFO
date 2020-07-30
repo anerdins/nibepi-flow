@@ -1,3 +1,6 @@
+<p><b>b19</b><br>
+<i>Bugfix på "Spara grafer", genererade fel i loggen<br>Infotexter kunde försvinna ibland
+<br></i></p>
 <p><b>b18</b><br>
 <i>Bugfix på automatisk fläkthastighet, ibland kunde fläkthastighet ställas till 0%<br>Påbörjat tillägg av engelska och tyska språket. (Välj på första sidan). Integrering mot Nibes nya S serie finns ett prov ute nu, samt integrering med NibeGW över UDP istället för direktanslutning via seriekabel<br>
 </i></p>
