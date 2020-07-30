@@ -10146,7 +10146,7 @@
         "width": 0,
         "height": 0,
         "passthru": false,
-        "multiple": true,
+        "multiple": false,
         "options": [
             {
                 "label": "1.1 Stable",
