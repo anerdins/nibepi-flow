@@ -1748,7 +1748,8 @@
         "y": 1134,
         "wires": [
             [
-                "67efbfba.ccf4a"
+                "67efbfba.ccf4a",
+                "39c9ef5f.7cc2b"
             ]
         ]
     },
@@ -3325,7 +3326,7 @@
         "z": "b7f67da0.fbf1",
         "server": "844659a2.8d8508",
         "name": "",
-        "x": 1085,
+        "x": 1106,
         "y": 1379,
         "wires": [
             []
@@ -10145,14 +10146,15 @@
         "width": 0,
         "height": 0,
         "passthru": false,
+        "multiple": false,
         "options": [
             {
-                "label": "1.1 Beta",
+                "label": "1.1 Stable",
                 "value": "master",
                 "type": "str"
             },
             {
-                "label": "1.1-Snapshot",
+                "label": "Latest snapshot",
                 "value": "snapshot",
                 "type": "str"
             }
@@ -10191,8 +10193,8 @@
         "z": "b7f67da0.fbf1",
         "server": "844659a2.8d8508",
         "name": "Config",
-        "x": 453,
-        "y": 3696,
+        "x": 456,
+        "y": 3710,
         "wires": [
             [
                 "38a6e41d.bbf2fc"
@@ -10553,8 +10555,8 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 1290,
-        "y": 3678,
+        "x": 1288,
+        "y": 3703,
         "wires": [
             [
                 "5258d0c8.5b55d"
@@ -14047,8 +14049,8 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 1091,
-        "y": 3395,
+        "x": 1084,
+        "y": 3388,
         "wires": [
             [
                 "ce6c9aaf.cb21b8"
@@ -19742,7 +19744,6 @@
         "id": "f51c4fb1.4e2ec",
         "type": "ui_text_input",
         "z": "e1790e01.0f346",
-        "d": true,
         "name": "TCP-Server",
         "label": "{{msg.label}}",
         "tooltip": "",
@@ -19766,7 +19767,6 @@
         "id": "675f4bbf.147a74",
         "type": "ui_text_input",
         "z": "e1790e01.0f346",
-        "d": true,
         "name": "TCP-Port",
         "label": "{{msg.label}}",
         "tooltip": "",
@@ -19807,7 +19807,7 @@
         "type": "function",
         "z": "e1790e01.0f346",
         "name": "",
-        "func": "let config = msg.payload;\nlet lang = config.system.language;\nif(lang===undefined) lang = \"SE\";\nlet translate = global.get('translate');\nif(translate===undefined) return;\nlet options = [ {[translate.dash.serial[lang]]:\"serial\"},/* {[translate.dash.modbus[lang]]:\"tcp\"},*/ {[translate.dash.nibegw[lang]]:\"nibegw\"} ]\nmsg.label = translate.dash.con_type[lang];\nnode.send({options:options,label:translate.dash.con_type[lang]});\nmsg.payload = config.connection.enable;\nreturn msg;",
+        "func": "let config = msg.payload;\nlet lang = config.system.language;\nif(lang===undefined) lang = \"SE\";\nlet translate = global.get('translate');\nif(translate===undefined) return;\nlet options = [ {[translate.dash.serial[lang]]:\"serial\"}, {[translate.dash.modbus[lang]]:\"tcp\"}, {[translate.dash.nibegw[lang]]:\"nibegw\"} ]\nmsg.label = translate.dash.con_type[lang];\nnode.send({options:options,label:translate.dash.con_type[lang]});\nmsg.payload = config.connection.enable;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 596,
@@ -19869,7 +19869,7 @@
         "type": "function",
         "z": "e1790e01.0f346",
         "name": "",
-        "func": "let config = msg.payload;\nlet lang = config.system.language;\nif(lang===undefined) lang = \"SE\";\nlet translate = global.get('translate');\nif(translate===undefined) return;\nlet options = [];\nif(config.connection.enable==\"serial\") {\n    options.push({[translate.dash.fSeries[lang]]:\"fSeries\"});\n    if(config.connection.series!=\"fSeries\") {\n        msg.payload = \"\";\n    } else {\n        msg.payload = config.connection.series;\n    }\n} else if (config.connection.enable==\"nibegw\") {\n    options.push({[translate.dash.fSeries[lang]]:\"fSeries\"});\n    if(config.connection.series!=\"fSeries\") {\n        msg.payload = \"\";\n    } else {\n        msg.payload = config.connection.series;\n    }\n}/* else if (config.connection.enable==\"tcp\") {\n    options.push({[translate.dash.sSeries[lang]]:\"sSeries\"});\n    if(config.connection.series!=\"sSeries\") {\n        msg.payload = \"\";\n    } else {\n        msg.payload = config.connection.series;\n    }\n}*/\nmsg.label = translate.dash.con_series[lang];\nnode.send({options:options,label:translate.dash.con_series[lang]});\n\nreturn msg;",
+        "func": "let config = msg.payload;\nlet lang = config.system.language;\nif(lang===undefined) lang = \"SE\";\nlet translate = global.get('translate');\nif(translate===undefined) return;\nlet options = [];\nif(config.connection.enable==\"serial\") {\n    options.push({[translate.dash.fSeries[lang]]:\"fSeries\"});\n    if(config.connection.series!=\"fSeries\") {\n        msg.payload = \"\";\n    } else {\n        msg.payload = config.connection.series;\n    }\n} else if (config.connection.enable==\"nibegw\") {\n    options.push({[translate.dash.fSeries[lang]]:\"fSeries\"});\n    if(config.connection.series!=\"fSeries\") {\n        msg.payload = \"\";\n    } else {\n        msg.payload = config.connection.series;\n    }\n} else if (config.connection.enable==\"tcp\") {\n    options.push({[translate.dash.sSeries[lang]]:\"sSeries\"});\n    if(config.connection.series!=\"sSeries\") {\n        msg.payload = \"\";\n    } else {\n        msg.payload = config.connection.series;\n    }\n}\nmsg.label = translate.dash.con_series[lang];\nnode.send({options:options,label:translate.dash.con_series[lang]});\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 596,
@@ -20297,7 +20297,6 @@
         "id": "9edd84cb.1c5fc8",
         "type": "ui_dropdown",
         "z": "e1790e01.0f346",
-        "d": true,
         "name": "Modell",
         "label": "{{msg.label}}",
         "tooltip": "",
@@ -20327,6 +20326,41 @@
         "wires": [
             [
                 "a2eff1f.cf84c1"
+            ]
+        ]
+    },
+    {
+        "id": "d346c721.2f9e38",
+        "type": "nibe-output",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "refreshConfig",
+        "x": 458,
+        "y": 1204,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "39c9ef5f.7cc2b",
+        "type": "delay",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "10",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 248,
+        "y": 1204,
+        "wires": [
+            [
+                "d346c721.2f9e38"
             ]
         ]
     }
