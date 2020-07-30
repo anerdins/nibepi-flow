@@ -1748,7 +1748,8 @@
         "y": 1134,
         "wires": [
             [
-                "67efbfba.ccf4a"
+                "67efbfba.ccf4a",
+                "39c9ef5f.7cc2b"
             ]
         ]
     },
@@ -3325,7 +3326,7 @@
         "z": "b7f67da0.fbf1",
         "server": "844659a2.8d8508",
         "name": "",
-        "x": 1085,
+        "x": 1106,
         "y": 1379,
         "wires": [
             []
@@ -10191,8 +10192,8 @@
         "z": "b7f67da0.fbf1",
         "server": "844659a2.8d8508",
         "name": "Config",
-        "x": 453,
-        "y": 3696,
+        "x": 456,
+        "y": 3710,
         "wires": [
             [
                 "38a6e41d.bbf2fc"
@@ -10553,8 +10554,8 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 1290,
-        "y": 3678,
+        "x": 1288,
+        "y": 3703,
         "wires": [
             [
                 "5258d0c8.5b55d"
@@ -20324,6 +20325,41 @@
         "wires": [
             [
                 "a2eff1f.cf84c1"
+            ]
+        ]
+    },
+    {
+        "id": "d346c721.2f9e38",
+        "type": "nibe-output",
+        "z": "b7f67da0.fbf1",
+        "server": "844659a2.8d8508",
+        "name": "refreshConfig",
+        "x": 458,
+        "y": 1204,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "39c9ef5f.7cc2b",
+        "type": "delay",
+        "z": "b7f67da0.fbf1",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "10",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 248,
+        "y": 1204,
+        "wires": [
+            [
+                "d346c721.2f9e38"
             ]
         ]
     }
