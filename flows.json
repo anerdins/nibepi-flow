@@ -10146,14 +10146,15 @@
         "width": 0,
         "height": 0,
         "passthru": false,
+        "multiple": true,
         "options": [
             {
-                "label": "1.1 Beta",
+                "label": "1.1 Stable",
                 "value": "master",
                 "type": "str"
             },
             {
-                "label": "1.1-Snapshot",
+                "label": "Latest snapshot",
                 "value": "snapshot",
                 "type": "str"
             }
