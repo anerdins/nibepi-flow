@@ -8125,12 +8125,11 @@
                 "type": "str"
             }
         ],
-        "x": 1051,
-        "y": 714,
+        "x": 1044,
+        "y": 777,
         "wires": [
             [
-                "3a72bbe0.7394c4",
-                "26b9d2b.d18782e"
+                "3a72bbe0.7394c4"
             ],
             []
         ]
@@ -8152,8 +8151,8 @@
                 "type": "str"
             }
         ],
-        "x": 1061,
-        "y": 756,
+        "x": 1054,
+        "y": 819,
         "wires": [
             [
                 "d9877026.b0431"
@@ -8170,11 +8169,11 @@
         "width": 0,
         "height": 0,
         "name": "Nibe",
-        "label": "",
-        "format": "Nibe {{msg.payload}}",
+        "label": "<b>Nibe {{msg.payload}}</b>",
+        "format": "",
         "layout": "row-left",
-        "x": 1226,
-        "y": 714,
+        "x": 1219,
+        "y": 777,
         "wires": []
     },
     {
@@ -8186,11 +8185,11 @@
         "width": 0,
         "height": 0,
         "name": "Firmware",
-        "label": "",
-        "format": "Firmware {{msg.payload}}",
+        "label": "<b>Firmware {{msg.payload}}</b>",
+        "format": "",
         "layout": "row-left",
-        "x": 1222,
-        "y": 756,
+        "x": 1215,
+        "y": 819,
         "wires": []
     },
     {
@@ -14094,8 +14093,8 @@
         "width": 0,
         "height": 0,
         "name": "NibePi",
-        "label": "",
-        "format": "NibePi {{msg.payload}}",
+        "label": "<b>NibePi {{msg.payload}}</b>",
+        "format": "",
         "layout": "row-left",
         "x": 1296,
         "y": 672,
@@ -14450,21 +14449,6 @@
                 "d25aa0c5.71b29"
             ]
         ]
-    },
-    {
-        "id": "26b9d2b.d18782e",
-        "type": "debug",
-        "z": "b7f67da0.fbf1",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 1240,
-        "y": 805,
-        "wires": []
     },
     {
         "id": "bd444c22.fd3fe",
@@ -20363,5 +20347,47 @@
                 "d346c721.2f9e38"
             ]
         ]
+    },
+    {
+        "id": "ab7806bb.59b198",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "b7f67da0.fbf1",
+        "name": "NibePi ID",
+        "env": [
+            {
+                "name": "Name",
+                "value": "system",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "id",
+                "type": "str"
+            }
+        ],
+        "x": 1061,
+        "y": 721,
+        "wires": [
+            [
+                "3a491238.92e6de"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3a491238.92e6de",
+        "type": "ui_text",
+        "z": "b7f67da0.fbf1",
+        "group": "4a7ab836.172ae8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "NibePi ID",
+        "label": "<b>NibePi ID: </b>{{msg.payload}}",
+        "format": "",
+        "layout": "row-left",
+        "x": 1285,
+        "y": 721,
+        "wires": []
     }
 ]
