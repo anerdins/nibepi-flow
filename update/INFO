@@ -1,19 +1,9 @@
-<p><b>b19</b><br>
-<i>Bugfix på "Spara grafer", genererade fel i loggen<br>Infotexter kunde försvinna ibland
-<br></i></p>
-<p><b>b18</b><br>
-<i>Bugfix på automatisk fläkthastighet, ibland kunde fläkthastighet ställas till 0%<br>Påbörjat tillägg av engelska och tyska språket. (Välj på första sidan). Ttegrering med NibeGW över UDP istället för direktanslutning via seriekabel är nu möjligt<br>
-</i></p>
-<b>b11-b17</b><br>
-Bugfix med automatisk luftflöde, ett snabbt ökat luftflöde tolkas nu som forcering, detta gör att nattsvalka kan användas utan att störa.
-Lagt till nyfunna register 43110, 43111 (Heating allowed och Cooling allowed)<br>
-Uppdatering av bugfix modul för automatisk synkronisering av tid mot internet.<br>
-Version av NibePi visas nu under Inställningar -> Information<br>
-Bugfix Automatiskt luftflöde, två sliders visade samma värde<br>
-JSON strängar skickas nu på MQTT med ändelsen {REGISTER}/json<br>
-Utökat uppdateringsproceduren att göra systembugfixar också<br>
-Bugfix för F370,F470 vissa funktioner funkade inte pga avsaknaden av gradminuter.<br>
-Gradminutboost i automatiskt luftflöde återgår nu från boostläge.<br>
-Register 47260 används nu för att kontrollera fläktforcering, ingen virtuell RMU är nödvändig längre.<br>
-Extra givare på Inställningar visar nu vilket topic/register som namnet är knytet till.<br>
-</p>
+<p><b>Version 1.1</b></p>
+<p>1.1 lämnar nu betastadiet och är färdig för release.<br>
+Flera mindre bugfixar och optimeringar har utförts i senare delen av betastadiet.<br>
+Den senaste optimeringen var vid hämtning av register från värmepumpen så har kösystemet förbättrats. Tidigare kunde kön innehålla samma register på flera platser i kön. Nu får bara samma register förekomma på ett ställe i kön, vilket tar bort en onödig dublettbegäran när funktionerna körs.</p>
+<p>Möjlighet att kommunicera med en NibeGW är nu möjligt och NibePi har även delvis översatts till tyska och engelska. Mer kommer hända där framöver. Detta gör det nu möjligt att byta språk på Startsidan.<br>
+Fokus har även lagts på att få NibePi att rapportera in ett unikt ID, modell och firmware till en central server för NibePi projektet. Detta för att få en förståelse om hur många som använder produkten och vilka värmepumpar som är populärast. Mer inom detta ämne kommer att komma framöver.<br>
+NibePi projektet flyttar även GitHub till den nya https://github.com/anerdins, sidan kommer att kompletteras med information om de olika delarna i NibePi projektet<br>
+Ytterligare ett viktigt steg för NibePi 1.1 är att den kan köras med olika NibePi-cores. NibeGW klienten är en alternativ kärna, men även en ny testkärna för nya S-serien.<br>
+Tveka inte att uppgradera redan nu, medans uppdateringen pågår så kommer NibePi att startas om helt.</p>
