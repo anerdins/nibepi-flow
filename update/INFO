@@ -1,19 +1,5 @@
-<p><b>b19</b><br>
-<i>Bugfix på "Spara grafer", genererade fel i loggen<br>Infotexter kunde försvinna ibland
+<p><b>1.1.2-SNAPSHOT</b><br>
+<i>Ny funktion för att kunna skicka SMS från NibePi! Teststadie fortfarande, aktivera under Inställningar - SMS<br>
+Alla meddelanden och telefonnummer krypteras på NibePi och avkrypteras på Anerdins Moln med hjälp av en PIN kod som aktiveras med SMS till molnet.<br>
+OBS tjänsten är kostnadsfri och fungerar över MQTT, det går att skicka till valfritt nummer med t.ex topic nibe/modbus/sms/TELENR/set ange texten i din payload.
 <br></i></p>
-<p><b>b18</b><br>
-<i>Bugfix på automatisk fläkthastighet, ibland kunde fläkthastighet ställas till 0%<br>Påbörjat tillägg av engelska och tyska språket. (Välj på första sidan). Integrering mot Nibes nya S serie finns ett prov ute nu, samt integrering med NibeGW över UDP istället för direktanslutning via seriekabel<br>
-</i></p>
-<b>b11-b17</b><br>
-Bugfix med automatisk luftflöde, ett snabbt ökat luftflöde tolkas nu som forcering, detta gör att nattsvalka kan användas utan att störa.
-Lagt till nyfunna register 43110, 43111 (Heating allowed och Cooling allowed)<br>
-Uppdatering av bugfix modul för automatisk synkronisering av tid mot internet.<br>
-Version av NibePi visas nu under Inställningar -> Information<br>
-Bugfix Automatiskt luftflöde, två sliders visade samma värde<br>
-JSON strängar skickas nu på MQTT med ändelsen {REGISTER}/json<br>
-Utökat uppdateringsproceduren att göra systembugfixar också<br>
-Bugfix för F370,F470 vissa funktioner funkade inte pga avsaknaden av gradminuter.<br>
-Gradminutboost i automatiskt luftflöde återgår nu från boostläge.<br>
-Register 47260 används nu för att kontrollera fläktforcering, ingen virtuell RMU är nödvändig längre.<br>
-Extra givare på Inställningar visar nu vilket topic/register som namnet är knytet till.<br>
-</p>
