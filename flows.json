@@ -1086,6 +1086,17 @@
         "collapse": false
     },
     {
+        "id": "deb676a4.a18c88",
+        "type": "ui_group",
+        "z": "",
+        "name": "SMS",
+        "tab": "6aa61182.b42ed",
+        "order": 13,
+        "disp": false,
+        "width": "12",
+        "collapse": false
+    },
+    {
         "id": "24d4f99f.449346",
         "type": "exec",
         "z": "64327e50.8f365",
@@ -20002,7 +20013,7 @@
             }
         ],
         "x": 724,
-        "y": 392,
+        "y": 385,
         "wires": [
             [
                 "b527d2e9.c1d98"
@@ -20388,6 +20399,232 @@
         "layout": "row-left",
         "x": 1285,
         "y": 721,
+        "wires": []
+    },
+    {
+        "id": "74063548.41a23c",
+        "type": "ui_text",
+        "z": "e1790e01.0f346",
+        "group": "deb676a4.a18c88",
+        "order": 1,
+        "width": "12",
+        "height": "2",
+        "name": "SMS label",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-left",
+        "x": 623,
+        "y": 1141,
+        "wires": []
+    },
+    {
+        "id": "a77b8890.047df8",
+        "type": "subflow:f947788.96a2488",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "sms_label",
+                "type": "str"
+            }
+        ],
+        "x": 409,
+        "y": 1141,
+        "wires": [
+            [
+                "74063548.41a23c"
+            ]
+        ]
+    },
+    {
+        "id": "229dca12.b901c6",
+        "type": "ui_text",
+        "z": "e1790e01.0f346",
+        "group": "deb676a4.a18c88",
+        "order": 2,
+        "width": "12",
+        "height": "5",
+        "name": "SMS info",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-left",
+        "x": 613,
+        "y": 1190,
+        "wires": []
+    },
+    {
+        "id": "7c61f89.8d12208",
+        "type": "subflow:f947788.96a2488",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "sms_info",
+                "type": "str"
+            }
+        ],
+        "x": 409,
+        "y": 1190,
+        "wires": [
+            [
+                "229dca12.b901c6"
+            ]
+        ]
+    },
+    {
+        "id": "4a18fd4e.f30f84",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "e1790e01.0f346",
+        "name": "NibePi ID",
+        "env": [
+            {
+                "name": "Name",
+                "value": "system",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "id",
+                "type": "str"
+            }
+        ],
+        "x": 424,
+        "y": 1246,
+        "wires": [
+            [
+                "e33587c5.f9e618"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e33587c5.f9e618",
+        "type": "ui_text",
+        "z": "e1790e01.0f346",
+        "group": "deb676a4.a18c88",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "ID",
+        "label": "<b>ID: </b>{{msg.payload}}",
+        "format": "",
+        "layout": "row-left",
+        "x": 638,
+        "y": 1246,
+        "wires": []
+    },
+    {
+        "id": "2319c9e0.0cca36",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "e1790e01.0f346",
+        "name": "NibePi PIN",
+        "env": [
+            {
+                "name": "Name",
+                "value": "system",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "pin",
+                "type": "str"
+            }
+        ],
+        "x": 434,
+        "y": 1295,
+        "wires": [
+            [
+                "316fb5a7.efd8aa"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "316fb5a7.efd8aa",
+        "type": "ui_text",
+        "z": "e1790e01.0f346",
+        "group": "deb676a4.a18c88",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "PIN",
+        "label": "<b>PIN: </b>{{msg.payload}}",
+        "format": "",
+        "layout": "row-left",
+        "x": 638,
+        "y": 1295,
+        "wires": []
+    },
+    {
+        "id": "17cee26f.31a15e",
+        "type": "ui_form",
+        "z": "e1790e01.0f346",
+        "name": "Skicka SMS",
+        "label": "",
+        "group": "deb676a4.a18c88",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Telenr",
+                "value": "n",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Meddelande",
+                "value": "t",
+                "type": "multiline",
+                "required": true,
+                "rows": 2
+            }
+        ],
+        "formValue": {
+            "n": "",
+            "t": ""
+        },
+        "payload": "",
+        "submit": "Skicka",
+        "cancel": "",
+        "topic": "",
+        "x": 448,
+        "y": 1351,
+        "wires": [
+            [
+                "be353e44.5348a",
+                "f1b19ebb.0fce8"
+            ]
+        ]
+    },
+    {
+        "id": "be353e44.5348a",
+        "type": "nibe-output",
+        "z": "e1790e01.0f346",
+        "server": "844659a2.8d8508",
+        "name": "sendSMS",
+        "x": 634,
+        "y": 1351,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f1b19ebb.0fce8",
+        "type": "debug",
+        "z": "e1790e01.0f346",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 848,
+        "y": 1197,
         "wires": []
     }
 ]
