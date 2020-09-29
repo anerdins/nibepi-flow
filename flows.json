@@ -20312,6 +20312,11 @@
                 "label": "S1255",
                 "value": "S1255",
                 "type": "str"
+            },
+            {
+                "label": "VVMS320-325",
+                "value": "VVMS320",
+                "type": "str"
             }
         ],
         "payload": "",
