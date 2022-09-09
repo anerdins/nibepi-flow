@@ -1,9 +1,2 @@
-<p><b>Version 1.1</b></p>
-<p>1.1 lämnar nu betastadiet och är färdig för release.<br>
-Flera mindre bugfixar och optimeringar har utförts i senare delen av betastadiet.<br>
-Den senaste optimeringen var vid hämtning av register från värmepumpen så har kösystemet förbättrats. Tidigare kunde kön innehålla samma register på flera platser i kön. Nu får bara samma register förekomma på ett ställe i kön, vilket tar bort en onödig dublettbegäran när funktionerna körs.</p>
-<p>Möjlighet att kommunicera med en NibeGW är nu möjligt och NibePi har även delvis översatts till tyska och engelska. Mer kommer hända där framöver. Detta gör det nu möjligt att byta språk på Startsidan.<br>
-Fokus har även lagts på att få NibePi att rapportera in ett unikt ID, modell och firmware till en central server för NibePi projektet. Detta för att få en förståelse om hur många som använder produkten och vilka värmepumpar som är populärast. Mer inom detta ämne kommer att komma framöver.<br>
-NibePi projektet flyttar även GitHub till den nya https://github.com/anerdins, sidan kommer att kompletteras med information om de olika delarna i NibePi projektet<br>
-Ytterligare ett viktigt steg för NibePi 1.1 är att den kan köras med olika NibePi-cores. NibeGW klienten är en alternativ kärna, men även en ny testkärna för nya S-serien.<br>
-Tveka inte att uppgradera redan nu, medans uppdateringen pågår så kommer NibePi att startas om helt.</p>
+<p><b>Version 1.2</b></p>
+<p>1.2 lämnar nu betastadiet och är färdig för release.<br></p>
