@@ -9773,10 +9773,19 @@
         "type": "inject",
         "z": "df0dd648.98daa8",
         "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "30",
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
@@ -11959,10 +11968,19 @@
         "type": "inject",
         "z": "358baec9.c8b902",
         "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "30",
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
@@ -16801,10 +16819,19 @@
         "type": "inject",
         "z": "960078e.e3e6d88",
         "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "30",
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
