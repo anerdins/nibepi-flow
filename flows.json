@@ -11379,8 +11379,8 @@
                 "type": "str"
             }
         ],
-        "x": 874,
-        "y": 1701,
+        "x": 890,
+        "y": 1700,
         "wires": [
             [
                 "194ef259.d819be"
@@ -14305,7 +14305,7 @@
         "topicType": "str",
         "className": "",
         "x": 1850,
-        "y": 1280,
+        "y": 1300,
         "wires": [
             [
                 "f6c2eadb.af1c28"
@@ -15068,7 +15068,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1480,
+        "x": 1460,
         "y": 840,
         "wires": [
             [],
@@ -15083,8 +15083,8 @@
         "z": "960078e.e3e6d88",
         "name": "Disable Group S2",
         "events": "all",
-        "x": 1390,
-        "y": 740,
+        "x": 1370,
+        "y": 780,
         "wires": [
             []
         ]
@@ -15598,7 +15598,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1010,
+        "x": 970,
         "y": 560,
         "wires": [
             []
@@ -18353,7 +18353,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1060,
+        "x": 1080,
         "y": 620,
         "wires": [
             [],
