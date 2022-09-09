@@ -11,7 +11,7 @@ cd $dirNode && npm uninstall node-red-contrib-nibepi && npm install --save anerd
 echo "Downloading new flows for Node-RED"
 mount=$(sudo mount -o remount,rw / 2>/tmp/tar_stderr);
 cd /tmp && wget https://raw.githubusercontent.com/anerdins/nibepi-flow/1.2/flows.json && wget https://raw.githubusercontent.com/anerdins/nibepi-flow/1.2/package.json
-cd /tmp && mv -f flows.json $dirNode/flows.json && mv -f flows.json $dirNode/package.json
+cd /tmp && mv -f flows.json $dirNode/flows.json && mv -f package.json $dirNode/package.json
 echo "Updated succesfully"
 echo "Starting Node-RED."
 sudo service nodered start
