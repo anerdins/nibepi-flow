@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "dependencies": {
     "mqtt": "^4.3.4",
-    "node-red-contrib-nibepi": "github:anerdins/node-red-contrib-nibepi#1.2.1",
+    "node-red-contrib-nibepi": "github:anerdins/node-red-contrib-nibepi#1.2",
     "node-red-dashboard": "~3.1.7",
     "node-red-node-pi-gpio": "~2.0.1",
     "node-red-node-ping": "0.0.16",
