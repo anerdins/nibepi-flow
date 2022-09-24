@@ -1,1 +1,1 @@
-cd /tmp && bash <(curl -sL https://raw.githubusercontent.com/anerdins/nibepi-flow/1.2/update/update.sh)
+cd /tmp && bash <(curl -sL https://raw.githubusercontent.com/anerdins/nibepi-flow/1.2.1/update/update.sh)
