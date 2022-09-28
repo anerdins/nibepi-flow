@@ -1056,6 +1056,17 @@
         "height": "1"
     },
     {
+        "id": "ff52e56c57bb5d49",
+        "type": "ui_group",
+        "name": "Prioriterad tillsats",
+        "tab": "ad3904c7.ceae48",
+        "order": 10,
+        "disp": false,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "24d4f99f.449346",
         "type": "exec",
         "z": "64327e50.8f365",
@@ -18520,6 +18531,411 @@
         "wires": [
             [
                 "6ef62477e61b8c5e"
+            ]
+        ]
+    },
+    {
+        "id": "f6c369c1968d984b",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "prio_enable",
+                "type": "str"
+            }
+        ],
+        "x": 290,
+        "y": 2480,
+        "wires": [
+            [
+                "0d34faef9fe3a4bf"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "0d34faef9fe3a4bf",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_enable_prio",
+                "type": "str"
+            }
+        ],
+        "x": 497,
+        "y": 2480,
+        "wires": [
+            [
+                "8f29224549631cf2"
+            ]
+        ]
+    },
+    {
+        "id": "8f29224549631cf2",
+        "type": "ui_switch",
+        "z": "960078e.e3e6d88",
+        "name": "Prioriterad tillsats",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "ff52e56c57bb5d49",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "prio_enable",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 696,
+        "y": 2480,
+        "wires": [
+            [
+                "f6c369c1968d984b"
+            ]
+        ]
+    },
+    {
+        "id": "da027094edac0c4f",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_prio_info",
+                "type": "str"
+            }
+        ],
+        "x": 280,
+        "y": 2420,
+        "wires": [
+            [
+                "5009ee5475516217"
+            ]
+        ]
+    },
+    {
+        "id": "5009ee5475516217",
+        "type": "ui_text",
+        "z": "960078e.e3e6d88",
+        "group": "ff52e56c57bb5d49",
+        "order": 1,
+        "width": "12",
+        "height": "3",
+        "name": "Prioriterad tillsats info",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 523,
+        "y": 2420,
+        "wires": []
+    },
+    {
+        "id": "7d6a7e52cfe45442",
+        "type": "ui_text_input",
+        "z": "960078e.e3e6d88",
+        "name": "Prio kostnad",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "ff52e56c57bb5d49",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "number",
+        "delay": "0",
+        "topic": "prio_cost",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 670,
+        "y": 2580,
+        "wires": [
+            [
+                "499540b61da8f1f5"
+            ]
+        ]
+    },
+    {
+        "id": "499540b61da8f1f5",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "prio_cost",
+                "type": "str"
+            }
+        ],
+        "x": 290,
+        "y": 2580,
+        "wires": [
+            [
+                "35a75da7b46c4ca1"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "35a75da7b46c4ca1",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "prio_cost",
+                "type": "str"
+            }
+        ],
+        "x": 497,
+        "y": 2580,
+        "wires": [
+            [
+                "7d6a7e52cfe45442"
+            ]
+        ]
+    },
+    {
+        "id": "2ed060a16adb3ad3",
+        "type": "ui_text_input",
+        "z": "960078e.e3e6d88",
+        "name": "Prio Överföring",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "ff52e56c57bb5d49",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "number",
+        "delay": "0",
+        "topic": "prio_transfer",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 680,
+        "y": 2640,
+        "wires": [
+            [
+                "855e360766616f42"
+            ]
+        ]
+    },
+    {
+        "id": "855e360766616f42",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "prio_transfer",
+                "type": "str"
+            }
+        ],
+        "x": 290,
+        "y": 2640,
+        "wires": [
+            [
+                "ac53819a8e51f6e8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ac53819a8e51f6e8",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "prio_transfer",
+                "type": "str"
+            }
+        ],
+        "x": 497,
+        "y": 2640,
+        "wires": [
+            [
+                "2ed060a16adb3ad3"
+            ]
+        ]
+    },
+    {
+        "id": "2010dd2ae59cc2a7",
+        "type": "ui_text_input",
+        "z": "960078e.e3e6d88",
+        "name": "Prio Skatt",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "ff52e56c57bb5d49",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "number",
+        "delay": "0",
+        "topic": "prio_tax",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 660,
+        "y": 2700,
+        "wires": [
+            [
+                "dc4b823a647bbc58"
+            ]
+        ]
+    },
+    {
+        "id": "dc4b823a647bbc58",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "prio_tax",
+                "type": "str"
+            }
+        ],
+        "x": 290,
+        "y": 2700,
+        "wires": [
+            [
+                "9f3c6328c2b2a5c1"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9f3c6328c2b2a5c1",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "prio_tax",
+                "type": "str"
+            }
+        ],
+        "x": 497,
+        "y": 2700,
+        "wires": [
+            [
+                "2010dd2ae59cc2a7"
+            ]
+        ]
+    },
+    {
+        "id": "fef17349bbe77924",
+        "type": "ui_text_input",
+        "z": "960078e.e3e6d88",
+        "name": "Prio COP",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "ff52e56c57bb5d49",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "number",
+        "delay": "0",
+        "topic": "prio_cop",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 660,
+        "y": 2540,
+        "wires": [
+            [
+                "e5988f9c37ddd46f"
+            ]
+        ]
+    },
+    {
+        "id": "e5988f9c37ddd46f",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "prio_cop",
+                "type": "str"
+            }
+        ],
+        "x": 290,
+        "y": 2540,
+        "wires": [
+            [
+                "f0eb16b870524f1d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f0eb16b870524f1d",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "prio_cop",
+                "type": "str"
+            }
+        ],
+        "x": 497,
+        "y": 2540,
+        "wires": [
+            [
+                "fef17349bbe77924"
             ]
         ]
     },
