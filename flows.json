@@ -13883,7 +13883,8 @@
         "wires": [
             [
                 "d00a5f55.781ef",
-                "f8786cda.32817"
+                "f8786cda.32817",
+                "5c3341a438be4652"
             ],
             []
         ]
@@ -18385,7 +18386,7 @@
         "type": "function",
         "z": "960078e.e3e6d88",
         "name": "Enable/Disable",
-        "func": "\nif(msg.enabled!==undefined && msg.enabled===false) {\n    let hide = {\n        \"group\":\n            {\"hide\":\n                [\"Elprisreglering_Elprisreglering_S2\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n} else {\n    node.warn('Show')\n    let hide = {\n        \"group\":\n            {\"show\":\n                [\"Elprisreglering_Elprisreglering_S2\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n}",
+        "func": "\nif(msg.enabled!==undefined && msg.enabled===false) {\n    let hide = {\n        \"group\":\n            {\"hide\":\n                [\"Elprisreglering_Elprisreglering_S2\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n} else {\n    let hide = {\n        \"group\":\n            {\"show\":\n                [\"Elprisreglering_Elprisreglering_S2\"]\n            }\n        }\n    node.send([null,{payload:hide}]);\n}",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -18938,6 +18939,23 @@
                 "fef17349bbe77924"
             ]
         ]
+    },
+    {
+        "id": "5c3341a438be4652",
+        "type": "debug",
+        "z": "960078e.e3e6d88",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1660,
+        "y": 80,
+        "wires": []
     },
     {
         "id": "536a060f.983278",
