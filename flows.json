@@ -14127,7 +14127,7 @@
         "label": "Token",
         "tooltip": "",
         "group": "f481a5f0.f9f1c8",
-        "order": 7,
+        "order": 8,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -17722,7 +17722,7 @@
         "label": "{{msg.label}}",
         "tooltip": "",
         "group": "f481a5f0.f9f1c8",
-        "order": 8,
+        "order": 9,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -17978,7 +17978,7 @@
         "label": "{{msg.label}}",
         "tooltip": "",
         "group": "f481a5f0.f9f1c8",
-        "order": 13,
+        "order": 14,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -18051,7 +18051,7 @@
         "label": "{{msg.label}}",
         "tooltip": "",
         "group": "f481a5f0.f9f1c8",
-        "order": 12,
+        "order": 13,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -18095,7 +18095,7 @@
         "type": "ui_text",
         "z": "960078e.e3e6d88",
         "group": "f481a5f0.f9f1c8",
-        "order": 10,
+        "order": 11,
         "width": "12",
         "height": "3",
         "name": "Högt/Lågt pris info",
@@ -18162,7 +18162,7 @@
         "label": "{{msg.label}}",
         "tooltip": "",
         "group": "f481a5f0.f9f1c8",
-        "order": 11,
+        "order": 12,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -18200,7 +18200,7 @@
         "finalize": "",
         "libs": [],
         "x": 960,
-        "y": 2260,
+        "y": 2280,
         "wires": [
             [
                 "cf4ace3cd4482f7a",
@@ -18262,7 +18262,7 @@
         "label": "{{msg.label}}",
         "tooltip": "",
         "group": "f481a5f0.f9f1c8",
-        "order": 9,
+        "order": 10,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -18482,7 +18482,7 @@
         "tooltip": "",
         "place": "",
         "group": "f481a5f0.f9f1c8",
-        "order": 6,
+        "order": 7,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -18955,6 +18955,636 @@
         "statusType": "auto",
         "x": 1660,
         "y": 80,
+        "wires": []
+    },
+    {
+        "id": "07e9e82c990ab99e",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_freq_info",
+                "type": "str"
+            }
+        ],
+        "x": 1500,
+        "y": 2480,
+        "wires": [
+            [
+                "ce2e9e7fc1824566"
+            ]
+        ]
+    },
+    {
+        "id": "ce2e9e7fc1824566",
+        "type": "ui_text",
+        "z": "960078e.e3e6d88",
+        "group": "f481a5f0.f9f1c8",
+        "order": 15,
+        "width": "12",
+        "height": "5",
+        "name": "Frekvens info",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1723,
+        "y": 2480,
+        "wires": []
+    },
+    {
+        "id": "e9c448159fe66160",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "enable_freq",
+                "type": "str"
+            }
+        ],
+        "x": 1030,
+        "y": 2580,
+        "wires": [
+            [
+                "8a5570d8375f4926",
+                "09a4c19c51cac9e5"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8a5570d8375f4926",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_enable_freq",
+                "type": "str"
+            }
+        ],
+        "x": 1310,
+        "y": 2567,
+        "wires": [
+            [
+                "33e2025a2969362d"
+            ]
+        ]
+    },
+    {
+        "id": "33e2025a2969362d",
+        "type": "ui_switch",
+        "z": "960078e.e3e6d88",
+        "name": "Aktivera frekvensreglering",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "f481a5f0.f9f1c8",
+        "order": 16,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "enable_freq",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 1830,
+        "y": 2560,
+        "wires": [
+            [
+                "e9c448159fe66160"
+            ]
+        ]
+    },
+    {
+        "id": "09a4c19c51cac9e5",
+        "type": "function",
+        "z": "960078e.e3e6d88",
+        "name": "Enable/Disable Source",
+        "func": "let source = msg.payload;\nif(source===true) {\n    msg = {\n    enabled:true\n};\nreturn msg;\n} else {\n    msg = {\n    enabled:false\n};\nreturn msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 2800,
+        "wires": [
+            [
+                "a777974c46d22350",
+                "0f289078d69c2a0c",
+                "9010c15b510a83e0",
+                "84e9e95b7c6e4c18",
+                "b5c21f4b2c264716"
+            ]
+        ]
+    },
+    {
+        "id": "818d1901ae8e6850",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "min_temp",
+                "type": "str"
+            }
+        ],
+        "x": 1170,
+        "y": 2880,
+        "wires": [
+            [
+                "a777974c46d22350"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a777974c46d22350",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_min_temp",
+                "type": "str"
+            }
+        ],
+        "x": 1524,
+        "y": 2880,
+        "wires": [
+            [
+                "f5a0291d10e5a699"
+            ]
+        ]
+    },
+    {
+        "id": "f5a0291d10e5a699",
+        "type": "ui_slider",
+        "z": "960078e.e3e6d88",
+        "name": "Min temp",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "f481a5f0.f9f1c8",
+        "order": 18,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "outs": "end",
+        "topic": "min_temp",
+        "topicType": "str",
+        "min": "-30",
+        "max": "10",
+        "step": "1",
+        "className": "",
+        "x": 1700,
+        "y": 2880,
+        "wires": [
+            [
+                "818d1901ae8e6850"
+            ]
+        ]
+    },
+    {
+        "id": "72b8ea45d1a98657",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "max_freq",
+                "type": "str"
+            }
+        ],
+        "x": 1170,
+        "y": 2940,
+        "wires": [
+            [
+                "0f289078d69c2a0c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "0f289078d69c2a0c",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_max_freq",
+                "type": "str"
+            }
+        ],
+        "x": 1524,
+        "y": 2940,
+        "wires": [
+            [
+                "d242caa9359204aa"
+            ]
+        ]
+    },
+    {
+        "id": "d242caa9359204aa",
+        "type": "ui_slider",
+        "z": "960078e.e3e6d88",
+        "name": "Max freq",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "f481a5f0.f9f1c8",
+        "order": 19,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "outs": "end",
+        "topic": "max_freq",
+        "topicType": "str",
+        "min": "25",
+        "max": "70",
+        "step": "1",
+        "className": "",
+        "x": 1700,
+        "y": 2940,
+        "wires": [
+            [
+                "72b8ea45d1a98657"
+            ]
+        ]
+    },
+    {
+        "id": "71302751f7100f4b",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "max_temp",
+                "type": "str"
+            }
+        ],
+        "x": 1170,
+        "y": 3000,
+        "wires": [
+            [
+                "9010c15b510a83e0"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9010c15b510a83e0",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_max_temp",
+                "type": "str"
+            }
+        ],
+        "x": 1524,
+        "y": 3000,
+        "wires": [
+            [
+                "a2476426b305812b"
+            ]
+        ]
+    },
+    {
+        "id": "a2476426b305812b",
+        "type": "ui_slider",
+        "z": "960078e.e3e6d88",
+        "name": "Max temp",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "f481a5f0.f9f1c8",
+        "order": 20,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "outs": "end",
+        "topic": "max_temp",
+        "topicType": "str",
+        "min": "-30",
+        "max": "10",
+        "step": "1",
+        "className": "",
+        "x": 1700,
+        "y": 3000,
+        "wires": [
+            [
+                "71302751f7100f4b"
+            ]
+        ]
+    },
+    {
+        "id": "c7c77ce274cd7576",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "min_freq",
+                "type": "str"
+            }
+        ],
+        "x": 1170,
+        "y": 3060,
+        "wires": [
+            [
+                "84e9e95b7c6e4c18"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "84e9e95b7c6e4c18",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_min_freq",
+                "type": "str"
+            }
+        ],
+        "x": 1524,
+        "y": 3060,
+        "wires": [
+            [
+                "16c9bbc13757ff3f"
+            ]
+        ]
+    },
+    {
+        "id": "16c9bbc13757ff3f",
+        "type": "ui_slider",
+        "z": "960078e.e3e6d88",
+        "name": "Min freq",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "f481a5f0.f9f1c8",
+        "order": 21,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "outs": "end",
+        "topic": "min_freq",
+        "topicType": "str",
+        "min": "20",
+        "max": "65",
+        "step": "1",
+        "className": "",
+        "x": 1700,
+        "y": 3060,
+        "wires": [
+            [
+                "c7c77ce274cd7576"
+            ]
+        ]
+    },
+    {
+        "id": "20fa69c7c70ee0d7",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "block_add",
+                "type": "str"
+            }
+        ],
+        "x": 1030,
+        "y": 2620,
+        "wires": [
+            [
+                "b5c21f4b2c264716"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b5c21f4b2c264716",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_block_add",
+                "type": "str"
+            }
+        ],
+        "x": 1300,
+        "y": 2620,
+        "wires": [
+            [
+                "9ff95c4789e81556"
+            ]
+        ]
+    },
+    {
+        "id": "9ff95c4789e81556",
+        "type": "ui_switch",
+        "z": "960078e.e3e6d88",
+        "name": "förhindra tillsats",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "f481a5f0.f9f1c8",
+        "order": 17,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "block_add",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 1800,
+        "y": 2620,
+        "wires": [
+            [
+                "20fa69c7c70ee0d7"
+            ]
+        ]
+    },
+    {
+        "id": "f1d6b3ab8ca9eeeb",
+        "type": "subflow:c191a5d.5d76258",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price",
+                "type": "str"
+            },
+            {
+                "name": "Function",
+                "value": "enable_dM_reset",
+                "type": "str"
+            }
+        ],
+        "x": 1030,
+        "y": 2680,
+        "wires": [
+            [
+                "81ec81547bf495b4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "81ec81547bf495b4",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_enable_dM_reset",
+                "type": "str"
+            }
+        ],
+        "x": 1300,
+        "y": 2680,
+        "wires": [
+            [
+                "732a760e51741f33"
+            ]
+        ]
+    },
+    {
+        "id": "732a760e51741f33",
+        "type": "ui_switch",
+        "z": "960078e.e3e6d88",
+        "name": "Degree reset",
+        "label": "{{msg.label}}",
+        "tooltip": "",
+        "group": "f481a5f0.f9f1c8",
+        "order": 23,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "enable_dM_reset",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 1790,
+        "y": 2680,
+        "wires": [
+            [
+                "f1d6b3ab8ca9eeeb"
+            ]
+        ]
+    },
+    {
+        "id": "5f2542a577e08f75",
+        "type": "subflow:f947788.96a2488",
+        "z": "960078e.e3e6d88",
+        "name": "",
+        "env": [
+            {
+                "name": "Name",
+                "value": "price_dmreset_info",
+                "type": "str"
+            }
+        ],
+        "x": 1620,
+        "y": 2760,
+        "wires": [
+            [
+                "01f9c8eaa8aeeb4d"
+            ]
+        ]
+    },
+    {
+        "id": "01f9c8eaa8aeeb4d",
+        "type": "ui_text",
+        "z": "960078e.e3e6d88",
+        "group": "f481a5f0.f9f1c8",
+        "order": 22,
+        "width": "12",
+        "height": "2",
+        "name": "Gradminut återställning info",
+        "label": "{{msg.label}}",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1883,
+        "y": 2760,
         "wires": []
     },
     {
